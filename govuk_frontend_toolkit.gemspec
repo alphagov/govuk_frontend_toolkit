@@ -15,5 +15,6 @@ Gem::Specification.new do |s|
   s.add_development_dependency "rake", "0.9.2.2"
   s.add_development_dependency "gemfury", "0.4.8"
 
-  s.require_path = 'lib'
+  s.require_paths = ["lib", "app"]
+  s.files         = `git ls-files`.split($\)
 end
