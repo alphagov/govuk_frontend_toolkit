@@ -5,6 +5,10 @@ require "govuk_frontend_toolkit/version"
 Gem::Specification.new do |s|
   s.name         = "govuk_frontend_toolkit"
   s.version      = GovUKFrontendToolkit::VERSION
+  s.summary      = 'Tools for building frontend applications'
+  s.authors      = ['Bradley Wright']
+  s.email        = 'bradley.wright@digital.cabinet-office.gov.uk'
+  s.homepage     = 'https://github.com/alphagov/govuk_frontend_toolkit'
 
   s.add_dependency "rails", ">= 3.1.0"
   s.add_development_dependency "gem_publisher", "~> 1.1.1"
