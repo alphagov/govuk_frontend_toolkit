@@ -9,4 +9,8 @@ task :publish_gem do |t|
   puts "Published #{gem}" if gem
 end
 
+task :test do |t|
+  true
+end
+
 task :default => :test
