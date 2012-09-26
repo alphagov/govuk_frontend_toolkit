@@ -1,0 +1,144 @@
+@import '_font_stack.scss';
+//  GOV.UK typography palettes
+
+//  ANATOMY OF A TYPE STYLE
+//  -----------------------
+//  These are a collection of graphic styles. They are deliberately
+//  abstracted from semantic HTML context to enable flexible re-use.
+//  Although there is a lot of duplication within this file, as long
+//  as you GZIP your CSS it shouldnt cause any bloat.
+
+
+// CORE FONTS - NEW TRANSPORT
+
+$is-print: false !default;
+
+@mixin core-48($line-height: (50 / 48), $line-height-640: (30 / 25)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 48px;
+    font-size: 4.8rem;
+  } @else {
+    font-size: 18pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 2.5rem;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-36($line-height: (42 / 36), $line-height-640: (30 / 25)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 36px;
+    font-size: 3.6rem;
+  } @else {
+    font-size: 18pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 2.5rem;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-27($line-height: (30 / 27), $line-height-640: (25 / 19)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 27px;
+    font-size: 2.7rem;
+  } @else {
+    font-size: 16pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 1.9rem;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-24($line-height: (30 / 24), $line-height-640: (25 / 17)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 24px;
+    font-size: 2.4rem;
+  } @else {
+    font-size: 16pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 1.7rem;
+    line-height: $line-height-640;
+  }
+}
+
+
+@mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 13)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 19px;
+    font-size: 1.9rem;
+  } @else {
+    font-size: 14pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 1.3rem;
+    line-height: $line-height-640;
+  }
+}
+
+@mixin core-16($line-height: (20 / 16), $line-height-640: (20 / 13)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 16px;
+    font-size: 1.6rem;
+  } @else {
+    font-size: 12pt;
+  }
+  line-height: $line-height;
+  font-weight: 300;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 1.3rem;
+    line-height: $line-height-640;
+  }
+}
+
+
+@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 12)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 14px;
+    font-size: 1.4rem;
+  } @else {
+    font-size: 11pt;
+  }
+  line-height: $line-height; 
+  font-weight: 400;
+  -webkit-font-smoothing: subpixel-antialiased;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 1.2rem;
+    line-height: $line-height-640;
+  }
+}
+
