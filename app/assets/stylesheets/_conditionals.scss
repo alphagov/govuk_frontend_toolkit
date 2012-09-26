@@ -26,8 +26,10 @@ $is-ie: false !default;
 
 @mixin media($size: false, $max-width: false, $min-width: false) {
   @if $is-ie {
-    @if $ie-version > 6 {
-      @content;
+    @if $size != mobile {
+      @if $ie-version > 6 {
+        @content;
+      }
     }
   } @else {
     @if $size == desktop {
