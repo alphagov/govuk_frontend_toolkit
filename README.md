@@ -231,6 +231,7 @@ grid. The other is a base font style with no extra padding.
 
 The following heading and copy styles exist:
 
+* `heading-80`
 * `heading-48`
 * `heading-36`
 * `heading-27`
@@ -249,6 +250,7 @@ The following heading and copy styles exist:
 
 The following core styles exist:
 
+* `core-80`
 * `core-48`
 * `core-36`
 * `core-27`

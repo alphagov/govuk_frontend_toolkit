@@ -15,6 +15,24 @@
 
 $is-print: false !default;
 
+@mixin core-80($line-height: (80 / 80), $line-height-640: (55 / 53)) {
+  font-family: $NTA-Light;
+  @if $is-print == false {
+    font-size: 80px;
+    font-size: 8rem;
+  } @else {
+    font-size: 28pt;
+  }
+  line-height: $line-height;
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+  @media (max-width: 640px) {
+    font-size: 5.3rem;
+    line-height: $line-height-640;
+  }
+}
+
 @mixin core-48($line-height: (50 / 48), $line-height-640: (35 / 32)) {
   font-family: $NTA-Light;
   @if $is-print == false {
@@ -139,6 +157,20 @@ $is-print: false !default;
   @media (max-width: 640px) {
     font-size: 1.2rem;
     line-height: $line-height-640;
+  }
+}
+
+@mixin heading-80 {
+  @include core-80;
+
+  padding-top: 8px;
+  padding-top: 0.8rem;
+  padding-bottom: 7px;
+  padding-bottom: 0.7rem;
+
+  @include media(tablet){
+    padding-top: 0.6rem;
+    padding-bottom: 1.4rem;
   }
 }
 
