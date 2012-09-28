@@ -87,7 +87,7 @@ $is-print: false !default;
   }
 }
 
-@mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 13)) {
+@mixin core-19($line-height: (25 / 19), $line-height-640: (15 / 13)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 19px;
@@ -105,7 +105,7 @@ $is-print: false !default;
   }
 }
 
-@mixin core-16($line-height: (20 / 16), $line-height-640: (20 / 13)) {
+@mixin core-16($line-height: (20 / 16), $line-height-640: (15 / 13)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 16px;
@@ -123,7 +123,7 @@ $is-print: false !default;
   }
 }
 
-@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 13)) {
+@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 12)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 14px;
@@ -137,7 +137,7 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     line-height: $line-height-640;
   }
 }
