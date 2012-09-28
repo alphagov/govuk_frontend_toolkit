@@ -13,7 +13,7 @@
 
 $is-print: false !default;
 
-@mixin core-48($line-height: (50 / 48), $line-height-640: (30 / 25)) {
+@mixin core-48($line-height: (50 / 48), $line-height-640: (35 / 32)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 48px;
@@ -26,12 +26,12 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 2.5rem;
+    font-size: 3.2rem;
     line-height: $line-height-640;
   }
 }
 
-@mixin core-36($line-height: (42 / 36), $line-height-640: (30 / 25)) {
+@mixin core-36($line-height: (40 / 36), $line-height-640: (25 / 24)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 36px;
@@ -44,12 +44,12 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 2.5rem;
+    font-size: 2.4rem;
     line-height: $line-height-640;
   }
 }
 
-@mixin core-27($line-height: (30 / 27), $line-height-640: (25 / 19)) {
+@mixin core-27($line-height: (30 / 27), $line-height-640: (20 / 18)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 27px;
@@ -62,12 +62,12 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.9rem;
+    font-size: 1.8rem;
     line-height: $line-height-640;
   }
 }
 
-@mixin core-24($line-height: (30 / 24), $line-height-640: (25 / 17)) {
+@mixin core-24($line-height: (30 / 24), $line-height-640: (20 / 16)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 24px;
@@ -80,11 +80,10 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.7rem;
+    font-size: 1.6rem;
     line-height: $line-height-640;
   }
 }
-
 
 @mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 13)) {
   font-family: $NTA-Light;
@@ -122,8 +121,7 @@ $is-print: false !default;
   }
 }
 
-
-@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 12)) {
+@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 13)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 14px;
@@ -131,13 +129,13 @@ $is-print: false !default;
   } @else {
     font-size: 11pt;
   }
-  line-height: $line-height; 
+  line-height: $line-height;
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.2rem;
+    font-size: 1.3rem;
     line-height: $line-height-640;
   }
 }
