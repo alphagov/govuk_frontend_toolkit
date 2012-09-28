@@ -1,4 +1,6 @@
 @import '_font_stack.scss';
+@import '_conditionals.scss';
+
 //  GOV.UK typography palettes
 
 //  ANATOMY OF A TYPE STYLE
@@ -140,3 +142,100 @@ $is-print: false !default;
   }
 }
 
+@mixin heading-48 {
+  @include core-48;
+
+  padding-top: 10px;
+  padding-top: 1rem;
+  padding-bottom: 10px;
+  padding-bottom: 1rem;
+
+  @include media(tablet){
+    padding-top: 0.7rem;
+    padding-bottom: 1.3rem;
+  }
+}
+
+@mixin heading-36 {
+  @include core-36;
+
+  padding-top: 8px;
+  padding-top: 0.8rem;
+  padding-bottom: 7px;
+  padding-bottom: 0.7rem;
+
+  @include media(tablet){
+    padding-top: 0.6rem;
+    padding-bottom: 0.9rem;
+  }
+}
+
+@mixin heading-27 {
+  @include core-27;
+
+  padding-top: 8px;
+  padding-top: 0.8rem;
+  padding-bottom: 7px;
+  padding-bottom: 0.7rem;
+
+  @include media(tablet){
+    padding-top: 0.4rem;
+    padding-bottom: 0.6rem;
+  }
+}
+
+@mixin heading-24 {
+  @include core-24;
+
+  padding-top: 9px;
+  padding-top: 0.9rem;
+  padding-bottom: 6px;
+  padding-bottom: 0.6rem;
+
+  @include media(tablet){
+    padding-top: 0.6rem;
+    padding-bottom: 0.4rem;
+  }
+}
+
+@mixin copy-19 {
+  @include core-19;
+
+  padding-top: 2px;
+  padding-top: 0.2rem;
+  padding-bottom: 8px;
+  padding-bottom: 0.8rem;
+
+  @include media(tablet){
+    padding-top: 0;
+    padding-bottom: 0.5rem;
+  }
+}
+
+@mixin copy-16 {
+  @include core-16;
+
+  padding-top: 8px;
+  padding-top: 0.8rem;
+  padding-bottom: 7px;
+  padding-bottom: 0.7rem;
+
+  @include media(tablet){
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+@mixin copy-14 {
+  @include core-14;
+
+  padding-top: 8px;
+  padding-top: 0.8rem;
+  padding-bottom: 7px;
+  padding-bottom: 0.7rem;
+
+  @include media(tablet){
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
+  }
+}
