@@ -11,12 +11,14 @@ files will be available to the asset pipeline.
 
 ## Usage
 
-At the top of a Sass file in your Rails project you should be able to include
-the mixins that you require. For example if you want the conditionals and
+At the top of a Sass file in your Rails project you should use @import rule to include the file for the mixins you require. For example if you want the conditionals and
 typography mixins you should add:
 
     @import '_conditionals';
+    @import '_font_stack';
     @import '_typography';
+
+(The _typography mixins use the $NTA-Light font declared in _font_stack and so require it declared beforehand.)
 
 ## Mixin-sets
 
@@ -128,92 +130,93 @@ A collection of colour variables.
 
 #### Departmental colours
 
-* `$treasury`
-* `$cabinet-office`
-* `$department-for-education`
-* `$department-of-transport`
-* `$home-office`
-* `$department-of-health`
-* `$ministry-of-justice`
-* `$ministry-of-defence`
-* `$foreign-and-commonwealth-office`
-* `$department-for-communities-and-local-government`
-* `$department-for-energy-and-climate-change`
-* `$department-for-culture-media-and-sport`
-* `$department-for-environment-food-and-rural-affairs`
-* `$department-for-work-and-pensions`
-* `$department-for-business-innovation-and-skills`
-* `$department-for-international-development`
-* `$government-equalities-office`
-* `$attorney-generals-office`
-* `$scotland-office`
-* `$wales-office`
+* `$treasury` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #af292e" />
+* `$cabinet-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #005abb" />
+* `$department-for-education` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #003a69" />
+* `$department-of-transport` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #006c56" />
+* `$home-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #9325b2" />
+* `$department-of-health` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #00ad93" />
+* `$ministry-of-justice` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #231f20" />
+* `$ministry-of-defence` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #4d2942" />
+* `$foreign-and-commonwealth-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #003e74" />
+* `$department-for-communities-and-local-government` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #00857e" />
+* `$department-for-energy-and-climate-change` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #009ddb" />
+* `$department-for-culture-media-and-sport` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #d40072" />
+* `$department-for-environment-food-and-rural-affairs` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #898700" />
+* `$department-for-work-and-pensions` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #00beb7" />
+* `$department-for-business-innovation-and-skills` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #003479" />
+* `$department-for-international-development` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #002878" />
+* `$government-equalities-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #9325b2" />
+* `$attorney-generals-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #9f1888" />
+* `$scotland-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #002663" />
+* `$wales-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #a33038" />
 
 #### Standard palette, colours
-* `$purple`
-* `$purple-50`
-* `$purple-25`
-* `$mauve`
-* `$mauve-50`
-* `$mauve-25`
-* `$fuschia`
-* `$fuschia-50`
-* `$fuschia-25`
-* `$pink`
-* `$pink-50`
-* `$pink-25`
-* `$baby-pink`
-* `$baby-pink-50`
-* `$baby-pink-25`
-* `$red`
-* `$red-50`
-* `$red-25`
-* `$mellow-red`
-* `$mellow-red-50`
-* `$mellow-red-25`
-* `$orange`
-* `$orange-50`
-* `$orange-25`
-* `$brown`
-* `$brown-50`
-* `$brown-25`
-* `$yellow`
-* `$yellow-50`
-* `$yellow-25`
-* `$grass-green`
-* `$grass-green-50`
-* `$grass-green-25`
-* `$green`
-* `$green-50`
-* `$green-25`
-* `$turquoise`
-* `$turquoise-50`
-* `$turquoise-25`
-* `$light-blue`
-* `$light-blue-50`
-* `$light-blue-25`
+
+* `$purple` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #2e358b" />
+* `$purple-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #9799c4" />
+* `$purple-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #d5d6e7" />
+* `$mauve` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #6f72af" />
+* `$mauve-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #b7b9d7" />
+* `$mauve-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e2e2ef" />
+* `$fuschia` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #912b88" />
+* `$fuschia-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #c994c3" />
+* `$fuschia-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e9d4e6" />
+* `$pink` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #d53880" />
+* `$pink-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #eb9bbe" />
+* `$pink-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f6d7e5" />
+* `$baby-pink` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f499be" />
+* `$baby-pink-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #faccdf" />
+* `$baby-pink-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fdebf2" />
+* `$red` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #b10e1e" />
+* `$red-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #d9888c" />
+* `$red-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #efcfd1" />
+* `$mellow-red` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #df3034" />
+* `$mellow-red-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #ef9998" />
+* `$mellow-red-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f9d6d6" />
+* `$orange` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f47738" />
+* `$orange-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fabb96" />
+* `$orange-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fde4d4" />
+* `$brown` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #b58840" />
+* `$brown-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #dac39c" />
+* `$brown-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f0e7d7" />
+* `$yellow` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #ffbf47" />
+* `$yellow-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #ffdf94" />
+* `$yellow-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fff2d3" />
+* `$grass-green` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #85994b" />
+* `$grass-green-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #c2cca3" />
+* `$grass-green-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e7ebda" />
+* `$green` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #006435" />
+* `$green-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #7fb299" />
+* `$green-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #cce0d6" />
+* `$turquoise` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #28a197" />
+* `$turquoise-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #95d0cb" />
+* `$turquoise-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #d5ecea" />
+* `$light-blue` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #2b8cc4" />
+* `$light-blue-50` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #96c6e2" />
+* `$light-blue-25` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #d5e8f3" />
 
 #### Standard palette, greys
 
-* `$charcoal-grey`
-* `$dark-blue-grey`
-* `$light-blue-grey`
-* `$light-warm-grey`
-* `$cool-grey`
-* `$white`
-* `$light-beige`
-* `$light-tan`
+* `$charcoal-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #231f20" />
+* `$dark-blue-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #083640" />
+* `$light-blue-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #c1cacb" />
+* `$light-warm-grey ` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e1e8e8" />
+* `$cool-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e8f0f0" />
+* `$white` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #ffffff" />
+* `$light-beige` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f8f7ee" />
+* `$light-tan` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f5f0d6" />
 
 #### Pure greys
 
-* `$black`
-* `$grey-20`
-* `$grey-40`
-* `$grey-63`
-* `$grey-76`
-* `$grey-88`
-* `$grey-95`
-* `$white`
+* `$black` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #000" />
+* `$grey-20` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #333" />
+* `$grey-40` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #666" />
+* `$grey-63` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #a2a2a2" />
+* `$grey-76` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #c2c2c2" />
+* `$grey-88` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e2e2e2" />
+* `$grey-95` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f2f2f2" />
+* `$white` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fff" />
 
 #### Usage:
 
@@ -223,9 +226,11 @@ A collection of colour variables.
 
 ### <a id="typography"></a>Typography
 
-A collection of font-mixins. There are two different types of font mixins. One
-which is the font with added paddings to ensure a consistent baseline vertical
-grid. The other is a base font style with no extra padding.
+A collection of font-mixins. There are two different types of font mixins. 
+
+1. Heading and Copy styles which are the font with added paddings to ensure a consistent baseline vertical
+grid. 
+2. Core styles which are base font styles with no extra padding.
 
 #### Heading and Copy styles
 
