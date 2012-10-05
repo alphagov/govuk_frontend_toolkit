@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.homepage     = 'https://github.com/alphagov/govuk_frontend_toolkit'
 
   s.add_dependency "rails", ">= 3.1.0"
+  s.add_dependency "sass", ">= 3.2.0"
   s.add_development_dependency "gem_publisher", "~> 1.1.1"
   s.add_development_dependency "rake", "0.9.2.2"
   s.add_development_dependency "gemfury", "0.4.8"
