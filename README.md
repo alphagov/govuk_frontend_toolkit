@@ -9,16 +9,38 @@ Just include `govuk_frontend_toolkit` in your `Gemfile`. It
 automatically attaches itself to your asset path so the static/SCSS
 files will be available to the asset pipeline.
 
+You will need to check that the gem is included while in development. Often
+asset related gems are in a bundler group called `assets`. Old Rails projects
+do not inluded this in development by default so you need to ensure bundler is
+included using the follwoing lines at the top of the `/config/application.rb`:
+
+    if defined?(Bundler)
+      # If you precompile assets before deploying to production, use this line
+      Bundler.require *Rails.groups(assets: %w(development test))
+      # If you want your assets lazily compiled in production, use this line
+      # Bundler.require(:default, :assets, Rails.env)
+    end
+
+You will also need to ensure that the correct assest are precompiled for
+production. These are set using the variable `config.assets.precompile` in
+`/config/application.rb`. An example of what this may look like is:
+
+    config.assets.precompile += %w(
+      application.css
+      application-ie8.css
+      application-ie7.css
+      application-ie6.css
+      application.js
+    )
+
 ## Usage
 
-At the top of a Sass file in your Rails project you should use @import rule to include the file for the mixins you require. For example if you want the conditionals and
-typography mixins you should add:
+At the top of a Sass file in your Rails project you should use `@import` rule
+to include the file for the mixins you require. For example if you want the
+conditionals and typography mixins you should add:
 
     @import '_conditionals';
-    @import '_font_stack';
     @import '_typography';
-
-(The _typography mixins use the $NTA-Light font declared in _font_stack and so require it declared beforehand.)
 
 ## Mixin-sets
 
@@ -31,6 +53,17 @@ typography mixins you should add:
 
 Media query and IE helpers. These make producing responsive layouts and
 attaching IE specific styles to elements really easy.
+
+To use the IE conditionals you will need to add extra stylesheets for each IE which look like:
+
+    // BASE STYLESHEET FOR IE 6 COMPILER
+
+    $is-ie: true;
+    $ie-version: 6;
+
+    @import "application.scss";
+
+Where `application.scss` is the name of your base stylesheet.
 
 #### media
 
@@ -226,10 +259,10 @@ A collection of colour variables.
 
 ### <a id="typography"></a>Typography
 
-A collection of font-mixins. There are two different types of font mixins. 
+A collection of font-mixins. There are two different types of font mixins.
 
-1. Heading and Copy styles which are the font with added paddings to ensure a consistent baseline vertical
-grid. 
+1. Heading and Copy styles which are the font with added paddings to ensure a
+   consistent baseline vertical grid.
 2. Core styles which are base font styles with no extra padding.
 
 #### Heading and Copy styles
