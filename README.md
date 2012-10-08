@@ -12,7 +12,7 @@ files will be available to the asset pipeline.
 You will need to check that the gem is included while in development. Often
 asset related gems are in a bundler group called `assets`. Old Rails projects
 do not inluded this in development by default so you need to ensure bundler is
-included using the follwoing lines at the top of the `/config/application.rb`:
+included using the following lines at the top of the `/config/application.rb`:
 
     if defined?(Bundler)
       # If you precompile assets before deploying to production, use this line
@@ -21,7 +21,7 @@ included using the follwoing lines at the top of the `/config/application.rb`:
       # Bundler.require(:default, :assets, Rails.env)
     end
 
-You will also need to ensure that the correct assest are precompiled for
+You will also need to ensure that the correct assets are precompiled for
 production. These are set using the variable `config.assets.precompile` in
 `/config/application.rb`. An example of what this may look like is:
 
@@ -35,7 +35,7 @@ production. These are set using the variable `config.assets.precompile` in
 
 ## Usage
 
-At the top of a Sass file in your Rails project you should use `@import` rule
+At the top of a Sass file in your Rails project you should use an `@import` rule
 to include the file for the mixins you require. For example if you want the
 conditionals and typography mixins you should add:
 
@@ -82,8 +82,8 @@ used.***
 should be used to add styles to a mobile first stylesheet. `mobile` should be
 used to add styles to a desktop first stylesheet.
 
-It is recommended that you primarily use `desktop` for new styleseets to
-enhance mobile first as serving to mobile devices.
+It is recommended that you primarily use `desktop` for new stylesheets to
+enhance mobile first when serving to mobile devices.
 
 `@min-width`
 `@max-width`
