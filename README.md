@@ -95,7 +95,7 @@ their respective @media queries.
 
     div.columns {
       border: 1px solid;
-    
+
       @include media(desktop){
         width: 30%;
         float: left;
@@ -418,3 +418,6 @@ Match up with the respective properties from [`transition`](https://developer.mo
     }
 
 
+## Licence
+
+Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
