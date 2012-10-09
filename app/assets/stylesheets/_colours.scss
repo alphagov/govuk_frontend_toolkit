@@ -67,6 +67,27 @@ $light-blue: #2b8cc4;
 $light-blue-50: #96c6e2;
 $light-blue-25: #d5e8f3;
 
+// New greys
+$grey-0: #0b0c0c;
+$grey-1: #171819;
+$grey-2: #2e3133;
+$grey-3: #454a4c;
+$grey-4: #5c6366;
+$grey-5: #8a9499;
+$grey-6: #a1acb2;
+$grey-7: #b8c6cc;
+$grey-8: #dee0e2;
+$grey-9: #eaedef;
+
+// Semantic colour names
+$text-colour: $grey-0;
+$link-colour: #2e3191;
+$link-active-colour: #2e8aca;
+$link-hover-colour: #2e8aca;
+$link-visited-colour: #2e3191;
+
+// These greys are left for legacy compatibility, we will subsitute each grey with the appropriate new grey
+
 // Standard palette, greys
 $charcoal-grey: #231f20;
 $dark-blue-grey: #083640;
@@ -78,7 +99,8 @@ $light-beige: #f8f7ee;
 $light-tan: #f5f0d6;
 
 // Pure greys
-$black: #000;
+$black: $grey-0;
+$true-black: #000; // you should have a really good reason for using this
 $grey-20: #333;
 $grey-40: #666;
 $grey-63: #a2a2a2;
