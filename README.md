@@ -166,7 +166,7 @@ A collection of colour variables.
 * `$treasury` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #af292e" />
 * `$cabinet-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #005abb" />
 * `$department-for-education` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #003a69" />
-* `$department-of-transport` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #006c56" />
+* `$department-for-transport` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #006c56" />
 * `$home-office` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #9325b2" />
 * `$department-of-health` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #00ad93" />
 * `$ministry-of-justice` <span style="display:inline-block; width: 60px; height: 10px; float: right; background-color: #231f20" />
