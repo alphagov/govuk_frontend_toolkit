@@ -41,7 +41,7 @@ $is-ie: false !default;
         @content;
       }
     } @else if $size == mobile {
-      @media (max-width: 768px){
+      @media (max-width: 640px){
         @content;
       }
     } @else if $max-width != false {
