@@ -418,6 +418,13 @@ Match up with the respective properties from [`transition`](https://developer.mo
     }
 
 
+## JavaScript
+
+The gem also includes some JavaScript which by itself will have no effect on a
+page. It can be included with the asset_pipeline by adding the line:
+
+    //=require govuk_toolkit
+
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
