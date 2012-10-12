@@ -1,0 +1,37 @@
+/* Cross-browser shims
+
+  Ways of normalising properties across browsers.
+ */
+@import "_conditionals";
+
+// From: https://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/
+
+/* Usage:
+   @include inline-block
+
+   or
+
+   @include inline-block("250px")
+
+   which gives a min-height to the inline-block elements.
+*/
+
+@mixin inline-block($min-height: "") {
+  display: -moz-inline-stack;
+  display: inline-block;
+
+  @if $min-height != "" {
+    min-height: $min-height;
+  }
+
+  @include ie-lte(7) {
+    zoom: 1;
+    display: inline;
+  }
+
+  @include ie(6) {
+    @if $min-height != "" {
+      height: $min-height;
+    }
+  }
+}
