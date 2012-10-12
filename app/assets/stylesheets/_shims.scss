@@ -47,11 +47,9 @@
 
 %contain-floats {
   &:after {
-    content: ".";
+    content: "";
     display: block;
-    height: 0;
     clear: both;
-    visibility: hidden;
   }
   @include ie-lte(7) {
     zoom: 1;
