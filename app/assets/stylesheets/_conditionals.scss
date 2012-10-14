@@ -27,9 +27,11 @@ $is-ie: false !default;
 @mixin media($size: false, $max-width: false, $min-width: false) {
   @if $is-ie {
     @if $size != mobile {
+    @if $size != mainstream_tablet {
       @if $ie-version > 6 {
         @content;
       }
+    }
     }
   } @else {
     @if $size == desktop {
@@ -38,6 +40,10 @@ $is-ie: false !default;
       }
     } @else if $size == tablet {
       @media (min-width: 640px){
+        @content;
+      }
+    } @else if $size == mainstream_tablet {
+      @media (max-width: 800px){
         @content;
       }
     } @else if $size == mobile {
