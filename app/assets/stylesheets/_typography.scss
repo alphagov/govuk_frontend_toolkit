@@ -87,7 +87,7 @@ $is-print: false !default;
   }
 }
 
-@mixin core-24($line-height: (30 / 24), $line-height-640: (20 / 16)) {
+@mixin core-24($line-height: (30 / 24), $line-height-640: (24 / 20)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 24px;
@@ -100,12 +100,12 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.6rem;
+    font-size: 2rem;
     line-height: $line-height-640;
   }
 }
 
-@mixin core-19($line-height: (25 / 19), $line-height-640: (15 / 13)) {
+@mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 16)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 19px;
@@ -118,12 +118,12 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.3rem;
+    font-size: 1.6rem;
     line-height: $line-height-640;
   }
 }
 
-@mixin core-16($line-height: (20 / 16), $line-height-640: (15 / 13)) {
+@mixin core-16($line-height: (20 / 16), $line-height-640: (16 / 14)) {
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 16px;
@@ -136,7 +136,7 @@ $is-print: false !default;
   letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     line-height: $line-height-640;
   }
 }
