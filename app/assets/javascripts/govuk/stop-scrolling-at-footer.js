@@ -23,10 +23,15 @@
     _els: [],
 
     addEl: function($fixedEl, height){
+      var footer = $('#footer');
+      if (footer.length === 0) {
+        return;
+      }
+
       var fixedOffset = parseInt($fixedEl.css('top'), 10);
       fixedOffset = isNaN(fixedOffset) ? 0 : fixedOffset;
 
-      stopScrollingAtFooter.footerTop = $('#footer').offset().top - 10;
+      stopScrollingAtFooter.footerTop = footer.offset().top - 10;
 
       var $siblingEl = $('<div></div>');
       $siblingEl.insertBefore($fixedEl);
