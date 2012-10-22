@@ -409,12 +409,12 @@ Match up with the respective properties from [`transition`](https://developer.mo
 
 ##### Parameters
 
-`$type` is one of `border`, `content` and `padding`.
+`$type` is one of `border-box`, `content-box` and `padding-box`.
 
 ##### Usage
 
     .column {
-      @include box-sizing(border);
+      @include box-sizing(border-box);
     }
 
 
