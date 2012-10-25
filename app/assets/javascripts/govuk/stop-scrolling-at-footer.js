@@ -23,15 +23,10 @@
     _els: [],
 
     addEl: function($fixedEl, height){
-      var footer = $('#footer');
-      if (footer.length === 0) {
-        return;
-      }
-
       var fixedOffset = parseInt($fixedEl.css('top'), 10);
       fixedOffset = isNaN(fixedOffset) ? 0 : fixedOffset;
 
-      stopScrollingAtFooter.footerTop = footer.offset().top - 10;
+      stopScrollingAtFooter.updateFooterTop();
 
       var $siblingEl = $('<div></div>');
       $siblingEl.insertBefore($fixedEl);
@@ -41,12 +36,19 @@
       var el = {
         $fixedEl: $fixedEl,
         height: height + fixedOffset,
-        stopTopPosition: stopScrollingAtFooter.footerTop - height - fixedTop,
+        fixedTop: height - fixedTop,
         state: 'fixed'
       };
       stopScrollingAtFooter._els.push(el);
 
       stopScrollingAtFooter.initTimeout();
+    },
+    updateFooterTop: function(){
+      var footer = $('#footer');
+      if (footer.length === 0) {
+        return 0;
+      }
+      stopScrollingAtFooter.footerTop = footer.offset().top - 10;
     },
     initTimeout: function(){
       if(stopScrollingAtFooter._scrollTimeout === false) {
@@ -76,7 +78,7 @@
     },
     stick: function(el){
       if(el.state === 'fixed' && el.$fixedEl.css('position') === 'fixed'){
-        el.$fixedEl.css({ 'position': 'absolute', 'top': el.stopTopPosition });
+        el.$fixedEl.css({ 'position': 'absolute', 'top': stopScrollingAtFooter.footerTop - el.fixedTop });
         el.state = 'absolute';
       }
     },
