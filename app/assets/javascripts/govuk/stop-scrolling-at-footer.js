@@ -36,7 +36,7 @@
       var el = {
         $fixedEl: $fixedEl,
         height: height + fixedOffset,
-        fixedTop: height - fixedTop,
+        fixedTop: height + fixedTop,
         state: 'fixed'
       };
       stopScrollingAtFooter._els.push(el);
