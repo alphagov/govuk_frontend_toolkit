@@ -27,6 +27,7 @@
       fixedOffset = isNaN(fixedOffset) ? 0 : fixedOffset;
 
       stopScrollingAtFooter.updateFooterTop();
+      $(root).on('govuk.pageSizeChanged', stopScrollingAtFooter.updateFooterTop);
 
       var $siblingEl = $('<div></div>');
       $siblingEl.insertBefore($fixedEl);
@@ -36,7 +37,7 @@
       var el = {
         $fixedEl: $fixedEl,
         height: height + fixedOffset,
-        fixedTop: height - fixedTop,
+        fixedTop: height + fixedTop,
         state: 'fixed'
       };
       stopScrollingAtFooter._els.push(el);
@@ -91,4 +92,6 @@
   };
 
   root.GOVUK.stopScrollingAtFooter = stopScrollingAtFooter;
+
+  $(root).load(function(){ $(root).trigger('govuk.pageSizeChanged'); });
 }).call(this);
