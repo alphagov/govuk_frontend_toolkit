@@ -33,11 +33,11 @@ $is-ie: false !default;
     }
   } @else {
     @if $size == desktop {
-      @media (min-width: 768px){
+      @media (min-width: 769px){
         @content;
       }
     } @else if $size == tablet {
-      @media (min-width: 640px){
+      @media (min-width: 641px){
         @content;
       }
     } @else if $size == mobile {
