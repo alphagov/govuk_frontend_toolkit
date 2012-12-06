@@ -25,7 +25,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 5.3rem;
@@ -43,7 +42,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 3.2rem;
@@ -61,7 +59,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 2.4rem;
@@ -79,7 +76,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 1.8rem;
@@ -97,7 +93,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 2rem;
@@ -115,7 +110,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 1.6rem;
@@ -133,7 +127,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 300;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 1.4rem;
@@ -152,7 +145,6 @@ $is-print: false !default;
   line-height: $line-height;
   font-weight: 400;
   -webkit-font-smoothing: subpixel-antialiased;
-  letter-spacing: 0;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 1.2rem;
