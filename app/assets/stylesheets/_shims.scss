@@ -55,3 +55,18 @@
     zoom: 1;
   }
 }
+
+/* Wrap long words
+
+    .this-has-a-very-long-word {
+      @extend @wrap-long-words;
+    }
+
+*/
+
+%wrap-long-words {
+  word-break: break-all;
+  word-wrap: break-word;
+  white-space: pre;
+  white-space: pre-wrap;
+}
