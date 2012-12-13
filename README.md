@@ -231,25 +231,26 @@ A collection of colour variables.
 
 #### Standard palette, greys
 
-* `$charcoal-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #231f20" />
-* `$dark-blue-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #083640" />
-* `$light-blue-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #c1cacb" />
-* `$light-warm-grey ` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e1e8e8" />
-* `$cool-grey` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e8f0f0" />
-* `$white` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #ffffff" />
-* `$light-beige` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f8f7ee" />
-* `$light-tan` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f5f0d6" />
+* `$black`
+* `$grey-1`
+* `$grey-2`
+* `$grey-3`
+* `$grey-4`
+* `$white`
 
-#### Pure greys
+#### Semantic colour names
 
-* `$black` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #000" />
-* `$grey-20` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #333" />
-* `$grey-40` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #666" />
-* `$grey-63` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #a2a2a2" />
-* `$grey-76` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #c2c2c2" />
-* `$grey-88` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #e2e2e2" />
-* `$grey-95` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f2f2f2" />
-* `$white` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fff" />
+* `$link-colour`
+* `$link-active-colour`
+* `$link-hover-colour`
+* `$link-visited-colour`
+* `$text-colour: $black`
+* `$secondary-text-colour`
+* `$border-colour`
+* `$panel-colour`
+* `$canvas-colour`
+* `$highlight-colour`
+* `$page-colour`
 
 #### Usage:
 
