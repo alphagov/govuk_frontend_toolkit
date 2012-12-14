@@ -231,26 +231,26 @@ A collection of colour variables.
 
 #### Standard palette, greys
 
-* `$black`
-* `$grey-1`
-* `$grey-2`
-* `$grey-3`
-* `$grey-4`
-* `$white`
+* `$black` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #0b0c0c" />
+* `$grey-1` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #6f777b" />
+* `$grey-2` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #bfc1c3" />
+* `$grey-3` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #dee0e2" />
+* `$grey-4` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f8f8f8" />
+* `$white` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fff" />
 
 #### Semantic colour names
 
-* `$link-colour`
-* `$link-active-colour`
-* `$link-hover-colour`
-* `$link-visited-colour`
-* `$text-colour: $black`
-* `$secondary-text-colour`
-* `$border-colour`
-* `$panel-colour`
-* `$canvas-colour`
-* `$highlight-colour`
-* `$page-colour`
+* `$link-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #2e3191" />
+* `$link-active-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #2e8aca" />
+* `$link-hover-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #2e8aca" />
+* `$link-visited-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #2e3191" />
+* `$text-colour: $black` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #0b0c0c" />
+* `$secondary-text-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #6f777b" />
+* `$border-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #bfc1c3" />
+* `$panel-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #dee0e2" />
+* `$canvas-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f8f8f8" />
+* `$highlight-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #f8f8f8" />
+* `$page-colour` <span style="display: inline-block; width: 60px; height: 10px; float: right; background-color: #fff" />
 
 #### Usage:
 
