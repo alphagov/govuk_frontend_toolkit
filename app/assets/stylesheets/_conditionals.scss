@@ -23,6 +23,10 @@
 
 
 $is-ie: false !default;
+@-ms-viewport,
+@-o-viewport {
+  width: device-width;
+}
 
 @mixin media($size: false, $max-width: false, $min-width: false) {
   @if $is-ie {
