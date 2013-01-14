@@ -1,10 +1,10 @@
-@mixin device-pixel-ratio($ratio: 2, $min-dpi: 192dpi, $min-dppx: 2dppx) {
+@mixin device-pixel-ratio($ratio: 2) {
   @media only screen and (-webkit-min-device-pixel-ratio: $ratio),
   only screen and (min--moz-device-pixel-ratio: $ratio),
   only screen and (  -o-min-device-pixel-ratio: #{($ratio*10)}/10),
   only screen and (     min-device-pixel-ratio: $ratio),
-  only screen and (             min-resolution: $min-dpi),
-  only screen and (             min-resolution: $min-dppx) { 
+  only screen and (             min-resolution: #{($ratio*96)}dpi),
+  only screen and (             min-resolution: #{$ratio}dppx) { 
     @content;
   }
 }
