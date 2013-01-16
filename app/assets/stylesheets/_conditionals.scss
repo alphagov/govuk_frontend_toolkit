@@ -23,7 +23,11 @@
 
 
 $is-ie: false !default;
-@-ms-viewport,
+
+@-ms-viewport {
+  width: device-width;
+}
+
 @-o-viewport {
   width: device-width;
 }
