@@ -24,6 +24,14 @@
 
 $is-ie: false !default;
 
+@-ms-viewport {
+  width: device-width;
+}
+
+@-o-viewport {
+  width: device-width;
+}
+
 @mixin media($size: false, $max-width: false, $min-width: false) {
   @if $is-ie {
     @if $size != mobile {
