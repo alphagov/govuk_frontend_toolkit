@@ -144,7 +144,6 @@ $is-print: false !default;
   }
   line-height: $line-height;
   font-weight: 400;
-  -webkit-font-smoothing: subpixel-antialiased;
   text-transform: none;
   @media (max-width: 640px) {
     font-size: 1.2rem;
