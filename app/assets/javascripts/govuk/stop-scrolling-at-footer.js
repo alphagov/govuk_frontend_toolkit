@@ -23,7 +23,11 @@
     _els: [],
 
     addEl: function($fixedEl, height){
-      var fixedOffset = parseInt($fixedEl.css('top'), 10);
+      var fixedOffset;
+
+      if(!$fixedEl.length) { return; }
+
+      fixedOffset = parseInt($fixedEl.css('top'), 10);
       fixedOffset = isNaN(fixedOffset) ? 0 : fixedOffset;
 
       stopScrollingAtFooter.updateFooterTop();
@@ -54,17 +58,24 @@
     initTimeout: function(){
       if(stopScrollingAtFooter._scrollTimeout === false) {
         $(window).scroll(stopScrollingAtFooter.onScroll);
-        stopScrollingAtFooter._scrollTimeout = window.setInterval(stopScrollingAtFooter.checkScroll, 25);
       }
     },
     onScroll: function(){
       stopScrollingAtFooter._hasScrolled = true;
+      if (!stopScrollingAtFooter.isPolling) { 
+        stopScrollingAtFooter._scrollTimeout = window.setInterval(stopScrollingAtFooter.checkScroll, 40);
+        stopScrollingAtFooter.isPolling = true;
+      }
     },
     checkScroll: function(){
-      if(stopScrollingAtFooter._hasScrolled === true){
-        stopScrollingAtFooter._hasScrolled = false;
-
         var windowScrollTop = $(window).scrollTop();
+        if ((windowScrollTop < (stopScrollingAtFooter.windowScrollTop + 2)) && (windowScrollTop > (stopScrollingAtFooter.windowScrollTop - 2))) {
+          window.clearInterval(stopScrollingAtFooter._scrollTimeout);
+          stopScrollingAtFooter.isPolling = false;
+          return;
+        } else {
+           stopScrollingAtFooter.windowScrollTop = windowScrollTop;
+        }
 
         $.each(stopScrollingAtFooter._els, function(i, el){
           var bottomOfEl = windowScrollTop + el.height;
@@ -75,7 +86,6 @@
             stopScrollingAtFooter.unstick(el);
           }
         });
-      }
     },
     stick: function(el){
       if(el.state === 'fixed' && el.$fixedEl.css('position') === 'fixed'){
