@@ -14,12 +14,13 @@
 (function () {
   "use strict"
   var root = this,
-      $ = root.jQuery;
+    $ = root.jQuery;
   if(typeof root.GOVUK === 'undefined') { root.GOVUK = {}; }
 
   var stopScrollingAtFooter = {
-    _hasScrolled: false,
-    _scrollTimeout: false,
+    _pollingId: null,
+    _isPolling: false,
+    _hasScrollEvt: false,
     _els: [],
 
     addEl: function($fixedEl, height){
@@ -56,36 +57,66 @@
       stopScrollingAtFooter.footerTop = footer.offset().top - 10;
     },
     initTimeout: function(){
-      if(stopScrollingAtFooter._scrollTimeout === false) {
+      if(stopScrollingAtFooter._hasScrollEvt === false) {
         $(window).scroll(stopScrollingAtFooter.onScroll);
+        stopScrollingAtFooter._hasScrollEvt = true;
       }
     },
     onScroll: function(){
-      stopScrollingAtFooter._hasScrolled = true;
-      if (!stopScrollingAtFooter.isPolling) { 
-        stopScrollingAtFooter._scrollTimeout = window.setInterval(stopScrollingAtFooter.checkScroll, 40);
-        stopScrollingAtFooter.isPolling = true;
+      if (stopScrollingAtFooter._isPolling === false) { 
+        stopScrollingAtFooter.startPolling();
       }
     },
-    checkScroll: function(){
-        var windowScrollTop = $(window).scrollTop();
-        if ((windowScrollTop < (stopScrollingAtFooter.windowScrollTop + 2)) && (windowScrollTop > (stopScrollingAtFooter.windowScrollTop - 2))) {
-          window.clearInterval(stopScrollingAtFooter._scrollTimeout);
-          stopScrollingAtFooter.isPolling = false;
-          return;
-        } else {
-           stopScrollingAtFooter.windowScrollTop = windowScrollTop;
-        }
-
-        $.each(stopScrollingAtFooter._els, function(i, el){
-          var bottomOfEl = windowScrollTop + el.height;
-
-          if (bottomOfEl > stopScrollingAtFooter.footerTop){
-            stopScrollingAtFooter.stick(el);
-          } else {
-            stopScrollingAtFooter.unstick(el);
-          }
+    startPolling: (function(){
+      if (window.requestAnimationFrame) {
+        return (function(){
+          var callback = function(){
+            stopScrollingAtFooter.checkScroll();
+            if (stopScrollingAtFooter._isPolling === true) {
+              stopScrollingAtFooter.startPolling();
+            }
+          };
+          stopScrollingAtFooter._pollingId = window.requestAnimationFrame(callback);
+          stopScrollingAtFooter._isPolling = true;
         });
+      } else {
+        return (function(){
+          stopScrollingAtFooter._pollingId = window.setInterval(stopScrollingAtFooter.checkScroll, 16);
+          stopScrollingAtFooter._isPolling = true;
+        });
+      }
+    }()),
+    stopPolling: (function(){
+      if (window.requestAnimationFrame) {
+        return (function(){
+          window.cancelAnimationFrame(stopScrollingAtFooter._pollingId);
+          stopScrollingAtFooter._isPolling = false;
+        });
+      } else {
+        return (function(){
+          window.clearInterval(stopScrollingAtFooter._pollingId);
+          stopScrollingAtFooter._isPolling = false;
+        });
+      }
+    }()),
+    checkScroll: function(){
+      var windowScrollTop = $(window).scrollTop();
+      if ((windowScrollTop < (stopScrollingAtFooter.windowScrollTop + 2)) && (windowScrollTop > (stopScrollingAtFooter.windowScrollTop - 2))) {
+        stopScrollingAtFooter.stopPolling();
+        return;
+      } else {
+        stopScrollingAtFooter.windowScrollTop = windowScrollTop;
+      }
+
+      $.each(stopScrollingAtFooter._els, function(i, el){
+        var bottomOfEl = windowScrollTop + el.height;
+
+        if (bottomOfEl > stopScrollingAtFooter.footerTop){
+          stopScrollingAtFooter.stick(el);
+        } else {
+          stopScrollingAtFooter.unstick(el);
+        }
+      });
     },
     stick: function(el){
       if(el.state === 'fixed' && el.$fixedEl.css('position') === 'fixed'){
