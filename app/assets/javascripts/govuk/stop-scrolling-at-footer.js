@@ -45,7 +45,8 @@
       stopScrollingAtFooter.initTimeout();
     },
     updateFooterTop: function(){
-      var footer = $('#footer');
+      var $betaNotice = $('.beta-notice'),
+          footer = ($betaNotice.length) ? $betaNotice.eq(1) : $('#footer');
       if (footer.length === 0) {
         return 0;
       }
