@@ -14,7 +14,7 @@
 (function () {
   "use strict"
   var root = this,
-    $ = root.jQuery;
+      $ = root.jQuery;
   if(typeof root.GOVUK === 'undefined') { root.GOVUK = {}; }
 
   var stopScrollingAtFooter = {
@@ -100,16 +100,16 @@
       }
     }()),
     checkScroll: function(){
-      var windowScrollTop = $(window).scrollTop();
-      if ((windowScrollTop < (stopScrollingAtFooter.windowScrollTop + 2)) && (windowScrollTop > (stopScrollingAtFooter.windowScrollTop - 2))) {
+      var cachedScrollTop = $(window).scrollTop();
+      if ((cachedScrollTop < (stopScrollingAtFooter.cachedScrollTop + 2)) && (cachedScrollTop > (stopScrollingAtFooter.cachedScrollTop - 2))) {
         stopScrollingAtFooter.stopPolling();
         return;
       } else {
-        stopScrollingAtFooter.windowScrollTop = windowScrollTop;
+        stopScrollingAtFooter.cachedScrollTop = cachedScrollTop;
       }
 
       $.each(stopScrollingAtFooter._els, function(i, el){
-        var bottomOfEl = windowScrollTop + el.height;
+        var bottomOfEl = cachedScrollTop + el.height;
 
         if (bottomOfEl > stopScrollingAtFooter.footerTop){
           stopScrollingAtFooter.stick(el);
