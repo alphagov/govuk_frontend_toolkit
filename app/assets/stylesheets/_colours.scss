@@ -23,6 +23,10 @@ $government-equalities-office: #9325b2;
 $attorney-generals-office: #9f1888;
 $scotland-office: #112148;
 $wales-office: #a33038;
+$northern-ireland-office: #002663;
+$office-of-the-leader-of-the-house-of-lords: #9c132e;
+// Note: the 'the' part here will get dropped
+$the-office-of-the-leader-of-the-house-of-commons: #0080bc;
 
 // Standard palette, colours
 $purple: #2e358b;
@@ -88,4 +92,3 @@ $panel-colour: $grey-3;           // Related links panel, page footer etc.
 $canvas-colour: $grey-4;          // Page background
 $highlight-colour: $grey-4;       // Table stripes etc.
 $page-colour: $white;             // The page
-
