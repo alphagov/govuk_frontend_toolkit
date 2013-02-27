@@ -18,12 +18,17 @@
   if(typeof root.GOVUK === 'undefined') { root.GOVUK = {}; }
 
   var stopScrollingAtFooter = {
-    _hasScrolled: false,
-    _scrollTimeout: false,
+    _pollingId: null,
+    _isPolling: false,
+    _hasScrollEvt: false,
     _els: [],
 
     addEl: function($fixedEl, height){
-      var fixedOffset = parseInt($fixedEl.css('top'), 10);
+      var fixedOffset;
+
+      if(!$fixedEl.length) { return; }
+
+      fixedOffset = parseInt($fixedEl.css('top'), 10);
       fixedOffset = isNaN(fixedOffset) ? 0 : fixedOffset;
 
       stopScrollingAtFooter.updateFooterTop();
@@ -52,30 +57,66 @@
       stopScrollingAtFooter.footerTop = footer.offset().top - 10;
     },
     initTimeout: function(){
-      if(stopScrollingAtFooter._scrollTimeout === false) {
+      if(stopScrollingAtFooter._hasScrollEvt === false) {
         $(window).scroll(stopScrollingAtFooter.onScroll);
-        stopScrollingAtFooter._scrollTimeout = window.setInterval(stopScrollingAtFooter.checkScroll, 25);
+        stopScrollingAtFooter._hasScrollEvt = true;
       }
     },
     onScroll: function(){
-      stopScrollingAtFooter._hasScrolled = true;
+      if (stopScrollingAtFooter._isPolling === false) { 
+        stopScrollingAtFooter.startPolling();
+      }
     },
-    checkScroll: function(){
-      if(stopScrollingAtFooter._hasScrolled === true){
-        stopScrollingAtFooter._hasScrolled = false;
-
-        var windowScrollTop = $(window).scrollTop();
-
-        $.each(stopScrollingAtFooter._els, function(i, el){
-          var bottomOfEl = windowScrollTop + el.height;
-
-          if (bottomOfEl > stopScrollingAtFooter.footerTop){
-            stopScrollingAtFooter.stick(el);
-          } else {
-            stopScrollingAtFooter.unstick(el);
-          }
+    startPolling: (function(){
+      if (window.requestAnimationFrame) {
+        return (function(){
+          var callback = function(){
+            stopScrollingAtFooter.checkScroll();
+            if (stopScrollingAtFooter._isPolling === true) {
+              stopScrollingAtFooter.startPolling();
+            }
+          };
+          stopScrollingAtFooter._pollingId = window.requestAnimationFrame(callback);
+          stopScrollingAtFooter._isPolling = true;
+        });
+      } else {
+        return (function(){
+          stopScrollingAtFooter._pollingId = window.setInterval(stopScrollingAtFooter.checkScroll, 16);
+          stopScrollingAtFooter._isPolling = true;
         });
       }
+    }()),
+    stopPolling: (function(){
+      if (window.requestAnimationFrame) {
+        return (function(){
+          window.cancelAnimationFrame(stopScrollingAtFooter._pollingId);
+          stopScrollingAtFooter._isPolling = false;
+        });
+      } else {
+        return (function(){
+          window.clearInterval(stopScrollingAtFooter._pollingId);
+          stopScrollingAtFooter._isPolling = false;
+        });
+      }
+    }()),
+    checkScroll: function(){
+      var cachedScrollTop = $(window).scrollTop();
+      if ((cachedScrollTop < (stopScrollingAtFooter.cachedScrollTop + 2)) && (cachedScrollTop > (stopScrollingAtFooter.cachedScrollTop - 2))) {
+        stopScrollingAtFooter.stopPolling();
+        return;
+      } else {
+        stopScrollingAtFooter.cachedScrollTop = cachedScrollTop;
+      }
+
+      $.each(stopScrollingAtFooter._els, function(i, el){
+        var bottomOfEl = cachedScrollTop + el.height;
+
+        if (bottomOfEl > stopScrollingAtFooter.footerTop){
+          stopScrollingAtFooter.stick(el);
+        } else {
+          stopScrollingAtFooter.unstick(el);
+        }
+      });
     },
     stick: function(el){
       if(el.state === 'fixed' && el.$fixedEl.css('position') === 'fixed'){
