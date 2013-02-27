@@ -12,18 +12,9 @@
 
 // New Transport Light
 
-@font-face {
-  font-family: GDS-Regular;
-  src: local("NTA-Light"), 
-       local("HelveticaNeue"),
-       local("Helvetica Neue"),
-       local("Arial"),
-       local("Helvetica");
-}
-
 $NTA-Light:
   "nta", 
-  "GDS-Regular", 
+  Arial,
   sans-serif;
 
 // Helvetica Regular
