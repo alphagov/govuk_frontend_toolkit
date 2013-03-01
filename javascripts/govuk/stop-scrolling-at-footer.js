@@ -50,7 +50,7 @@
       stopScrollingAtFooter.initTimeout();
     },
     updateFooterTop: function(){
-      var footer = $('#footer');
+      var footer = $('.js-footer:eq(0)');
       if (footer.length === 0) {
         return 0;
       }
