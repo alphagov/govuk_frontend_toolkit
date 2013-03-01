@@ -45,8 +45,7 @@
       stopScrollingAtFooter.initTimeout();
     },
     updateFooterTop: function(){
-      var $betaNotice = $('.js-footer'),
-          footer = ($betaNotice.length) ? $betaNotice : $('#footer');
+      var footer = $('.js-footer:eq(0)');
       if (footer.length === 0) {
         return 0;
       }
