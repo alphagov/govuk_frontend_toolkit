@@ -302,3 +302,31 @@ $is-print: false !default;
     padding-bottom: 0.5rem;
   }
 }
+
+// External link styles for all font sizes
+// Default is 19px so omitted
+
+@mixin external-12 {
+  content: "\A0\A0\A0\A0\A0\A0\A0\A0";
+  background-position: right top;
+}
+
+@mixin external-13 {
+  content: "\A0\A0\A0\A0\A0";
+  background-position: right 0.1em;
+}
+
+@mixin external-14 {
+  content: "\A0\A0\A0\A0\A0";
+  background-position: right 0.1em;
+}
+
+@mixin external-14-bold {
+  content: "\A0\A0\A0\A0\A0\A0";
+  background-position: right 0.2em;
+}
+
+@mixin external-16 {
+  content: "\A0\A0\A0\A0\A0";
+  background-position: right 0.2em;
+}
