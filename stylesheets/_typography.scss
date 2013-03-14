@@ -305,6 +305,8 @@ $is-print: false !default;
 
 // External link styles for all font sizes
 
+// Private mixin for use solely by those below
+
 @mixin external-link-size($content, $top, $top-hover: top) {
   &:after {
     content: $content;
