@@ -316,6 +316,47 @@ recomended to pass a fraction in for readability.
       @include core-24($line-height: (50/24), $line-height-640: (18/16));
     }
 
+#### external links
+
+The following external link styles exist:
+
+* `external-link-13`
+* `external-link-13-no-hover`
+* `external-link-14`
+* `external-link-14-bold-no-hover`
+* `external-link-16`
+* `external-link-16-bold-no-hover`
+* `external-link-19`
+* `external-link-19-no-hover`
+
+#### Description
+
+For a set style:
+
+`@include external-link-[style]`
+
+For a specific font size:
+
+`@include external-link-[size]-[weight]-[no-hover]`
+
+#### Usage
+
+    a[rel="external"] {
+     @include external-link-default;
+    }
+
+    th.external-link {
+     @include external-link-heading;
+    }
+
+    a[rel="external"] {
+     @include external-link-16;
+    }
+
+    a[rel="external"] {
+     @include external-link-16-bold-no-hover;
+    }
+
 ### <a id="css3"></a>css3
 
 CSS3 helpers to abstract vendor prefixes.
