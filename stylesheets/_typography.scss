@@ -366,11 +366,11 @@ $is-print: false !default;
   @include external-link-19;
 
   &:after {
-    background-image: url("external-link.png");
+    background-image: image-url("external-link.png");
     background-repeat: no-repeat;
 
     @include device-pixel-ratio() {
-      background-image: url("external-link-24x24.png");
+      background-image: image-url("external-link-24x24.png");
       background-size: 12px 400px;
     }
   }
@@ -378,11 +378,11 @@ $is-print: false !default;
 
 @mixin external-link-heading {
   &:after {
-    background-image: url("external-link-black-12x12.png");
+    background-image: image-url("external-link-black-12x12.png");
     background-repeat: no-repeat;
 
     @include device-pixel-ratio() {
-      background-image: url("external-link-black-24x24.png");
+      background-image: image-url("external-link-black-24x24.png");
       background-size: 12px 400px;
     }
   }
