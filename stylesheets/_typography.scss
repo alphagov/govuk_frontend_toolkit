@@ -1,5 +1,6 @@
 @import '_font_stack.scss';
 @import '_conditionals.scss';
+@import '_device-pixels.scss';
 
 //  GOV.UK typography palettes
 
@@ -363,8 +364,6 @@ $is-print: false !default;
 }
 
 @mixin external-link-default {
-  @include external-link-19;
-
   &:after {
     background-image: image-url("external-link.png");
     background-repeat: no-repeat;

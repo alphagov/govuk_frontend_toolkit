@@ -318,7 +318,10 @@ recomended to pass a fraction in for readability.
 
 #### external links
 
-The following external link styles exist:
+`external-link-default` sets up the background image for all external links. 
+This should be included on the default link style for a project.
+
+After setting the default, apply includes from the following for different font sizes:
 
 * `external-link-12`
 * `external-link-12-no-hover`
@@ -330,6 +333,8 @@ The following external link styles exist:
 * `external-link-16-bold-no-hover`
 * `external-link-19`
 * `external-link-19-no-hover`
+
+`external-link-heading` is a unique style a background image for headings to groups of external links.
 
 #### Description
 
@@ -343,19 +348,21 @@ For a specific font size:
 
 #### Usage
 
+    /* Default link style */
     a[rel="external"] {
-     @include external-link-default;
+      @include external-link-default;
+      @include external-link-19;
     }
 
     th.external-link {
-     @include external-link-heading;
+      @include external-link-heading;
     }
 
-    a[rel="external"] {
-     @include external-link-16;
+    .inner a[rel="external"] {
+      @include external-link-16;
     }
 
-    a[rel="external"] {
+    .departments a[rel="external"] {
      @include external-link-16-bold-no-hover;
     }
 
