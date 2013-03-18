@@ -320,6 +320,8 @@ recomended to pass a fraction in for readability.
 
 The following external link styles exist:
 
+* `external-link-12`
+* `external-link-12-no-hover`
 * `external-link-13`
 * `external-link-13-no-hover`
 * `external-link-14`
