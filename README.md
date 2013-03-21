@@ -11,7 +11,7 @@ If you are not using a Rails project you can include the toolkit as a [git submo
 
 To add the submodule to your project run the following command subsituting the path to a subdirectory in your project's assets directory:
 
-    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git /path/to/assets/toolkit
+    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/toolkit
 
 We recommend you use `https` rather than `ssh` for submodules as they don't require key exchanges when deploying to remote servers.
 
