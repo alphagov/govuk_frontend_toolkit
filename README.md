@@ -1,37 +1,27 @@
 # GOV.UK Frontend Toolkit
 
-A collection of Rails/Ruby tools and templates for generating frontend
+A collection of Sass and Javascript tools for generating frontend
 code.
 
 ## Installing
 
-Just include `govuk_frontend_toolkit` in your `Gemfile`. It
-automatically attaches itself to your asset path so the static/SCSS
-files will be available to the asset pipeline.
+If you are going to use the toolkit in a Rails project, we recommend you use the [govuk_frontend_toolkit_gem](https://github.com/alphagov/govuk_frontend_toolkit_gem) and install it per the instructions in there.
 
-You will need to check that the gem is included while in development. Often
-asset related gems are in a bundler group called `assets`. Old Rails projects
-do not inluded this in development by default so you need to ensure bundler is
-included using the following lines at the top of the `/config/application.rb`:
+If you are not using a Rails project you can include the toolkit as a [git submodule](https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html).
 
-    if defined?(Bundler)
-      # If you precompile assets before deploying to production, use this line
-      Bundler.require *Rails.groups(assets: %w(development test))
-      # If you want your assets lazily compiled in production, use this line
-      # Bundler.require(:default, :assets, Rails.env)
-    end
+To add the submodule to your project run the following command subsituting the path to a subdirectory in your project's assets directory:
 
-You will also need to ensure that the correct assets are precompiled for
-production. These are set using the variable `config.assets.precompile` in
-`/config/application.rb`. An example of what this may look like is:
+    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/toolkit
 
-    config.assets.precompile += %w(
-      application.css
-      application-ie8.css
-      application-ie7.css
-      application-ie6.css
-      application.js
-    )
+We recommend you use `https` rather than `ssh` for submodules as they don't require key exchanges when deploying to remote servers.
+
+If you clone a project with the toolkit submodule installed you will need to intialise the submodule with the following command:
+
+    $ git submodule init
+
+To update the toolkit to the latest version you can use:
+
+    $ git submodule update
 
 ## Usage
 
@@ -41,6 +31,10 @@ conditionals and typography mixins you should add:
 
     @import '_conditionals';
     @import '_typography';
+
+You may need to include the relative path to the toolkit if it is installed as a submodule:
+
+    @import '../toolkit/_conditionals';
 
 ## Mixin-sets
 
@@ -479,3 +473,4 @@ page. It can be included with the asset_pipeline by adding the line:
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
+T Licence, a copy of which can be found in the file `LICENCE`.
