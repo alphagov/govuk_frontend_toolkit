@@ -47,3 +47,9 @@
   -webkit-appearance: $appearance;
      -moz-appearance: $appearance;
 }
+
+@mixin calc($property, $calc) {
+  #{$property}: -webkit-calc(#{$calc});
+  #{$property}: calc(#{$calc});
+}
+
