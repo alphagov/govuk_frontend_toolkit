@@ -312,7 +312,7 @@ recomended to pass a fraction in for readability.
 
 #### external links
 
-`external-link-default` sets up the background image for all external links. 
+`external-link-default` sets up the background image for all external links.
 This should be included on the default link style for a project.
 
 After setting the default, apply includes from the following for different font sizes:
@@ -460,6 +460,23 @@ Match up with the respective properties from [`transition`](https://developer.mo
 
     .column {
       @include box-sizing(border-box);
+    }
+
+#### calc
+
+##### Description
+
+`@mixin calc($property, $calc)`
+
+##### Parameters
+
+`$property` the property to apply the calc to.
+`$calc` the calculation to.
+
+##### Usage
+
+    .column {
+      @include calc(width, "300% - 20px");
     }
 
 
