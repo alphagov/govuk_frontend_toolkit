@@ -23,6 +23,7 @@
 
 
 $is-ie: false !default;
+$mobile-ie6: true !default;
 
 @-ms-viewport {
   width: device-width;
@@ -35,7 +36,7 @@ $is-ie: false !default;
 @mixin media($size: false, $max-width: false, $min-width: false) {
   @if $is-ie {
     @if $size != mobile {
-      @if $ie-version > 6 {
+      @if ($ie-version == 6 and $mobile-ie6 == false) or $ie-version > 6 {
         @content;
       }
     }
