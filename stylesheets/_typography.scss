@@ -363,6 +363,10 @@ $is-print: false !default;
   @include external-link-size($content: "\A0\A0\A0\A0", $top: 6px, $top-hover: -382px);
 }
 
+@mixin external-link-19-bold-no-hover {
+  @include external-link-size($content: "\A0\A0\A0\A0\A0\A0", $top: 6px);
+}
+
 @mixin external-link-default {
   &:after {
     background-image: image-url("external-link.png");
