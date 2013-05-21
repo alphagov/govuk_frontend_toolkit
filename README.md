@@ -87,8 +87,10 @@ their respective @media queries.
 
 `$ignore-for-ie`
 
-Browsers for whom the variable $is-ie is true (IE < 9) will get all styles
-declared in a media mixin.
+Styles that would normally be wrapped in @media queries by this mixin will be instead
+added to the main block if the `$is-ie` variable is true. 
+
+Setting `$ignore-for-ie` to `true` means those styles will not be added.
 
 ##### Usage
 
