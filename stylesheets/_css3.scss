@@ -53,3 +53,9 @@
   #{$property}: calc(#{$calc});
 }
 
+@mixin opacity($trans) {
+  zoom: 1;
+  filter: alpha(opacity=#{$trans * 100});
+  opacity: $trans;
+}
+
