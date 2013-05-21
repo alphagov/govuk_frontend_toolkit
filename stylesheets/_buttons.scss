@@ -1,8 +1,22 @@
-// Mixin and defaults for making buttons on GOV.UK services.
-//
-// For guidance, see:
-// https://www.gov.uk/service-manual/design-and-content/resources/buttons.html
+/*
 
+Mixin and defaults for making buttons on GOV.UK services.
+
+For guidance, see: https://www.gov.uk/service-manual/design-and-content/resources/buttons.html
+
+Example usage:
+
+.button{
+  @include button;
+}
+.button-secondary{
+  @include button($grey-3);
+}
+.button-warning{
+  @include button($red);
+}
+
+*/
 
 @mixin button($colour: $green){
   // Colour
@@ -12,9 +26,9 @@
   position: relative;
   top: 0; // Reset for application.css. Remove once integrated.
   @include inline-block;
-  padding: 0.35em 0.5em 0.15em 0.5em;
+  padding: 8px 10px 4px 10px;
   border: none;
-  @include border-radius(0.250em);
+  @include border-radius(4px);
 
   // Bottom edge effect
   @include box-shadow(0 2px 0 darken($colour, 15%));
@@ -120,20 +134,4 @@
       filter: none;
     }
   }
-}
-
-// =======================================================
-// DEFAULT BUTTON CLASSES
-
-// Primary action
-.button{
-  @include button;
-}
-// Secondary action
-.button-secondary{
-  @include button($grey-3);
-}
-// Warning action
-.button-warning{
-  @include button($red);
 }
