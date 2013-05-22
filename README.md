@@ -79,11 +79,18 @@ used to add styles to a desktop first stylesheet.
 It is recommended that you primarily use `desktop` for new stylesheets to
 enhance mobile first when serving to mobile devices.
 
-`@min-width`
-`@max-width`
+`$min-width`
+`$max-width`
 
 These should be set to an absolute pixel value. They will get added directly to
 their respective @media queries.
+
+`$ignore-for-ie`
+
+Styles that would normally be wrapped in @media queries by this mixin will be instead
+added to the main block if the `$is-ie` variable is true. 
+
+Setting `$ignore-for-ie` to `true` means those styles will not be added.
 
 ##### Usage
 
