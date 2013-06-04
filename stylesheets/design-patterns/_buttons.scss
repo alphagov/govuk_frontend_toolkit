@@ -24,7 +24,6 @@ Example usage:
 
   // Size and shape
   position: relative;
-  top: 0; // Reset for application.css. Remove once integrated.
   @include inline-block;
   padding: 0.35em 0.5em 0.15em 0.5em;
   border: none;
