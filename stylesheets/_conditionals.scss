@@ -33,8 +33,8 @@ $mobile-ie6: true !default;
   width: device-width;
 }
 
-@mixin media($size: false, $max-width: false, $min-width: false) {
-  @if $is-ie {
+@mixin media($size: false, $max-width: false, $min-width: false, $ignore-for-ie: false) {
+  @if $is-ie and ($ignore-for-ie == false) {
     @if $size != mobile {
       @if ($ie-version == 6 and $mobile-ie6 == false) or $ie-version > 6 {
         @content;
