@@ -42,6 +42,7 @@ You may need to include the relative path to the toolkit if it is installed as a
 * [`_conditionals.scss`](#conditionals)
 * [`_css3.scss`](#css3)
 * [`_typography.scss`](#typography)
+* [`design-patterns/_buttons.scss`](#buttons)
 
 ### <a id="conditionals"></a>Conditionals
 
@@ -485,6 +486,36 @@ Match up with the respective properties from [`transition`](https://developer.mo
     .column {
       @include calc(width, "300% - 20px");
     }
+
+### <a id="buttons"></a>Buttons
+
+A mixin for creating buttons in the GOV.UK style.
+
+##### Description
+
+`@mixin button($colour)`
+
+##### Parameters
+
+`$colour` the background colour of the button (default is `$green`).
+
+##### Usage
+
+    .button{
+      @include button;
+    }
+    .button-secondary{
+      @include button($grey-3);
+    }
+    .button-warning{
+      @include button($red);
+    }
+
+##### Notes
+
+The button text colour is set by the mixin to either light or dark, depending on the button background colour.
+
+If you're applying these styles to non form elements, adding a class of 'disabled' to the element will emulate the disabled button style.
 
 
 ## JavaScript
