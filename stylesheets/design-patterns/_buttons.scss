@@ -22,7 +22,7 @@ Example usage:
 
 */
 
-@mixin button($colour: $green){
+@mixin button($colour: $button-colour){
   // Colour
   background-color: $colour;
 
@@ -31,7 +31,6 @@ Example usage:
   @include inline-block;
   padding: 0.35em 0.5em 0.15em 0.5em;
   border: none;
-  @include border-radius(0.250em);
 
   // Bottom edge effect
   @include box-shadow(0 2px 0 darken($colour, 15%));
