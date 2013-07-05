@@ -20,7 +20,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 80px;
-    font-size: 8rem;
   } @else {
     font-size: 28pt;
   }
@@ -28,7 +27,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 5.3rem;
+    font-size: 53px;
     line-height: $line-height-640;
   }
 }
@@ -37,7 +36,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 48px;
-    font-size: 4.8rem;
   } @else {
     font-size: 18pt;
   }
@@ -45,7 +43,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 3.2rem;
+    font-size: 32px;
     line-height: $line-height-640;
   }
 }
@@ -54,7 +52,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 36px;
-    font-size: 3.6rem;
   } @else {
     font-size: 18pt;
   }
@@ -62,7 +59,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 2.4rem;
+    font-size: 24px;
     line-height: $line-height-640;
   }
 }
@@ -71,7 +68,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 27px;
-    font-size: 2.7rem;
   } @else {
     font-size: 16pt;
   }
@@ -79,7 +75,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.8rem;
+    font-size: 18px;
     line-height: $line-height-640;
   }
 }
@@ -88,7 +84,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 24px;
-    font-size: 2.4rem;
   } @else {
     font-size: 16pt;
   }
@@ -96,7 +91,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 2rem;
+    font-size: 20px;
     line-height: $line-height-640;
   }
 }
@@ -105,7 +100,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 19px;
-    font-size: 1.9rem;
   } @else {
     font-size: 14pt;
   }
@@ -113,7 +107,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.6rem;
+    font-size: 16px;
     line-height: $line-height-640;
   }
 }
@@ -122,7 +116,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 16px;
-    font-size: 1.6rem;
   } @else {
     font-size: 12pt;
   }
@@ -130,7 +123,7 @@ $is-print: false !default;
   font-weight: 300;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.4rem;
+    font-size: 14px;
     line-height: $line-height-640;
   }
 }
@@ -139,7 +132,6 @@ $is-print: false !default;
   font-family: $NTA-Light;
   @if $is-print == false {
     font-size: 14px;
-    font-size: 1.4rem;
   } @else {
     font-size: 11pt;
   }
@@ -147,7 +139,7 @@ $is-print: false !default;
   font-weight: 400;
   text-transform: none;
   @media (max-width: 640px) {
-    font-size: 1.2rem;
+    font-size: 12px;
     line-height: $line-height-640;
   }
 }
@@ -196,13 +188,11 @@ $is-print: false !default;
   @include core-80;
 
   padding-top: 8px;
-  padding-top: 0.8rem;
   padding-bottom: 7px;
-  padding-bottom: 0.7rem;
 
   @include media(tablet){
-    padding-top: 0.6rem;
-    padding-bottom: 1.4rem;
+    padding-top: 6px;
+    padding-bottom: 14px;
   }
 }
 
@@ -210,13 +200,11 @@ $is-print: false !default;
   @include core-48;
 
   padding-top: 10px;
-  padding-top: 1rem;
   padding-bottom: 10px;
-  padding-bottom: 1rem;
 
   @include media(tablet){
-    padding-top: 0.7rem;
-    padding-bottom: 1.3rem;
+    padding-top: 7px;
+    padding-bottom: 13px;
   }
 }
 
@@ -224,13 +212,11 @@ $is-print: false !default;
   @include core-36;
 
   padding-top: 8px;
-  padding-top: 0.8rem;
   padding-bottom: 7px;
-  padding-bottom: 0.7rem;
 
   @include media(tablet){
-    padding-top: 0.6rem;
-    padding-bottom: 0.9rem;
+    padding-top: 6px;
+    padding-bottom: 9px;
   }
 }
 
@@ -238,13 +224,11 @@ $is-print: false !default;
   @include core-27;
 
   padding-top: 8px;
-  padding-top: 0.8rem;
   padding-bottom: 7px;
-  padding-bottom: 0.7rem;
 
   @include media(tablet){
-    padding-top: 0.4rem;
-    padding-bottom: 0.6rem;
+    padding-top: 4px;
+    padding-bottom: 6px;
   }
 }
 
@@ -252,13 +236,11 @@ $is-print: false !default;
   @include core-24;
 
   padding-top: 9px;
-  padding-top: 0.9rem;
   padding-bottom: 6px;
-  padding-bottom: 0.6rem;
 
   @include media(tablet){
-    padding-top: 0.6rem;
-    padding-bottom: 0.4rem;
+    padding-top: 6px;
+    padding-bottom: 4px;
   }
 }
 
@@ -266,13 +248,11 @@ $is-print: false !default;
   @include core-19;
 
   padding-top: 2px;
-  padding-top: 0.2rem;
   padding-bottom: 8px;
-  padding-bottom: 0.8rem;
 
   @include media(tablet){
     padding-top: 0;
-    padding-bottom: 0.5rem;
+    padding-bottom: 5px;
   }
 }
 
@@ -280,13 +260,11 @@ $is-print: false !default;
   @include core-16;
 
   padding-top: 8px;
-  padding-top: 0.8rem;
   padding-bottom: 7px;
-  padding-bottom: 0.7rem;
 
   @include media(tablet){
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 
@@ -294,13 +272,11 @@ $is-print: false !default;
   @include core-14;
 
   padding-top: 8px;
-  padding-top: 0.8rem;
   padding-bottom: 7px;
-  padding-bottom: 0.7rem;
 
   @include media(tablet){
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
+    padding-top: 5px;
+    padding-bottom: 5px;
   }
 }
 
