@@ -30,6 +30,9 @@ $the-office-of-the-leader-of-the-house-of-commons: #317023;
 $uk-export-finance: #005747;
 $wales-office: #a33038;
 
+// Brand colours
+$mainstream-brand: #0FA660;
+
 // Standard palette, colours
 $purple: #2e358b;
 $purple-50: #9799c4;
@@ -87,7 +90,7 @@ $link-colour: #2e3191;
 $link-active-colour: #2e8aca;
 $link-hover-colour: #2e8aca;
 $link-visited-colour: #2e3191;
-$button-colour: #0FA660;
+$button-colour: $mainstream-brand;
 $text-colour: $black;             // Standard text colour
 $secondary-text-colour: $grey-1;  // Section headers, help text etc.
 $border-colour: $grey-2;          // Borders, seperators, rules, keylines etc.
