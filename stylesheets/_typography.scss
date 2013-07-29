@@ -366,3 +366,15 @@ $is-print: false !default;
     }
   }
 }
+
+@mixin external-link-white {
+  &:after {
+    background-image: image-url("external-link-white-12x12.png");
+    background-repeat: no-repeat;
+
+    @include device-pixel-ratio() {
+      background-image: image-url("external-link-white-24x24.png");
+      background-size: 12px 400px;
+    }
+  }
+}

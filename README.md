@@ -336,7 +336,10 @@ After setting the default, apply includes from the following for different font 
 * `external-link-19`
 * `external-link-19-no-hover`
 
-`external-link-heading` is a unique style a background image for headings to groups of external links.
+There are also two alternatives to `external-link-default`:
+
+* `external-link-heading` is a unique style a background image for headings to groups of external links.
+* `external-link-white` is a white external icon.
 
 #### Description
 
