@@ -320,7 +320,7 @@ recomended to pass a fraction in for readability.
 
 #### Tabular numbers
 
-Tabular numbers have numerals of a standard fixed with. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other - eg in tables.
+Tabular numbers have numerals of a standard fixed width. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other - eg in tables.
 
 `$tabular-numbers` is an optional variable that may be passed to the heading, copy and core styles to use (or explicitly not use) tabular numbers. When no variable is passed, the default is non-tabular.
 
