@@ -16,8 +16,12 @@
 
 $is-print: false !default;
 
-@mixin core-80($line-height: (80 / 80), $line-height-640: (55 / 53)) {
-  font-family: $NTA-Light;
+@mixin core-80($line-height: (80 / 80), $line-height-640: (55 / 53), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 80px;
   } @else {
@@ -32,8 +36,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-48($line-height: (50 / 48), $line-height-640: (35 / 32)) {
-  font-family: $NTA-Light;
+@mixin core-48($line-height: (50 / 48), $line-height-640: (35 / 32), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 48px;
   } @else {
@@ -48,8 +56,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-36($line-height: (40 / 36), $line-height-640: (25 / 24)) {
-  font-family: $NTA-Light;
+@mixin core-36($line-height: (40 / 36), $line-height-640: (25 / 24), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 36px;
   } @else {
@@ -64,8 +76,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-27($line-height: (30 / 27), $line-height-640: (20 / 18)) {
-  font-family: $NTA-Light;
+@mixin core-27($line-height: (30 / 27), $line-height-640: (20 / 18), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 27px;
   } @else {
@@ -80,8 +96,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-24($line-height: (30 / 24), $line-height-640: (24 / 20)) {
-  font-family: $NTA-Light;
+@mixin core-24($line-height: (30 / 24), $line-height-640: (24 / 20), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 24px;
   } @else {
@@ -96,8 +116,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 16)) {
-  font-family: $NTA-Light;
+@mixin core-19($line-height: (25 / 19), $line-height-640: (20 / 16), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 19px;
   } @else {
@@ -112,8 +136,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-16($line-height: (20 / 16), $line-height-640: (16 / 14)) {
-  font-family: $NTA-Light;
+@mixin core-16($line-height: (20 / 16), $line-height-640: (16 / 14), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 16px;
   } @else {
@@ -128,8 +156,12 @@ $is-print: false !default;
   }
 }
 
-@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 12)) {
-  font-family: $NTA-Light;
+@mixin core-14($line-height: (20 / 14), $line-height-640: (15 / 12), $tabular-numbers: false) {
+  @if $tabular-numbers == true {
+    font-family: $NTA-Light-Tabular;
+  } @else {
+    font-family: $NTA-Light;
+  }
   @if $is-print == false {
     font-size: 14px;
   } @else {
@@ -144,48 +176,48 @@ $is-print: false !default;
   }
 }
 
-@mixin bold-80($line-height: (80 / 80), $line-height-640: (55 / 53)) {
-  @include core-80($line-height, $line-height-640);
+@mixin bold-80($line-height: (80 / 80), $line-height-640: (55 / 53), $tabular-numbers: false) {
+  @include core-80($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-48($line-height: (50 / 48), $line-height-640: (35 / 32)) {
-  @include core-48($line-height, $line-height-640);
+@mixin bold-48($line-height: (50 / 48), $line-height-640: (35 / 32), $tabular-numbers: false) {
+  @include core-48($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-36($line-height: (40 / 36), $line-height-640: (25 / 24)) {
-  @include core-36($line-height, $line-height-640);
+@mixin bold-36($line-height: (40 / 36), $line-height-640: (25 / 24), $tabular-numbers: false) {
+  @include core-36($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-27($line-height: (30 / 27), $line-height-640: (20 / 18)) {
-  @include core-27($line-height, $line-height-640);
+@mixin bold-27($line-height: (30 / 27), $line-height-640: (20 / 18), $tabular-numbers: false) {
+  @include core-27($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-24($line-height: (30 / 24), $line-height-640: (24 / 20)) {
-  @include core-24($line-height, $line-height-640);
+@mixin bold-24($line-height: (30 / 24), $line-height-640: (24 / 20), $tabular-numbers: false) {
+  @include core-24($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-19($line-height: (25 / 19), $line-height-640: (20 / 16)) {
-  @include core-19($line-height, $line-height-640);
+@mixin bold-19($line-height: (25 / 19), $line-height-640: (20 / 16), $tabular-numbers: false) {
+  @include core-19($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-16($line-height: (20 / 16), $line-height-640: (16 / 14)) {
-  @include core-16($line-height, $line-height-640);
+@mixin bold-16($line-height: (20 / 16), $line-height-640: (16 / 14), $tabular-numbers: false) {
+  @include core-16($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin bold-14($line-height: (20 / 14), $line-height-640: (15 / 12)) {
-  @include core-14($line-height, $line-height-640);
+@mixin bold-14($line-height: (20 / 14), $line-height-640: (15 / 12), $tabular-numbers: false) {
+  @include core-14($line-height, $line-height-640, $tabular-numbers);
   font-weight: 700;
 }
 
-@mixin heading-80 {
-  @include core-80;
+@mixin heading-80($tabular-numbers: false) {
+  @include core-80($tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -196,8 +228,8 @@ $is-print: false !default;
   }
 }
 
-@mixin heading-48 {
-  @include core-48;
+@mixin heading-48($tabular-numbers: false) {
+  @include core-48($tabular-numbers);
 
   padding-top: 10px;
   padding-bottom: 10px;
@@ -208,8 +240,8 @@ $is-print: false !default;
   }
 }
 
-@mixin heading-36 {
-  @include core-36;
+@mixin heading-36($tabular-numbers: false) {
+  @include core-36($tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -220,8 +252,8 @@ $is-print: false !default;
   }
 }
 
-@mixin heading-27 {
-  @include core-27;
+@mixin heading-27($tabular-numbers: false) {
+  @include core-27($tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -232,8 +264,8 @@ $is-print: false !default;
   }
 }
 
-@mixin heading-24 {
-  @include core-24;
+@mixin heading-24($tabular-numbers: false) {
+  @include core-24($tabular-numbers);
 
   padding-top: 9px;
   padding-bottom: 6px;
@@ -244,8 +276,8 @@ $is-print: false !default;
   }
 }
 
-@mixin copy-19 {
-  @include core-19;
+@mixin copy-19($tabular-numbers: false) {
+  @include core-19($tabular-numbers);
 
   padding-top: 2px;
   padding-bottom: 8px;
@@ -256,8 +288,8 @@ $is-print: false !default;
   }
 }
 
-@mixin copy-16 {
-  @include core-16;
+@mixin copy-16($tabular-numbers: false) {
+  @include core-16($tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -268,8 +300,8 @@ $is-print: false !default;
   }
 }
 
-@mixin copy-14 {
-  @include core-14;
+@mixin copy-14($tabular-numbers: false) {
+  @include core-14($tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
