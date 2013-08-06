@@ -318,6 +318,21 @@ recomended to pass a fraction in for readability.
       @include core-24($line-height: (50/24), $line-height-640: (18/16));
     }
 
+#### Tabular numbers
+
+Tabular numbers have numerals of a standard fixed width. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other - eg in tables.
+
+`$tabular-numbers` is an optional variable that may be passed to the heading, copy and core styles to use (or explicitly not use) tabular numbers. When no variable is passed, the default is non-tabular.
+
+##### Usage
+
+    h1 {
+      @include core-48;
+    }
+    h2 {
+      @include core-24($tabular-numbers: true);
+    }
+
 #### external links
 
 `external-link-default` sets up the background image for all external links.
