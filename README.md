@@ -302,7 +302,7 @@ The following core styles exist:
 
 ##### Description
 
-`@include core-[size]($line-height, $line-height-640,)`
+`@include core-[size]($line-height, $line-height-640)`
 
 ##### Parameters
 
