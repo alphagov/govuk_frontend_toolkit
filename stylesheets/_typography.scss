@@ -177,47 +177,47 @@ $is-print: false !default;
 }
 
 @mixin bold-80($line-height: (80 / 80), $line-height-640: (55 / 53), $tabular-numbers: false) {
-  @include core-80($line-height, $line-height-640, $tabular-numbers);
+  @include core-80($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-48($line-height: (50 / 48), $line-height-640: (35 / 32), $tabular-numbers: false) {
-  @include core-48($line-height, $line-height-640, $tabular-numbers);
+  @include core-48($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-36($line-height: (40 / 36), $line-height-640: (25 / 24), $tabular-numbers: false) {
-  @include core-36($line-height, $line-height-640, $tabular-numbers);
+  @include core-36($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-27($line-height: (30 / 27), $line-height-640: (20 / 18), $tabular-numbers: false) {
-  @include core-27($line-height, $line-height-640, $tabular-numbers);
+  @include core-27($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-24($line-height: (30 / 24), $line-height-640: (24 / 20), $tabular-numbers: false) {
-  @include core-24($line-height, $line-height-640, $tabular-numbers);
+  @include core-24($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-19($line-height: (25 / 19), $line-height-640: (20 / 16), $tabular-numbers: false) {
-  @include core-19($line-height, $line-height-640, $tabular-numbers);
+  @include core-19($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-16($line-height: (20 / 16), $line-height-640: (16 / 14), $tabular-numbers: false) {
-  @include core-16($line-height, $line-height-640, $tabular-numbers);
+  @include core-16($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin bold-14($line-height: (20 / 14), $line-height-640: (15 / 12), $tabular-numbers: false) {
-  @include core-14($line-height, $line-height-640, $tabular-numbers);
+  @include core-14($line-height, $line-height-640, $tabular-numbers: $tabular-numbers);
   font-weight: 700;
 }
 
 @mixin heading-80($tabular-numbers: false) {
-  @include core-80($tabular-numbers);
+  @include core-80($tabular-numbers: $tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -229,7 +229,7 @@ $is-print: false !default;
 }
 
 @mixin heading-48($tabular-numbers: false) {
-  @include core-48($tabular-numbers);
+  @include core-48($tabular-numbers: $tabular-numbers);
 
   padding-top: 10px;
   padding-bottom: 10px;
@@ -241,7 +241,7 @@ $is-print: false !default;
 }
 
 @mixin heading-36($tabular-numbers: false) {
-  @include core-36($tabular-numbers);
+  @include core-36($tabular-numbers: $tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -253,7 +253,7 @@ $is-print: false !default;
 }
 
 @mixin heading-27($tabular-numbers: false) {
-  @include core-27($tabular-numbers);
+  @include core-27($tabular-numbers: $tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -265,7 +265,7 @@ $is-print: false !default;
 }
 
 @mixin heading-24($tabular-numbers: false) {
-  @include core-24($tabular-numbers);
+  @include core-24($tabular-numbers: $tabular-numbers);
 
   padding-top: 9px;
   padding-bottom: 6px;
@@ -277,7 +277,7 @@ $is-print: false !default;
 }
 
 @mixin copy-19($tabular-numbers: false) {
-  @include core-19($tabular-numbers);
+  @include core-19($tabular-numbers: $tabular-numbers);
 
   padding-top: 2px;
   padding-bottom: 8px;
@@ -289,7 +289,7 @@ $is-print: false !default;
 }
 
 @mixin copy-16($tabular-numbers: false) {
-  @include core-16($tabular-numbers);
+  @include core-16($tabular-numbers: $tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -301,7 +301,7 @@ $is-print: false !default;
 }
 
 @mixin copy-14($tabular-numbers: false) {
-  @include core-14($tabular-numbers);
+  @include core-14($tabular-numbers: $tabular-numbers);
 
   padding-top: 8px;
   padding-bottom: 7px;
