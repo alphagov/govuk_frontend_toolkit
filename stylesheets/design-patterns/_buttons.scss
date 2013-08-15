@@ -31,6 +31,8 @@ Example usage:
   @include inline-block;
   padding: 0.35em 0.5em 0.15em 0.5em;
   border: none;
+  @include border-radius(0);
+  -webkit-appearance: none;
 
   // Bottom edge effect
   @include box-shadow(0 2px 0 darken($colour, 15%));
@@ -74,7 +76,7 @@ Example usage:
         border-bottom: 2px solid darken($colour, 15%);
       }
     }
-  }    
+  }
 
   // Set text colour depending on background colour
   @if lightness($colour) < 50% {
@@ -93,7 +95,7 @@ Example usage:
     }
   }
 
-  // making the click target bigger than the button 
+  // making the click target bigger than the button
   // (and fill the space made when the button moves)
   &:before {
     content: "";
