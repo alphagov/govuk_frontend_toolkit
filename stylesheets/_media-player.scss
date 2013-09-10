@@ -1,6 +1,6 @@
 /* Player overrides */
 
-.player-container {
+@mixin media-player {
   display: block;
   overflow: hidden;
   margin: 30px 0;
