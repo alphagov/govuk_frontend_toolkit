@@ -5,7 +5,7 @@ code.
 
 ## Installing
 
-If you are going to use the toolkit in a Rails project, we recommend you use the [govuk_frontend_toolkit_gem](https://github.com/alphagov/govuk_frontend_toolkit_gem) and install it per the instructions in there.
+If you are going to use the toolkit in a Rails project, we recommend you use the [govuk_frontend_toolkit_gem](https://github.com/alphagov/govuk_frontend_toolkit_gem) and follow the [installation instructions](https://github.com/alphagov/govuk_frontend_toolkit_gem#readme).
 
 If you are not using a Rails project you can include the toolkit as a [git submodule](https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html).
 
