@@ -26,7 +26,7 @@ To update the toolkit to the latest version you can use:
 ## Usage
 
 At the top of a Sass file in your project you should use an `@import` rule
-to include the file for the mixins you require. For example if you want the
+to include the file for the mixins you require, eg if you want the
 conditionals and typography mixins you should add:
 
     @import '_conditionals';
@@ -101,7 +101,7 @@ their respective @media queries.
 `$ignore-for-ie`
 
 Styles that would normally be wrapped in @media queries by this mixin will be instead
-added to the main block if the `$is-ie` variable is true. 
+added to the main block if the `$is-ie` variable is true.
 
 Setting `$ignore-for-ie` to `true` means those styles will not be added.
 
@@ -332,7 +332,7 @@ recomended to pass a fraction in for readability.
 
 #### Tabular numbers
 
-Tabular numbers have numerals of a standard fixed width. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other - eg in tables.
+Tabular numbers have numerals of a standard fixed width. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other, eg in tables.
 
 `$tabular-numbers` is an optional variable that may be passed to the heading, copy and core styles to use (or explicitly not use) tabular numbers. When no variable is passed, the default is non-tabular.
 
