@@ -555,4 +555,3 @@ page. It can be included with the asset_pipeline by adding the line:
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
-T Licence, a copy of which can be found in the file `LICENCE`.
