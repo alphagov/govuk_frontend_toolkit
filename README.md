@@ -25,7 +25,7 @@ To update the toolkit to the latest version you can use:
 
 ## Usage
 
-At the top of a Sass file in your Rails project you should use an `@import` rule
+At the top of a Sass file in your project you should use an `@import` rule
 to include the file for the mixins you require. For example if you want the
 conditionals and typography mixins you should add:
 
@@ -35,6 +35,10 @@ conditionals and typography mixins you should add:
 You may need to include the relative path to the toolkit if it is installed as a submodule:
 
     @import '../toolkit/_conditionals';
+
+If you are compiling Sass from the [command-line tool](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#using_sass), we recommend the following options:
+
+    sass --style expanded --line-numbers --load-path ./path/to/assets/toolkit input.scss output.css
 
 ## Mixin-sets
 
