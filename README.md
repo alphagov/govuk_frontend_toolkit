@@ -44,7 +44,7 @@ In development:
 
 In production:
 
-    sass --style compressed --load-path ./path/to/assets/toolkit input.scss output.css
+    sass --style compressed --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
 
 
 
