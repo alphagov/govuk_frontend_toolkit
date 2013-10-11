@@ -5,17 +5,17 @@ code.
 
 ## Installing
 
-If you are going to use the toolkit in a Rails project, we recommend you use the [govuk_frontend_toolkit_gem](https://github.com/alphagov/govuk_frontend_toolkit_gem) and install it per the instructions in there.
+If you are going to use the toolkit in a Rails project, we recommend you use the [govuk_frontend_toolkit_gem](https://github.com/alphagov/govuk_frontend_toolkit_gem) and follow the [installation instructions](https://github.com/alphagov/govuk_frontend_toolkit_gem#readme).
 
 If you are not using a Rails project you can include the toolkit as a [git submodule](https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html).
 
-To add the submodule to your project run the following command subsituting the path to a subdirectory in your project's assets directory:
+To add the submodule to your project run the following command substituting the path to a subdirectory in your project's assets directory:
 
     $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/govuk_toolkit
 
 We recommend you use `https` rather than `ssh` for submodules as they don't require key exchanges when deploying to remote servers.
 
-If you clone a project with the toolkit submodule installed you will need to intialise the submodule with the following command:
+If you clone a project with the toolkit submodule installed you will need to initialise the submodule with the following command:
 
     $ git submodule init
 
@@ -26,7 +26,7 @@ To update the toolkit to the latest version you can use:
 ## Usage
 
 At the top of a Sass file in your project you should use an `@import` rule
-to include the file for the mixins you require. For example if you want the
+to include the file for the mixins you require, eg if you want the
 conditionals and typography mixins you should add:
 
     @import '_conditionals';
@@ -101,7 +101,7 @@ their respective @media queries.
 `$ignore-for-ie`
 
 Styles that would normally be wrapped in @media queries by this mixin will be instead
-added to the main block if the `$is-ie` variable is true. 
+added to the main block if the `$is-ie` variable is true.
 
 Setting `$ignore-for-ie` to `true` means those styles will not be added.
 
@@ -332,7 +332,7 @@ recomended to pass a fraction in for readability.
 
 #### Tabular numbers
 
-Tabular numbers have numerals of a standard fixed width. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other - eg in tables.
+Tabular numbers have numerals of a standard fixed width. As all numbers have the same width, sets of numbers may be more easily compared. We recommend using them where different numbers are likely to be compared, or where different numbers should line up with each other, eg in tables.
 
 `$tabular-numbers` is an optional variable that may be passed to the heading, copy and core styles to use (or explicitly not use) tabular numbers. When no variable is passed, the default is non-tabular.
 
@@ -555,4 +555,3 @@ page. It can be included with the asset_pipeline by adding the line:
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
-T Licence, a copy of which can be found in the file `LICENCE`.
