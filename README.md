@@ -11,7 +11,7 @@ If you are not using a Rails project you can include the toolkit as a [git submo
 
 To add the submodule to your project run the following command subsituting the path to a subdirectory in your project's assets directory:
 
-    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/toolkit
+    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/govuk_toolkit
 
 We recommend you use `https` rather than `ssh` for submodules as they don't require key exchanges when deploying to remote servers.
 
@@ -25,7 +25,7 @@ To update the toolkit to the latest version you can use:
 
 ## Usage
 
-At the top of a Sass file in your Rails project you should use an `@import` rule
+At the top of a Sass file in your project you should use an `@import` rule
 to include the file for the mixins you require. For example if you want the
 conditionals and typography mixins you should add:
 
@@ -35,6 +35,18 @@ conditionals and typography mixins you should add:
 You may need to include the relative path to the toolkit if it is installed as a submodule:
 
     @import '../toolkit/_conditionals';
+
+If you are compiling Sass from the [command-line tool](http://sass-lang.com/docs/yardoc/file.SASS_REFERENCE.html#using_sass), here are some options we recommend.
+
+In development:
+
+    sass --style expanded --line-numbers --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
+
+In production:
+
+    sass --style compressed --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
+
+
 
 ## Mixin-sets
 
