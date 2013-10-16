@@ -53,7 +53,7 @@ Example usage:
   }
   &:hover,
   &:focus {
-    background: darken($colour, 5%);
+    background-color: darken($colour, 5%);
   }
   &:active {
     top: 2px;
