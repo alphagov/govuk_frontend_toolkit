@@ -29,7 +29,7 @@
   filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=0 ); // IE6-9
 }
 
-@mixin transition($property, $duration, $function, $delay: 0) {
+@mixin transition($property, $duration, $function, $delay: 0s) {
   -webkit-transition: ($property $duration $function $delay);
      -moz-transition: ($property $duration $function $delay);
       -ms-transition: ($property $duration $function $delay);
