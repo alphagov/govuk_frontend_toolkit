@@ -5,9 +5,27 @@ code.
 
 ## Installing
 
-If you are going to use the toolkit in a Rails project, we recommend you use the [govuk_frontend_toolkit_gem](https://github.com/alphagov/govuk_frontend_toolkit_gem) and follow the [installation instructions](https://github.com/alphagov/govuk_frontend_toolkit_gem#readme).
+### Ruby on Rails
 
-If you are not using a Rails project you can include the toolkit as a [git submodule](https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html).
+We recommend you use the [govuk_frontend_toolkit_gem][toolkit_gem_github] and
+follow the [installation instructions][toolkit_gem_github_readme].
+
+[toolkit_gem_github]: https://github.com/alphagov/govuk_frontend_toolkit_gem
+[toolkit_gem_github_readme]: https://github.com/alphagov/govuk_frontend_toolkit_gem#readme
+
+### Node.js
+
+[govuk_frontend_toolkit_npm][toolkit_npm_github] is an NPM package that can be
+[installed or included in your package.json][toolkit_npm].
+
+[toolkit_npm_github]: https://github.com/alphagov/govuk_frontend_toolkit_npm
+[toolkit_npm]: https://npmjs.org/package/govuk_frontend_toolkit
+
+### Other projects
+
+You can include the toolkit as a [git submodule][].
+
+[git submodule]: https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html
 
 To add the submodule to your project run the following command substituting the path to a subdirectory in your project's assets directory:
 
