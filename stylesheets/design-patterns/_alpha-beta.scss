@@ -5,7 +5,7 @@ $alpha-colour: $pink;
 $beta-colour: $orange;
 
 @mixin phase-banner($state: alpha) {
-  padding: 0.5em 0;
+  padding: 8px 0;
 
   @if $state == alpha {
     background-color: $alpha-colour;
