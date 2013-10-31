@@ -42,8 +42,7 @@ $beta-colour: $orange;
   }
 
   color: #fff;
-  @include bold-16;
-  line-height: 20px;
+  @include bold-16(20/16);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
