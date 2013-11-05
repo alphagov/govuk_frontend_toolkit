@@ -487,7 +487,7 @@ This can currently only handle linear top to bottom gradients.
 
 ##### Description
 
-`@mixin transition($property, $duration, $function)`
+`@mixin transition($property, $duration, $function, $delay:0s)`
 
 ##### Parameters
 
