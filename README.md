@@ -570,6 +570,30 @@ page. It can be included with the asset_pipeline by adding the line:
 
     //=require govuk_toolkit
 
+### Textarea Character Countdown
+
+#### Description
+
+As the user is typing in a textbox or textarea, this jQuery plugin updates a label with the remaining number of allowed characters.
+
+#### Usage
+
+Run this on document ready:
+
+    GOVUK.textareaCharacterCountdown.initialize($textarea, $statusArea, 1000);
+
+To customise or i18nalise the status message, override the "messageBeforeUserHasTypedAnything" and "messageAsUserIsTyping" variables with strings containing #max-num and #remaining-num placeholders.
+
+For example, for Russian i18n:
+
+    GOVUK.textareaCharacterCountdown.messageBeforeUserHasTypedAnything = "(ограничение - #max-num знаков)"
+    GOVUK.textareaCharacterCountdown.messageAsUserIsTyping = "Остается #remaining-num знаков (ограничение - #max-num знаков)";
+
+#### Parameters
+
+`$textarea` is the jQuery element into which the user types
+`$statusArea` is the jQuery element which displays the remaining # of chars
+
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
