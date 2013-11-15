@@ -1,9 +1,6 @@
 @import "../_colours";
 @import "../_typography";
 
-$alpha-colour: $pink;
-$beta-colour: $orange;
-
 @mixin phase-banner($state: alpha) {
   padding: 8px 0;
 
