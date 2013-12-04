@@ -73,6 +73,7 @@ In production:
 * [`_css3.scss`](#css3)
 * [`_typography.scss`](#typography)
 * [`design-patterns/_buttons.scss`](#buttons)
+* [`design-patterns/_alpha-beta.scss`](#alpha-beta)
 
 ### <a id="conditionals"></a>Conditionals
 
@@ -562,6 +563,30 @@ The button text colour is set by the mixin to either light or dark, depending on
 
 If you're applying these styles to non form elements, adding a class of 'disabled' to the element will emulate the disabled button style.
 
+### <a id="alpha-beta"></a>Alpha/Beta
+
+Mixins for creating alpha/beta banners and tags for services on GOV.UK
+
+##### Description
+
+`@mixin phase-banner($state)`
+`@mixin phase-tag($state)`
+
+##### Parameters
+
+`$state` either `alpha` or `beta`. This will set the background colour of the element to the appropriate colour.
+
+##### Usage
+
+    .alpha-banner  {
+      @include phase-banner(alpha);
+    }
+    .beta-banner {
+      @include phase-banner(beta);
+    }
+    .beta-tag{
+      @include phase-tag(beta);
+    }
 
 ## JavaScript
 
