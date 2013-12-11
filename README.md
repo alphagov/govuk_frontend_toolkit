@@ -45,7 +45,7 @@ To update the toolkit to the latest version you can use:
 
 Install Node 0.8 or higher and PhantomJS.
 
-    $ npm install -g grunt-cli@0.1.11
+    $ sudo npm install -g grunt-cli@0.1.11
     $ npm install
     $ grunt test
 
