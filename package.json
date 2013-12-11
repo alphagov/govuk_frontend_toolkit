@@ -1,0 +1,13 @@
+{
+  "name": "govuk_frontend_toolkit",
+  "repository": "https://github.com/alphagov/govuk_frontend_toolkit",
+  "version": "0.1.0",
+  "devDependencies": {
+    "grunt": "~0.4.2",
+    "grunt-contrib-jasmine": "~0.5.2",
+    "jquery-browser": "~1.7.2-3"
+  },
+  "scripts": {
+    "test": "grunt test"
+  }
+}
