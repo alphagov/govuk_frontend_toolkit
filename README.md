@@ -41,6 +41,14 @@ To update the toolkit to the latest version you can use:
 
     $ git submodule update
 
+## Running tests
+
+Install Node 0.8 or higher and PhantomJS.
+
+    $ sudo npm install -g grunt-cli@0.1.11
+    $ npm install
+    $ grunt test
+
 ## Usage
 
 At the top of a Sass file in your project you should use an `@import` rule
