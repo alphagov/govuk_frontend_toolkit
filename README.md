@@ -603,6 +603,25 @@ page. It can be included with the asset_pipeline by adding the line:
 
     //=require govuk_toolkit
 
+## Media player
+
+There is a forked version of the Nomensa video player included and custom
+GOV.UK styles to be used with it. To use it you will need to include the script
+on your page and include the styles nested under an appropriate selector. For
+example:
+
+    @import "design-patterns/media-player";
+
+    .media-player {
+      @include media-player;
+    }
+
+You will also need to create your own initalizer to target the links you want
+to turn into videoss. There are examples of how this works in the [Nomensa
+Accesible Media Player][nomensa] repository.
+
+[nomensa]: https://github.com/nomensa/Accessible-Media-Player/tree/master/example
+
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
