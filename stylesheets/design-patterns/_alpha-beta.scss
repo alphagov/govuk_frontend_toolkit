@@ -1,5 +1,6 @@
 @import "../_colours";
 @import "../_typography";
+@import "../_shims";
 
 @mixin phase-banner($state: alpha) {
   padding: 8px 0;
@@ -29,8 +30,7 @@
 }
 
 @mixin phase-tag($state: alpha) {
-  display: block;
-  float: left;
+  @include inline-block;
 
   @if $state == alpha {
     background-color: $alpha-colour;
@@ -44,6 +44,6 @@
   letter-spacing: 1px;
   text-decoration: none;
 
-  margin: 3px 10px 0 0;
+  margin: 3px 10px 0 5px;
   padding: 2px 5px 0;
 }
