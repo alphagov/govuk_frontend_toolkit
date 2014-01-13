@@ -9,6 +9,6 @@
     "jquery-browser": "~1.7.2-3"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "node_modules/.bin/grunt test"
   }
 }
