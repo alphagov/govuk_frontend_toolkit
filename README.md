@@ -621,6 +621,55 @@ Accesible Media Player][nomensa] repository.
 
 [nomensa]: https://github.com/nomensa/Accessible-Media-Player/tree/master/example
 
+## Multivariate test framework
+
+`GOVUK.MultiVariateTest` runs split tests to display different content, layouts etc to users.
+
+It randomly assigns a user a cohort on first execution by setting a cookie, and on every execution sets a session level custom variable on Google Analytics to mark which cohort a user is in. This can be used to segment users in GA.
+
+A simple content replacement test can be done by defining a set of cohorts with content. E.g.:
+
+```javascript
+var test = new MultivariateTest({
+  el: '.car-tax-button',
+  name: 'car_tax_button_text',
+  customVarIndex: 555,
+  cohorts: {
+    pay_your_car_tax: {html: "Pay Your Car Tax"},
+    give_us_money: {html: "Give Us Money Or We Will Crush Your Car"},
+  }
+});
+```
+
+A more complex test can be done by defining callbacks for what to do
+when a user is in each cohort:
+
+```javascript
+var test = new MultivariateTest({
+  name: 'car_tax_button_text',
+  customVarIndex: 555,
+  cohorts: {
+    pay_your_car_tax: {callback: function() { ... }},
+    give_us_money: {callback: function() { ... }},
+  }
+});
+```
+
+If you have a complex test, it may be worth extending MultivariateTest with 
+your own. Callbacks can be strings which will call a method of that name
+on the current object.
+
+Takes these options:
+ - `el`: Element to run this test on (optional)
+ - `name`: The name of the text (alphanumeric and underscores)
+ - `customVarIndex`: The index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
+ - `cohorts`: An object that maps cohort name to an object that defines the cohort. Name must be same format as test name. Object contains keys (both optional):
+   - `html`: HTML to fill element with when this cohort is picked.
+   - `callback`: Function to call when this cohort is chosen. If it is a string, that method on the test object is called.
+
+Full documentation on how to design multivariate tests, use the data in GA and construct hypothesis tests is on its way soon.
+
+
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
