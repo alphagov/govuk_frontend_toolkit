@@ -630,7 +630,7 @@ It randomly assigns a user a cohort on first execution by setting a cookie, and 
 A simple content replacement test can be done by defining a set of cohorts with content. E.g.:
 
 ```javascript
-var test = new MultivariateTest({
+var test = new GOVUK.MultivariateTest({
   el: '.car-tax-button',
   name: 'car_tax_button_text',
   customVarIndex: 555,
@@ -645,7 +645,7 @@ A more complex test can be done by defining callbacks for what to do
 when a user is in each cohort:
 
 ```javascript
-var test = new MultivariateTest({
+var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
   customVarIndex: 555,
   cohorts: {
