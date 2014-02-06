@@ -21,6 +21,16 @@ follow the [installation instructions][toolkit_gem_github_readme].
 [toolkit_npm_github]: https://github.com/alphagov/govuk_frontend_toolkit_npm
 [toolkit_npm]: https://npmjs.org/package/govuk_frontend_toolkit
 
+### Composer/Symfony
+
+This repository is a component-installer component. Simply add it to your composer.json
+
+```bash
+composer require alphagov/govuk_frontend_toolkit:dev-master
+```
+
+See the [component-installer](https://github.com/RobLoach/component-installer) project for more details.
+
 ### Other projects
 
 You can include the toolkit as a [git submodule][].
