@@ -1,0 +1,21 @@
+{
+    "name": "alphagov/govuk_frontend_toolkit",
+    "description": "A collection of Sass and Javascript tools for generating frontend code.",
+    "type": "component",
+    "extra": {
+        "component": {
+            "scripts": [
+                "javascripts/**.js"
+            ],
+            "styles": [
+                "stylesheets/**.scss"
+            ],
+            "files" : [
+                "images/**/*"
+            ]
+        }
+    },
+    "require": {
+        "robloach/component-installer": "*"
+    }
+}
