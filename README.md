@@ -33,10 +33,6 @@ follow the [installation instructions][toolkit_gem_github_readme].
 
 You can include the toolkit as a [git submodule][].
 
-### Other projects
-
-You can include the toolkit as a [git submodule][].
-
 [git submodule]: https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html
 
 To add the submodule to your project run the following command substituting the path to a subdirectory in your project's assets directory:
