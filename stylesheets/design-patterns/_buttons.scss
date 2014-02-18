@@ -48,9 +48,6 @@ Example usage:
 
   // Interaction
   cursor: pointer;
-  &:link {
-    color: $white;
-  }
   &:visited{
     background-color: $colour;
   }
@@ -84,6 +81,7 @@ Example usage:
   // Set text colour depending on background colour
   @if lightness($colour) < 50% {
     color: $white;
+    &:link,
     &:hover,
     &:focus,
     &:visited{
@@ -91,6 +89,7 @@ Example usage:
     }
   } @else {
     color: $text-colour;
+    &:link,
     &:hover,
     &:focus,
     &:visited{
