@@ -48,6 +48,9 @@ Example usage:
 
   // Interaction
   cursor: pointer;
+  &:link {
+    color: $white;
+  }
   &:visited{
     background-color: $colour;
   }
