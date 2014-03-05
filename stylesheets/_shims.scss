@@ -1,20 +1,18 @@
-/* Cross-browser shims
+// Cross-browser shims
+// Ways of normalising properties across browsers.
 
-  Ways of normalising properties across browsers.
- */
 @import "_conditionals";
 
 // From: https://blog.mozilla.org/webdev/2009/02/20/cross-browser-inline-block/
 
-/* Usage:
-   @include inline-block
+// Usage:
+//
+// @include inline-block
+// or
+// @include inline-block("250px")
+//
+// which gives a min-height to the inline-block elements.
 
-   or
-
-   @include inline-block("250px")
-
-   which gives a min-height to the inline-block elements.
-*/
 
 @mixin inline-block($min-height: "") {
   display: -moz-inline-stack;
@@ -37,13 +35,12 @@
 }
 
 
-/* Contain floats usage:
+// Contain floats usage:
+//
+// .this-has-floated-children {
+//  @extend %contain-floats;
+// }
 
-   .this-has-floated-children {
-     @extend %contain-floats;
-   }
-
-*/
 
 %contain-floats {
   &:after {

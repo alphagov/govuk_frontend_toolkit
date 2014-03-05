@@ -1,7 +1,7 @@
-/* CSS 3 Mixins
+// CSS 3 Mixins
 
-  Add them as you need them. This should let us manage vendor prefixes in one place.
- */
+// Add them as you need them. This should let us manage vendor prefixes in one place.
+
 
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius;
