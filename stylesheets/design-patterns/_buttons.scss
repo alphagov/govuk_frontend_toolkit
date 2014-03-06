@@ -2,25 +2,22 @@
 @import '../_css3.scss';
 @import '../_conditionals.scss';
 
-/*
+// Mixin and defaults for making buttons on GOV.UK services.
 
-Mixin and defaults for making buttons on GOV.UK services.
+// For guidance, see: https://www.gov.uk/service-manual/design-and-content/resources/buttons.html
 
-For guidance, see: https://www.gov.uk/service-manual/design-and-content/resources/buttons.html
+// Example usage:
 
-Example usage:
+// .button{
+//   @include button;
+// }
+// .button-secondary{
+//   @include button($grey-3);
+// }
+// .button-warning{
+//   @include button($red);
+// }
 
-.button{
-  @include button;
-}
-.button-secondary{
-  @include button($grey-3);
-}
-.button-warning{
-  @include button($red);
-}
-
-*/
 
 @mixin button($colour: $button-colour){
   // Colour
