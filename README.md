@@ -698,6 +698,34 @@ Or to add it just to that list you could use:
 new GOVUK.PrimaryList($('#primary-list'), '.primary-item');
 ```
 
+## Stick at top when scrolling
+
+`GOVUK.stickAtTopWhenScrolling` tries to add a class to an element when the top
+of that element would be scrolled out of the viewport.
+
+The following would cause the element to stay when you scroll:
+
+```html
+<div class="js-stick-at-top-when-scrolling">something</div>
+```
+
+```css
+.content-fixed {
+  position: fixed;
+  top: 0;
+}
+.shim {
+  display: block;
+}
+```
+
+```javascript
+GOVUK.stickAtTopWhenScrolling.init();
+```
+
+If you also include the `stopScrollingAtFooter` JavaScript this will also try
+and stop the elements before they get to the bottom.
+
 
 ## Licence
 
