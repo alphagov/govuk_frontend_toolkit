@@ -655,7 +655,7 @@ var test = new GOVUK.MultivariateTest({
 });
 ```
 
-If you have a complex test, it may be worth extending MultivariateTest with 
+If you have a complex test, it may be worth extending MultivariateTest with
 your own. Callbacks can be strings which will call a method of that name
 on the current object.
 
@@ -668,6 +668,35 @@ Takes these options:
    - `callback`: Function to call when this cohort is chosen. If it is a string, that method on the test object is called.
 
 Full documentation on how to design multivariate tests, use the data in GA and construct hypothesis tests is on its way soon.
+
+## Primary Links
+
+`GOVUK.PrimaryList` hides elements in a list which don't have a supplied
+selector, they will then be shown when the user clicks. `GOVUK.primaryLinks` is
+a helper to add this behaviour to many elements.
+
+Example markup:
+
+```html
+<ul id="primary-list">
+  <li class="primary-item">Item 1</li>
+  <li>Item 2</li>
+  <li>Item 3</li>
+</ul>
+```
+
+To add it to all lists which have items with the class `primary-item` use
+something like:
+
+```javascript
+GOVUK.primaryLinks.init('.primary-item');
+```
+
+Or to add it just to that list you could use:
+
+```javascript
+new GOVUK.PrimaryList($('#primary-list'), '.primary-item');
+```
 
 
 ## Licence
