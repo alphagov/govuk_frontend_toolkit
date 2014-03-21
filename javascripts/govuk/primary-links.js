@@ -32,9 +32,11 @@
     },
     hideExtraLinks: function(){
       this.$extraLinks.addClass('visuallyhidden');
+      $(window).trigger('govuk.pageSizeChanged')
     },
     showExtraLinks: function(){
       this.$extraLinks.removeClass('visuallyhidden');
+      $(window).trigger('govuk.pageSizeChanged')
     }
   };
   GOVUK.PrimaryList = PrimaryList;
