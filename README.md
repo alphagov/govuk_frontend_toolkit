@@ -391,6 +391,11 @@ After setting the default, apply includes from the following for different font 
 
 `external-link-heading` is a unique style a background image for headings to groups of external links.
 
+This uses the `file-url` helper which will by default output an `image-url` to
+be used with Compass or Rails Asset Pipeline, if you want to use a static path
+then set the `$path` variable to point to the public location of the toolkit
+image assets.
+
 #### Description
 
 For a set style:
