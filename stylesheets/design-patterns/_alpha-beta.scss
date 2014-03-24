@@ -1,12 +1,13 @@
 @import "../_colours";
 @import "../_typography";
 @import "../_shims";
+@import "../_conditionals";
 
 @mixin phase-banner($state: alpha) {
-  padding: 0.5em 2em;
+  padding: 0.5em 1em;
 
-  @include media-down(mobile) {
-    padding: 0.5em 1em;
+  @include media(tablet) {
+    padding: 0.5em 2em;
   }
 
   @if $state == alpha {
