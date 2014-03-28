@@ -55,7 +55,7 @@
 
 @mixin opacity($trans) {
   zoom: 1;
-  filter: alpha(opacity=#{$trans * 100});
+  filter: unquote('alpha(opacity=' + ($trans * 100) + ')');
   opacity: $trans;
 }
 
