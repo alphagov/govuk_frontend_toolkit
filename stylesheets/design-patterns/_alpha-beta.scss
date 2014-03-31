@@ -4,10 +4,11 @@
 @import "../_conditionals";
 
 @mixin phase-banner($state: alpha) {
-  padding: 0.5em 1em;
+  padding: 8px 15px;
 
   @include media(tablet) {
-    padding: 0.5em 2em;
+    padding-left: 30px;
+    padding-right: 30px;
   }
 
   @if $state == alpha {
