@@ -75,12 +75,42 @@ In production:
 
 ## Mixin-sets
 
-* [`_colours.scss`](#colours)
+* [`_grid_layout.scss`](#grid-layout)
 * [`_conditionals.scss`](#conditionals)
+* [`_colours.scss`](#colours)
 * [`_css3.scss`](#css3)
 * [`_typography.scss`](#typography)
 * [`design-patterns/_buttons.scss`](#buttons)
 * [`design-patterns/_alpha-beta.scss`](#alpha-beta)
+
+### <a id="grid-layout"></a>Grid layout
+
+Use `.outer-block` and `.inner-block` together.
+
+Outer block sets a max width of 1020px,
+auto margins and a minimum width for IE8 and below.
+
+Inner block sets gutters to align with the header and footer.
+
+Use within banners, or to set a max-width for your main content area,
+with padding that matches the header and footer.
+
+##### Usage
+
+    .outer-block {
+      @include outer-block;
+    }
+
+    .inner-block {
+      @include inner-block;
+    }
+
+
+    <div class="outer-block">
+      <div class="inner-block">
+        Content in here
+      </div>
+    </div>
 
 ### <a id="conditionals"></a>Conditionals
 
