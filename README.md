@@ -618,17 +618,49 @@ Mixins for creating alpha/beta banners and tags for services on GOV.UK
 
 `$state` either `alpha` or `beta`. This will set the background colour of the element to the appropriate colour.
 
-##### Usage
+##### Usage - Alpha/Beta banners
 
     .alpha-banner  {
       @include phase-banner(alpha);
     }
-    .beta-banner {
+
+    <div class="alpha-banner">
+      <div class="outer-block">
+        <div class="inner-block">
+          <strong>ALPHA:</strong> This is a prototype
+        </div>
+      </div>
+    </div>
+
+    .beta-banner  {
       @include phase-banner(beta);
     }
+
+    <div class="beta-banner">
+      <div class="outer-block">
+        <div class="inner-block">
+          <strong>BETA:</strong> This is a trial service
+        </div>
+      </div>
+    </div>
+
+
+##### Usage - Alpha/Beta tags
+
+    .alpha-tag{
+      @include phase-tag(alpha);
+    }
+    <h2>
+      Apply using the new service <span class="beta-tag">ALPHA</span>
+    </h2>
+
     .beta-tag{
       @include phase-tag(beta);
     }
+    <h2>
+      Apply using the new service <span class="beta-tag">BETA</span>
+    </h2>
+
 
 ## JavaScript
 
