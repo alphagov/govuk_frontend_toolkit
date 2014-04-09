@@ -75,12 +75,42 @@ In production:
 
 ## Mixin-sets
 
-* [`_colours.scss`](#colours)
+* [`_grid_layout.scss`](#grid-layout)
 * [`_conditionals.scss`](#conditionals)
+* [`_colours.scss`](#colours)
 * [`_css3.scss`](#css3)
 * [`_typography.scss`](#typography)
 * [`design-patterns/_buttons.scss`](#buttons)
 * [`design-patterns/_alpha-beta.scss`](#alpha-beta)
+
+### <a id="grid-layout"></a>Grid layout
+
+Use `.outer-block` and `.inner-block` together.
+
+Outer block sets a max width of 1020px,
+auto margins and a minimum width for IE8 and below.
+
+Inner block sets gutters to align with the header and footer.
+
+Use within banners, or to set a max-width for your main content area,
+with padding that matches the header and footer.
+
+##### Usage
+
+    .outer-block {
+      @include outer-block;
+    }
+
+    .inner-block {
+      @include inner-block;
+    }
+
+
+    <div class="outer-block">
+      <div class="inner-block">
+        Content in here
+      </div>
+    </div>
 
 ### <a id="conditionals"></a>Conditionals
 
@@ -588,17 +618,49 @@ Mixins for creating alpha/beta banners and tags for services on GOV.UK
 
 `$state` either `alpha` or `beta`. This will set the background colour of the element to the appropriate colour.
 
-##### Usage
+##### Usage - Alpha/Beta banners
 
     .alpha-banner  {
       @include phase-banner(alpha);
     }
-    .beta-banner {
+
+    <div class="alpha-banner">
+      <div class="outer-block">
+        <div class="inner-block">
+          <strong>ALPHA:</strong> This is a prototype
+        </div>
+      </div>
+    </div>
+
+    .beta-banner  {
       @include phase-banner(beta);
     }
+
+    <div class="beta-banner">
+      <div class="outer-block">
+        <div class="inner-block">
+          <strong>BETA:</strong> This is a trial service
+        </div>
+      </div>
+    </div>
+
+
+##### Usage - Alpha/Beta tags
+
+    .alpha-tag{
+      @include phase-tag(alpha);
+    }
+    <h2>
+      Apply using the new service <span class="beta-tag">ALPHA</span>
+    </h2>
+
     .beta-tag{
       @include phase-tag(beta);
     }
+    <h2>
+      Apply using the new service <span class="beta-tag">BETA</span>
+    </h2>
+
 
 ## JavaScript
 

@@ -1,9 +1,11 @@
 @import "../_colours";
 @import "../_typography";
 @import "../_shims";
+@import "../_grid_layout";
 
 @mixin phase-banner($state: alpha) {
-  padding: 8px 0;
+  padding-top: 8px;
+  padding-bottom: 8px;
 
   @if $state == alpha {
     background-color: $alpha-colour;
@@ -11,11 +13,19 @@
     background-color: $beta-colour;
   }
 
-  p {
-    max-width: 960px;
-    margin: 0 auto;
-    padding: 0 15px;
+  // Outer block sets a max width
+  .outer-block {
+    @include outer-block;
+  }
 
+  // Inner block sets gutters to align content with header and footer
+  .inner-block {
+    @include inner-block;
+  }
+
+  // No need to set a max-width for content inside .inner-block
+  p {
+    margin: 0;
     color: $text-colour;
     @include core-16;
   }
