@@ -1,11 +1,13 @@
+@import '_conditionals.scss';
 @import '_measurements.scss';
+@import '_shims.scss';
 
 // Outer block sets a max width
 @mixin outer-block {
   margin: 0 auto;
   width: auto;
   max-width: 960 + $gutter*2;
-  @include contain-floats;
+  @extend %contain-floats;
   @include ie-lte(8) {
     width: 1020px;
   }
