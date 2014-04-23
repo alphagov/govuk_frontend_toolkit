@@ -26,16 +26,16 @@
   // No need to set a max-width for content inside .inner-block
   p {
     margin: 0;
-    color: $text-colour;
+    color: $banner-text-colour;
     @include core-16;
   }
 
   a, a:link, a:visited, a:active {
-    color: $text-colour;
+    color: $banner-text-colour;
   }
 
   a:hover {
-    color: $text-colour;
+    color: $banner-text-colour;
   }
 }
 
