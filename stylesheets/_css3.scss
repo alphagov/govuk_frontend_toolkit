@@ -13,6 +13,16 @@
      -moz-box-shadow: $shadow;
           box-shadow: $shadow;
 }
+
+@mixin scale($x, $y) {
+  // $x and $y should be numeric values without units
+  -webkit-transform: scale($x, $y); // Still in use now, started at: Chrome 4.0, Safari 3.1, Mobile Safari 3.2, Android 2.1
+     -moz-transform: scale($x, $y); // Firefox 3.5 to 15.0
+      -ms-transform: scale($x, $y); // IE9 only
+       -o-transform: scale($x, $y); // Opera 10.5 to 12.0
+          transform: scale($x, $y);
+}
+
 @mixin translate($x, $y) {
   -webkit-transform: translate($x, $y);
      -moz-transform: translate($x, $y);
