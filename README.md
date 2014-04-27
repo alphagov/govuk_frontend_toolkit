@@ -683,7 +683,7 @@ example:
     }
 
 You will also need to create your own initalizer to target the links you want
-to turn into videoss. There are examples of how this works in the [Nomensa
+to turn into videos. There are examples of how this works in the [Nomensa
 Accesible Media Player][nomensa] repository.
 
 [nomensa]: https://github.com/nomensa/Accessible-Media-Player/tree/master/example
