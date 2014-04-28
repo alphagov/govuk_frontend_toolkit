@@ -1,45 +1,67 @@
-// CSS 3 Mixins
+// CSS 3 mixins
 
-// Add them as you need them. This should let us manage vendor prefixes in one place.
+// This file includes mixins for CSS properties that require vendor prefixes.
 
+// Please add more mixins here as you need them, rather than adding them to
+// your application - this lets us manage them in one place.
+
+// You can use the @warn directive to deprecate a mixin where the property
+// no longer needs prefixes.
 
 @mixin border-radius($radius) {
-  -webkit-border-radius: $radius;
-     -moz-border-radius: $radius;
+  -webkit-border-radius: $radius; // Chrome 4.0, Safari 3.1 to 4.0, Mobile Safari 3.2, Android Browser 2.1
+     -moz-border-radius: $radius; // Firefox 2.0 to 3.6
           border-radius: $radius;
 }
+
 @mixin box-shadow($shadow) {
-  -webkit-box-shadow: $shadow;
-     -moz-box-shadow: $shadow;
+  -webkit-box-shadow: $shadow; // Chrome 4.0 to 9.0, Safari 3.1 to 5.0, Mobile Safari 3.2 to 4.3, Android Browser 2.1 to 3.0
+     -moz-box-shadow: $shadow; // Firefox 3.5 to 3.6
           box-shadow: $shadow;
 }
+
+@mixin scale($x, $y) {
+  // $x and $y should be numeric values without units
+  -webkit-transform: scale($x, $y); // Still in use now, started at: Chrome 4.0, Safari 3.1, Mobile Safari 3.2, Android 2.1
+     -moz-transform: scale($x, $y); // Firefox 3.5 to 15.0
+      -ms-transform: scale($x, $y); // IE9 only
+       -o-transform: scale($x, $y); // Opera 10.5 to 12.0
+          transform: scale($x, $y);
+}
+
 @mixin translate($x, $y) {
-  -webkit-transform: translate($x, $y);
-     -moz-transform: translate($x, $y);
-       -o-transform: translate($x, $y);
+  -webkit-transform: translate($x, $y); // Still in use now, started at: Chrome 4.0, Safari 3.1, Mobile Safari 3.2, Android 2.1
+     -moz-transform: translate($x, $y); // Firefox 3.5 to 15.0
+      -ms-transform: translate($x, $y); // IE9 only
+       -o-transform: translate($x, $y); // Opera 10.5 to 12.0
           transform: translate($x, $y);
 }
 
 @mixin gradient($from, $to) {
-  background-color: $from; // fallback/image non-cover color
-  background-image: -moz-linear-gradient($from, $to); // Firefox 3.6+
-  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to)); // Safari 4+, Chrome 1+
-  background-image: -webkit-linear-gradient($from, $to); // Safari 5.1+, Chrome 10+
-  background-image: -o-linear-gradient($from, $to); // Opera 11.10+
-  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=0 ); // IE6-9
+  // Creates a vertical gradient where $from is the colour at the top of the element
+  // and $to is the colour at the bottom. The top colour is used as a background-color
+  // for browsers that don't support gradients.
+  background-color: $from;
+  background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from($from), to($to)); // Safari 4.0 to 5.1, Chrome 1.0 to 10.0, old deprecated syntax
+  background-image: -webkit-linear-gradient($from, $to); // Chrome 10.0 to 25.0, Safari 5.1 to 6.0, Mobile Safari 5.0 to 6.1, Android Browser 4.0 to 4.3
+  background-image:    -moz-linear-gradient($from, $to); // Firefox 3.6 to 15.0
+  background-image:      -o-linear-gradient($from, $to); // Opera 11.1 to 12.0
+  background-image:         linear-gradient($from, $to);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#{$from}', endColorstr='#{$to}',GradientType=0 ); // IE6 to IE9
 }
 
 @mixin transition($property, $duration, $function, $delay: 0s) {
-  -webkit-transition: ($property $duration $function $delay);
-     -moz-transition: ($property $duration $function $delay);
-      -ms-transition: ($property $duration $function $delay);
-       -o-transition: ($property $duration $function $delay);
+  -webkit-transition: ($property $duration $function $delay); // Chrome 4.0 to 25.0, Safari 3.1 to 6.0, Mobile Safari 3.2 to 6.1, Android Browser 2.1 to 4.3
+     -moz-transition: ($property $duration $function $delay); // Firefox 4.0 to 15.0
+       -o-transition: ($property $duration $function $delay); // Opera 10.5 to 12.0
           transition: ($property $duration $function $delay);
 }
 
-@mixin box-sizing($type) { // Acceptable values are border, content, and padding - content is the default W3C model
-  -webkit-box-sizing: $type;
-     -moz-box-sizing: $type;
+@mixin box-sizing($type) {
+  // http://www.w3.org/TR/css3-ui/#box-sizing
+  // $type can be one of: content-box | padding-box | border-box | inherit
+  -webkit-box-sizing: $type; // Chrome 4.0 to 9.0, Safari 3.1 to 5.0, Mobile Safari 3.2 to 4.3, Android Browser 2.1 to 3.0
+     -moz-box-sizing: $type; // Firefox 2.0 to 28.0, Firefox for Android 26.0 onwards
           box-sizing: $type;
 }
 
@@ -49,13 +71,12 @@
 }
 
 @mixin calc($property, $calc) {
-  #{$property}: -webkit-calc(#{$calc});
-  #{$property}: calc(#{$calc});
+  #{$property}: -webkit-calc(#{$calc}); // Chrome 19.0 to 25.0, Safari 6.0, Mobile Safari 6.0 to 6.1
+  #{$property}:         calc(#{$calc});
 }
 
 @mixin opacity($trans) {
   zoom: 1;
-  filter: unquote('alpha(opacity=' + ($trans * 100) + ')');
+  filter: unquote('alpha(opacity=' + ($trans * 100) + ')'); // IE6 to IE8
   opacity: $trans;
 }
-
