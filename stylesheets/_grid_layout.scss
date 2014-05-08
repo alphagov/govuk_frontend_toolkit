@@ -19,18 +19,25 @@
 //    @include outer-block;
 // }
 
-// Inner block sets gutters to align content with header and footer
-@mixin inner-block {
-  padding-left: $gutter-half;
-  padding-right: $gutter-half;
+// Inner block sets either margin or padding
+// to align content with header and footer
+@mixin inner-block($margin-or-padding: padding) {
+  #{$margin-or-padding}-left: $gutter-half;
+  #{$margin-or-padding}-right: $gutter-half;
   @include media(tablet) {
-    padding-left: $gutter;
-    padding-right: $gutter;
+    #{$margin-or-padding}-left: $gutter;
+    #{$margin-or-padding}-right: $gutter;
   }
 }
 
 // Inner block usage:
 //
+// By default, inner block sets padding
 // .inner-block {
 //    @include inner-block;
+// }
+//
+// To set margins instead of padding:
+// .inner-block {
+//    @include inner-block(margin);
 // }
