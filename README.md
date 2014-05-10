@@ -605,53 +605,70 @@ The button text colour is set by the mixin to either light or dark, depending on
 
 If you're applying these styles to non form elements, adding a class of 'disabled' to the element will emulate the disabled button style.
 
-### <a id="alpha-beta"></a>Alpha/Beta
+### <a id="alpha-beta"></a>Phase banner and alpha/beta phase tags
 
-Mixins for creating alpha/beta banners and tags for services on GOV.UK
+Mixins for creating a phase banner and alpha/beta tags for services on GOV.UK
 
 ##### Description
 
-`@mixin phase-banner($state)`
+`@mixin phase-banner`
 `@mixin phase-tag($state)`
 
 ##### Parameters
 
-`$state` either `alpha` or `beta`. This will set the background colour of the element to the appropriate colour.
+`$state` either `alpha` or `beta`.
+This will set the background colour of the element to the appropriate colour.
 
-##### Usage - Alpha/Beta banners
+##### Usage - Phase banner
 
-    .alpha-banner  {
-      @include phase-banner(alpha);
+    .phase-banner  {
+      @include phase-banner;
+    }
+    .phase-banner .phase-tag {
+      @include phase-tag(alpha);
     }
 
-    <div class="alpha-banner">
-      <div class="outer-block">
-        <div class="inner-block">
-          <strong>ALPHA:</strong> This is a prototype
+    <div class="outer-block">
+      <div class="inner-block">
+
+        <div class="phase-banner">
+          <p>
+            <strong class="phase-tag">ALPHA</strong>
+            <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
+          </p>
         </div>
+
       </div>
     </div>
 
-    .beta-banner  {
-      @include phase-banner(beta);
+    .phase-banner  {
+      @include phase-banner;
+    }
+    .phase-tag {
+      @include phase-tag(beta);
     }
 
-    <div class="beta-banner">
-      <div class="outer-block">
-        <div class="inner-block">
-          <strong>BETA:</strong> This is a trial service
+    <div class="outer-block">
+      <div class="inner-block">
+
+        <div class="phase-banner">
+          <p>
+            <strong class="phase-tag">BETA</strong>
+            <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
+          </p>
         </div>
+
       </div>
     </div>
 
 
-##### Usage - Alpha/Beta tags
+##### Usage - Alpha/Beta phase tags
 
     .alpha-tag{
       @include phase-tag(alpha);
     }
     <h2>
-      Apply using the new service <span class="beta-tag">ALPHA</span>
+      Apply using the new service <span class="alpha-tag">ALPHA</span>
     </h2>
 
     .beta-tag{

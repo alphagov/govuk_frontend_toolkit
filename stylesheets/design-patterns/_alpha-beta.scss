@@ -4,56 +4,70 @@
 @import "../_grid_layout";
 
 @mixin phase-banner($state: alpha) {
-  padding-top: 8px;
-  padding-bottom: 8px;
-
-  @if $state == alpha {
-    background-color: $alpha-colour;
-  } @else if $state == beta {
-    background-color: $beta-colour;
+  padding: 10px 0 8px 0;
+  @include media(tablet) {
+    padding-bottom: 10px;
   }
+  border-bottom: 1px solid $border-colour;
 
-  // Outer block sets a max width
-  .outer-block {
-    @include outer-block;
-  }
-
-  // Inner block sets gutters to align content with header and footer
-  .inner-block {
-    @include inner-block;
-  }
-
-  // No need to set a max-width for content inside .inner-block
   p {
     margin: 0;
     color: $banner-text-colour;
     @include core-16;
   }
 
-  a, a:link, a:visited, a:active {
-    color: $banner-text-colour;
-  }
+  span {
+    @include inline-block;
+    @include core-16;
 
-  a:hover {
-    color: $banner-text-colour;
+    width: 75%;
+    vertical-align: top;
+
+    @include media(tablet) {
+      width: auto;
+      vertical-align: baseline;
+    }
   }
 }
 
+// Phase banner usage:
+//
+// .phase-banner {
+//    @include phase-banner;
+// }
+
 @mixin phase-tag($state: alpha) {
   @include inline-block;
+  vertical-align: top;
 
-  @if $state == alpha {
-    background-color: $alpha-colour;
-  } @else if $state == beta {
-    background-color: $beta-colour;
+  @include media(tablet){
+    vertical-align: baseline;
   }
 
-  color: #fff;
+  margin: 0 8px 0 0;
+  padding: 2px 5px 0;
+
   @include bold-16($line-height: 20/16);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
 
-  margin: 3px 10px 0 5px;
-  padding: 2px 5px 0;
+  color: #fff;
+  @if $state == alpha {
+    background-color: $alpha-colour;
+  } @else if $state == beta {
+    background-color: $beta-colour;
+  }
 }
+
+// Phase tag usage:
+//
+// Alpha
+// .phase-tag {
+//    @include phase-tag;
+// }
+//
+// Beta
+// .phase-tag {
+//    @include phase-tag(beta);
+// }
