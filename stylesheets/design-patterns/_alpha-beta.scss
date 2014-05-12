@@ -3,7 +3,7 @@
 @import "../_shims";
 @import "../_grid_layout";
 
-@mixin phase-banner($state: alpha) {
+@mixin phase-banner {
   padding: 10px 0 8px 0;
   @include media(tablet) {
     padding-bottom: 10px;
