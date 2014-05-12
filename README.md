@@ -605,21 +605,20 @@ The button text colour is set by the mixin to either light or dark, depending on
 
 If you're applying these styles to non form elements, adding a class of 'disabled' to the element will emulate the disabled button style.
 
-### <a id="alpha-beta"></a>Phase banner and alpha/beta phase tags
 
-Mixins for creating a phase banner and alpha/beta tags for services on GOV.UK
+### <a id="alpha-beta"></a> Phase banner
 
-##### Description
+A mixin to create a GOV.UK Phase banner, with alpha/beta tag inside.
+
+#### Description
 
 `@mixin phase-banner($state)`
-`@mixin phase-tag($state)`
 
-##### Parameters
+`$state` is either `alpha` or `beta`.
 
-`$state` either `alpha` or `beta`.
-This will set the background colour of the element to the appropriate colour.
+`$state` sets the background colour of the phase tag to the appropriate alpha or beta colour.
 
-##### Usage - Phase banner
+##### Phase banner - Alpha
 
     .phase-banner  {
       @include phase-banner(alpha);
@@ -632,7 +631,7 @@ This will set the background colour of the element to the appropriate colour.
       </p>
     </div>
 
-
+##### Phase banner - Beta
 
     .phase-banner  {
       @include phase-banner(beta);
@@ -645,8 +644,19 @@ This will set the background colour of the element to the appropriate colour.
       </p>
     </div>
 
+### <a id="phase-tags"></a> Phase tags
 
-##### Usage - Alpha/Beta phase tags
+A mixin to create an alpha/beta tag.
+
+#### Description
+
+`@mixin phase-tag($state)`
+
+`$state` is either `alpha` or `beta`.
+
+`$state` sets the background colour of the phase tag to the appropriate alpha or beta colour.
+
+##### Phase tag - Alpha
 
     .alpha-tag{
       @include phase-tag(alpha);
@@ -654,6 +664,8 @@ This will set the background colour of the element to the appropriate colour.
     <h2>
       Apply using the new service <span class="alpha-tag">ALPHA</span>
     </h2>
+
+##### Phase tag - Beta
 
     .beta-tag{
       @include phase-tag(beta);
