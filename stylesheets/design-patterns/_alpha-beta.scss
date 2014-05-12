@@ -6,10 +6,10 @@
 // Phase banner usage:
 //
 // .phase-banner {
-//    @include phase-banner;
+//    @include phase-banner($state: beta);
 // }
 
-@mixin phase-banner {
+@mixin phase-banner($state: alpha) {
   padding: 10px 0 8px 0;
   @include media(tablet) {
     padding-bottom: 10px;
@@ -22,9 +22,12 @@
     @include core-16;
   }
 
+  .phase-tag {
+    @include phase-tag($state);
+  }
+
   span {
     @include inline-block;
-
     width: 75%;
     vertical-align: top;
 

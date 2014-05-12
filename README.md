@@ -611,7 +611,7 @@ Mixins for creating a phase banner and alpha/beta tags for services on GOV.UK
 
 ##### Description
 
-`@mixin phase-banner`
+`@mixin phase-banner($state)`
 `@mixin phase-tag($state)`
 
 ##### Parameters
@@ -622,10 +622,7 @@ This will set the background colour of the element to the appropriate colour.
 ##### Usage - Phase banner
 
     .phase-banner  {
-      @include phase-banner;
-    }
-    .phase-banner .phase-tag {
-      @include phase-tag(alpha);
+      @include phase-banner(alpha);
     }
 
     <div class="phase-banner">
@@ -638,10 +635,7 @@ This will set the background colour of the element to the appropriate colour.
 
 
     .phase-banner  {
-      @include phase-banner;
-    }
-    .phase-tag {
-      @include phase-tag(beta);
+      @include phase-banner(beta);
     }
 
     <div class="phase-banner">
