@@ -3,6 +3,12 @@
 @import "../_shims";
 @import "../_grid_layout";
 
+// Phase banner usage:
+//
+// .phase-banner {
+//    @include phase-banner;
+// }
+
 @mixin phase-banner {
   padding: 10px 0 8px 0;
   @include media(tablet) {
@@ -29,10 +35,16 @@
   }
 }
 
-// Phase banner usage:
+// Phase tag usage:
 //
-// .phase-banner {
-//    @include phase-banner;
+// Alpha
+// .phase-tag {
+//    @include phase-tag;
+// }
+//
+// Beta
+// .phase-tag {
+//    @include phase-tag(beta);
 // }
 
 @mixin phase-tag($state: alpha) {
@@ -58,15 +70,3 @@
     background-color: $beta-colour;
   }
 }
-
-// Phase tag usage:
-//
-// Alpha
-// .phase-tag {
-//    @include phase-tag;
-// }
-//
-// Beta
-// .phase-tag {
-//    @include phase-tag(beta);
-// }
