@@ -628,18 +628,14 @@ This will set the background colour of the element to the appropriate colour.
       @include phase-tag(alpha);
     }
 
-    <div class="outer-block">
-      <div class="inner-block">
-
-        <div class="phase-banner">
-          <p>
-            <strong class="phase-tag">ALPHA</strong>
-            <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
-          </p>
-        </div>
-
-      </div>
+    <div class="phase-banner">
+      <p>
+        <strong class="phase-tag">ALPHA</strong>
+        <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
+      </p>
     </div>
+
+
 
     .phase-banner  {
       @include phase-banner;
@@ -648,17 +644,11 @@ This will set the background colour of the element to the appropriate colour.
       @include phase-tag(beta);
     }
 
-    <div class="outer-block">
-      <div class="inner-block">
-
-        <div class="phase-banner">
-          <p>
-            <strong class="phase-tag">BETA</strong>
-            <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
-          </p>
-        </div>
-
-      </div>
+    <div class="phase-banner">
+      <p>
+        <strong class="phase-tag">BETA</strong>
+        <span>This is a new service – your <a href="#">feedback</a> will help us to improve it.</span>
+      </p>
     </div>
 
 
