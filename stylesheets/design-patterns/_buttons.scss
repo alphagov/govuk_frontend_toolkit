@@ -27,7 +27,7 @@
   // Size and shape
   position: relative;
   @include inline-block;
-  padding: 10px $gutter-half 5px $gutter-half;
+  padding: 0.3em 0.6em 0.2em 0.6em;
   border: none;
   @include border-radius(0);
   -webkit-appearance: none;
