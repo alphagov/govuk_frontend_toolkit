@@ -27,7 +27,7 @@
   // Size and shape
   position: relative;
   @include inline-block;
-  padding: 0.35em 0.5em 0.15em 0.5em;
+  padding: 0.3em 0.6em 0.2em 0.6em;
   border: none;
   @include border-radius(0);
   -webkit-appearance: none;
@@ -110,7 +110,7 @@
   &:active:before {
     top: -10%;
     height: 120%;
-    
+
     // IE6 ignores the :before psuedo-class but applies the block to :active
     // It therefore needs to be reset
     @include ie(6) {
