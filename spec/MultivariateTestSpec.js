@@ -142,14 +142,43 @@ describe("MultivariateTest", function() {
     });
   });
 
-  describe("#cohortNames", function() {
-    it("should return the names of the cohorts", function() {
+  describe("#weightedCohortNames", function() {
+    it("should return the weighted names of the cohorts when no weights are defined", function() {
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
         customVarIndex: 1,
-        cohorts: {foo: {}, bar: {}}
+        cohorts: {foo: {}, bar: {}, baz: {}}
       });
-      expect(test.cohortNames()).toEqual(['foo', 'bar']);
+      expect(test.weightedCohortNames()).toEqual(['foo', 'bar', 'baz']);
+    });
+
+    it("should return the weighted names of the cohorts when weights are defined", function() {
+      var test = new GOVUK.MultivariateTest({
+        name: 'stuff',
+        customVarIndex: 1,
+        cohorts: {foo: { weight: 2 }, bar: { weight: 1 }, baz: { weight: 3 }}
+      });
+      expect(test.weightedCohortNames()).toEqual(['foo', 'foo', 'bar', 'baz', 'baz', 'baz']);
+    });
+
+    it("should return the weighted names of the cohorts using default weighting", function() {
+      var test = new GOVUK.MultivariateTest({
+        name: 'stuff',
+        customVarIndex: 1,
+        defaultWeight: 2,
+        cohorts: {foo: {}, bar: {}, baz: {}}
+      });
+      expect(test.weightedCohortNames()).toEqual(['foo', 'foo', 'bar', 'bar', 'baz', 'baz']);
+    });
+
+    it("should return the weighted names of the cohorts using default weighting or defined weighting", function() {
+      var test = new GOVUK.MultivariateTest({
+        name: 'stuff',
+        customVarIndex: 1,
+        defaultWeight: 2,
+        cohorts: {foo: {}, bar: { weight: 1 }, baz: {}}
+      });
+      expect(test.weightedCohortNames()).toEqual(['foo', 'foo', 'bar', 'baz', 'baz']);
     });
   });
 
