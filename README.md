@@ -722,6 +722,20 @@ var test = new GOVUK.MultivariateTest({
 });
 ```
 
+If you want one cohort to appear 25% of the time then you can optionally weight
+that cohort:
+
+```javascript
+var test = new GOVUK.MultivariateTest({
+  name: 'car_tax_button_text',
+  customVarIndex: 555,
+  cohorts: {
+    pay_your_car_tax: {weight: 25, callback: function() { ... }}, // 25%
+    give_us_money:    {weight: 75, callback: function() { ... }}, // 75%
+  }
+});
+```
+
 If you have a complex test, it may be worth extending MultivariateTest with
 your own. Callbacks can be strings which will call a method of that name
 on the current object.
@@ -730,9 +744,11 @@ Takes these options:
  - `el`: Element to run this test on (optional)
  - `name`: The name of the text (alphanumeric and underscores)
  - `customVarIndex`: The index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
- - `cohorts`: An object that maps cohort name to an object that defines the cohort. Name must be same format as test name. Object contains keys (both optional):
+ - `defaultWeight`: Number of times each cohorts should appear in an array the random cohort is picked from, to be used in conjunction with weights on individual cohorts.
+ - `cohorts`: An object that maps cohort name to an object that defines the cohort. Name must be same format as test name. Object contains keys (all optional):
    - `html`: HTML to fill element with when this cohort is picked.
    - `callback`: Function to call when this cohort is chosen. If it is a string, that method on the test object is called.
+   - `weight`: Number of times this cohort should appear in an array the random cohort is picked from, defaults to the `defaultWeight` of the test.
 
 Full documentation on how to design multivariate tests, use the data in GA and construct hypothesis tests is on its way soon.
 

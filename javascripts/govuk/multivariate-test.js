@@ -15,6 +15,7 @@
     this._loadOption(options, 'customVarIndex');
     this._loadOption(options, 'cohorts');
     this._loadOption(options, 'runImmediately', true);
+    this._loadOption(options, 'defaultWeight', 1);
 
     if (this.runImmediately) {
       this.run();
@@ -84,12 +85,29 @@
     window._gaq.push(['_trackEvent', this.cookieName(), 'run', '-', 0, true]);
   };
 
-  MultivariateTest.prototype.cohortNames = function() {
-    return $.map(this.cohorts, function(v, i) { return i; });
+  MultivariateTest.prototype.weightedCohortNames = function() {
+    var names = [],
+        defaultWeight = this.defaultWeight;
+
+    $.each(this.cohorts, function(key, cohortSettings) {
+      var numberForCohort, i;
+
+      if (typeof cohortSettings.weight === 'undefined'){
+        numberForCohort = defaultWeight;
+      } else {
+        numberForCohort = cohortSettings.weight;
+      }
+
+      for(i=0; i<numberForCohort; i++){
+        names.push(key);
+      }
+    });
+
+    return names;
   };
 
   MultivariateTest.prototype.chooseRandomCohort = function() {
-    var names = this.cohortNames();
+    var names = this.weightedCohortNames();
     return names[Math.floor(Math.random() * names.length)];
   };
 
