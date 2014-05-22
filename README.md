@@ -703,7 +703,7 @@ var test = new GOVUK.MultivariateTest({
   customVarIndex: 555,
   cohorts: {
     pay_your_car_tax: {html: "Pay Your Car Tax"},
-    give_us_money: {html: "Give Us Money Or We Will Crush Your Car"},
+    give_us_money: {html: "Give Us Money Or We Will Crush Your Car"}
   }
 });
 ```
@@ -717,7 +717,7 @@ var test = new GOVUK.MultivariateTest({
   customVarIndex: 555,
   cohorts: {
     pay_your_car_tax: {callback: function() { ... }},
-    give_us_money: {callback: function() { ... }},
+    give_us_money: {callback: function() { ... }}
   }
 });
 ```
@@ -731,7 +731,7 @@ var test = new GOVUK.MultivariateTest({
   customVarIndex: 555,
   cohorts: {
     pay_your_car_tax: {weight: 25, callback: function() { ... }}, // 25%
-    give_us_money:    {weight: 75, callback: function() { ... }}, // 75%
+    give_us_money:    {weight: 75, callback: function() { ... }}  // 75%
   }
 });
 ```
