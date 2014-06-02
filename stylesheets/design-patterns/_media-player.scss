@@ -1,3 +1,6 @@
+@import '../_colours';
+@import '../_url-helpers';
+
 // Player overrides
 
 @mixin media-player {
@@ -62,11 +65,11 @@
       }
 
       .play {
-        background-image: image-url('player-icon-play.png');
+        background-image: file-url('player-icon-play.png');
       }
 
       .pause {
-        background-image: image-url('player-icon-pause.png');
+        background-image: file-url('player-icon-pause.png');
       }
 
       .rewind, .forward {
@@ -83,13 +86,13 @@
 
       .rewind {
         left: 0;
-        background-image: image-url('player-icon-rewind.png');
+        background-image: file-url('player-icon-rewind.png');
       }
 
       .forward {
         left: 100%;
         margin-left: -40px;
-        background-image: image-url('player-icon-forward.png');
+        background-image: file-url('player-icon-forward.png');
       }
     }
 
@@ -166,7 +169,7 @@
         line-height: 40px;
         background-repeat: no-repeat;
         background-position: center left;
-        background-image: image-url('player-icon-volume.png');
+        background-image: file-url('player-icon-volume.png');
       }
 
       .muted ~ .vol-display {
