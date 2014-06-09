@@ -83,7 +83,7 @@ describe("MultivariateTest", function() {
         cohorts: {
           foo: {html: "foo"},
           bar: {html: "bar"}
-        },
+        }
       });
       expect($el.html()).toEqual('foo');
     });
@@ -100,7 +100,7 @@ describe("MultivariateTest", function() {
         cohorts: {
           foo: {callback: fooSpy},
           bar: {callback: barSpy}
-        },
+        }
       });
       expect(barSpy).toHaveBeenCalled();
     });
@@ -131,7 +131,7 @@ describe("MultivariateTest", function() {
         cohorts: {
           foo: {callback: fooSpy},
           bar: {callback: barSpy}
-        },
+        }
       });
       if (GOVUK.cookie.argsForCall[1][1] == 'foo') {
         expect(fooSpy).toHaveBeenCalled();
