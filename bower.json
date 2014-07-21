@@ -3,5 +3,14 @@
     "version": "1.0.0",
     "main": [
         "images/**/*"
+    ],
+    "ignore": [
+        "spec",
+        ".gitignore",
+        ".travis.yml",
+        "CONTRIBUTING.md",
+        "Gruntfile.js",
+        "jenkins.sh",
+        "README.md"
     ]
 }
