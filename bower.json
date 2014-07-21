@@ -2,7 +2,7 @@
     "name": "govuk_frontend_toolkit",
     "version": "1.0.0",
     "main": [
-        "images/**/*"
+        "images"
     ],
     "ignore": [
         "spec",
@@ -11,6 +11,12 @@
         "CONTRIBUTING.md",
         "Gruntfile.js",
         "jenkins.sh",
-        "README.md"
-    ]
+        "README.md",
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "dependencies": {
+
+    }
 }
