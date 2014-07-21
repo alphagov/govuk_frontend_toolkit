@@ -1,6 +1,8 @@
 {
     "name": "govuk_frontend_toolkit",
-    "version": "1.0.0",
+    "description": "Bower package for the govuk frontend toolkit",
+    "version": "1.4.0",
+    "license": "MIT",
     "main": [
         "."
     ],
@@ -15,8 +17,5 @@
         "**/.*",
         "node_modules",
         "bower_components"
-    ],
-    "dependencies": {
-
-    }
+    ]
 }
