@@ -1,0 +1,7 @@
+{
+    "name": "govuk_frontend_toolkit",
+    "version": "1.0.0",
+    "main": [
+        "images/**/*"
+    ]
+}
