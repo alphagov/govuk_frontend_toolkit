@@ -1,0 +1,25 @@
+{
+    "name": "govuk_frontend_toolkit",
+    "description": "Bower package for the govuk frontend toolkit",
+    "version": "1.4.0",
+    "license": "MIT",
+    "main": [
+        "."
+    ],
+    "ignore": [
+        "spec",
+        ".gitignore",
+        ".travis.yml",
+        "CONTRIBUTING.md",
+        "Gruntfile.js",
+        "jenkins.sh",
+        "README.md",
+        "**/.*",
+        "node_modules",
+        "bower_components"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "git@github.com:georgecodes/govuk_frontend_toolkit.git"
+    }
+}

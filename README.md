@@ -21,6 +21,19 @@ follow the [installation instructions][toolkit_gem_github_readme].
 [toolkit_npm_github]: https://github.com/alphagov/govuk_frontend_toolkit_npm
 [toolkit_npm]: https://npmjs.org/package/govuk_frontend_toolkit
 
+### Bower
+
+This project can be pulled in using [Bower](http://bower.io/) by adding a dependency to your bower.json
+
+    "dependencies": {
+          "govuk_frontend_toolkit": "git@github.com:georgecodes/govuk_frontend_toolkit.git#master"
+    }
+    
+Until such time as the release process includes tagging with the semver, you will need to be
+explicit about the git revision.
+
+Currently, the Bower package does not declare any dependencies.    
+
 ### Other projects
 
 You can include the toolkit as a [git submodule][].
