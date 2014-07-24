@@ -31,7 +31,12 @@ describe("radio-buttons", function () {
     expect(buttons.setup).toBeDefined();
     expect(buttons.bindEvents).toBeDefined();
     expect(buttons.markSelected).toBeDefined();
-    expect(buttons.setSelectedClass).toBeDefined();
+  });
+
+  it("Should set the selectedClass property if sent in as an option", function () {
+    var buttons = new GOVUK.RadioButtons($radioButtons, { 'selectedClass' : 'selectable-selected' });
+
+    expect(buttons.selectedClass).toEqual('selectable-selected');
   });
 
   describe("setup method", function () {
@@ -109,15 +114,6 @@ describe("radio-buttons", function () {
       GOVUK.RadioButtons.prototype.markSelected.call(radioButtonsMock, $clickedRadio);
       expect($('#medium').parent('label').hasClass('selected')).toEqual(false);
 
-    });
-  });
-
-  describe("setSelectedClass method", function () {
-    it("Should set the selectedClass on the instance to the string sent in", function () {
-      var radioButtonsMock = {};
-
-      GOVUK.RadioButtons.prototype.setSelectedClass.call(radioButtonsMock, 'selectable-selected');
-      expect(radioButtonsMock.selectedClass).toEqual('selectable-selected');
     });
   });
 });

@@ -5,9 +5,13 @@
 
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
-  var RadioButtons = function ($elms) {
+  var RadioButtons = function ($elms, opts) {
     this.$elms = $elms;
-    this.selectedClass = 'selected';
+    if (opts !== undefined && (typeof opts.selectedClass !== 'undefined')) {
+      this.selectedClass = opts.selectedClass;
+    } else {
+      this.selectedClass = 'selected';
+    }
     this.setup();
     this.bindEvents();
   };
@@ -49,9 +53,6 @@
     }
     $elm.parent('label').addClass(this.selectedClass);
     this.selections[radioName] = $elm.attr('id');
-  };
-  RadioButtons.prototype.setSelectedClass = function (className) {
-    this.selectedClass = className;
   };
   root.GOVUK.RadioButtons = RadioButtons;
 }).call(this);
