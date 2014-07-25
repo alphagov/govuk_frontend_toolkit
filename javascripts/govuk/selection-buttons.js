@@ -122,7 +122,7 @@
   root.GOVUK.RadioButtons = RadioButtons;
   root.GOVUK.CheckboxButtons = CheckboxButtons;
 
-  var SelectionButtons = function ($elms, opts) {
+  var selectionButtons = function ($elms, opts) {
     var addToSet,
         $radios,
         $checkboxes;
@@ -154,5 +154,5 @@
     }
   };
 
-  root.GOVUK.SelectionButtons = SelectionButtons;
+  root.GOVUK.selectionButtons = selectionButtons;
 }).call(this);

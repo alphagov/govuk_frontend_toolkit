@@ -822,6 +822,22 @@ GOVUK.stickAtTopWhenScrolling.init();
 If you also include the `stopScrollingAtFooter` JavaScript this will also try
 and stop the elements before they get to the bottom.
 
+## Selection buttons
+
+Script to support a specific design of radio buttons and checkboxes wrapped in `<label>` tags:
+
+    <label>
+      <input type="radio" name="size" value="medium" />
+    </label>
+
+When the input is focused or its `checked` attribute is set, classes are added to their parent labels so their styling can show this.
+
+To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.selectionButtons` function with their inputs:
+
+```
+var $buttons = $("label input[type='radio'], label input[type='checkbox']");
+GOVUK.selectionButtons($buttons);
+```
 
 ## Licence
 

@@ -283,23 +283,23 @@ describe("selection-buttons", function () {
     });
   });
 
-  describe("SelectionButtons", function () {
+  describe("selectionButtons", function () {
     it("Should create an instance of RadioButtons for a set of radios", function () {
       spyOn(GOVUK, 'RadioButtons');
-      GOVUK.SelectionButtons($radioButtons);
+      GOVUK.selectionButtons($radioButtons);
       expect(GOVUK.RadioButtons).toHaveBeenCalled();
     }); 
 
     it("Should create an instance of CheckboxButtons for a set of checkboxes", function () {
       spyOn(GOVUK, 'CheckboxButtons');
-      GOVUK.SelectionButtons($checkboxButtons);
+      GOVUK.selectionButtons($checkboxButtons);
       expect(GOVUK.CheckboxButtons).toHaveBeenCalled();
     }); 
 
     it("Should create instances of RadioButtons and CheckboxButtons for a set containing radios and checkboxes", function () {
       spyOn(GOVUK, 'RadioButtons');
       spyOn(GOVUK, 'CheckboxButtons');
-      GOVUK.SelectionButtons($checkboxButtons.add($radioButtons));
+      GOVUK.selectionButtons($checkboxButtons.add($radioButtons));
       expect(GOVUK.RadioButtons).toHaveBeenCalled();
       expect(GOVUK.CheckboxButtons).toHaveBeenCalled();
     }); 
