@@ -7,8 +7,8 @@ module.exports = function(grunt) {
           'javascripts/**/*.js'
         ],
         options: {
-          specs: 'spec/*Spec.js',
-          helpers: 'spec/*Helper.js'
+          specs: 'spec/unit/*Spec.js',
+          helpers: 'spec/unit/*Helper.js'
         }
       }
     }
