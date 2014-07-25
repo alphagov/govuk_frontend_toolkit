@@ -1,37 +1,57 @@
 describe("selection-buttons", function () {
+  var $radioButtons,
+      $radioLabels,
+      $checkboxButtons,
+      $checkboxLabels;
+
+  beforeEach(function () {
+    $radioLabels = $(
+        '<label class="selectable">' +
+          'Small' +
+          '<input type="radio" name="size" id="small" value="small" />' +
+        '</label>' +
+        '<label class="selectable">' +
+          'Medium' +
+          '<input type="radio" name="size" id="medium" value="medium" />' +
+        '</label>' +
+        '<label class="selectable">' +
+          'Large' +
+          '<input type="radio" name="size" id="large" value="large" />' +
+        '</label>'
+    );
+    $checkboxLabels = $(
+        '<label class="selectable">' +
+          'Eggs' +
+          '<input id="eggs" name="food" value="eggs" type="checkbox" />' +
+        '</label>' +
+        '<label class="selectable">' +
+          'Bread' +
+          '<input id="bread" name="food" value="bread" type="checkbox" />' +
+        '</label>' +
+        '<label class="selectable">' +
+          'Fruit' +
+          '<input id="fruit" name="food" value="fruit" type="checkbox" />' +
+        '</label>'
+    );
+    $radioButtons = $radioLabels.find('input');
+    $checkboxButtons = $checkboxLabels.find('input');
+    $(document.body).append($radioLabels);
+    $(document.body).append($checkboxLabels);
+  });
+
+  afterEach(function () {
+    $radioLabels.remove();
+    $checkboxLabels.remove();
+  });
+
   describe("RadioButtons", function () {
-    var $radioButtons,
-        $radioLabels;
-
-    beforeEach(function () {
-      $radioLabels = $(
-          '<label class="selectable">' +
-            'Small' +
-            '<input type="radio" name="size" id="small" value="small" />' +
-          '</label>' +
-          '<label class="selectable">' +
-            'Medium' +
-            '<input type="radio" name="size" id="medium" value="medium" />' +
-          '</label>' +
-          '<label class="selectable">' +
-            'Large' +
-            '<input type="radio" name="size" id="large" value="large" />' +
-          '</label>'
-      );
-      $radioButtons = $radioLabels.find('input');
-      $(document.body).append($radioLabels);
-    });
-
-    afterEach(function () {
-      $radioLabels.remove();
-    });
-
     it("Should create a new instance with the correct interface", function () {
       var buttons = new GOVUK.RadioButtons($radioButtons);
 
       expect(buttons.setup).toBeDefined();
       expect(buttons.bindEvents).toBeDefined();
       expect(buttons.markSelected).toBeDefined();
+      expect(buttons.markFocused).toBeDefined();
     });
 
     it("Should set the selectedClass property if sent in as an option", function () {
@@ -136,71 +156,152 @@ describe("selection-buttons", function () {
             'focusedClass' : 'focused'
           };
 
-      it("Should add the focusedClass class to the sent radio", function () {
-        GOVUK.RadioButtons.prototype.markFocused.call(radioButtonsMock, $radioButtons.eq(0));
+      it("Should add the focusedClass class to the sent radio if it is focused", function () {
+        GOVUK.RadioButtons.prototype.markFocused.apply(radioButtonsMock, [$radioButtons.eq(0), 'focused']);
 
         expect($radioLabels.eq(0).hasClass(radioButtonsMock.focusedClass)).toBe(true);
       });
 
-      it("Should remove the focusedClass class from the radio that previously had focus", function () {
-        radioButtonsMock.focused = 'medium';
-        $radioLabels.eq(1).addClass(radioButtonsMock.focusedClass);
-        GOVUK.RadioButtons.prototype.markFocused.call(radioButtonsMock, $radioButtons.eq(0));
+      it("Should remove the focusedClass class from the sent radio if it is blurred", function () {
+        $radioLabels.eq(0).addClass(radioButtonsMock.focusedClass);
+        GOVUK.RadioButtons.prototype.markFocused.apply(radioButtonsMock, [$radioButtons.eq(0), 'blurred']);
 
-        expect($radioLabels.eq(1).hasClass(radioButtonsMock.focusedClass)).toBe(false);
+        expect($radioLabels.eq(0).hasClass(radioButtonsMock.focusedClass)).toBe(false);
       });
     });
   });
 
   describe("CheckboxButtons", function () {
-    var $checkboxButtons,
-        $checkboxLabels;
-
-    beforeEach(function () {
-      $checkboxLabels = $(
-          '<label class="selectable">' +
-            'Eggs' +
-            '<input id="eggs" name="food" value="eggs" type="checkbox" />' +
-          '</label>' +
-          '<label class="selectable">' +
-            'Bread' +
-            '<input id="bread" name="food" value="bread" type="checkbox" />' +
-          '</label>' +
-          '<label class="selectable">' +
-            'Fruit' +
-            '<input id="fruit" name="food" value="fruit" type="checkbox" />' +
-          '</label>'
-      );
-      $checkboxButtons = $checkboxLabels.find('input');
-      $(document.body).append($checkboxLabels);
-    });
-
-    afterEach(function () {
-      $checkboxLabels.remove();
-    });
-
     it("Should create a new instance with the correct interface", function () {
       var buttons = new GOVUK.CheckboxButtons($checkboxButtons);
 
       expect(buttons.setup).toBeDefined();
       expect(buttons.bindEvents).toBeDefined();
       expect(buttons.markSelected).toBeDefined();
+      expect(buttons.markFocused).toBeDefined();
     });
 
     describe("setup method", function () {
       it("Should add the selectedClass class to the label of a checkbox that is checked", function () {
+        var checkboxButtonsMock = {
+              '$elms' : $checkboxButtons,
+              'markSelected' : function () {}
+            };
 
+        checkboxButtonsMock.$elms.eq(0).attr('checked', true);
+        spyOn(checkboxButtonsMock, 'markSelected');
+        GOVUK.CheckboxButtons.prototype.setup.call(checkboxButtonsMock);
+        expect(checkboxButtonsMock.markSelected).toHaveBeenCalled();
       });
     });
 
     describe("bindEvents method", function () {
-      it("Should add a click event to each checkbox that fires the markSelected method", function () {
+      var checkboxButtonsMock;
 
+      beforeEach(function () {
+        checkboxButtonsMock = {
+          '$elms' : $checkboxButtons
+        };
       });
 
-      it("Should add a focus event to each checkbox that fires the markFocused method", function () {
+      it("Should add a click event to each checkbox that fires the markSelected method", function () {
+        var eventCalled = false;
 
+        checkboxButtonsMock.markSelected = function () {};
+        spyOn(checkboxButtonsMock, 'markSelected');
+        spyOn($.fn, 'on').andCallFake(function (evt, func) {
+          if (evt === 'click') {
+            eventCalled = true;
+            callback = func;
+          }
+          return $.fn;
+        });
+        GOVUK.CheckboxButtons.prototype.bindEvents.call(checkboxButtonsMock);
+        expect(eventCalled).toBe(true);
+        callback({ 'target' : $checkboxButtons });
+        expect(checkboxButtonsMock.markSelected).toHaveBeenCalled();
+      });
+
+      it("Should add focus and blur events to each checkbox that fires the markFocused method", function () {
+        var eventCalled = false;
+
+        checkboxButtonsMock.markFocused = function () {};
+        spyOn(checkboxButtonsMock, 'markFocused');
+        spyOn($.fn, 'on').andCallFake(function (evt, func) {
+          if (evt === 'focus blur') {
+            eventCalled = true;
+            callback = func;
+          }
+          return $.fn;
+        });
+        GOVUK.CheckboxButtons.prototype.bindEvents.call(checkboxButtonsMock);
+        expect(eventCalled).toBe(true);
+        callback({
+          'target' : $checkboxButtons,
+          'type' : 'focus'
+        });
+        expect(checkboxButtonsMock.markFocused).toHaveBeenCalled();
       });
     });
+
+    describe("markSelected method", function () {
+      var checkboxButtonsMock = {
+            'selectedClass' : 'selected'
+          };
+
+      it("Should add the selectedClass class to a checked checkbox", function () {
+        $checkboxButtons.eq(0).attr('checked', true);
+        GOVUK.CheckboxButtons.prototype.markSelected.call(checkboxButtonsMock, $checkboxButtons.eq(0));
+        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.selectedClass)).toBe(true);
+      });
+
+      it("Should remove the selectedClass class from an unchecked checkbox", function () {
+        $checkboxButtons.eq(0).addClass(checkboxButtonsMock.selectedClass);
+        GOVUK.CheckboxButtons.prototype.markSelected.call(checkboxButtonsMock, $checkboxButtons.eq(0));
+        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.selectedClass)).toBe(false);
+      });
+    });
+
+    describe("markFocused method", function () {
+      var checkboxButtonsMock = {
+            'focused' : false,
+            'focusedClass' : 'focused'
+          };
+
+      it("Should add the focusedClass class to the sent radio if it is focused", function () {
+        GOVUK.CheckboxButtons.prototype.markFocused.apply(checkboxButtonsMock, [$checkboxButtons.eq(0), 'focused']);
+
+        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.focusedClass)).toBe(true);
+      });
+
+      it("Should remove the focusedClass class from the sent radio if it is blurred", function () {
+        $checkboxLabels.eq(0).addClass(checkboxButtonsMock.focusedClass);
+        GOVUK.CheckboxButtons.prototype.markFocused.apply(checkboxButtonsMock, [$checkboxButtons.eq(0), 'blurred']);
+
+        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.focusedClass)).toBe(false);
+      });
+    });
+  });
+
+  describe("SelectionButtons", function () {
+    it("Should create an instance of RadioButtons for a set of radios", function () {
+      spyOn(GOVUK, 'RadioButtons');
+      GOVUK.SelectionButtons($radioButtons);
+      expect(GOVUK.RadioButtons).toHaveBeenCalled();
+    }); 
+
+    it("Should create an instance of CheckboxButtons for a set of checkboxes", function () {
+      spyOn(GOVUK, 'CheckboxButtons');
+      GOVUK.SelectionButtons($checkboxButtons);
+      expect(GOVUK.CheckboxButtons).toHaveBeenCalled();
+    }); 
+
+    it("Should create instances of RadioButtons and CheckboxButtons for a set containing radios and checkboxes", function () {
+      spyOn(GOVUK, 'RadioButtons');
+      spyOn(GOVUK, 'CheckboxButtons');
+      GOVUK.SelectionButtons($checkboxButtons.add($radioButtons));
+      expect(GOVUK.RadioButtons).toHaveBeenCalled();
+      expect(GOVUK.CheckboxButtons).toHaveBeenCalled();
+    }); 
   });
 });

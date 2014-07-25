@@ -5,7 +5,7 @@
 
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
-  var SelectionButtons = function ($elms, opts) {
+  var BaseButtons = function ($elms, opts) {
     var _this = this;
 
     this.$elms = $elms;
@@ -19,18 +19,18 @@
     this.setup();
     this.bindEvents();
   };
-  SelectionButtons.prototype.markFocused = function ($elm) {
+  BaseButtons.prototype.markFocused = function ($elm, state) {
     var elmId = $elm.attr('id');
 
-    $elm.parent('label').addClass(this.focusedClass);
-    if (this.focused && (this.focused !== elmId)) {
-      $('#' + this.focused).parent('label').removeClass(this.focusedClass);
+    if (state === 'focused') {
+      $elm.parent('label').addClass(this.focusedClass);
+    } else {
+      $elm.parent('label').removeClass(this.focusedClass);
     }
-    this.focused = elmId;
   };
 
   var RadioButtons = function ($elms, opts) {
-    SelectionButtons.apply(this, arguments);
+    BaseButtons.apply(this, arguments);
   };
   RadioButtons.prototype.setup = function () {
     var _this = this;
@@ -48,7 +48,6 @@
         _this.selections[radioName] = $elm.attr('id');
       }
     });
-    this.focused = false;
   };
   RadioButtons.prototype.bindEvents = function () {
     var _this = this;
@@ -62,8 +61,10 @@
           _this.markSelected($elm);
         }
       })
-      .on('focus', function (e) {
-        _this.markFocused($(e.target));
+      .on('focus blur', function (e) {
+        var state = (e.type === 'focus') ? 'focused' : 'blurred';
+
+        _this.markFocused($(e.target), state);
       });
   };
   RadioButtons.prototype.markSelected = function ($elm) {
@@ -77,11 +78,11 @@
     this.selections[radioName] = $elm.attr('id');
   };
   RadioButtons.prototype.markFocused = function ($elm) {
-    SelectionButtons.prototype.markFocused.call(this, $elm);
+    BaseButtons.prototype.markFocused.apply(this, arguments);
   };
 
   var CheckboxButtons = function ($elms, opts) {
-    SelectionButtons.apply(this, arguments);
+    BaseButtons.apply(this, arguments);
   };
   CheckboxButtons.prototype.setup = function () {
     var _this = this;
@@ -101,8 +102,10 @@
       .on('click', function (e) {
         _this.markSelected($(e.target));
       })
-      .on('focus', function (e) {
-        _this.markFocused($(e.target));
+      .on('focus blur', function (e) {
+        var state = (e.type === 'focus') ? 'focused' : 'blurred';
+
+        _this.markFocused($(e.target), state);
       });
   };
   CheckboxButtons.prototype.markSelected = function ($elm) {
@@ -113,8 +116,43 @@
     }
   };
   CheckboxButtons.prototype.markFocused = function ($elm) {
-    SelectionButtons.prototype.markFocused.call(this, $elm);
+    BaseButtons.prototype.markFocused.apply(this, arguments);
   };
+
   root.GOVUK.RadioButtons = RadioButtons;
   root.GOVUK.CheckboxButtons = CheckboxButtons;
+
+  var SelectionButtons = function ($elms, opts) {
+    var addToSet,
+        $radios,
+        $checkboxes;
+
+    addToSet = function ($elm, $set) {
+      if ($set) {
+        $set = $set.add($elm);
+      } else {
+        $set = $elm;
+      }
+      return $set;
+    };
+
+    $elms.each(function (idx, elm) {
+      var $elm = $(elm);
+
+      if ($elm.attr('type') === 'radio') {
+        $radios = addToSet($elm, $radios);
+      } else {
+        $checkboxes = addToSet($elm, $checkboxes);
+      }
+    });
+
+    if ($radios) {
+      new GOVUK.RadioButtons($radios, opts);
+    }
+    if ($checkboxes) {
+      new GOVUK.CheckboxButtons($checkboxes, opts);
+    }
+  };
+
+  root.GOVUK.SelectionButtons = SelectionButtons;
 }).call(this);
