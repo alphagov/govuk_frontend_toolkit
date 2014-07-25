@@ -5,7 +5,7 @@
 
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
-  var RadioButtons = function ($elms, opts) {
+  var SelectionButtons = function ($elms, opts) {
     var _this = this;
 
     this.$elms = $elms;
@@ -18,6 +18,19 @@
     }
     this.setup();
     this.bindEvents();
+  };
+  SelectionButtons.prototype.markFocused = function ($elm) {
+    var elmId = $elm.attr('id');
+
+    $elm.parent('label').addClass(this.focusedClass);
+    if (this.focused && (this.focused !== elmId)) {
+      $('#' + this.focused).parent('label').removeClass(this.focusedClass);
+    }
+    this.focused = elmId;
+  };
+
+  var RadioButtons = function ($elms, opts) {
+    SelectionButtons.apply(this, arguments);
   };
   RadioButtons.prototype.setup = function () {
     var _this = this;
@@ -64,11 +77,44 @@
     this.selections[radioName] = $elm.attr('id');
   };
   RadioButtons.prototype.markFocused = function ($elm) {
-    $elm.parent('label').addClass(this.focusedClass);
-    if (this.focused) {
-      $('#' + this.focused).parent('label').removeClass(this.focusedClass);
+    SelectionButtons.prototype.markFocused.call(this, $elm);
+  };
+
+  var CheckboxButtons = function ($elms, opts) {
+    SelectionButtons.apply(this, arguments);
+  };
+  CheckboxButtons.prototype.setup = function () {
+    var _this = this;
+
+    this.$elms.each(function (idx, elm) {
+      var $elm = $(elm);
+
+      if ($elm.is(':checked')) {
+        _this.markSelected($elm);
+      }
+    });
+  };
+  CheckboxButtons.prototype.bindEvents = function () {
+    var _this = this;
+
+    this.$elms
+      .on('click', function (e) {
+        _this.markSelected($(e.target));
+      })
+      .on('focus', function (e) {
+        _this.markFocused($(e.target));
+      });
+  };
+  CheckboxButtons.prototype.markSelected = function ($elm) {
+    if ($elm.is(':checked')) {
+      $elm.parent('label').addClass(this.selectedClass);
+    } else {
+      $elm.parent('label').removeClass(this.selectedClass);
     }
-    this.focused = $elm.attr('id');
+  };
+  CheckboxButtons.prototype.markFocused = function ($elm) {
+    SelectionButtons.prototype.markFocused.call(this, $elm);
   };
   root.GOVUK.RadioButtons = RadioButtons;
+  root.GOVUK.CheckboxButtons = CheckboxButtons;
 }).call(this);
