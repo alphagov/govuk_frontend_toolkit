@@ -39,6 +39,12 @@ describe("radio-buttons", function () {
     expect(buttons.selectedClass).toEqual('selectable-selected');
   });
 
+  it("Should set the focusedClass property if sent in as an option", function () {
+    var buttons = new GOVUK.RadioButtons($radioButtons, { 'focusedClass' : 'selectable-focused' });
+
+    expect(buttons.focusedClass).toEqual('selectable-focused');
+  });
+
   describe("setup method", function () {
     it("Should mark the label of any checked radios as selected", function () {
       var radioButtonsMock = {
@@ -58,26 +64,32 @@ describe("radio-buttons", function () {
       var radioButtonsMock = {
             '$elms' : $radioButtons
           },
-          eventsBound;
+          eventsBound = false;
 
       spyOn($.fn, 'on').andCallFake(function (evt, func) {
-        eventsBound = evt;
+        if (evt === 'click change') {
+          eventsBound = true;
+        }
+        return $.fn;
       });
       expect($.fn.on.calls.length).toEqual(0);
       GOVUK.RadioButtons.prototype.bindEvents.call(radioButtonsMock);
       expect($.fn.on).toHaveBeenCalled();
-      expect(eventsBound).toEqual('click change');
+      expect(eventsBound).toEqual(true);
     });
 
     it("Should call the markSelected method on any checked radio that's the target of an event", function () {
       var radioButtonsMock = {
             '$elms' : $radioButtons,
             'markSelected' : function () {}
-          },
-          eventsBound;
+            },
+          eventsBound = false;
 
       spyOn($.fn, 'on').andCallFake(function (evt, func) {
-        callback = func
+        if (evt === 'click change') {
+          callback = func;
+        }
+        return $.fn;
       });
       spyOn(radioButtonsMock, 'markSelected');
       radioButtonsMock.$elms.eq(0).attr('checked', true);
@@ -114,6 +126,27 @@ describe("radio-buttons", function () {
       GOVUK.RadioButtons.prototype.markSelected.call(radioButtonsMock, $clickedRadio);
       expect($('#medium').parent('label').hasClass('selected')).toEqual(false);
 
+    });
+  });
+
+  describe("markFocused method", function () {
+    var radioButtonsMock = {
+          'focused' : false,
+          'focusedClass' : 'focused'
+        };
+
+    it("Should add the focusedClass class to the sent radio", function () {
+      GOVUK.RadioButtons.prototype.markFocused.call(radioButtonsMock, $radioButtons.eq(0));
+
+      expect($labels.eq(0).hasClass(radioButtonsMock.focusedClass)).toBe(true);
+    });
+
+    it("Should remove the focusedClass class from the radio that previously had focus", function () {
+      radioButtonsMock.focused = 'medium';
+      $labels.eq(1).addClass(radioButtonsMock.focusedClass);
+      GOVUK.RadioButtons.prototype.markFocused.call(radioButtonsMock, $radioButtons.eq(0));
+
+      expect($labels.eq(1).hasClass(radioButtonsMock.focusedClass)).toBe(false);
     });
   });
 });
