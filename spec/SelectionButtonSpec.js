@@ -137,7 +137,7 @@ describe("selection-buttons", function () {
       it("Should remove the selectedClass class from the label of the previously selected radio", function () {
         var radioButtonsMock = {
               'selections' : {
-                'size' : 'medium'
+                'size' : $radioButtons.eq(1)
               },
               'selectedClass' : 'selected'
             },

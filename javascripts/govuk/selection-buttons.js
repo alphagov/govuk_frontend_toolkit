@@ -45,7 +45,7 @@
       }
       if ($elm.is(':checked')) {
         _this.markSelected($elm);
-        _this.selections[radioName] = $elm.attr('id');
+        _this.selections[radioName] = $elm;
       }
     });
   };
@@ -69,13 +69,13 @@
   };
   RadioButtons.prototype.markSelected = function ($elm) {
     var radioName = $elm.attr('name'),
-        previousSelection = this.selections[radioName];
+        $previousSelection = this.selections[radioName];
 
-    if (previousSelection) {
-      $('#' + previousSelection).parent('label').removeClass(this.selectedClass);
+    if ($previousSelection) {
+      $previousSelection.parent('label').removeClass(this.selectedClass);
     }
     $elm.parent('label').addClass(this.selectedClass);
-    this.selections[radioName] = $elm.attr('id');
+    this.selections[radioName] = $elm;
   };
   RadioButtons.prototype.markFocused = function ($elm) {
     BaseButtons.prototype.markFocused.apply(this, arguments);
