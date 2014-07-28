@@ -16,7 +16,7 @@
         _this[optionName] = opts[optionName];
       });
     }
-    this.setup();
+    this.getSelections();
     this.bindEvents();
   };
   BaseButtons.prototype.markFocused = function ($elm, state) {
@@ -32,7 +32,7 @@
   var RadioButtons = function ($elms, opts) {
     BaseButtons.apply(this, arguments);
   };
-  RadioButtons.prototype.setup = function () {
+  RadioButtons.prototype.getSelections = function () {
     var _this = this;
 
     this.selections = {};
@@ -84,7 +84,7 @@
   var CheckboxButtons = function ($elms, opts) {
     BaseButtons.apply(this, arguments);
   };
-  CheckboxButtons.prototype.setup = function () {
+  CheckboxButtons.prototype.getSelections = function () {
     var _this = this;
 
     this.$elms.each(function (idx, elm) {

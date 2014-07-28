@@ -48,7 +48,7 @@ describe("selection-buttons", function () {
     it("Should create a new instance with the correct interface", function () {
       var buttons = new GOVUK.RadioButtons($radioButtons);
 
-      expect(buttons.setup).toBeDefined();
+      expect(buttons.getSelections).toBeDefined();
       expect(buttons.bindEvents).toBeDefined();
       expect(buttons.markSelected).toBeDefined();
       expect(buttons.markFocused).toBeDefined();
@@ -66,7 +66,7 @@ describe("selection-buttons", function () {
       expect(buttons.focusedClass).toEqual('selectable-focused');
     });
 
-    describe("setup method", function () {
+    describe("getSelections method", function () {
       it("Should mark the label of any checked radios as selected", function () {
         var radioButtonsMock = {
               'markSelected' : function () {},
@@ -75,7 +75,7 @@ describe("selection-buttons", function () {
 
         $radioButtons.eq(0).attr('checked', true);
         spyOn(radioButtonsMock, 'markSelected');
-        GOVUK.RadioButtons.prototype.setup.call(radioButtonsMock);
+        GOVUK.RadioButtons.prototype.getSelections.call(radioButtonsMock);
         expect(radioButtonsMock.markSelected).toHaveBeenCalled();
       });
     });
@@ -175,13 +175,13 @@ describe("selection-buttons", function () {
     it("Should create a new instance with the correct interface", function () {
       var buttons = new GOVUK.CheckboxButtons($checkboxButtons);
 
-      expect(buttons.setup).toBeDefined();
+      expect(buttons.getSelections).toBeDefined();
       expect(buttons.bindEvents).toBeDefined();
       expect(buttons.markSelected).toBeDefined();
       expect(buttons.markFocused).toBeDefined();
     });
 
-    describe("setup method", function () {
+    describe("getSelections method", function () {
       it("Should add the selectedClass class to the label of a checkbox that is checked", function () {
         var checkboxButtonsMock = {
               '$elms' : $checkboxButtons,
@@ -190,7 +190,7 @@ describe("selection-buttons", function () {
 
         checkboxButtonsMock.$elms.eq(0).attr('checked', true);
         spyOn(checkboxButtonsMock, 'markSelected');
-        GOVUK.CheckboxButtons.prototype.setup.call(checkboxButtonsMock);
+        GOVUK.CheckboxButtons.prototype.getSelections.call(checkboxButtonsMock);
         expect(checkboxButtonsMock.markSelected).toHaveBeenCalled();
       });
     });
