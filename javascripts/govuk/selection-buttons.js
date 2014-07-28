@@ -123,28 +123,8 @@
   root.GOVUK.CheckboxButtons = CheckboxButtons;
 
   var selectionButtons = function ($elms, opts) {
-    var addToSet,
-        $radios,
-        $checkboxes;
-
-    addToSet = function ($elm, $set) {
-      if ($set) {
-        $set = $set.add($elm);
-      } else {
-        $set = $elm;
-      }
-      return $set;
-    };
-
-    $elms.each(function (idx, elm) {
-      var $elm = $(elm);
-
-      if ($elm.attr('type') === 'radio') {
-        $radios = addToSet($elm, $radios);
-      } else {
-        $checkboxes = addToSet($elm, $checkboxes);
-      }
-    });
+    var $radios = $elms.filter('[type=radio]'),
+        $checkboxes = $elms.filter('[type=checkbox]');
 
     if ($radios) {
       new GOVUK.RadioButtons($radios, opts);
