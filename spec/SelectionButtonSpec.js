@@ -80,10 +80,22 @@ describe("selection-buttons", function () {
       });
     });
 
+    describe("setEventNames method", function () {
+      it("Should set the selectionEvents and focusEvents properties on the instance", function () {
+        var radioButtonsMock = {};
+
+        GOVUK.RadioButtons.prototype.setEventNames.call(radioButtonsMock);
+        expect(typeof radioButtonsMock.focusEvents !== 'undefined').toBe(true);
+        expect(typeof radioButtonsMock.selectionEvents !== 'undefined').toBe(true);
+      });
+    });
+
     describe("bindEvents method", function () {
       it("Should bind click and change events to each radio", function () {
         var radioButtonsMock = {
-              '$elms' : $radioButtons
+              '$elms' : $radioButtons,
+              'selectionEvents' : 'click change',
+              'focusEvents' : 'focus blur'
             },
             eventsBound = false;
 
@@ -102,6 +114,8 @@ describe("selection-buttons", function () {
       it("Should call the markSelected method on any checked radio that's the target of an event", function () {
         var radioButtonsMock = {
               '$elms' : $radioButtons,
+              'selectionEvents' : 'click change',
+              'focusEvents' : 'focus blur',
               'markSelected' : function () {}
               },
             eventsBound = false;
@@ -195,6 +209,16 @@ describe("selection-buttons", function () {
       });
     });
 
+    describe("setEventNames method", function () {
+      it("Should set the selectionEvents and focusEvents properties on the instance", function () {
+        var checkboxButtonsMock = {};
+
+        GOVUK.CheckboxButtons.prototype.setEventNames.call(checkboxButtonsMock);
+        expect(typeof checkboxButtonsMock.focusEvents !== 'undefined').toBe(true);
+        expect(typeof checkboxButtonsMock.selectionEvents !== 'undefined').toBe(true);
+      });
+    });
+
     describe("bindEvents method", function () {
       var checkboxButtonsMock;
 
@@ -208,6 +232,8 @@ describe("selection-buttons", function () {
         var eventCalled = false;
 
         checkboxButtonsMock.markSelected = function () {};
+        checkboxButtonsMock.selectionEvents = 'click';
+        checkboxButtonsMock.focusEvents = 'focus blur';
         spyOn(checkboxButtonsMock, 'markSelected');
         spyOn($.fn, 'on').andCallFake(function (evt, func) {
           if (evt === 'click') {
@@ -216,9 +242,10 @@ describe("selection-buttons", function () {
           }
           return $.fn;
         });
+        $checkboxButtons.eq(0).attr('checked', true);
         GOVUK.CheckboxButtons.prototype.bindEvents.call(checkboxButtonsMock);
         expect(eventCalled).toBe(true);
-        callback({ 'target' : $checkboxButtons });
+        callback({ 'target' : $checkboxButtons.eq(0) });
         expect(checkboxButtonsMock.markSelected).toHaveBeenCalled();
       });
 
@@ -226,6 +253,8 @@ describe("selection-buttons", function () {
         var eventCalled = false;
 
         checkboxButtonsMock.markFocused = function () {};
+        checkboxButtonsMock.selectionEvents = 'click';
+        checkboxButtonsMock.focusEvents = 'focus blur';
         spyOn(checkboxButtonsMock, 'markFocused');
         spyOn($.fn, 'on').andCallFake(function (evt, func) {
           if (evt === 'focus blur') {
@@ -237,7 +266,7 @@ describe("selection-buttons", function () {
         GOVUK.CheckboxButtons.prototype.bindEvents.call(checkboxButtonsMock);
         expect(eventCalled).toBe(true);
         callback({
-          'target' : $checkboxButtons,
+          'target' : $checkboxButtons.eq(0),
           'type' : 'focus'
         });
         expect(checkboxButtonsMock.markFocused).toHaveBeenCalled();

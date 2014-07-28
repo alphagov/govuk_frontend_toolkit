@@ -16,8 +16,13 @@
         _this[optionName] = opts[optionName];
       });
     }
+    this.setEventNames();
     this.getSelections();
     this.bindEvents();
+  };
+  BaseButtons.prototype.setEventNames = function () {
+    this.selectionEvents = 'click';
+    this.focusEvents = 'focus blur';
   };
   BaseButtons.prototype.markFocused = function ($elm, state) {
     var elmId = $elm.attr('id');
@@ -28,9 +33,31 @@
       $elm.parent('label').removeClass(this.focusedClass);
     }
   };
+  BaseButtons.prototype.bindEvents = function () {
+    var _this = this;
+
+    this.$elms
+      .on(this.selectionEvents, function (e) {
+        var $elm = $(e.target);
+
+        if ($elm.is(':checked')) {
+          _this.markSelected($elm);
+        }
+      })
+      .on(this.focusEvents, function (e) {
+        var state = (e.type === 'focus') ? 'focused' : 'blurred';
+
+        _this.markFocused($(e.target), state);
+      });
+  };
 
   var RadioButtons = function ($elms, opts) {
     BaseButtons.apply(this, arguments);
+  };
+  RadioButtons.prototype.setEventNames = function () {
+    // some browsers fire the 'click' when the selected radio changes by keyboard
+    this.selectionEvents = 'click change';
+    this.focusEvents = 'focus blur';
   };
   RadioButtons.prototype.getSelections = function () {
     var _this = this;
@@ -50,22 +77,7 @@
     });
   };
   RadioButtons.prototype.bindEvents = function () {
-    var _this = this;
-
-    this.$elms
-      // some browsers fire the 'click' when the selected radio changes by keyboard
-      .on('click change', function (e) {
-        var $elm = $(e.target);
-
-        if ($elm.is(':checked')) {
-          _this.markSelected($elm);
-        }
-      })
-      .on('focus blur', function (e) {
-        var state = (e.type === 'focus') ? 'focused' : 'blurred';
-
-        _this.markFocused($(e.target), state);
-      });
+    BaseButtons.prototype.bindEvents.call(this);
   };
   RadioButtons.prototype.markSelected = function ($elm) {
     var radioName = $elm.attr('name'),
@@ -84,6 +96,9 @@
   var CheckboxButtons = function ($elms, opts) {
     BaseButtons.apply(this, arguments);
   };
+  CheckboxButtons.prototype.setEventNames = function () {
+    BaseButtons.prototype.setEventNames.call(this);
+  };
   CheckboxButtons.prototype.getSelections = function () {
     var _this = this;
 
@@ -96,17 +111,7 @@
     });
   };
   CheckboxButtons.prototype.bindEvents = function () {
-    var _this = this;
-
-    this.$elms
-      .on('click', function (e) {
-        _this.markSelected($(e.target));
-      })
-      .on('focus blur', function (e) {
-        var state = (e.type === 'focus') ? 'focused' : 'blurred';
-
-        _this.markFocused($(e.target), state);
-      });
+    BaseButtons.prototype.bindEvents.call(this);
   };
   CheckboxButtons.prototype.markSelected = function ($elm) {
     if ($elm.is(':checked')) {
