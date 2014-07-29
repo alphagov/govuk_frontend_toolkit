@@ -52,7 +52,7 @@ Install Node 0.8 or higher and PhantomJS.
 
 The test suite can be run by opening the `./spec/support/LocalTestRunner.html` file in a browser for a more detailed trace of errors.
 
-The files for unit tests and any supporting JavaScript should be added to `./spec/support/manifest.js` file.
+The files for unit tests and any supporting JavaScript should be added to `./spec/manifest.js` file.
 
 ## Usage
 
