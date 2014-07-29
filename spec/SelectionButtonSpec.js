@@ -95,7 +95,9 @@ describe("selection-buttons", function () {
         var radioButtonsMock = {
               '$elms' : $radioButtons,
               'selectionEvents' : 'click change',
-              'focusEvents' : 'focus blur'
+              'focusEvents' : 'focus blur',
+              'markSelected' : function () {},
+              'markFocused' : function () {}
             },
             eventsBound = false;
 
@@ -116,7 +118,8 @@ describe("selection-buttons", function () {
               '$elms' : $radioButtons,
               'selectionEvents' : 'click change',
               'focusEvents' : 'focus blur',
-              'markSelected' : function () {}
+              'markSelected' : function () {},
+              'markFocused' : function () {}
               },
             eventsBound = false;
 
@@ -232,6 +235,7 @@ describe("selection-buttons", function () {
         var eventCalled = false;
 
         checkboxButtonsMock.markSelected = function () {};
+        checkboxButtonsMock.markFocused = function () {};
         checkboxButtonsMock.selectionEvents = 'click';
         checkboxButtonsMock.focusEvents = 'focus blur';
         spyOn(checkboxButtonsMock, 'markSelected');
@@ -253,6 +257,7 @@ describe("selection-buttons", function () {
         var eventCalled = false;
 
         checkboxButtonsMock.markFocused = function () {};
+        checkboxButtonsMock.markSelected = function () {};
         checkboxButtonsMock.selectionEvents = 'click';
         checkboxButtonsMock.focusEvents = 'focus blur';
         spyOn(checkboxButtonsMock, 'markFocused');

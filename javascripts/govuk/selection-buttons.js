@@ -6,15 +6,17 @@
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
   var BaseButtons = function ($elms, opts) {
-    var _this = this;
+    var addOptionAsProperty = function (instance) {
+          return function (optionName, optionObj) {
+            instance[optionName] = opts[optionName];
+          };
+        }(this);
 
     this.$elms = $elms;
     this.selectedClass = 'selected';
     this.focusedClass = 'focused';
     if (opts !== undefined) {
-      $.each(opts, function (optionName, optionObj) {
-        _this[optionName] = opts[optionName];
-      });
+      $.each(opts, addOptionAsProperty);
     }
     this.setEventNames();
     this.getSelections();
@@ -34,20 +36,17 @@
     }
   };
   BaseButtons.prototype.bindEvents = function () {
-    var _this = this;
+    var selectionEventHandler = this.markSelected.bind(this),
+        focusEventHandler = this.markFocused.bind(this);
 
     this.$elms
       .on(this.selectionEvents, function (e) {
-        var $elm = $(e.target);
-
-        if ($elm.is(':checked')) {
-          _this.markSelected($elm);
-        }
+        selectionEventHandler($(e.target));
       })
       .on(this.focusEvents, function (e) {
         var state = (e.type === 'focus') ? 'focused' : 'blurred';
 
-        _this.markFocused($(e.target), state);
+        focusEventHandler($(e.target), state);
       });
   };
 
@@ -60,21 +59,22 @@
     this.focusEvents = 'focus blur';
   };
   RadioButtons.prototype.getSelections = function () {
-    var _this = this;
+    var selectionEventHandler = this.markSelected.bind(this),
+        selections = {};
 
-    this.selections = {};
     $.each(this.$elms, function (index, elm) {
       var $elm = $(elm),
           radioName = $elm.attr('name');
 
-      if (typeof _this.selections[radioName] === 'undefined') {
-        _this.selections[radioName] = false;
+      if (typeof selections[radioName] === 'undefined') {
+        selections[radioName] = false;
       }
       if ($elm.is(':checked')) {
-        _this.markSelected($elm);
-        _this.selections[radioName] = $elm;
+        selectionEventHandler($elm);
+        selections[radioName] = $elm;
       }
     });
+    this.selections = selections;
   };
   RadioButtons.prototype.bindEvents = function () {
     BaseButtons.prototype.bindEvents.call(this);
@@ -100,13 +100,13 @@
     BaseButtons.prototype.setEventNames.call(this);
   };
   CheckboxButtons.prototype.getSelections = function () {
-    var _this = this;
+    var selectionEventHandler = this.markSelected.bind(this);
 
     this.$elms.each(function (idx, elm) {
       var $elm = $(elm);
 
       if ($elm.is(':checked')) {
-        _this.markSelected($elm);
+        selectionEventHandler($elm);
       }
     });
   };

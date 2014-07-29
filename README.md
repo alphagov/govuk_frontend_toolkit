@@ -839,6 +839,8 @@ var $buttons = $("label input[type='radio'], label input[type='checkbox']");
 GOVUK.selectionButtons($buttons);
 ```
 
+Note that `GOVUK.selectionButtons` and the constructors it wraps, `GOVUK.RadioButtons` and `GOVUK.CheckboxButtons` use the `bind.js` polyfill.
+
 ## Licence
 
 Released under the MIT Licence, a copy of which can be found in the file `LICENCE`.
