@@ -6,17 +6,13 @@
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
   var BaseButtons = function ($elms, opts) {
-    var addOptionAsProperty = function (instance) {
-          return function (optionName, optionObj) {
-            instance[optionName] = opts[optionName];
-          };
-        }(this);
-
     this.$elms = $elms;
     this.selectedClass = 'selected';
     this.focusedClass = 'focused';
     if (opts !== undefined) {
-      $.each(opts, addOptionAsProperty);
+      $.each(opts, function (optionName, optionObj) {
+        this[optionName] = optionObj;
+      }.bind(this));
     }
     this.setEventNames();
     this.getSelections();
