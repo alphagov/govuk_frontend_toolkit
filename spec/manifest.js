@@ -5,11 +5,13 @@ var manifest = {
     '../../javascripts/govuk/multivariate-test.js',
     '../../javascripts/govuk/primary-links.js',
     '../../javascripts/govuk/stick-at-top-when-scrolling.js',
-    '../../javascripts/govuk/stop-scrolling-at-footer.js'
+    '../../javascripts/govuk/stop-scrolling-at-footer.js',
+    '../../javascripts/govuk/selection-buttons.js'
   ],
   test : [
     '../unit/MultivariateTestSpec.js',
     '../unit/PrimaryLinksSpec.js',
-    '../unit/StickAtTopWhenScrollingSpec.js'
+    '../unit/StickAtTopWhenScrollingSpec.js',
+    '../unit/SelectionButtonSpec.js'
   ]
 };
