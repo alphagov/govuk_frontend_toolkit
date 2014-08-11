@@ -1,8 +1,21 @@
 module.exports = function(grunt) {
+
+  var allSASSFiles = [];
+
+  grunt.file.recurse(
+    "./stylesheets/",
+    function(absolutePath, rootDirectory, subdirectory, filename) {
+
+      if (filename.match(/\.scss$/)) allSASSFiles.push("@import '../../" + absolutePath + "';");
+
+    }
+  );
+
+  grunt.file.write(
+    "spec/stylesheets/test.scss", allSASSFiles.join("\n")
+  );
+
   grunt.initConfig({
-    clean: {
-      sass: ["spec/stylesheets/test-out.css"]
-    },
     jasmine: {
       javascripts: {
         src: [
@@ -29,9 +42,8 @@ module.exports = function(grunt) {
       },
     }
   });
-  grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.registerTask('test', ['sass', 'clean', 'jasmine']);
+  grunt.registerTask('test', ['sass', 'jasmine']);
   grunt.registerTask('default', ['test']);
 };
