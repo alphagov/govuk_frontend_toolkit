@@ -5,3 +5,4 @@ rvm:
   - 2.1.0
 before_install:
   - gem install sass
+  - gem install scss-lint
