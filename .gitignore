@@ -1,3 +1,5 @@
 node_modules/
 .sass-cache
 scss-lint-report.xml
+
+/spec/stylesheets/
