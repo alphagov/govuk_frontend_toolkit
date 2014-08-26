@@ -78,6 +78,21 @@ describe("selection-buttons", function () {
         GOVUK.RadioButtons.prototype.getSelections.call(radioButtonsMock);
         expect(radioButtonsMock.markSelected).toHaveBeenCalled();
       });
+
+      it("Should store an entry in the selections property for a radio before marking it as selected", function () {
+        var selections,
+            radioButtonsMock = {
+              'markSelected' : function () {
+                selections = this.selections;
+              },
+              '$elms' : $radioButtons
+            };
+
+        $radioButtons.eq(0).attr('checked', true);
+        GOVUK.RadioButtons.prototype.getSelections.call(radioButtonsMock);
+        expect(selections).toBeDefined();
+        expect(selections[radioButtonsMock.$elms.eq(0).attr('name')]).toBeDefined();
+      });
     });
 
     describe("setEventNames method", function () {
