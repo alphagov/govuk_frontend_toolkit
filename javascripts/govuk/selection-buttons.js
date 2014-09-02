@@ -55,22 +55,20 @@
     this.focusEvents = 'focus blur';
   };
   RadioButtons.prototype.getSelections = function () {
-    var selectionEventHandler = this.markSelected.bind(this),
-        selections = {};
+    var selectionEventHandler = this.markSelected.bind(this);
 
+    this.selections = {};
     $.each(this.$elms, function (index, elm) {
       var $elm = $(elm),
           radioName = $elm.attr('name');
 
-      if (typeof selections[radioName] === 'undefined') {
-        selections[radioName] = false;
+      if (typeof this.selections[radioName] === 'undefined') {
+        this.selections[radioName] = false;
       }
       if ($elm.is(':checked')) {
         selectionEventHandler($elm);
-        selections[radioName] = $elm;
       }
-    });
-    this.selections = selections;
+    }.bind(this));
   };
   RadioButtons.prototype.bindEvents = function () {
     BaseButtons.prototype.bindEvents.call(this);

@@ -69,14 +69,16 @@ describe("selection-buttons", function () {
     describe("getSelections method", function () {
       it("Should mark the label of any checked radios as selected", function () {
         var radioButtonsMock = {
-              'markSelected' : function () {},
-              '$elms' : $radioButtons
+              'markSelected' : GOVUK.RadioButtons.prototype.markSelected,
+              '$elms' : $radioButtons,
+              'selectedClass' : 'selected'
             };
 
         $radioButtons.eq(0).attr('checked', true);
-        spyOn(radioButtonsMock, 'markSelected');
+        spyOn(radioButtonsMock, 'markSelected').andCallThrough();
         GOVUK.RadioButtons.prototype.getSelections.call(radioButtonsMock);
         expect(radioButtonsMock.markSelected).toHaveBeenCalled();
+        expect($radioButtons.eq(0).parent('label').hasClass('selected')).toBe(true);
       });
     });
 
