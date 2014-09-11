@@ -853,6 +853,13 @@ var $buttons = $("label input[type='radio'], label input[type='checkbox']");
 GOVUK.selectionButtons($buttons);
 ```
 
+The classes that get added can be passed in as options:
+
+```
+var $buttons = $("label input[type='radio'], label input[type='checkbox']");
+GOVUK.selectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
+```
+
 Note that `GOVUK.selectionButtons` and the constructors it wraps, `GOVUK.RadioButtons` and `GOVUK.CheckboxButtons` use the `bind.js` polyfill.
 
 ## Licence
