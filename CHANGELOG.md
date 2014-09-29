@@ -1,3 +1,7 @@
+# 1.6.2
+
+- Reset font family for print stylesheets to fix print errors in browsers and printers
+
 # 1.6.1
 
 - Fix visited link colour to be a colour which passes contrast
