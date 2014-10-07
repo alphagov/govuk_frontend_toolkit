@@ -99,32 +99,56 @@ In production:
 
 ### <a id="grid-layout"></a>Grid layout
 
-Use `.outer-block` and `.inner-block` together.
+Grid helpers to enable easy cross browser grids. The grids use absolute widths
+in older versions of IE or percentage based widths in modern browsers.
 
-Outer block sets a max width of 1020px,
-auto margins and a minimum width for IE8 and below.
+- `%site-width-container` creates a 960px wide elastic container for you site content block
+- `%grid-row` container for a row of columns
+- `@mixin grid-column($width, $full-width: tablet)` a mixin to create grid columns of fraction width
 
-Inner block sets gutters to align with the header and footer.
+These three grid helpers are designed to be used together and aren't guaranteed
+to work or behave in a predictable way if used in isolation.
 
-Use within banners, or to set a max-width for your main content area,
-with padding that matches the header and footer.
+There is also an `%outdent-to-full-width` selector which can be extended to
+outdent and element and cause it to take up the edge gutters and butt up to the
+edge of smaller screens.
 
-##### Usage
+#### Usage:
 
-    .outer-block {
-      @include outer-block;
-    }
+```
+#page-container {
+  @extend %site-width-container;
+}
+.grid-row {
+  @extend %grid-row;
 
-    .inner-block {
-      @include inner-block;
-    }
+  .column-third {
+    @include grid-column( 1/3 );
+  }
+  .column-two-thirds {
+    @include grid-column( 2/3 );
+  }
+}
+.hero-image {
+  @extend %outdent-to-full-width;
+}
 
 
-    <div class="outer-block">
-      <div class="inner-block">
-        Content in here
-      </div>
+<div id="page-container">
+  <div class="grid-row">
+    <div class="column-two-thirds">
+      Main content
     </div>
+    <div class="column-third">
+      Sidebar
+    </div>
+  </div>
+
+  <div class="hero-image">
+    <img ...>
+  </div>
+</div>
+```
 
 ### <a id="conditionals"></a>Conditionals
 
