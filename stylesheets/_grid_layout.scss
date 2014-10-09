@@ -2,8 +2,121 @@
 @import '_measurements.scss';
 @import '_shims.scss';
 
+$site-width: 960px;
+
+// An extendable selector to wrap your entire site content block
+// It limits the sites width to be 960px wide and maintains consistent margins
+// on the site of the page and shrinks the margins for mobile.
+//
+// Usage:
+//
+// #page-container {
+//   @extend %site-width-container;
+// }
+
+%site-width-container {
+  max-width: $site-width;
+  @include ie-lte(8){
+    width: $site-width;
+  }
+
+  margin: 0 $gutter-half;
+  @include media(tablet){
+    margin: 0 $gutter;
+  }
+  @include media($min-width: ($site-width + $gutter * 2), $ignore-for-ie: true){
+    margin: 0 auto;
+  }
+}
+
+// An extendable selector to outdent to the full page-width
+// So that you can create elements that take up the gutters on the side of the
+// page and butt up to the edge of the browser on smaller screens (rather than
+// leaving a gutter at the edge of the page).
+//
+// Usage:
+//
+// .hero-image-container {
+//   @extend %outdent-to-full-width;
+// }
+%outdent-to-full-width {
+  margin-left: -$gutter-half;
+  margin-left: -$gutter-half;
+  @include media(tablet){
+    margin-left: -$gutter;
+    margin-right: -$gutter;
+  }
+}
+
+//
+// Usage:
+//
+//   .grid-row {
+//     @extend %grid-row;
+//   }
+
+%grid-row {
+  @extend %contain-floats;
+  margin: 0 (-$gutter-half);
+}
+
+// An extendable selector to define a row for grid columns to sit in
+//
+// Usage:
+//
+//   .grid-row {
+//     @extend %grid-row;
+//   }
+
+%grid-row {
+  @extend %contain-floats;
+  margin: 0 (-$gutter-half);
+}
+
+// A mixin for a grid column
+// Creates a cross browser grid column with a standardised gutter between the
+// columns. Widths should be defined as fractions of the full desktop width
+// they want to fill. By default they break to become full width at tablet size
+// but that can be configured to be dektop using the `$full-width` argument.
+//
+// Usage:
+//
+//   .column-quarter {
+//     @include grid-column( 1/4 );
+//   }
+//   .column-half {
+//     @include grid-column( 1/2 );
+//   }
+//   .column-third {
+//     @include grid-column( 1/3 );
+//   }
+//   .column-two-thirds {
+//     @include grid-column( 2/3 );
+//   }
+//   .column-desktop-third {
+//     @include grid-column( 1/3, $full-width: desktop );
+//   }
+
+@mixin grid-column($width, $full-width: tablet) {
+  @include media($full-width){
+    float: left;
+    width: percentage($width);
+  }
+  @include ie-lte(7){
+    width: (($site-width + $gutter) * $width) - $gutter;
+  }
+
+  padding: 0 $gutter-half;
+  box-sizing: border-box;
+}
+
+
+// OLD depricated grid mixins
+// You should migrate to the mixins above in the future
+
 // Outer block sets a max width
 @mixin outer-block {
+  @warn "The @mixin outer-block is depricated and should be updated to new grid helpers";
   margin: 0 auto;
   width: auto;
   max-width: 960 + $gutter*2;
@@ -13,15 +126,10 @@
   }
 }
 
-// Outer block usage:
-//
-// .outer-block {
-//    @include outer-block;
-// }
-
 // Inner block sets either margin or padding
 // to align content with header and footer
 @mixin inner-block($margin-or-padding: padding) {
+  @warn "The @mixin inner-block is depricated and should be updated to use new grid helpers";
   #{$margin-or-padding}-left: $gutter-half;
   #{$margin-or-padding}-right: $gutter-half;
   @include media(tablet) {
@@ -29,15 +137,3 @@
     #{$margin-or-padding}-right: $gutter;
   }
 }
-
-// Inner block usage:
-//
-// By default, inner block sets padding
-// .inner-block {
-//    @include inner-block;
-// }
-//
-// To set margins instead of padding:
-// .inner-block {
-//    @include inner-block(margin);
-// }
