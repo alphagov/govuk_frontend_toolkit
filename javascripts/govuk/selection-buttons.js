@@ -43,7 +43,7 @@
             shared.markSelected[e.target.type].call(this, $(e.target));
           }.bind(this))
           .on('focus blur', selector, function (e) {
-            var state = (e.type === 'focus') ? 'focused' : 'blurred';
+            var state = (e.type === 'focusin') ? 'focused' : 'blurred';
 
             this.markFocused($(e.target), state);
           }.bind(this));
@@ -91,8 +91,6 @@
     }.bind(this));
   };
   SelectionButtons.prototype.markFocused = function ($elm, state) {
-    var elmId = $elm.attr('id');
-
     if (state === 'focused') {
       $elm.parent('label').addClass(this.focusedClass);
     } else {
