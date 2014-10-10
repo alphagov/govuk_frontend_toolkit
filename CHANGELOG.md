@@ -1,3 +1,8 @@
+# 1.7.0
+
+- Create new grid helpers for creating grid layouts
+- The old grid mixins; `@outer-block` and `@inner-block` are now deprecated
+
 # 1.6.2
 
 - Reset font family for print stylesheets to fix print errors in browsers and printers
