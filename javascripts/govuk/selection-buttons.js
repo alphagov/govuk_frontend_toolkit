@@ -50,30 +50,23 @@
       $elm.parent('label').removeClass(this.focusedClass);
     }
   };
-  SelectionButtons.prototype.markSelected = (function () {
-    var markSelected = {
-      'radio' : function ($elm) {
-        var radioName = $elm.attr('name'),
-            $radiosInGroup = $($elm[0].form).find('input[name="' + radioName + '"]');
+  SelectionButtons.prototype.markSelected = function ($elm) {
+    var radioName;
 
-        $radiosInGroup.parent('label').removeClass(this.selectedClass);
+    if ($elm.attr('type') === 'radio') {
+      radioName = $elm.attr('name'),
+      $($elm[0].form).find('input[name="' + radioName + '"]')
+        .parent('label')
+        .removeClass(this.selectedClass);
+      $elm.parent('label').addClass(this.selectedClass);
+    } else { // checkbox
+      if ($elm.is(':checked')) {
         $elm.parent('label').addClass(this.selectedClass);
-      },
-      'checkbox' : function ($elm) {
-        if ($elm.is(':checked')) {
-          $elm.parent('label').addClass(this.selectedClass);
-        } else {
-          $elm.parent('label').removeClass(this.selectedClass);
-        }
+      } else {
+        $elm.parent('label').removeClass(this.selectedClass);
       }
-    };
-
-    return function ($elm) {
-      var inputType = $elm.attr('type');
-
-      markSelected[inputType].call(this, $elm);
-    };
-  }());
+    }
+  };
   SelectionButtons.prototype.bindElementLevelEvents = function ($elms) {
     $elms
       .on('click', function (e) {
@@ -85,7 +78,7 @@
         this.markFocused($(e.target), state);
       }.bind(this));
   };
-  SelectionButtons.eventSelectors = [],
+  SelectionButtons.eventSelectors = [];
   SelectionButtons.prototype.bindDocumentLevelEvents = function (selector) {
     if ($.inArray(selector, SelectionButtons.eventSelectors) === -1) {
       $(document)
