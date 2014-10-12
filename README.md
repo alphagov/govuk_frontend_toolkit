@@ -862,7 +862,7 @@ and stop the elements before they get to the bottom.
 
 ## Selection buttons
 
-Script to support a specific design of radio buttons and checkboxes wrapped in `<label>` tags:
+Script to support a design of radio buttons and checkboxes requiring them to be wrapped in `<label>` tags:
 
     <label>
       <input type="radio" name="size" value="medium" />
@@ -877,11 +877,21 @@ var $buttons = $("label input[type='radio'], label input[type='checkbox']");
 GOVUK.selectionButtons($buttons);
 ```
 
-The classes that get added can be passed in as options:
+You can also call the `GOVUK.selectionButtons` function with a selector:
+
+```
+GOVUK.selectionButtons("label input[type='radio'], label input[type='checkbox']");
+```
+
+This will bind all events to the document, meaning any changes to content (for example, by AJAX) will not effect the button's behaviour.
+
+The classes that get added to the `<label>` tags can be passed in as options:
 
 ```
 var $buttons = $("label input[type='radio'], label input[type='checkbox']");
 GOVUK.selectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
+
+GOVUK.selectionButtons("label input[type='radio'], label input[type='checkbox']", { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
 ```
 
 Note that `GOVUK.selectionButtons` and the constructors it wraps, `GOVUK.RadioButtons` and `GOVUK.CheckboxButtons` use the `bind.js` polyfill.
