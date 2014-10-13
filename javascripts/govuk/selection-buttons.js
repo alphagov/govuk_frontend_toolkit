@@ -15,7 +15,7 @@
     }
     this.setInitialState($(elms));
     this.setEventTypes(elms);
-    this.bindEvents(elms);
+    this.addEvents(elms);
   };
   SelectionButtons.prototype.setEventTypes = function (elms) {
     var selector,
@@ -24,13 +24,13 @@
     if (typeof elms === 'string') {
       selector = elms;
       $elms = $(selector);
-      this.bindEvents = function ($elms) {
-        this.bindDocumentLevelEvents(selector);
+      this.addEvents = function ($elms) {
+        this.addDocumentLevelEvents(selector);
       }.bind(this);
     } else { // elms is a jQuery object
       $elms = elms;
-      this.bindEvents = function ($elms) {
-        this.bindElementLevelEvents($elms);
+      this.addEvents = function ($elms) {
+        this.addElementLevelEvents($elms);
       }.bind(this);
     }
   };
@@ -67,7 +67,7 @@
       }
     }
   };
-  SelectionButtons.prototype.bindElementLevelEvents = function ($elms) {
+  SelectionButtons.prototype.addElementLevelEvents = function ($elms) {
     $elms
       .on('click', function (e) {
         this.markSelected($(e.target));
@@ -79,7 +79,7 @@
       }.bind(this));
   };
   SelectionButtons.eventSelectors = [];
-  SelectionButtons.prototype.bindDocumentLevelEvents = function (selector) {
+  SelectionButtons.prototype.addDocumentLevelEvents = function (selector) {
     if ($.inArray(selector, SelectionButtons.eventSelectors) === -1) {
       $(document)
         .on('click', selector, function (e) {
