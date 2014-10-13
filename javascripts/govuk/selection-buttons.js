@@ -14,24 +14,18 @@
       }.bind(this));
     }
     this.setInitialState($(elms));
-    this.setEventTypes(elms);
     this.addEvents(elms);
   };
-  SelectionButtons.prototype.setEventTypes = function (elms) {
+  SelectionButtons.prototype.addEvents = function (elmsOrSelector) {
     var selector,
         $elms;
 
-    if (typeof elms === 'string') {
-      selector = elms;
-      $elms = $(selector);
-      this.addEvents = function ($elms) {
-        this.addDocumentLevelEvents(selector);
-      }.bind(this);
-    } else { // elms is a jQuery object
-      $elms = elms;
-      this.addEvents = function ($elms) {
-        this.addElementLevelEvents($elms);
-      }.bind(this);
+    if (typeof elmsOrSelector === 'string') {
+      selector = elmsOrSelector;
+      this.addDocumentLevelEvents(selector);
+    } else {
+      $elms = elmsOrSelector;
+      this.addElementLevelEvents($elms);
     }
   };
   SelectionButtons.prototype.setInitialState = function ($elms) {
