@@ -48,25 +48,13 @@ $site-width: 960px;
   }
 }
 
-//
-// Usage:
-//
-//   .grid-row {
-//     @extend %grid-row;
-//   }
-
-%grid-row {
-  @extend %contain-floats;
-  margin: 0 (-$gutter-half);
-}
-
 // An extendable selector to define a row for grid columns to sit in
 //
 // Usage:
 //
-//   .grid-row {
-//     @extend %grid-row;
-//   }
+// .grid-row {
+//   @extend %grid-row;
+// }
 
 %grid-row {
   @extend %contain-floats;
