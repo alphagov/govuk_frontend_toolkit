@@ -870,17 +870,21 @@ Script to support a design of radio buttons and checkboxes requiring them to be 
 
 When the input is focused or its `checked` attribute is set, classes are added to their parent labels so their styling can show this.
 
-To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.selectionButtons` function with their inputs:
+### Usage
+
+#### GOVUK.SelectionButtons
+
+To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.SelectionButtons` constructor with their inputs:
 
 ```
 var $buttons = $("label input[type='radio'], label input[type='checkbox']");
-GOVUK.selectionButtons($buttons);
+var selectionButtons = new GOVUK.SelectionButtons($buttons);
 ```
 
-You can also call the `GOVUK.selectionButtons` function with a selector:
+You can also call `GOVUK.SelectionButtons` with a selector:
 
 ```
-GOVUK.selectionButtons("label input[type='radio'], label input[type='checkbox']");
+var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']");
 ```
 
 This will bind all events to the document, meaning any changes to content (for example, by AJAX) will not effect the button's behaviour.
@@ -889,12 +893,32 @@ The classes that get added to the `<label>` tags can be passed in as options:
 
 ```
 var $buttons = $("label input[type='radio'], label input[type='checkbox']");
-GOVUK.selectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
+var selectionButtons = new GOVUK.SelectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
 
-GOVUK.selectionButtons("label input[type='radio'], label input[type='checkbox']", { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
+var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']", { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
 ```
 
-Note that `GOVUK.selectionButtons` and the constructors it wraps, `GOVUK.RadioButtons` and `GOVUK.CheckboxButtons` use the `bind.js` polyfill.
+#### destroy method
+
+The returned instance object includes a `destroy` method to remove all events bound to either the elements or the document.
+
+Using any of the `selectionButtons` objects created above, it can be called like so:
+
+```
+selectionButtons.destroy();
+```
+
+### Deprecated functionality
+
+The previous method of calling selection buttons is now deprecated. If you need to call them using this method, you will need to define this function:
+
+```
+GOVUK.selectionButtons = function (elms, opts) {
+  new GOVUK.SelectionButtons(elms, opts);
+};
+```
+
+This method will mean the `destroy` method is not available to call.
 
 ## Licence
 
