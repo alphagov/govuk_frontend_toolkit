@@ -5,7 +5,9 @@
 
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
-  var SelectionButtons = function (elms, opts) {
+  var SelectionButtons = function (elmsOrSelector, opts) {
+    var $elms;
+
     this.selectedClass = 'selected';
     this.focusedClass = 'focused';
     if (opts !== undefined) {
@@ -13,19 +15,21 @@
         this[optionName] = optionObj;
       }.bind(this));
     }
-    this.setInitialState($(elms));
-    this.addEvents(elms);
-  };
-  SelectionButtons.prototype.addEvents = function (elmsOrSelector) {
-    var selector,
-        $elms;
-
     if (typeof elmsOrSelector === 'string') {
-      selector = elmsOrSelector;
-      this.addDocumentLevelEvents(selector);
+      $elms = $(elmsOrSelector);
+      this.selector = elmsOrSelector;
+      this.setInitialState($(this.selector));
     } else {
-      $elms = elmsOrSelector;
-      this.addElementLevelEvents($elms);
+      this.$elms = elmsOrSelector;
+      this.setInitialState(this.$elms);
+    }
+    this.addEvents();
+  };
+  SelectionButtons.prototype.addEvents = function () {
+    if (typeof this.$elms !== 'undefined') {
+      this.addElementLevelEvents();
+    } else {
+      this.addDocumentLevelEvents();
     }
   };
   SelectionButtons.prototype.setInitialState = function ($elms) {
@@ -61,44 +65,47 @@
       }
     }
   };
-  SelectionButtons.prototype.addElementLevelEvents = function ($elms) {
-    $elms
-      .on('click', function (e) {
-        this.markSelected($(e.target));
-      }.bind(this))
-      .on('focus blur', function (e) {
-        var state = (e.type === 'focus') ? 'focused' : 'blurred';
+  SelectionButtons.prototype.addElementLevelEvents = function () {
+    this.clickHandler = this.getClickHandler();
+    this.focusHandler = this.getFocusHandler({ 'level' : 'element' });
 
-        this.markFocused($(e.target), state);
-      }.bind(this));
+    this.$elms
+      .on('click', this.clickHandler)
+      .on('focus blur', this.focusHandler);
   };
-  SelectionButtons.eventSelectors = [];
-  SelectionButtons.prototype.addDocumentLevelEvents = function (selector) {
-    if ($.inArray(selector, SelectionButtons.eventSelectors) === -1) {
-      $(document)
-        .on('click', selector, function (e) {
-          this.markSelected($(e.target));
-        }.bind(this))
-        .on('focus blur', selector, function (e) {
-          var state = (e.type === 'focusin') ? 'focused' : 'blurred';
+  SelectionButtons.prototype.addDocumentLevelEvents = function () {
+    this.clickHandler = this.getClickHandler();
+    this.focusHandler = this.getFocusHandler({ 'level' : 'document' });
 
-          this.markFocused($(e.target), state);
-        }.bind(this));
-      SelectionButtons.eventSelectors.push(selector);
+    $(document)
+      .on('click', this.selector, this.clickHandler)
+      .on('focus blur', this.selector, this.focusHandler);
+  };
+  SelectionButtons.prototype.getClickHandler = function () {
+    return function (e) {
+      this.markSelected($(e.target));
+    }.bind(this);
+  };
+  SelectionButtons.prototype.getFocusHandler = function (opts) {
+    var focusEvent = (opts.level === 'document') ? 'focusin' : 'focus'
+
+    return function (e) {
+      var state = (e.type === focusEvent) ? 'focused' : 'blurred';
+
+      this.markFocused($(e.target), state);
+    }.bind(this);
+  };
+  SelectionButtons.prototype.destroy = function () {
+    if (typeof this.selector !== 'undefined') {
+      $(document)
+        .off('click', this.selector, this.clickHandler)
+        .off('focus blur', this.selector, this.focusHandler);
+    } else {
+      this.$elms
+        .off('click', this.clickHandler)
+        .off('focus blur', this.focusHandler);
     }
   };
 
-  var selectionButtons = function (elms, opts) {
-    new SelectionButtons(elms, opts);
-  };
-  selectionButtons.removeEventsFor = function (selector) {
-    $(document)
-      .off('click', selector)
-      .off('focus blur', selector);
-    SelectionButtons.eventSelectors = $.grep(SelectionButtons.eventSelectors, function (entry) {
-      return entry !== selector;
-    });
-  };
-
-  root.GOVUK.selectionButtons = selectionButtons;
+  root.GOVUK.SelectionButtons = SelectionButtons;
 }).call(this);
