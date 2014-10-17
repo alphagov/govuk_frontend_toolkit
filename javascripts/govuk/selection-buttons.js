@@ -5,8 +5,9 @@
 
   if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
 
-  var BaseButtons = function ($elms, opts) {
-    this.$elms = $elms;
+  var SelectionButtons = function (elmsOrSelector, opts) {
+    var $elms;
+
     this.selectedClass = 'selected';
     this.focusedClass = 'focused';
     if (opts !== undefined) {
@@ -14,124 +15,97 @@
         this[optionName] = optionObj;
       }.bind(this));
     }
-    this.setEventNames();
-    this.getSelections();
-    this.bindEvents();
+    if (typeof elmsOrSelector === 'string') {
+      $elms = $(elmsOrSelector);
+      this.selector = elmsOrSelector;
+      this.setInitialState($(this.selector));
+    } else {
+      this.$elms = elmsOrSelector;
+      this.setInitialState(this.$elms);
+    }
+    this.addEvents();
   };
-  BaseButtons.prototype.setEventNames = function () {
-    this.selectionEvents = 'click';
-    this.focusEvents = 'focus blur';
+  SelectionButtons.prototype.addEvents = function () {
+    if (typeof this.$elms !== 'undefined') {
+      this.addElementLevelEvents();
+    } else {
+      this.addDocumentLevelEvents();
+    }
   };
-  BaseButtons.prototype.markFocused = function ($elm, state) {
-    var elmId = $elm.attr('id');
+  SelectionButtons.prototype.setInitialState = function ($elms) {
+    $elms.each(function (idx, elm) {
+      var $elm = $(elm);
 
+      if ($elm.is(':checked')) {
+        this.markSelected($elm);
+      }
+    }.bind(this));
+  };
+  SelectionButtons.prototype.markFocused = function ($elm, state) {
     if (state === 'focused') {
       $elm.parent('label').addClass(this.focusedClass);
     } else {
       $elm.parent('label').removeClass(this.focusedClass);
     }
   };
-  BaseButtons.prototype.bindEvents = function () {
-    var selectionEventHandler = this.markSelected.bind(this),
-        focusEventHandler = this.markFocused.bind(this);
+  SelectionButtons.prototype.markSelected = function ($elm) {
+    var radioName;
+
+    if ($elm.attr('type') === 'radio') {
+      radioName = $elm.attr('name'),
+      $($elm[0].form).find('input[name="' + radioName + '"]')
+        .parent('label')
+        .removeClass(this.selectedClass);
+      $elm.parent('label').addClass(this.selectedClass);
+    } else { // checkbox
+      if ($elm.is(':checked')) {
+        $elm.parent('label').addClass(this.selectedClass);
+      } else {
+        $elm.parent('label').removeClass(this.selectedClass);
+      }
+    }
+  };
+  SelectionButtons.prototype.addElementLevelEvents = function () {
+    this.clickHandler = this.getClickHandler();
+    this.focusHandler = this.getFocusHandler({ 'level' : 'element' });
 
     this.$elms
-      .on(this.selectionEvents, function (e) {
-        selectionEventHandler($(e.target));
-      })
-      .on(this.focusEvents, function (e) {
-        var state = (e.type === 'focus') ? 'focused' : 'blurred';
+      .on('click', this.clickHandler)
+      .on('focus blur', this.focusHandler);
+  };
+  SelectionButtons.prototype.addDocumentLevelEvents = function () {
+    this.clickHandler = this.getClickHandler();
+    this.focusHandler = this.getFocusHandler({ 'level' : 'document' });
 
-        focusEventHandler($(e.target), state);
-      });
+    $(document)
+      .on('click', this.selector, this.clickHandler)
+      .on('focus blur', this.selector, this.focusHandler);
   };
+  SelectionButtons.prototype.getClickHandler = function () {
+    return function (e) {
+      this.markSelected($(e.target));
+    }.bind(this);
+  };
+  SelectionButtons.prototype.getFocusHandler = function (opts) {
+    var focusEvent = (opts.level === 'document') ? 'focusin' : 'focus'
 
-  var RadioButtons = function ($elms, opts) {
-    BaseButtons.apply(this, arguments);
-  };
-  RadioButtons.prototype.setEventNames = function () {
-    // some browsers fire the 'click' when the selected radio changes by keyboard
-    this.selectionEvents = 'click change';
-    this.focusEvents = 'focus blur';
-  };
-  RadioButtons.prototype.getSelections = function () {
-    var selectionEventHandler = this.markSelected.bind(this);
+    return function (e) {
+      var state = (e.type === focusEvent) ? 'focused' : 'blurred';
 
-    this.selections = {};
-    $.each(this.$elms, function (index, elm) {
-      var $elm = $(elm),
-          radioName = $elm.attr('name');
-
-      if (typeof this.selections[radioName] === 'undefined') {
-        this.selections[radioName] = false;
-      }
-      if ($elm.is(':checked')) {
-        selectionEventHandler($elm);
-      }
-    }.bind(this));
+      this.markFocused($(e.target), state);
+    }.bind(this);
   };
-  RadioButtons.prototype.bindEvents = function () {
-    BaseButtons.prototype.bindEvents.call(this);
-  };
-  RadioButtons.prototype.markSelected = function ($elm) {
-    var radioName = $elm.attr('name'),
-        $previousSelection = this.selections[radioName];
-
-    if ($previousSelection) {
-      $previousSelection.parent('label').removeClass(this.selectedClass);
-    }
-    $elm.parent('label').addClass(this.selectedClass);
-    this.selections[radioName] = $elm;
-  };
-  RadioButtons.prototype.markFocused = function ($elm) {
-    BaseButtons.prototype.markFocused.apply(this, arguments);
-  };
-
-  var CheckboxButtons = function ($elms, opts) {
-    BaseButtons.apply(this, arguments);
-  };
-  CheckboxButtons.prototype.setEventNames = function () {
-    BaseButtons.prototype.setEventNames.call(this);
-  };
-  CheckboxButtons.prototype.getSelections = function () {
-    var selectionEventHandler = this.markSelected.bind(this);
-
-    this.$elms.each(function (idx, elm) {
-      var $elm = $(elm);
-
-      if ($elm.is(':checked')) {
-        selectionEventHandler($elm);
-      }
-    });
-  };
-  CheckboxButtons.prototype.bindEvents = function () {
-    BaseButtons.prototype.bindEvents.call(this);
-  };
-  CheckboxButtons.prototype.markSelected = function ($elm) {
-    if ($elm.is(':checked')) {
-      $elm.parent('label').addClass(this.selectedClass);
+  SelectionButtons.prototype.destroy = function () {
+    if (typeof this.selector !== 'undefined') {
+      $(document)
+        .off('click', this.selector, this.clickHandler)
+        .off('focus blur', this.selector, this.focusHandler);
     } else {
-      $elm.parent('label').removeClass(this.selectedClass);
-    }
-  };
-  CheckboxButtons.prototype.markFocused = function ($elm) {
-    BaseButtons.prototype.markFocused.apply(this, arguments);
-  };
-
-  root.GOVUK.RadioButtons = RadioButtons;
-  root.GOVUK.CheckboxButtons = CheckboxButtons;
-
-  var selectionButtons = function ($elms, opts) {
-    var $radios = $elms.filter('[type=radio]'),
-        $checkboxes = $elms.filter('[type=checkbox]');
-
-    if ($radios) {
-      new GOVUK.RadioButtons($radios, opts);
-    }
-    if ($checkboxes) {
-      new GOVUK.CheckboxButtons($checkboxes, opts);
+      this.$elms
+        .off('click', this.clickHandler)
+        .off('focus blur', this.focusHandler);
     }
   };
 
-  root.GOVUK.selectionButtons = selectionButtons;
+  root.GOVUK.SelectionButtons = SelectionButtons;
 }).call(this);

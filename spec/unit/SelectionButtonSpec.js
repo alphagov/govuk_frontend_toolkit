@@ -2,7 +2,8 @@ describe("selection-buttons", function () {
   var $radioButtons,
       $radioLabels,
       $checkboxButtons,
-      $checkboxLabels;
+      $checkboxLabels,
+      buttonsInstance;
 
   beforeEach(function () {
     $radioLabels = $(
@@ -35,309 +36,730 @@ describe("selection-buttons", function () {
     );
     $radioButtons = $radioLabels.find('input');
     $checkboxButtons = $checkboxLabels.find('input');
-    $(document.body).append($radioLabels);
-    $(document.body).append($checkboxLabels);
+    $radioForm = $('<form action="" method="post" />');
+    $checkboxForm = $('<form action="" method="post" />');
+    $content = $('<div id="content" />');
+    $radioForm.append($radioLabels);
+    $checkboxForm.append($checkboxLabels);
+    $content.append($radioForm);
+    $content.append($checkboxForm);
+    $(document.body).append($content);
   });
 
   afterEach(function () {
-    $radioLabels.remove();
-    $checkboxLabels.remove();
+    $content.remove();
   });
 
-  describe("RadioButtons", function () {
-    it("Should create a new instance with the correct interface", function () {
-      var buttons = new GOVUK.RadioButtons($radioButtons);
-
-      expect(buttons.getSelections).toBeDefined();
-      expect(buttons.bindEvents).toBeDefined();
-      expect(buttons.markSelected).toBeDefined();
-      expect(buttons.markFocused).toBeDefined();
-    });
-
-    it("Should set the selectedClass property if sent in as an option", function () {
-      var buttons = new GOVUK.RadioButtons($radioButtons, { 'selectedClass' : 'selectable-selected' });
-
-      expect(buttons.selectedClass).toEqual('selectable-selected');
-    });
-
-    it("Should set the focusedClass property if sent in as an option", function () {
-      var buttons = new GOVUK.RadioButtons($radioButtons, { 'focusedClass' : 'selectable-focused' });
-
-      expect(buttons.focusedClass).toEqual('selectable-focused');
-    });
-
-    describe("getSelections method", function () {
-      it("Should mark the label of any checked radios as selected", function () {
-        var radioButtonsMock = {
-              'markSelected' : GOVUK.RadioButtons.prototype.markSelected,
-              '$elms' : $radioButtons,
-              'selectedClass' : 'selected'
-            };
-
-        $radioButtons.eq(0).attr('checked', true);
-        spyOn(radioButtonsMock, 'markSelected').andCallThrough();
-        GOVUK.RadioButtons.prototype.getSelections.call(radioButtonsMock);
-        expect(radioButtonsMock.markSelected).toHaveBeenCalled();
-        expect($radioButtons.eq(0).parent('label').hasClass('selected')).toBe(true);
-      });
-    });
-
-    describe("setEventNames method", function () {
-      it("Should set the selectionEvents and focusEvents properties on the instance", function () {
-        var radioButtonsMock = {};
-
-        GOVUK.RadioButtons.prototype.setEventNames.call(radioButtonsMock);
-        expect(typeof radioButtonsMock.focusEvents !== 'undefined').toBe(true);
-        expect(typeof radioButtonsMock.selectionEvents !== 'undefined').toBe(true);
-      });
-    });
-
-    describe("bindEvents method", function () {
-      it("Should bind click and change events to each radio", function () {
-        var radioButtonsMock = {
-              '$elms' : $radioButtons,
-              'selectionEvents' : 'click change',
-              'focusEvents' : 'focus blur',
-              'markSelected' : function () {},
-              'markFocused' : function () {}
-            },
-            eventsBound = false;
-
-        spyOn($.fn, 'on').andCallFake(function (evt, func) {
-          if (evt === 'click change') {
-            eventsBound = true;
-          }
-          return $.fn;
+  describe("When buttonsInstance = new GOVUK.SelectionButtons is called with a jQuery object", function () {
+    describe("When that object contains only radio inputs", function () {
+      describe("At the point it is called", function () {
+        it("Should do nothing if no radios are checked", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(1).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
         });
-        expect($.fn.on.calls.length).toEqual(0);
-        GOVUK.RadioButtons.prototype.bindEvents.call(radioButtonsMock);
-        expect($.fn.on).toHaveBeenCalled();
-        expect(eventsBound).toEqual(true);
-      });
 
-      it("Should call the markSelected method on any checked radio that's the target of an event", function () {
-        var radioButtonsMock = {
-              '$elms' : $radioButtons,
-              'selectionEvents' : 'click change',
-              'focusEvents' : 'focus blur',
-              'markSelected' : function () {},
-              'markFocused' : function () {}
-              },
-            eventsBound = false;
-
-        spyOn($.fn, 'on').andCallFake(function (evt, func) {
-          if (evt === 'click change') {
-            callback = func;
-          }
-          return $.fn;
+        it("Should mark checked radios with the selected class", function () {
+          $radioButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
-        spyOn(radioButtonsMock, 'markSelected');
-        radioButtonsMock.$elms.eq(0).attr('checked', true);
-        GOVUK.RadioButtons.prototype.bindEvents.call(radioButtonsMock);
-        callback({ 'target' : radioButtonsMock.$elms[0] });
-        expect(radioButtonsMock.markSelected).toHaveBeenCalled();
+
+        it("Should mark checked radios with the custom selected class if given", function () {
+          $radioButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons, { 'selectedClass' : 'selectable-selected' });
+          expect($radioLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        });
+      });
+
+      describe("If one of those radios receives focus", function () {
+        it("Should add the focused class to that radio", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
+        });
+
+        it("Should add a custom focused class to that radio if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons, { 'focusedClass' : 'selectable-focused' });
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
+      });
+
+      describe("If one of those radios loses focus", function () {
+        it("Should remove the focused class from that radio", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(false);
+        });
+
+        it("Should add a custom focused class to that radio if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons, { 'focusedClass' : 'selectable-focused' });
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(false);
+        });
+      });
+
+      describe("If one of those radios is clicked", function () {
+        it("Should mark that radio with the selected class", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should remove the selected class from all other radios", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+          $radioLabels.eq(1).addClass('selected');
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
+        });
       });
     });
 
-    describe("markSelected method", function () {
-      it("Should add the selectedClass class to the label of the sent in radio", function () {
-        var radioButtonsMock = {
-              'selections' : {
-                'size' : false
-              },
-              'selectedClass' : 'selected'
-            },
-            $clickedRadio = $radioButtons.eq(0);
+    describe("When that object contains only checkbox inputs", function () {
+      describe("At the point it is called", function () {
+        it("Should do nothing if no checkboxes are checked", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(false);
+          expect($checkboxLabels.eq(1).hasClass('selected')).toBe(false);
+          expect($checkboxLabels.eq(2).hasClass('selected')).toBe(false);
+        });
 
-        GOVUK.RadioButtons.prototype.markSelected.call(radioButtonsMock, $clickedRadio);
-        expect($clickedRadio.parent('label').hasClass('selected')).toEqual(true);
+        it("Should mark checked checkboxes with the selected class", function () {
+          $checkboxButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should mark all checked checkboxes with the selected class if there are more than one", function () {
+          $checkboxButtons.eq(0).attr('checked', true);
+          $checkboxButtons.eq(1).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+          expect($checkboxLabels.eq(1).hasClass('selected')).toBe(true);
+        });
+
+        it("Should mark checked checkboxes with the custom selected class if given", function () {
+          $checkboxButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons, { 'selectedClass' : 'selectable-selected' });
+          expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        });
       });
 
-      it("Should remove the selectedClass class from the label of the previously selected radio", function () {
-        var radioButtonsMock = {
-              'selections' : {
-                'size' : $radioButtons.eq(1)
-              },
-              'selectedClass' : 'selected'
-            },
-            $clickedRadio = $radioButtons.eq(0);
+      describe("If one of those checkboxes receives focus", function () {
+        it("Should add the focused class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+        });
 
-        $radioLabels.eq(1).addClass('selected');
-        GOVUK.RadioButtons.prototype.markSelected.call(radioButtonsMock, $clickedRadio);
-        expect($('#medium').parent('label').hasClass('selected')).toEqual(false);
-
-      });
-    });
-
-    describe("markFocused method", function () {
-      var radioButtonsMock = {
-            'focused' : false,
-            'focusedClass' : 'focused'
-          };
-
-      it("Should add the focusedClass class to the sent radio if it is focused", function () {
-        GOVUK.RadioButtons.prototype.markFocused.apply(radioButtonsMock, [$radioButtons.eq(0), 'focused']);
-
-        expect($radioLabels.eq(0).hasClass(radioButtonsMock.focusedClass)).toBe(true);
+        it("Should add a custom focused class to that checkbox if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons, { 'focusedClass' : 'selectable-focused' });
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
       });
 
-      it("Should remove the focusedClass class from the sent radio if it is blurred", function () {
-        $radioLabels.eq(0).addClass(radioButtonsMock.focusedClass);
-        GOVUK.RadioButtons.prototype.markFocused.apply(radioButtonsMock, [$radioButtons.eq(0), 'blurred']);
+      describe("If one of those checkboxes loses focus", function () {
+        it("Should add the focused class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(false);
+        });
 
-        expect($radioLabels.eq(0).hasClass(radioButtonsMock.focusedClass)).toBe(false);
+        it("Should add a custom focused class to that checkbox if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons, { 'focusedClass' : 'selectable-focused' });
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(false);
+        });
       });
-    });
-  });
 
-  describe("CheckboxButtons", function () {
-    it("Should create a new instance with the correct interface", function () {
-      var buttons = new GOVUK.CheckboxButtons($checkboxButtons);
+      describe("If one of those checkboxes is clicked", function () {
+        it("Should add the selected class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
+          $checkboxButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+        });
 
-      expect(buttons.getSelections).toBeDefined();
-      expect(buttons.bindEvents).toBeDefined();
-      expect(buttons.markSelected).toBeDefined();
-      expect(buttons.markFocused).toBeDefined();
-    });
-
-    describe("getSelections method", function () {
-      it("Should add the selectedClass class to the label of a checkbox that is checked", function () {
-        var checkboxButtonsMock = {
-              '$elms' : $checkboxButtons,
-              'markSelected' : function () {}
-            };
-
-        checkboxButtonsMock.$elms.eq(0).attr('checked', true);
-        spyOn(checkboxButtonsMock, 'markSelected');
-        GOVUK.CheckboxButtons.prototype.getSelections.call(checkboxButtonsMock);
-        expect(checkboxButtonsMock.markSelected).toHaveBeenCalled();
-      });
-    });
-
-    describe("setEventNames method", function () {
-      it("Should set the selectionEvents and focusEvents properties on the instance", function () {
-        var checkboxButtonsMock = {};
-
-        GOVUK.CheckboxButtons.prototype.setEventNames.call(checkboxButtonsMock);
-        expect(typeof checkboxButtonsMock.focusEvents !== 'undefined').toBe(true);
-        expect(typeof checkboxButtonsMock.selectionEvents !== 'undefined').toBe(true);
+        it("Should add the selected class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons, { 'selectedClass' : 'selectable-selected' });
+          $checkboxButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        });
       });
     });
 
-    describe("bindEvents method", function () {
-      var checkboxButtonsMock;
+    describe("When that object contains a mixture of checkbox and radio inputs", function () {
+      var $mixedButtons;
 
       beforeEach(function () {
-        checkboxButtonsMock = {
-          '$elms' : $checkboxButtons
-        };
+        $mixedButtons = $checkboxButtons.add($radioButtons);
       });
 
-      it("Should add a click event to each checkbox that fires the markSelected method", function () {
-        var eventCalled = false;
-
-        checkboxButtonsMock.markSelected = function () {};
-        checkboxButtonsMock.markFocused = function () {};
-        checkboxButtonsMock.selectionEvents = 'click';
-        checkboxButtonsMock.focusEvents = 'focus blur';
-        spyOn(checkboxButtonsMock, 'markSelected');
-        spyOn($.fn, 'on').andCallFake(function (evt, func) {
-          if (evt === 'click') {
-            eventCalled = true;
-            callback = func;
-          }
-          return $.fn;
+      describe("At the point it is called", function () {
+        it("Should do nothing if no checkboxes or radios are checked", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(false);
+          expect($checkboxLabels.eq(1).hasClass('selected')).toBe(false);
+          expect($checkboxLabels.eq(2).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(1).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
         });
-        $checkboxButtons.eq(0).attr('checked', true);
-        GOVUK.CheckboxButtons.prototype.bindEvents.call(checkboxButtonsMock);
-        expect(eventCalled).toBe(true);
-        callback({ 'target' : $checkboxButtons.eq(0) });
-        expect(checkboxButtonsMock.markSelected).toHaveBeenCalled();
-      });
 
-      it("Should add focus and blur events to each checkbox that fires the markFocused method", function () {
-        var eventCalled = false;
+        it("Should mark checked checkboxes or radios with the selected class", function () {
+          $mixedButtons.eq(0).attr('checked', true);
+          $mixedButtons.eq(3).attr('checked', true);
 
-        checkboxButtonsMock.markFocused = function () {};
-        checkboxButtonsMock.markSelected = function () {};
-        checkboxButtonsMock.selectionEvents = 'click';
-        checkboxButtonsMock.focusEvents = 'focus blur';
-        spyOn(checkboxButtonsMock, 'markFocused');
-        spyOn($.fn, 'on').andCallFake(function (evt, func) {
-          if (evt === 'focus blur') {
-            eventCalled = true;
-            callback = func;
-          }
-          return $.fn;
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
-        GOVUK.CheckboxButtons.prototype.bindEvents.call(checkboxButtonsMock);
-        expect(eventCalled).toBe(true);
-        callback({
-          'target' : $checkboxButtons.eq(0),
-          'type' : 'focus'
+
+        it("Should mark checked checkboxes or radios with the custom selected class if given", function () {
+          $mixedButtons.eq(0).attr('checked', true);
+          $mixedButtons.eq(3).attr('checked', true);
+
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'selectedClass' : 'selectable-selected' });
+          expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+          expect($radioLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
-        expect(checkboxButtonsMock.markFocused).toHaveBeenCalled();
-      });
-    });
-
-    describe("markSelected method", function () {
-      var checkboxButtonsMock = {
-            'selectedClass' : 'selected'
-          };
-
-      it("Should add the selectedClass class to a checked checkbox", function () {
-        $checkboxButtons.eq(0).attr('checked', true);
-        GOVUK.CheckboxButtons.prototype.markSelected.call(checkboxButtonsMock, $checkboxButtons.eq(0));
-        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.selectedClass)).toBe(true);
       });
 
-      it("Should remove the selectedClass class from an unchecked checkbox", function () {
-        $checkboxButtons.eq(0).addClass(checkboxButtonsMock.selectedClass);
-        GOVUK.CheckboxButtons.prototype.markSelected.call(checkboxButtonsMock, $checkboxButtons.eq(0));
-        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.selectedClass)).toBe(false);
-      });
-    });
+      describe("If a checkbox in the set receives focus", function () {
+        it("Should add the focused class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+        });
 
-    describe("markFocused method", function () {
-      var checkboxButtonsMock = {
-            'focused' : false,
-            'focusedClass' : 'focused'
-          };
-
-      it("Should add the focusedClass class to the sent radio if it is focused", function () {
-        GOVUK.CheckboxButtons.prototype.markFocused.apply(checkboxButtonsMock, [$checkboxButtons.eq(0), 'focused']);
-
-        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.focusedClass)).toBe(true);
+        it("Should add a custom focused class to that checkbox if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'focusedClass' : 'selectable-focused' });
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
       });
 
-      it("Should remove the focusedClass class from the sent radio if it is blurred", function () {
-        $checkboxLabels.eq(0).addClass(checkboxButtonsMock.focusedClass);
-        GOVUK.CheckboxButtons.prototype.markFocused.apply(checkboxButtonsMock, [$checkboxButtons.eq(0), 'blurred']);
+      describe("If a checkbox in the set loses focus", function () {
+        it("Should add the focused class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(false);
+        });
 
-        expect($checkboxLabels.eq(0).hasClass(checkboxButtonsMock.focusedClass)).toBe(false);
+        it("Should add a custom focused class to that checkbox if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'focusedClass' : 'selectable-focused' });
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(false);
+        });
+      });
+
+      describe("If one of those checkboxes is clicked", function () {
+        it("Should add the selected class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $checkboxButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should add the selected class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'selectedClass' : 'selectable-selected' });
+          $checkboxButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        });
+      });
+
+      describe("If a radio in the set receives focus", function () {
+        it("Should add the focused class to that radio", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
+        });
+
+        it("Should add a custom focused class to that radio if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'focusedClass' : 'selectable-focused' });
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
+      });
+
+      describe("If a radio in the set loses focus", function () {
+        it("Should remove the focused class from that radio", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(false);
+        });
+
+        it("Should add a custom focused class to that radio if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'focusedClass' : 'selectable-focused' });
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(false);
+        });
+      });
+
+      describe("If a radio in the set is clicked", function () {
+        it("Should mark that radio with the selected class", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should remove the selected class from all other radios", function () {
+          buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
+          $radioLabels.eq(1).addClass('selected');
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
+        });
       });
     });
   });
 
-  describe("selectionButtons", function () {
-    it("Should create an instance of RadioButtons for a set of radios", function () {
-      spyOn(GOVUK, 'RadioButtons');
-      GOVUK.selectionButtons($radioButtons);
-      expect(GOVUK.RadioButtons).toHaveBeenCalled();
-    }); 
+  describe("When new GOVUK.SelectionButtons is called with a selector", function () {
+    describe("When that selector matches radio inputs", function () {
+      afterEach(function () {
+        buttonsInstance.destroy();
+      });
 
-    it("Should create an instance of CheckboxButtons for a set of checkboxes", function () {
-      spyOn(GOVUK, 'CheckboxButtons');
-      GOVUK.selectionButtons($checkboxButtons);
-      expect(GOVUK.CheckboxButtons).toHaveBeenCalled();
-    }); 
+      describe("At the point it is called", function () {
+        it("Should do nothing if no radios are checked", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(1).hasClass('selected')).toBe(false);
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
+        });
 
-    it("Should create instances of RadioButtons and CheckboxButtons for a set containing radios and checkboxes", function () {
-      spyOn(GOVUK, 'RadioButtons');
-      spyOn(GOVUK, 'CheckboxButtons');
-      GOVUK.selectionButtons($checkboxButtons.add($radioButtons));
-      expect(GOVUK.RadioButtons).toHaveBeenCalled();
-      expect(GOVUK.CheckboxButtons).toHaveBeenCalled();
-    }); 
+        it("Should mark checked radios with the selected class", function () {
+          $radioButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should mark checked radios with the custom selected class if given", function () {
+          $radioButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']", { 'selectedClass' : 'selectable-selected' });
+          expect($radioLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        });
+      });
+
+      describe("If one of those radios receives focus", function () {
+        it("Should add the focused class to that radio", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
+        });
+
+        it("Should add a custom focused class to that radio if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']", { 'focusedClass' : 'selectable-focused' });
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
+      });
+
+      describe("If one of those radios loses focus", function () {
+        it("Should remove the focused class from that radio", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(false);
+        });
+
+        it("Should add a custom focused class to that radio if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']", { 'focusedClass' : 'selectable-focused' });
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(false);
+        });
+      });
+
+      describe("If one of those radios is clicked", function () {
+        it("Should mark that radio with the selected class", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should remove the selected class from all other radios", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          $radioLabels.eq(1).addClass('selected');
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
+        });
+      });
+    });
+
+    describe("When that selector matches checkbox inputs", function () {
+      afterEach(function () {
+        buttonsInstance.destroy();
+      });
+
+      describe("At the point it is called", function () {
+        it("Should do nothing if no checkboxes are checked", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(false);
+          expect($checkboxLabels.eq(1).hasClass('selected')).toBe(false);
+          expect($checkboxLabels.eq(2).hasClass('selected')).toBe(false);
+        });
+
+        it("Should mark checked checkboxes with the selected class", function () {
+          $checkboxButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+        });
+
+        it("Should mark all checked checkboxes with the selected class if there are more than one", function () {
+          $checkboxButtons.eq(0).attr('checked', true);
+          $checkboxButtons.eq(1).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+          expect($checkboxLabels.eq(1).hasClass('selected')).toBe(true);
+        });
+
+        it("Should mark checked checkboxes with the custom selected class if given", function () {
+          $checkboxButtons.eq(0).attr('checked', true);
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']", { 'selectedClass' : 'selectable-selected' });
+          expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        });
+      });
+
+      describe("If one of those checkboxes receives focus", function () {
+        it("Should add the focused class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+        });
+
+        it("Should add a custom focused class to that checkbox if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']", { 'focusedClass' : 'selectable-focused' });
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
+      });
+
+      describe("If one of those checkboxes loses focus", function () {
+        it("Should add the focused class to that checkbox", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(false);
+        });
+
+        it("Should add a custom focused class to that checkbox if specified as an option", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']", { 'focusedClass' : 'selectable-focused' });
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(false);
+        });
+      });
+    });
+
+    describe("When that selector matches a mixture of checkbox and radio inputs", function () {
+      var $mixedButtons;
+
+      beforeEach(function () {
+        $mixedButtons = $checkboxButtons.add($radioButtons);
+      });
+
+      afterEach(function () {
+        buttonsInstance.destroy();
+      });
+
+      it("Should do nothing if no checkboxes or radios are checked", function () {
+        buttonsInstance = new GOVUK.SelectionButtons("label.selectable input");
+        expect($checkboxLabels.eq(0).hasClass('selected')).toBe(false);
+        expect($checkboxLabels.eq(1).hasClass('selected')).toBe(false);
+        expect($checkboxLabels.eq(2).hasClass('selected')).toBe(false);
+        expect($radioLabels.eq(0).hasClass('selected')).toBe(false);
+        expect($radioLabels.eq(1).hasClass('selected')).toBe(false);
+        expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
+      });
+
+      it("Should mark checked checkboxes or radios with the selected class", function () {
+        $mixedButtons.eq(0).attr('checked', true);
+        $mixedButtons.eq(3).attr('checked', true);
+
+        buttonsInstance = new GOVUK.SelectionButtons("label.selectable input");
+        expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
+        expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
+      });
+
+      it("Should mark checked checkboxes or radios with the custom selected class if given", function () {
+        $mixedButtons.eq(0).attr('checked', true);
+        $mixedButtons.eq(3).attr('checked', true);
+
+        buttonsInstance = new GOVUK.SelectionButtons("label.selectable input", { 'selectedClass' : 'selectable-selected' });
+        expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+        expect($radioLabels.eq(0).hasClass('selectable-selected')).toBe(true);
+      });
+    });
+  });
+
+  describe("When GOVUK.SelectionButtons is called with a selector and then the page content is replaced", function () {
+    describe("When that selector matches radio inputs", function () {
+      describe("If one of those radios is clicked", function () {
+        afterEach(function () {
+          buttonsInstance.destroy();
+        });
+
+        it("Should mark that radio with the selected class", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $("label.selectable input[type='radio']").eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($("label.selectable input[type='radio']").eq(0).parent('label').hasClass('selected')).toBe(true);
+        });
+
+        it("Should remove the selected class from all other radios", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $radioButtons = $("label.selectable input[type='radio']");
+          $radioLabels = $radioButtons.parent('label');
+          $radioLabels.eq(1).addClass('selected');
+          $radioButtons.eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
+        });
+      });
+
+      describe("If one of those radios is focused", function () {
+        afterEach(function () {
+          buttonsInstance.destroy();
+        });
+
+        it("Should add the focused class to the radio", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $radioButtons = $("label.selectable input[type='radio']");
+          $radioLabels = $radioButtons.parent('label');
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true)
+        });
+
+        it("Should add a custom focused class to the radio if sent in as an option", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']", { 'focusedClass' : 'selectable-focused' });
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $radioButtons = $("label.selectable input[type='radio']");
+          $radioLabels = $radioButtons.parent('label');
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true)
+        });
+
+        it("Should remove the focused class from a radio when it loses focus", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $radioButtons = $("label.selectable input[type='radio']");
+          $radioLabels = $radioButtons.parent('label');
+          $radioButtons.eq(0).focus();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true)
+          $radioButtons.eq(0).blur();
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(false)
+        });
+      });
+    });
+
+    describe("When that selector matches checkbox inputs", function () {
+      describe("If one of those checkboxes is clicked", function () {
+        afterEach(function () {
+          buttonsInstance.destroy();
+        });
+
+        it("Should add the selected class to the checkbox", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $("label.selectable input[type='checkbox']").eq(0)
+            .attr('checked', true)
+            .trigger('click');
+          expect($("label.selectable input[type='checkbox']").eq(0).parent('label').hasClass('selected')).toBe(true);
+        });
+      });
+
+      describe("If one of those checkboxes is focused", function () {
+        afterEach(function () {
+          buttonsInstance.destroy();
+        });
+
+        it("Should add the focused class to the checkbox", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $checkboxButtons = $("label.selectable input[type='checkbox']");
+          $checkboxLabels = $checkboxButtons.parent('label');
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+        });
+
+        it("Should add a custom focused class to the checkbox if sent in as an option", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']", { 'focusedClass' : 'selectable-focused' });
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $checkboxButtons = $("label.selectable input[type='checkbox']");
+          $checkboxLabels = $checkboxButtons.parent('label');
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('selectable-focused')).toBe(true);
+        });
+
+        it("Should remove the focused class from the checkbox when it loses focus", function () {
+          var contentCache;
+
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          contentCache = $('#content').html();
+          $('#content').html('');
+          $('#content').html(contentCache);
+          $checkboxButtons = $("label.selectable input[type='checkbox']");
+          $checkboxLabels = $checkboxButtons.parent('label');
+          $checkboxButtons.eq(0).focus();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(true);
+          $checkboxButtons.eq(0).blur();
+          expect($checkboxLabels.eq(0).hasClass('focused')).toBe(false);
+        });
+      });
+    });
+  });
+
+  describe("GOVUK.SelectionButtons.prototype.destroy", function () {
+    it("Should remove the events bound to the jQuery-wrapped elements sent into GOVUK.SelectionButtons", function () {
+      var clickCallbackBound = false,
+          focusBlurCallbackBound = false,
+          clickCallbackCancelled = false,
+          focusBlurCallbackCancelled = false;
+
+      spyOn($.fn, "on").andCallFake(function (evt, callback) {
+        if (this === $radioButtons) {
+          if (evt === "click") {
+            clickCallbackBound = callback;
+          }
+          if (evt === "focus blur") {
+            focusBlurCallbackBound = callback;
+          }
+        }
+        return this;
+      });
+
+      spyOn($.fn, "off").andCallFake(function (evt, callback) {
+        if (this === $radioButtons) {
+          if (evt === "click") {
+            clickCallbackCancelled = callback;
+          }
+          if (evt === "focus blur") {
+            focusBlurCallbackCancelled = callback;
+          }
+        }
+        return this;
+      });
+      buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
+      expect(clickCallbackBound).not.toBe(false);
+      expect(focusBlurCallbackBound).not.toBe(false);
+      buttonsInstance.destroy();
+      expect(clickCallbackCancelled).toEqual(clickCallbackBound);
+      expect(focusBlurCallbackCancelled).toEqual(focusBlurCallbackBound);
+    });
+
+    it("Should remove the events bound to the document for the selector was sent into GOVUK.SelectionButtons", function () {
+      var clickCallbackBound = false,
+          focusBlurCallbackBound = false,
+          clickCallbackCancelled = false,
+          focusBlurCallbackCancelled = false;
+
+      spyOn($.fn, "on").andCallFake(function (evt, selector, callback) {
+        if ((this[0] === document) && (selector === "label.selectable input[type='checkbox']")) {
+          if (evt === "click") {
+            clickCallbackBound = callback;
+          }
+          if (evt === "focus blur") {
+            focusBlurCallbackBound = callback;
+          }
+        }
+        return this;
+      });
+
+      spyOn($.fn, "off").andCallFake(function (evt, selector, callback) {
+        if ((this[0] === document) && (selector === "label.selectable input[type='checkbox']")) {
+          if (evt === "click") {
+            clickCallbackCancelled = callback;
+          }
+          if (evt === "focus blur") {
+            focusBlurCallbackCancelled = callback;
+          }
+        }
+        return this;
+      });
+      buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+      expect(clickCallbackBound).not.toBe(false);
+      expect(focusBlurCallbackBound).not.toBe(false);
+      buttonsInstance.destroy();
+      expect(clickCallbackCancelled).toEqual(clickCallbackBound);
+      expect(focusBlurCallbackCancelled).toEqual(focusBlurCallbackBound);
+    });
   });
 });
