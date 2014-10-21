@@ -1,3 +1,8 @@
+# 2.0.0
+
+- Add support for selection-button events to be document-level https://github.com/alphagov/govuk_frontend_toolkit/pull/139
+- The `GOVUK.selectionButtons` interface is now deprecated. Details are in the [README](https://github.com/alphagov/govuk_frontend_toolkit#deprecated-functionality).
+
 # 1.7.0
 
 - Create new grid helpers for creating grid layouts
