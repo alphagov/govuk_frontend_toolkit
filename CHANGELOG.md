@@ -1,3 +1,7 @@
+# 2.0.1
+
+- Fix new grid helpers to ensure content using %site-width-container is centred in IE.
+
 # 2.0.0
 
 - Add support for selection-button events to be document-level https://github.com/alphagov/govuk_frontend_toolkit/pull/139
