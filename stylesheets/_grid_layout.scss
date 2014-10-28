@@ -24,7 +24,7 @@ $site-width: 960px;
   @include media(tablet){
     margin: 0 $gutter;
   }
-  @include media($min-width: ($site-width + $gutter * 2), $ignore-for-ie: true){
+  @include media($min-width: ($site-width + $gutter * 2)){
     margin: 0 auto;
   }
 }
