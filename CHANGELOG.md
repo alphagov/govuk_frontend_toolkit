@@ -1,3 +1,11 @@
+# 3.0.0
+
+- Change publishing method to not use git submodules in govuk_frontend_toolkit_npm.
+  This is a major version bump because it will move the toolkit from
+  `./node_modules/govuk_frontend_toolkit/govuk_frontend_toolkit/`
+  to `./node_modules/govuk_frontend_toolkit/`, which will break relative imports in Sass.
+- Fix typo in Sass comment
+
 # 2.0.1
 
 - Fix new grid helpers to ensure content using %site-width-container is centred in IE.
