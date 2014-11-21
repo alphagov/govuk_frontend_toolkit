@@ -1,3 +1,7 @@
+# 3.0.1
+
+- Fix a bug with the npm publishing. npm requires a version change to publish a package.
+
 # 3.0.0
 
 - Change publishing method to not use git submodules in govuk_frontend_toolkit_npm.
