@@ -116,7 +116,7 @@ describe("MultivariateTest", function() {
         },
         runImmediately: false
       });
-      test.fooCallback = jasmine.createSpy('fooCallback')
+      test.fooCallback = jasmine.createSpy('fooCallback');
       test.run();
       expect(test.fooCallback).toHaveBeenCalled();
     });

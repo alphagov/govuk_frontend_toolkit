@@ -1,5 +1,5 @@
 (function () {
-  "use strict"
+  "use strict";
   var root = this,
       $ = root.jQuery;
 
@@ -52,7 +52,7 @@
     var radioName;
 
     if ($elm.attr('type') === 'radio') {
-      radioName = $elm.attr('name'),
+      radioName = $elm.attr('name');
       $($elm[0].form).find('input[name="' + radioName + '"]')
         .parent('label')
         .removeClass(this.selectedClass);
@@ -87,7 +87,7 @@
     }.bind(this);
   };
   SelectionButtons.prototype.getFocusHandler = function (opts) {
-    var focusEvent = (opts.level === 'document') ? 'focusin' : 'focus'
+    var focusEvent = (opts.level === 'document') ? 'focusin' : 'focus';
 
     return function (e) {
       var state = (e.type === focusEvent) ? 'focused' : 'blurred';

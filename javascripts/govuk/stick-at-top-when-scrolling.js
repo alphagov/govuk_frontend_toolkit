@@ -1,5 +1,5 @@
 (function () {
-  "use strict"
+  "use strict";
   var root = this,
       $ = root.jQuery;
   if(typeof root.GOVUK === 'undefined') { root.GOVUK = {}; }
@@ -71,6 +71,6 @@
         $el.siblings('.shim').remove();
       }
     }
-  }
+  };
   root.GOVUK.stickAtTopWhenScrolling = sticky;
 }).call(this);

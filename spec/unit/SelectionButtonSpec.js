@@ -585,7 +585,7 @@ describe("selection-buttons", function () {
           $radioButtons = $("label.selectable input[type='radio']");
           $radioLabels = $radioButtons.parent('label');
           $radioButtons.eq(0).focus();
-          expect($radioLabels.eq(0).hasClass('focused')).toBe(true)
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
         });
 
         it("Should add a custom focused class to the radio if sent in as an option", function () {
@@ -598,7 +598,7 @@ describe("selection-buttons", function () {
           $radioButtons = $("label.selectable input[type='radio']");
           $radioLabels = $radioButtons.parent('label');
           $radioButtons.eq(0).focus();
-          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true)
+          expect($radioLabels.eq(0).hasClass('selectable-focused')).toBe(true);
         });
 
         it("Should remove the focused class from a radio when it loses focus", function () {
@@ -611,9 +611,9 @@ describe("selection-buttons", function () {
           $radioButtons = $("label.selectable input[type='radio']");
           $radioLabels = $radioButtons.parent('label');
           $radioButtons.eq(0).focus();
-          expect($radioLabels.eq(0).hasClass('focused')).toBe(true)
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(true);
           $radioButtons.eq(0).blur();
-          expect($radioLabels.eq(0).hasClass('focused')).toBe(false)
+          expect($radioLabels.eq(0).hasClass('focused')).toBe(false);
         });
       });
     });
