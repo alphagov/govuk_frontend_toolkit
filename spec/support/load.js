@@ -1,5 +1,5 @@
 (function (root) {
-  "use strict"
+  "use strict";
   var loadedScripts = 0,
       totalScripts,
       merge,
@@ -39,7 +39,7 @@
     return script;
   };
   runJasmine = function () {
-    var console_reporter = new jasmine.ConsoleReporter()
+    var console_reporter = new jasmine.ConsoleReporter();
     jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
     jasmine.getEnv().addReporter(console_reporter);
     jasmine.getEnv().execute();

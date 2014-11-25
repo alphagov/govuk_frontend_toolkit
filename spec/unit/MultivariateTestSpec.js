@@ -47,7 +47,6 @@ describe("MultivariateTest", function() {
       GOVUK.cookie.andReturn('foo');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
-        customVarIndex: 1,
         cohorts: {
           foo: {},
           bar: {}
@@ -116,7 +115,7 @@ describe("MultivariateTest", function() {
         },
         runImmediately: false
       });
-      test.fooCallback = jasmine.createSpy('fooCallback')
+      test.fooCallback = jasmine.createSpy('fooCallback');
       test.run();
       expect(test.fooCallback).toHaveBeenCalled();
     });

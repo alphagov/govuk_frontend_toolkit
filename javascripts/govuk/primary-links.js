@@ -11,7 +11,7 @@
       this.addToggleLink();
       this.hideExtraLinks();
     }
-  }
+  };
   PrimaryList.prototype = {
     toggleText: function(){
       if(this.$extraLinks.length > 1){
@@ -21,7 +21,7 @@
       }
     },
     addToggleLink: function(){
-      this.$toggleLink = $('<a href="#">'+ this.toggleText() + '</a>')
+      this.$toggleLink = $('<a href="#">'+ this.toggleText() + '</a>');
       this.$toggleLink.click($.proxy(this.toggleLinks, this));
       this.$toggleLink.insertAfter(this.$el);
     },
@@ -32,11 +32,11 @@
     },
     hideExtraLinks: function(){
       this.$extraLinks.addClass('visuallyhidden');
-      $(window).trigger('govuk.pageSizeChanged')
+      $(window).trigger('govuk.pageSizeChanged');
     },
     showExtraLinks: function(){
       this.$extraLinks.removeClass('visuallyhidden');
-      $(window).trigger('govuk.pageSizeChanged')
+      $(window).trigger('govuk.pageSizeChanged');
     }
   };
   GOVUK.PrimaryList = PrimaryList;
@@ -47,5 +47,5 @@
         new GOVUK.PrimaryList(el, selector);
       });
     }
-  }
+  };
 }());
