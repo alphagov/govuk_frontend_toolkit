@@ -51,10 +51,16 @@ To update the toolkit to the latest version you can use:
 
 ## Running tests
 
-Install Node 0.8 or higher and PhantomJS.
+Tests for this project use Jasmine for the JavaScript and Ruby's `scss` and `scss-lint`
+to check the stylesheets.
 
-    $ npm install
-    $ npm test
+The requirements are Node.js 0.8 or higher and PhantomJS, and Ruby:
+
+```bash
+bundle install
+npm install
+npm test
+```
 
 ### Using the local test runner
 
