@@ -41,7 +41,7 @@ $site-width: 960px;
 // }
 %outdent-to-full-width {
   margin-left: -$gutter-half;
-  margin-left: -$gutter-half;
+  margin-right: -$gutter-half;
   @include media(tablet){
     margin-left: -$gutter;
     margin-right: -$gutter;
