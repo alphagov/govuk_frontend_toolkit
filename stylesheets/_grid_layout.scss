@@ -1,4 +1,5 @@
 @import '_conditionals.scss';
+@import '_css3.scss';
 @import '_measurements.scss';
 @import '_shims.scss';
 
@@ -95,7 +96,7 @@ $site-width: 960px;
   }
 
   padding: 0 $gutter-half;
-  box-sizing: border-box;
+  @include box-sizing(border-box);
 }
 
 
