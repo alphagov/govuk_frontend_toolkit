@@ -86,9 +86,9 @@ $site-width: 960px;
 //     @include grid-column( 1/3, $full-width: desktop );
 //   }
 
-@mixin grid-column($width, $full-width: tablet) {
+@mixin grid-column($width, $full-width: tablet, $float: left) {
   @include media($full-width){
-    float: left;
+    float: $float;
     width: percentage($width);
   }
   @include ie-lte(7){
