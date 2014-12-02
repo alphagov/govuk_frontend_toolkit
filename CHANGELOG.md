@@ -1,3 +1,11 @@
+# 3.1.0
+
+- Fix: outdent to add right margin rather than only left
+- Fix: add missing semi-colons in JavaScript files
+- Fix: use box-sizing mixin in column mixin to support more browsers
+- Add: ability to specify float direction on column mixin
+- Add: Sass-lint tests
+
 # 3.0.1
 
 - Fix a bug with the npm publishing. npm requires a version change to publish a package.
