@@ -235,7 +235,7 @@ $is-print: false !default;
   }
 
   @if $top-hover == top {
-    $top-hover: $top
+    $top-hover: $top;
   }
 
   &:hover:after {

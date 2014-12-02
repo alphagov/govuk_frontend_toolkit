@@ -1,2 +1,4 @@
 node_modules/
 .sass-cache
+
+/spec/stylesheets/test-out.css.map

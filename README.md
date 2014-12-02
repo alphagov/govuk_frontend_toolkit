@@ -1,7 +1,14 @@
-# GOV.UK Frontend Toolkit
+# GOV.UK frontend toolkit
 
-A collection of Sass and Javascript tools for generating frontend
-code.
+A collection of Sass and JavaScript files for using as part of your
+application's frontend.
+
+This project is not tied to a specific language and is designed to be used
+as a dependency in as many different languages as needed.
+
+There's a `Gemfile` and a `package.json` in this directory, but they are only
+for running tests and are not an indication that this project prefers
+Ruby or Node.js.
 
 ## Installing
 
@@ -37,7 +44,7 @@ You can include the toolkit as a [git submodule][].
 
 To add the submodule to your project run the following command substituting the path to a subdirectory in your project's assets directory:
 
-    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/govuk_toolkit
+    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/govuk_frontend_toolkit
 
 We recommend you use `https` rather than `ssh` for submodules as they don't require key exchanges when deploying to remote servers.
 
@@ -51,10 +58,16 @@ To update the toolkit to the latest version you can use:
 
 ## Running tests
 
-Install Node 0.8 or higher and PhantomJS.
+Tests for this project use Jasmine for the JavaScript and Ruby's `scss` and `scss-lint`
+to check the stylesheets.
 
-    $ npm install
-    $ npm test
+The requirements are Node.js 0.8 or higher and PhantomJS, and Ruby:
+
+```bash
+bundle install
+npm install
+npm test
+```
 
 ### Using the local test runner
 
@@ -79,11 +92,11 @@ If you are compiling Sass from the [command-line tool](http://sass-lang.com/docs
 
 In development:
 
-    sass --style expanded --line-numbers --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
+    sass --style expanded --line-numbers --load-path [path to]/govuk_frontend_toolkit/stylesheets input.scss output.css
 
 In production:
 
-    sass --style compressed --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
+    sass --style compressed --load-path [path to]/govuk_frontend_toolkit/stylesheets input.scss output.css
 
 
 

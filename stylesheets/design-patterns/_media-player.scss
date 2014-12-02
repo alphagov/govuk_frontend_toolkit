@@ -118,14 +118,18 @@
 
       .muted {
         color: $light-blue;
+
+        ~ * {
+          opacity: 0.333;
+        }
+
+        ~ .vol-display {
+          text-decoration: line-through;
+        }
       }
 
       .muted::after {
         content: "d";
-      }
-
-      .muted ~ * {
-        opacity: 0.333;
       }
 
       .vol-down, .vol-up {
@@ -170,10 +174,6 @@
         background-repeat: no-repeat;
         background-position: center left;
         background-image: file-url('player-icon-volume.png');
-      }
-
-      .muted ~ .vol-display {
-        text-decoration: line-through;
       }
     }
 
