@@ -44,7 +44,7 @@ You can include the toolkit as a [git submodule][].
 
 To add the submodule to your project run the following command substituting the path to a subdirectory in your project's assets directory:
 
-    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/govuk_toolkit
+    $ git submodule add https://github.com/alphagov/govuk_frontend_toolkit.git ./path/to/assets/govuk_frontend_toolkit
 
 We recommend you use `https` rather than `ssh` for submodules as they don't require key exchanges when deploying to remote servers.
 
@@ -92,11 +92,11 @@ If you are compiling Sass from the [command-line tool](http://sass-lang.com/docs
 
 In development:
 
-    sass --style expanded --line-numbers --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
+    sass --style expanded --line-numbers --load-path [path to]/govuk_frontend_toolkit/stylesheets input.scss output.css
 
 In production:
 
-    sass --style compressed --load-path [path to]/govuk_toolkit/stylesheets input.scss output.css
+    sass --style compressed --load-path [path to]/govuk_frontend_toolkit/stylesheets input.scss output.css
 
 
 
