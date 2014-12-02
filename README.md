@@ -1,7 +1,14 @@
-# GOV.UK Frontend Toolkit
+# GOV.UK frontend toolkit
 
-A collection of Sass and Javascript tools for generating frontend
-code.
+A collection of Sass and JavaScript files for using as part of your
+application's frontend.
+
+This project is not tied to a specific language and is designed to be used
+as a dependency in as many different languages as needed.
+
+There's a `Gemfile` and a `package.json` in this directory, but they are only
+for running tests and are not an indication that this project prefers
+Ruby or Node.js.
 
 ## Installing
 
