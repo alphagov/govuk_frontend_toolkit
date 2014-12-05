@@ -28,6 +28,11 @@ follow the [installation instructions][toolkit_gem_github_readme].
 [toolkit_npm_github]: https://github.com/alphagov/govuk_frontend_toolkit_npm
 [toolkit_npm]: https://npmjs.org/package/govuk_frontend_toolkit
 
+If you are using build tools that depend on Libsass (eg `grunt-sass`) then you
+may need to upgrade to a
+[more recent version](https://github.com/sass/libsass/issues/146#issuecomment-59490688)
+to use the grid helpers.
+
 ### Composer
 
 [govuk_frontend_toolkit_composer][toolkit_composer_github] is an composer package that can be
