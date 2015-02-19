@@ -25,17 +25,16 @@ $is-print: false !default;
   } @else {
     font-family: $NTA-Light;
   }
-  @if $is-print == false {
-    font-size: $font-size;
-  } @else {
-    font-size: $font-size-print;
-  }
-  line-height: $line-height;
-  font-weight: $font-weight;
+  font-size: $font-size-640;
+  line-height: $line-height-640;
   text-transform: none;
-  @media (max-width: 640px) {
-    font-size: $font-size-640;
-    line-height: $line-height-640;
+  @media (min-width: 641px) {
+    font-size: $font-size;
+    line-height: $line-height;
+    font-weight: $font-weight;
+  }
+  @if $is-print {
+    font-size: $font-size-print;
   }
 }
 
