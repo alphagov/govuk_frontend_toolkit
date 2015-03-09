@@ -6,7 +6,7 @@ describe("MultivariateTest", function() {
 
   describe("#run", function() {
     it("should pick a random cohort on first run", function() {
-      GOVUK.cookie.andReturn(null);
+      GOVUK.cookie.and.returnValue(null);
       var fooSpy = jasmine.createSpy('fooSpy');
       var barSpy = jasmine.createSpy('barSpy');
       var test = new GOVUK.MultivariateTest({
@@ -18,9 +18,9 @@ describe("MultivariateTest", function() {
         }
       });
 
-      expect(GOVUK.cookie.callCount).toEqual(2);
-      expect(GOVUK.cookie.argsForCall[1][0]).toEqual('multivariatetest_cohort_stuff');
-      if (GOVUK.cookie.argsForCall[1][1] == 'foo') {
+      expect(GOVUK.cookie.calls.count()).toEqual(2);
+      expect(GOVUK.cookie.calls.argsFor(1)[0]).toEqual('multivariatetest_cohort_stuff');
+      if (GOVUK.cookie.calls.argsFor(1)[1] == 'foo') {
         expect(fooSpy).toHaveBeenCalled();
       }
       else {
@@ -29,7 +29,7 @@ describe("MultivariateTest", function() {
     });
 
     it("should use an existing cohort choice on subsequent runs", function() {
-      GOVUK.cookie.andReturn('foo');
+      GOVUK.cookie.and.returnValue('foo');
       var fooSpy = jasmine.createSpy('fooSpy');
       var barSpy = jasmine.createSpy('barSpy');
       var test = new GOVUK.MultivariateTest({
@@ -44,7 +44,7 @@ describe("MultivariateTest", function() {
     });
 
     it("should set a custom var", function() {
-      GOVUK.cookie.andReturn('foo');
+      GOVUK.cookie.and.returnValue('foo');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
         cohorts: {
@@ -73,7 +73,7 @@ describe("MultivariateTest", function() {
     });
 
     it("should set html for a cohort", function() {
-      GOVUK.cookie.andReturn('foo');
+      GOVUK.cookie.and.returnValue('foo');
       var $el = $('<div>');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
@@ -90,7 +90,7 @@ describe("MultivariateTest", function() {
     it("should call the callback for a cohort", function() {
       var fooSpy = jasmine.createSpy('fooSpy');
       var barSpy = jasmine.createSpy('barSpy');
-      GOVUK.cookie.andReturn('bar');
+      GOVUK.cookie.and.returnValue('bar');
       var $el = $('<div>');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
@@ -105,7 +105,7 @@ describe("MultivariateTest", function() {
     });
 
     it("should call the callback for a cohort if it is a string", function() {
-      GOVUK.cookie.andReturn('foo');
+      GOVUK.cookie.and.returnValue('foo');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
         customVarIndex: 1,
@@ -123,7 +123,7 @@ describe("MultivariateTest", function() {
     it("should assign a new random cohort if the assigned cohort does not exist", function() {
       var fooSpy = jasmine.createSpy('fooSpy');
       var barSpy = jasmine.createSpy('barSpy');
-      GOVUK.cookie.andReturn('baz');
+      GOVUK.cookie.and.returnValue('baz');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
         customVarIndex: 1,
@@ -132,7 +132,7 @@ describe("MultivariateTest", function() {
           bar: {callback: barSpy}
         }
       });
-      if (GOVUK.cookie.argsForCall[1][1] == 'foo') {
+      if (GOVUK.cookie.calls.argsFor(1)[1] == 'foo') {
         expect(fooSpy).toHaveBeenCalled();
       }
       else {
