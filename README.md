@@ -945,7 +945,7 @@ The minimum you need to use the analytics function is:
   1. google-analytics-classic-tracker.js
   2. google-analytics-universal-tracker.js
   3. tracker.js
-2. Copy the file sample-init.js from the same folder to your own project and replace the dummy IDs with your own (they begin with 'UA-')
+2. Copy the file example-init/example-init.js from the same folder to your own project and replace the dummy IDs with your own (they begin with 'UA-')
 
 
 ## Licence
