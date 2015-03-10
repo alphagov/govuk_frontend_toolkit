@@ -9,12 +9,13 @@
   var cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
 
   // Configure profiles, setup custom vars, track initial pageview
-  var analytics = new GOVUK.Tracker({
+  // and make interface public for virtual pageviews and events
+  GOVUK.analytics = new GOVUK.Tracker({
     universalId: 'UA-XXXXXXXX-X',
     classicId: 'UA-XXXXXXXX-X',
     cookieDomain: cookieDomain
   });
 
-  // Make interface public for virtual pageviews and events
-  GOVUK.analytics = analytics;
+  // Track initial pageview
+  GOVUK.analytics.trackPageview();
 })();

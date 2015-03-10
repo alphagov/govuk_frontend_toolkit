@@ -25,26 +25,6 @@ describe("GOVUK.Tracker", function() {
       expect(window._gaq[1]).toEqual(['_setDomainName', '.www.gov.uk']);
       expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
     });
-
-    it('tracks a pageview in both classic and universal', function () {
-      expect(window._gaq[4]).toEqual(['_trackPageview']);
-      expect(universalSetupArguments[2]).toEqual(['send', 'pageview']);
-    });
-    
-  });
-
-
-  describe('created with a pre-pageview callback', function() {
-
-    it('calls a pre-pageview callback function, if supplied', function () {
-      var config = {
-        universalId: 'universal-id',
-        prePageviewConfiguration: jasmine.createSpy()
-      };
-      tracker = new GOVUK.Tracker(config);
-      expect(config.prePageviewConfiguration).toHaveBeenCalled();
-    });
-
   });
 
   describe('when tracking pageviews, events and custom dimensions', function() {

@@ -3,18 +3,8 @@
   window.GOVUK = window.GOVUK || {};
 
   var Tracker = function(config) {
-
     this.universal = new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain);
     this.classic = new GOVUK.GoogleAnalyticsClassicTracker(config.classicId, config.cookieDomain);
-
-    // Dimensions should be set before page view is tracked
-
-    if (config.prePageviewConfiguration && typeof config.prePageviewConfiguration === 'function') {
-      config.prePageviewConfiguration();
-    }
-
-    this.trackPageview();
-
   };
 
   Tracker.load = function() {
@@ -45,7 +35,8 @@
   };
 
   /*
-    Assumes that the index of the dimension is the same for both classic and universal. Check this for your app before using this
+    Assumes that the index of the dimension is the same for both classic and universal.
+    Check this for your app before using this
    */
   Tracker.prototype.setDimension = function(index, value, name, scope) {
     var PAGE_LEVEL_SCOPE = 3;
