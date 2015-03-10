@@ -16,6 +16,9 @@
     cookieDomain: cookieDomain
   });
 
+  // Set custom dimensions before tracking pageviews
+  // GOVUK.analytics.setDimension(…)
+
   // Track initial pageview
   GOVUK.analytics.trackPageview();
 })();

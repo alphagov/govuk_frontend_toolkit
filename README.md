@@ -120,16 +120,11 @@ In production:
   * [Primary links](/docs/javascript.md#primary-links)
   * [Stick at top when scrolling](/docs/javascript.md#stick-at-top-when-scrolling)
   * [Selection buttons](/docs/javascript.md#selection-buttons)
-
-## Analytics
-
-The minimum you need to use the analytics function is:
-1. Include the following files from /javascripts/govuk/analytics in your project:
-  1. google-analytics-classic-tracker.js
-  2. google-analytics-universal-tracker.js
-  3. tracker.js
-2. Copy the file example-init/example-init.js from the same folder to your own project and replace the dummy IDs with your own (they begin with 'UA-')
-
+* [Analytics](/docs/analytics.md)
+  * [Create an analytics tracker](/docs/analytics.md#create-an-analytics-tracker)
+  * [Virtual pageviews](/docs/analytics.md#virtual-pageviews)
+  * [Custom events](/docs/analytics.md#custom-events)
+  * [Custom dimensions and custom variables](/docs/analytics.md#custom-dimensions-and-custom-variables)
 
 ## Licence
 
