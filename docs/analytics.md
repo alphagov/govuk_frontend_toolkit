@@ -148,3 +148,11 @@ function setPixelDensityDimension(pixelDensity) {
   GOVUK.analytics.setDimension(1, pixelDensity, 'PixelDensity', 2);
 }
 ```
+
+## Print tracking
+
+Pull `print-intent.js` into your project, after analytics has been initialised, to track when users are attempting to print content.
+
+## Error tracking
+
+Pull `error-tracking.js` into your project, after analytics has been initialised, to track JavaScript errors.

@@ -125,6 +125,8 @@ In production:
   * [Virtual pageviews](/docs/analytics.md#virtual-pageviews)
   * [Custom events](/docs/analytics.md#custom-events)
   * [Custom dimensions and custom variables](/docs/analytics.md#custom-dimensions-and-custom-variables)
+  * [Print tracking](/docs/analytics.md#print-tracking)
+  * [Error tracking](/docs/analytics.md#error-tracking)
 
 ## Licence
 
