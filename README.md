@@ -120,6 +120,13 @@ In production:
   * [Primary links](/docs/javascript.md#primary-links)
   * [Stick at top when scrolling](/docs/javascript.md#stick-at-top-when-scrolling)
   * [Selection buttons](/docs/javascript.md#selection-buttons)
+* [Analytics](/docs/analytics.md)
+  * [Create an analytics tracker](/docs/analytics.md#create-an-analytics-tracker)
+  * [Virtual pageviews](/docs/analytics.md#virtual-pageviews)
+  * [Custom events](/docs/analytics.md#custom-events)
+  * [Custom dimensions and custom variables](/docs/analytics.md#custom-dimensions-and-custom-variables)
+  * [Print tracking](/docs/analytics.md#print-tracking)
+  * [Error tracking](/docs/analytics.md#error-tracking)
 
 ## Licence
 

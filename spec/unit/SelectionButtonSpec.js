@@ -694,7 +694,7 @@ describe("selection-buttons", function () {
           clickCallbackCancelled = false,
           focusBlurCallbackCancelled = false;
 
-      spyOn($.fn, "on").andCallFake(function (evt, callback) {
+      spyOn($.fn, "on").and.callFake(function (evt, callback) {
         if (this === $radioButtons) {
           if (evt === "click") {
             clickCallbackBound = callback;
@@ -706,7 +706,7 @@ describe("selection-buttons", function () {
         return this;
       });
 
-      spyOn($.fn, "off").andCallFake(function (evt, callback) {
+      spyOn($.fn, "off").and.callFake(function (evt, callback) {
         if (this === $radioButtons) {
           if (evt === "click") {
             clickCallbackCancelled = callback;
@@ -731,7 +731,7 @@ describe("selection-buttons", function () {
           clickCallbackCancelled = false,
           focusBlurCallbackCancelled = false;
 
-      spyOn($.fn, "on").andCallFake(function (evt, selector, callback) {
+      spyOn($.fn, "on").and.callFake(function (evt, selector, callback) {
         if ((this[0] === document) && (selector === "label.selectable input[type='checkbox']")) {
           if (evt === "click") {
             clickCallbackBound = callback;
@@ -743,7 +743,7 @@ describe("selection-buttons", function () {
         return this;
       });
 
-      spyOn($.fn, "off").andCallFake(function (evt, selector, callback) {
+      spyOn($.fn, "off").and.callFake(function (evt, selector, callback) {
         if ((this[0] === document) && (selector === "label.selectable input[type='checkbox']")) {
           if (evt === "click") {
             clickCallbackCancelled = callback;
