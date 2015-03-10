@@ -12,38 +12,42 @@ The toolkit provides an abstraction around analytics to make tracking pageviews,
 ## Create an analytics tracker
 
 The minimum you need to use the analytics function is:
+
 1. Include the following files from /javascripts/govuk/analytics in your project:
-  1. google-analytics-classic-tracker.js
-  2. google-analytics-universal-tracker.js
-  3. tracker.js
-2. Copy the file example-init/example-init.js from the same folder to your own project and replace the dummy IDs with your own (they begin with `UA-`)
-
-Load and create the analytics tracker at the earliest opportunity so that:
-* the time until the first pageview is tracked is kept small and pageviews aren’t missed
-* javascript that depends on `GOVUK.analytics` runs after the tracker has been created
-
-An excerpt from the [`example-init.js`](/javascripts/govuk/analytics/example-init/example-init.js) file:
+  * google-analytics-classic-tracker.js
+  * google-analytics-universal-tracker.js
+  * tracker.js
+2. Copy the following `init` script into your own project and replace the dummy IDs with your own (they begin with `UA-`).
+  * This initialisation can occur immediately as this API has no dependencies.
+  * Load and create the analytics tracker at the earliest opportunity so that:
+    * the time until the first pageview is tracked is kept small and pageviews aren’t missed
+    * javascript that depends on `GOVUK.analytics` runs after the tracker has been created
 
 ```js
-// Load Google Analytics libraries
-GOVUK.Tracker.load();
+(function() {
+  "use strict";
 
-// Use document.domain in dev, preview and staging so that tracking works
-// Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
-var cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
+  // Load Google Analytics libraries
+  GOVUK.Tracker.load();
 
-// Configure profiles, setup custom vars, track initial pageview
-GOVUK.analytics = new GOVUK.Tracker({
-  universalId: 'UA-XXXXXXXX-X',
-  classicId: 'UA-XXXXXXXX-X',
-  cookieDomain: cookieDomain
-});
+  // Use document.domain in dev, preview and staging so that tracking works
+  // Otherwise explicitly set the domain as www.gov.uk (and not gov.uk).
+  var cookieDomain = (document.domain === 'www.gov.uk') ? '.www.gov.uk' : document.domain;
 
-// Set custom dimensions before tracking pageviews
-// GOVUK.analytics.setDimension(…)
+  // Configure profiles and make interface public
+  // for custom dimensions, virtual pageviews and events
+  GOVUK.analytics = new GOVUK.Tracker({
+    universalId: 'UA-XXXXXXXX-X',
+    classicId: 'UA-XXXXXXXX-X',
+    cookieDomain: cookieDomain
+  });
 
-// Track initial pageview
-GOVUK.analytics.trackPageview();
+  // Set custom dimensions before tracking pageviews
+  // GOVUK.analytics.setDimension(…)
+
+  // Track initial pageview
+  GOVUK.analytics.trackPageview();
+})();
 ```
 
 Once instantiated, the `GOVUK.analytics` object can be used to track virtual pageviews, custom events and custom dimensions.

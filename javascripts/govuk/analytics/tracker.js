@@ -2,6 +2,9 @@
   "use strict";
   window.GOVUK = window.GOVUK || {};
 
+  // For usage and initialisation see:
+  // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
+
   var Tracker = function(config) {
     this.universal = new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain);
     this.classic = new GOVUK.GoogleAnalyticsClassicTracker(config.classicId, config.cookieDomain);
