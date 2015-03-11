@@ -1,3 +1,7 @@
+# 3.2.1
+
+- Fix: Analytics - don't run error and print plugins on load
+
 # 3.2.0
 
 - Add: Analytics API https://github.com/alphagov/govuk_frontend_toolkit/pull/162 https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md
