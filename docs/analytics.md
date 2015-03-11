@@ -45,6 +45,10 @@ The minimum you need to use the analytics function is:
   // Set custom dimensions before tracking pageviews
   // GOVUK.analytics.setDimension(…)
 
+  // Activate any event plugins eg. print intent, error tracking
+  // GOVUK.analyticsPlugins.error();
+  // GOVUK.analyticsPlugins.printIntent();
+
   // Track initial pageview
   GOVUK.analytics.trackPageview();
 })();
@@ -151,8 +155,8 @@ function setPixelDensityDimension(pixelDensity) {
 
 ## Print tracking
 
-Pull `print-intent.js` into your project, after analytics has been initialised, to track when users are attempting to print content.
+Pull `print-intent.js` into your project, and initialise it after analytics (see [Create an analytics tracker, above](#create-an-analytics-tracker)), to track when users are attempting to print content.
 
 ## Error tracking
 
-Pull `error-tracking.js` into your project, after analytics has been initialised, to track JavaScript errors.
+Pull `error-tracking.js` into your project, and initialise it after analytics (see [Create an analytics tracker, above](#create-an-analytics-tracker)), to track JavaScript errors.
