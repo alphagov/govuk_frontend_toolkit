@@ -1,3 +1,7 @@
+# 3.2.0
+
+- Add: Analytics API https://github.com/alphagov/govuk_frontend_toolkit/pull/162 https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md
+
 # 3.1.0
 
 - Fix: outdent to add right margin rather than only left
