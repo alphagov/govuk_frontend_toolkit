@@ -42,17 +42,6 @@
     Check this for your app before using this
    */
   Tracker.prototype.setDimension = function(index, value, name, scope) {
-    var PAGE_LEVEL_SCOPE = 3;
-    scope = scope || PAGE_LEVEL_SCOPE;
-
-    if (typeof index !== "number") {
-      index = parseInt(index, 10);
-    }
-
-    if (typeof scope !== "number") {
-      scope = parseInt(scope, 10);
-    }
-
     this.universal.setDimension(index, value);
     this.classic.setCustomVariable(index, value, name, scope);
   };
