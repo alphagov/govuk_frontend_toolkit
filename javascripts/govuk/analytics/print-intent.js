@@ -18,11 +18,11 @@
         if (!mql.matches && mqlListenerCount === 0) {
           printAttempt();
           mqlListenerCount++;
-          // If we try and print again in 3 seconds, don't log it
+          // If we try and print again within 3 seconds, don't log it
           window.setTimeout(function () {
             mqlListenerCount = 0;
             // printing will be tracked again now
-          }, 1000);
+          }, 3000);
         }
       });
     }
