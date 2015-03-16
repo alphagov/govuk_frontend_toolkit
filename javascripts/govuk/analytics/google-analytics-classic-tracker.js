@@ -104,8 +104,24 @@
 
   // https://developers.google.com/analytics/devguides/collection/gajs/gaTrackingCustomVariables
   GoogleAnalyticsClassicTracker.prototype.setCustomVariable = function(index, value, name, scope) {
+    var PAGE_LEVEL_SCOPE = 3;
+    scope = scope || PAGE_LEVEL_SCOPE;
+
+    if (typeof index !== "number") {
+      index = parseInt(index, 10);
+    }
+
+    if (typeof scope !== "number") {
+      scope = parseInt(scope, 10);
+    }
+
     _gaq.push(['_setCustomVar', index, name, String(value), scope]);
   };
+
+  // Match tracker and universal API
+  GoogleAnalyticsClassicTracker.prototype.setDimension = function(index, value, name, scope) {
+    this.setCustomVariable(index, value, name, scope);
+  }
 
   GOVUK.GoogleAnalyticsClassicTracker = GoogleAnalyticsClassicTracker;
 })();
