@@ -1,3 +1,7 @@
+# 3.3.0
+
+- Add: Analytics - pageview tracking for a print attempt
+
 # 3.2.1
 
 - Fix: Analytics - don't run error and print plugins on load
