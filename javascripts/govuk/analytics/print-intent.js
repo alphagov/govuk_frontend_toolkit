@@ -7,6 +7,7 @@
   GOVUK.analyticsPlugins.printIntent = function () {
     var printAttempt = (function () {
       GOVUK.analytics.trackEvent('Print Intent', document.location.pathname);
+      GOVUK.analytics.trackPageview('/print' + document.location.pathname);
     });
 
     // Most browsers
@@ -21,7 +22,7 @@
           window.setTimeout(function () {
             mqlListenerCount = 0;
             // printing will be tracked again now
-          }, 1e3);
+          }, 1000);
         }
       });
     }
