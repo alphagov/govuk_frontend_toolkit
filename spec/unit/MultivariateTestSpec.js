@@ -1,9 +1,7 @@
 describe("MultivariateTest", function() {
   beforeEach(function() {
     GOVUK.cookie = jasmine.createSpy('GOVUK.cookie');
-    GOVUK.analytics = {setDimension:function(){}, trackEvent:function(){}};
-    spyOn(GOVUK.analytics, "setDimension");
-    spyOn(GOVUK.analytics, "trackEvent");
+    window._gaq = [];
   });
 
   describe("#run", function() {
@@ -55,17 +53,23 @@ describe("MultivariateTest", function() {
         },
         customVarIndex: 2
       });
-      expect(GOVUK.analytics.setDimension).toHaveBeenCalledWith(
-        2,
-        'multivariatetest_cohort_stuff',
-        'foo',
-        2
-      );
-      expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
-        'multivariatetest_cohort_stuff',
-        'run',
-        {nonInteraction:true}
-      );
+      expect(window._gaq).toEqual([
+        [
+          '_setCustomVar',
+          2,
+          'multivariatetest_cohort_stuff',
+          'foo',
+          2
+        ],
+        [
+          '_trackEvent',
+          'multivariatetest_cohort_stuff',
+          'run',
+          '-',
+          0,
+          true
+        ]
+      ]);
     });
 
     it("should set html for a cohort", function() {
