@@ -71,18 +71,11 @@
   };
 
   MultivariateTest.prototype.setCustomVar = function(cohort) {
-    window._gaq = window._gaq || [];
-    window._gaq.push([
-      '_setCustomVar',
-      this.customVarIndex,
-      this.cookieName(),
-      cohort,
-      2 // session level
-    ]);
+    GOVUK.analytics.setDimension(this.customVarIndex, this.cookieName(), cohort, 2) // session level
     // Fire off a dummy event to set the custom var on the page.
     // Ideally we'd be able to call setCustomVar before trackPageview,
     // but would need reordering the existing GA code.
-    window._gaq.push(['_trackEvent', this.cookieName(), 'run', '-', 0, true]);
+    GOVUK.analytics.trackEvent(this.cookieName(), 'run', {nonInteraction:true});
   };
 
   MultivariateTest.prototype.weightedCohortNames = function() {
