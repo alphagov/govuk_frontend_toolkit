@@ -1,3 +1,7 @@
+# 3.3.1
+
+- Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA 
+
 # 3.3.0
 
 - Add: Analytics - pageview tracking for a print attempt
