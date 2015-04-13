@@ -78,7 +78,7 @@ on the current object.
 
 Takes these options:
  - `el`: Element to run this test on (optional)
- - `name`: The name of the text (alphanumeric and underscores)
+ - `name`: The name of the text (alphanumeric and underscores), which will be part of the cookie.
  - `customVarIndex`: The index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
  - `defaultWeight`: Number of times each cohorts should appear in an array the random cohort is picked from, to be used in conjunction with weights on individual cohorts.
  - `cohorts`: An object that maps cohort name to an object that defines the cohort. Name must be same format as test name. Object contains keys (all optional):
@@ -87,6 +87,36 @@ Takes these options:
    - `weight`: Number of times this cohort should appear in an array the random cohort is picked from, defaults to the `defaultWeight` of the test.
 
 Full documentation on how to design multivariate tests, use the data in GA and construct hypothesis tests is on its way soon.
+
+
+## Reporting to Google Content Experiments
+The toolkit includes a library for multivariate testing that is capable of reporting data into [Google Content Experiments](https://developers.google.com/analytics/devguides/platform/experiments-overview).
+
+### To create a new experiment
+
+1. Log in to Google Universal Analytics, select "UA - Preview environment".
+2. In the left column, click on Behaviour, then Experiments and follow [these instructions](https://support.google.com/analytics/answer/1745152?hl=en-GB) to set up your experiment; you will need to have edit permissions on the Universal Analytics profile. If you cannot see a "Create experiment" button, this means you don't have these permissions; you can ask someone from the Performance Analyst team to set the experiment up for you.
+3. In step number 2, in our case the address of the web pages will purely be used as descriptions in reports, so we recommend you pick the addresses accordingly, ie: "www.gov.uk" and "www.gov.uk/?=variation1".
+4. In step number 3, "Setting up your experiment code", select "Manually insert the code" and make a note of the Experiment ID number located under the script window.
+5. Add the below code to the page you want to test.
+    - the contentExperimentId is the Experiment ID you retrieved in step 3
+    - the variantId is 0 for the original variant, 1 for the first modified variant, 2 for the second modified variant, etc.
+    - see section above for other elements
+This code requires analytics to be loaded in order to run; static is the app that would load the analytics by default, which automatically happens before experiments are run.
+6. Check that it works: launch the app, open the page of your app, and check that there is a cookie with the name you had picked in your experiment. You can delete the cookie and refresh the page to check whether you can be assigned to another cohort.
+
+```js
+var test = new GOVUK.MultivariateTest({
+  name: 'car_tax_button_text',
+  customVarIndex: 555,
+  contentExperimentId: "Your_Experiment_ID";
+  cohorts: {
+    pay_your_car_tax: {weight: 25, variantId: 0},
+    give_us_money: {weight: 25, variantId: 1}
+  }
+});
+
+```
 
 ## Primary Links
 
