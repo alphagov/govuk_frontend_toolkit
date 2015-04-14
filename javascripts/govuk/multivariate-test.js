@@ -12,7 +12,7 @@
   function MultivariateTest(options) {
     this.$el = $(options.el);
     this._loadOption(options, 'name');
-    this._loadOption(options, 'customVarIndex', null);
+    this._loadOption(options, 'customDimensionIndex', null);
     this._loadOption(options, 'cohorts');
     this._loadOption(options, 'runImmediately', true);
     this._loadOption(options, 'defaultWeight', 1);
@@ -74,9 +74,9 @@
   };
 
   MultivariateTest.prototype.setCustomVar = function(cohort) {
-    if (this.customVarIndex) {
+    if (this.customDimensionIndex) {
       GOVUK.analytics.setDimension(
-        this.customVarIndex,
+        this.customDimensionIndex,
         this.cookieName(),
         cohort,
         2 // session level

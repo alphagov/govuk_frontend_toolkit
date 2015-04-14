@@ -103,7 +103,7 @@ This code requires analytics to be loaded in order to run; static is the app tha
 ```js
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
-  contentExperimentId: "Your_Experiment_ID";
+  contentExperimentId: "Your_Experiment_ID",
   cohorts: {
     pay_your_car_tax: {weight: 25, variantId: 0},
     give_us_money: {weight: 25, variantId: 1}
@@ -119,12 +119,12 @@ the multivariate test (as an alternative to Google Content Experiments). This
 may be appropriate if you wish to build the statistical model yourself or you
 aren't able to use Content Experiments for some reason.
 
-This requires setting the optional `customVarIndex` variable:
+This requires setting the optional `customDimensionIndex` variable:
 
 ```js
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
-  customVarIndex: 555,
+  customDimensionIndex: 555,
   cohorts: {
     pay_your_car_tax: {weight: 25},
     give_us_money: {weight: 50}
@@ -132,7 +132,7 @@ var test = new GOVUK.MultivariateTest({
 });
 ```
 
-`customVarIndex` is the index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
+`customDimensionIndex` is the index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
 
 ## Primary Links
 

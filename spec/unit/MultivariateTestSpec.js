@@ -51,7 +51,7 @@ describe("MultivariateTest", function() {
           foo: {},
           bar: {}
         },
-        customVarIndex: 2
+        customDimensionIndex: 2
       });
       expect(GOVUK.analytics.setDimension).toHaveBeenCalledWith(
         2,
