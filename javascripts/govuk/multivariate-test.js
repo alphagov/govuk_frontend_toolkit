@@ -12,7 +12,7 @@
   function MultivariateTest(options) {
     this.$el = $(options.el);
     this._loadOption(options, 'name');
-    this._loadOption(options, 'customVarIndex');
+    this._loadOption(options, 'customVarIndex', null);
     this._loadOption(options, 'cohorts');
     this._loadOption(options, 'runImmediately', true);
     this._loadOption(options, 'defaultWeight', 1);
@@ -74,19 +74,21 @@
   };
 
   MultivariateTest.prototype.setCustomVar = function(cohort) {
-    GOVUK.analytics.setDimension(
-      this.customVarIndex,
-      this.cookieName(),
-      cohort,
-      2 // session level
-    );
+    if (this.customVarIndex) {
+      GOVUK.analytics.setDimension(
+        this.customVarIndex,
+        this.cookieName(),
+        cohort,
+        2 // session level
+      );
+    }
   };
 
   MultivariateTest.prototype.setUpContentExperiment = function(cohort) {
     var contentExperimentId = this.contentExperimentId;
     var cohortVariantId = this.cohorts[cohort]['variantId'];
     if(contentExperimentId && cohortVariantId && typeof window.ga === "function"){
-      window.ga('set', 'expId', contentExperimentId);   
+      window.ga('set', 'expId', contentExperimentId);
       window.ga('set', 'expVar', cohortVariantId);
     };
   };

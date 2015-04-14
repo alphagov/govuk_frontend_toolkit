@@ -36,7 +36,6 @@ A simple content replacement test can be done by defining a set of cohorts with 
 var test = new GOVUK.MultivariateTest({
   el: '.car-tax-button',
   name: 'car_tax_button_text',
-  customVarIndex: 555,
   cohorts: {
     pay_your_car_tax: {html: "Pay Your Car Tax"},
     give_us_money: {html: "Give Us Money Or We Will Crush Your Car"}
@@ -50,7 +49,6 @@ when a user is in each cohort:
 ```javascript
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
-  customVarIndex: 555,
   cohorts: {
     pay_your_car_tax: {callback: function() { ... }},
     give_us_money: {callback: function() { ... }}
@@ -64,7 +62,6 @@ that cohort:
 ```javascript
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
-  customVarIndex: 555,
   cohorts: {
     pay_your_car_tax: {weight: 25, callback: function() { ... }}, // 25%
     give_us_money:    {weight: 75, callback: function() { ... }}  // 75%
@@ -79,7 +76,6 @@ on the current object.
 Takes these options:
  - `el`: Element to run this test on (optional)
  - `name`: The name of the text (alphanumeric and underscores), which will be part of the cookie.
- - `customVarIndex`: The index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
  - `defaultWeight`: Number of times each cohorts should appear in an array the random cohort is picked from, to be used in conjunction with weights on individual cohorts.
  - `cohorts`: An object that maps cohort name to an object that defines the cohort. Name must be same format as test name. Object contains keys (all optional):
    - `html`: HTML to fill element with when this cohort is picked.
@@ -88,11 +84,10 @@ Takes these options:
 
 Full documentation on how to design multivariate tests, use the data in GA and construct hypothesis tests is on its way soon.
 
-
-## Reporting to Google Content Experiments
+### Reporting to Google Content Experiments
 The toolkit includes a library for multivariate testing that is capable of reporting data into [Google Content Experiments](https://developers.google.com/analytics/devguides/platform/experiments-overview).
 
-### To create a new experiment
+#### To create a new experiment
 
 1. Log in to Google Universal Analytics, select "UA - Preview environment".
 2. In the left column, click on Behaviour, then Experiments and follow [these instructions](https://support.google.com/analytics/answer/1745152?hl=en-GB) to set up your experiment; you will need to have edit permissions on the Universal Analytics profile. If you cannot see a "Create experiment" button, this means you don't have these permissions; you can ask someone from the Performance Analyst team to set the experiment up for you.
@@ -108,7 +103,6 @@ This code requires analytics to be loaded in order to run; static is the app tha
 ```js
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
-  customVarIndex: 555,
   contentExperimentId: "Your_Experiment_ID";
   cohorts: {
     pay_your_car_tax: {weight: 25, variantId: 0},
@@ -117,6 +111,28 @@ var test = new GOVUK.MultivariateTest({
 });
 
 ```
+
+### Using Google custom dimensions with your own statistical model
+
+It is possible to use Google custom dimensions for determining the results of
+the multivariate test (as an alternative to Google Content Experiments). This
+may be appropriate if you wish to build the statistical model yourself or you
+aren't able to use Content Experiments for some reason.
+
+This requires setting the optional `customVarIndex` variable:
+
+```js
+var test = new GOVUK.MultivariateTest({
+  name: 'car_tax_button_text',
+  customVarIndex: 555,
+  cohorts: {
+    pay_your_car_tax: {weight: 25},
+    give_us_money: {weight: 50}
+  }
+});
+```
+
+`customVarIndex` is the index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
 
 ## Primary Links
 
