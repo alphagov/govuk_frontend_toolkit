@@ -1,6 +1,10 @@
-# 3.3.1
+# 3.3.2
 
 - Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA 
+
+# 3.3.1
+
+- Increment version for error colour changes
 
 # 3.3.0
 
