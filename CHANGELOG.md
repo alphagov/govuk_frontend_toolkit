@@ -1,3 +1,8 @@
+# 3.4.0
+
+- multivariate-test.js: add support for using Google Content Experiments as the reporting
+backend for multivariate tests
+
 # 3.3.1
 
 - Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA 
