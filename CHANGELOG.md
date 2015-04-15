@@ -1,3 +1,9 @@
+# 3.4.1
+
+- Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA
+(this was meant to go into 3.3.1 but was lost from history)
+- Add `$focus-colour` variable (#180)
+
 # 3.4.0
 
 - multivariate-test.js: add support for using Google Content Experiments as the reporting
