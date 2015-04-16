@@ -90,15 +90,22 @@ The toolkit includes a library for multivariate testing that is capable of repor
 #### To create a new experiment
 
 1. Log in to Google Universal Analytics, select "UA - Preview environment".
+
 2. In the left column, click on Behaviour, then Experiments and follow [these instructions](https://support.google.com/analytics/answer/1745152?hl=en-GB) to set up your experiment; you will need to have edit permissions on the Universal Analytics profile. If you cannot see a "Create experiment" button, this means you don't have these permissions; you can ask someone from the Performance Analyst team to set the experiment up for you.
+
 3. In step number 2, in our case the address of the web pages will purely be used as descriptions in reports, so we recommend you pick the addresses accordingly, ie: "www.gov.uk" and "www.gov.uk/?=variation1".
+
 4. In step number 3, "Setting up your experiment code", select "Manually insert the code" and make a note of the Experiment ID number located under the script window.
+
 5. Add the below code to the page you want to test.
-    - the contentExperimentId is the Experiment ID you retrieved in step 3
+    - the contentExperimentId is the Experiment ID you retrieved in step 3.
     - the variantId is 0 for the original variant, 1 for the first modified variant, 2 for the second modified variant, etc.
-    - see section above for other elements
+    - see section above for other elements.
 This code requires analytics to be loaded in order to run; static is the app that would load the analytics by default, which automatically happens before experiments are run.
+
 6. Check that it works: launch the app, open the page of your app, and check that there is a cookie with the name you had picked in your experiment. You can delete the cookie and refresh the page to check whether you can be assigned to another cohort.
+
+7. If it works, in Google Universal Analytics, click on "Next Step" and then "Start Experiment". You can ignore the error messages relative to Experiment Code Validation as they don't concern us in our setup.
 
 ```js
 var test = new GOVUK.MultivariateTest({
