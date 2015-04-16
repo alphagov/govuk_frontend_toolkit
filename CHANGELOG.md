@@ -1,3 +1,10 @@
+#3.4.2
+
+- Fix: Before this fix, when a user fell into variant 0 of a multivariate test,
+the data wouldn't be reported to Google correctly because of a broken
+null check in the code block that opts the user into the Google Content
+Experiment.
+
 # 3.4.1
 
 - Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA
@@ -11,7 +18,7 @@ backend for multivariate tests
 
 # 3.3.1
 
-- Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA 
+- Fix: Make the error colour a darker red for greater contrast and to meet WCAG 2.0 AAAA
 
 # 3.3.0
 
