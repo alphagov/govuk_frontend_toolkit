@@ -187,10 +187,10 @@ describe("MultivariateTest", function() {
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
         contentExperimentId: "asdfsadasdfa",
-        cohorts: {foo: {variantId: 0, weight: 0},  bar: {variantId: 1, weight: 1}}
+        cohorts: {foo: {variantId: 0, weight: 1},  bar: {variantId: 1, weight: 0}}
       });
       expect(window.ga.calls.first().args).toEqual(['set', 'expId', 'asdfsadasdfa']);
-      expect(window.ga.calls.mostRecent().args).toEqual(['set', 'expVar', 1]);
+      expect(window.ga.calls.mostRecent().args).toEqual(['set', 'expVar', 0]);
       expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
         'multivariatetest_cohort_stuff',
         'run',
