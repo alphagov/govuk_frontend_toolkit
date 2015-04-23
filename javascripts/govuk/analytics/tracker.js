@@ -46,5 +46,12 @@
     this.classic.setCustomVariable(index, value, name, scope);
   };
 
+  /*
+   Add a beacon to track a page in another GA account on another domain.
+   */
+  Tracker.prototype.addLinkedTrackerDomain = function(trackerId, name, domain) {
+    this.universal.addLinkedTrackerDomain(trackerId, name, domain);
+  };
+
   GOVUK.Tracker = Tracker;
 })();
