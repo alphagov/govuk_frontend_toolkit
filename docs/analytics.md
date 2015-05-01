@@ -160,3 +160,15 @@ Pull `print-intent.js` into your project, and initialise it after analytics (see
 ## Error tracking
 
 Pull `error-tracking.js` into your project, and initialise it after analytics (see [Create an analytics tracker, above](#create-an-analytics-tracker)), to track JavaScript errors.
+
+## Tracking across domains
+
+Once a Tracker instance has been created, tracking across domains can be set up
+for pages like:
+
+```js
+GOVUK.analytics.addLinkedTrackerDomain(trackerIdHere, nameForTracker, domainToLinkTo);
+```
+
+Once this is done hits to that page will be tracked in both your local and the
+named tracker, and sessions will persist to the other domain.
