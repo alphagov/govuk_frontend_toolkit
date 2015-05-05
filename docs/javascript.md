@@ -103,6 +103,10 @@ The toolkit includes a library for multivariate testing that is capable of repor
     - see section above for other elements.
 This code requires analytics to be loaded in order to run; static is the app that would load the analytics by default, which automatically happens before experiments are run.
 
+6. Check that it works: launch the app, open the page of your app, and check that there is a cookie with the name you had picked in your experiment. You can delete the cookie and refresh the page to check whether you can be assigned to another cohort. Then in your browser console, go to the Networks tab and search for xid and xvar. The values should correspond to your contentExperimentId and the cohort your cookie indicates you were assigned to.
+
+7. If it works, in Google Universal Analytics, click on "Next Step" and then "Start Experiment". You can ignore the error messages relative to Experiment Code Validation as they don't concern us in our setup.
+ 
 ```js
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
@@ -114,10 +118,6 @@ var test = new GOVUK.MultivariateTest({
 });
 
 ```
-
-6. Check that it works: launch the app, open the page of your app, and check that there is a cookie with the name you had picked in your experiment. You can delete the cookie and refresh the page to check whether you can be assigned to another cohort. Then in your browser console, go to the Networks tab and search for xid and xvar. The values should correspond to your contentExperimentId and the cohort your cookie indicates you were assigned to.
-
-7. If it works, in Google Universal Analytics, click on "Next Step" and then "Start Experiment". You can ignore the error messages relative to Experiment Code Validation as they don't concern us in our setup.
 
 ### Using Google custom dimensions with your own statistical model
 
