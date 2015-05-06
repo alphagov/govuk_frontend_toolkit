@@ -71,4 +71,25 @@ describe("GOVUK.Tracker", function() {
     });
   });
 
+  describe('when adding a linked domain', function() {
+    beforeEach(function() {
+      tracker = new GOVUK.Tracker(this.config);
+    });
+
+    it('adds a linked domain to universal only', function() {
+      window._gaq = [];
+      tracker.addLinkedTrackerDomain('1234', 'test', 'www.example.com');
+
+      expect(window._gaq).toEqual([]);
+      var allArgs = window.ga.calls.allArgs()
+      expect(allArgs).toContain(['create', '1234', 'auto', {'name': 'test'}]);
+      expect(allArgs).toContain(['require', 'linker']);
+      expect(allArgs).toContain(['test.require', 'linker']);
+      expect(allArgs).toContain(['linker:autoLink', ['www.example.com']]);
+      expect(allArgs).toContain(['test.linker:autoLink', ['www.example.com']]);
+      expect(allArgs).toContain(['test.set', 'anonymizeIp', true]);
+      expect(allArgs).toContain(['test.send', 'pageview']);
+    });
+  });
+
 });

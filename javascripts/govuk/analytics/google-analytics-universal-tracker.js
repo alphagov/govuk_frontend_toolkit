@@ -89,6 +89,29 @@
     });
   };
 
+  /*
+   https://developers.google.com/analytics/devguides/collection/analyticsjs/cross-domain
+   trackerId - the UA account code to track the domain against
+   name      - name for the tracker
+   domain    - the domain to track
+  */
+  GoogleAnalyticsUniversalTracker.prototype.addLinkedTrackerDomain = function(trackerId, name, domain) {
+    sendToGa('create',
+             trackerId,
+             'auto',
+             {'name': name});
+    // Load the plugin.
+    sendToGa('require', 'linker');
+    sendToGa(name + '.require', 'linker');
+
+    // Define which domains to autoLink.
+    sendToGa('linker:autoLink', [domain]);
+    sendToGa(name + '.linker:autoLink', [domain]);
+
+    sendToGa(name + '.set', 'anonymizeIp', true);
+    sendToGa(name + '.send', 'pageview');
+  };
+
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets
   GoogleAnalyticsUniversalTracker.prototype.setDimension = function(index, value) {
     sendToGa('set', 'dimension' + index, String(value));
