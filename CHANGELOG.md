@@ -1,3 +1,7 @@
+#3.5.0
+
+- Adds cross domain tracking to Analytics API library: https://github.com/alphagov/govuk_frontend_toolkit/pull/185
+
 #3.4.2
 
 - Fix: Before this fix, when a user fell into variant 0 of a multivariate test,
