@@ -1,5 +1,5 @@
 (function (root) {
-  "use strict";
+  "use strict"
   var loadedScripts = 0,
       totalScripts,
       merge,
@@ -22,7 +22,7 @@
   };
   loadScript = function (src, nextIdx) {
     var script = document.createElement('script'),
-        nextScript; 
+        nextScript;
 
     script.type = 'text/javascript';
     script.src = src;
@@ -32,23 +32,15 @@
     script.onload = function () {
       if (nextIdx < totalScripts.length) {
         loadScript(totalScripts[nextIdx], nextIdx + 1);
-      } else {
-        runJasmine();
       }
     };
     return script;
-  };
-  runJasmine = function () {
-    var console_reporter = new jasmine.ConsoleReporter();
-    jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
-    jasmine.getEnv().addReporter(console_reporter);
-    jasmine.getEnv().execute();
   };
   manifestScript = loadScript('../manifest.js');
 
   manifestScript.onload = function () {
     var idx = 0;
-  
+
     totalScripts = merge([manifest.support, manifest.test]);
     loadScript(totalScripts[idx], idx + 1);
   };
