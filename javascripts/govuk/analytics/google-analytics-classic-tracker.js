@@ -121,7 +121,10 @@
   // Match tracker and universal API
   GoogleAnalyticsClassicTracker.prototype.setDimension = function(index, value, name, scope) {
     this.setCustomVariable(index, value, name, scope);
-  }
+  };
+
+  // Match tracker and universal API
+  GoogleAnalyticsClassicTracker.prototype.addLinkedTrackerDomain = function() {};
 
   GOVUK.GoogleAnalyticsClassicTracker = GoogleAnalyticsClassicTracker;
 })();

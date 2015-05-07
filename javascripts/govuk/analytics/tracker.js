@@ -16,7 +16,7 @@
   };
 
   Tracker.prototype.trackPageview = function(path, title) {
-    this.classic.trackPageview(path);
+    this.classic.trackPageview(path, title);
     this.universal.trackPageview(path, title);
   };
 
@@ -42,8 +42,8 @@
     Check this for your app before using this
    */
   Tracker.prototype.setDimension = function(index, value, name, scope) {
-    this.universal.setDimension(index, value);
-    this.classic.setCustomVariable(index, value, name, scope);
+    this.universal.setDimension(index, value, name, scope);
+    this.classic.setDimension(index, value, name, scope);
   };
 
   /*
