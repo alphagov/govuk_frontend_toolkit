@@ -6,8 +6,13 @@
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
 
   var Tracker = function(config) {
-    this.universal = new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain);
-    this.classic = new GOVUK.GoogleAnalyticsClassicTracker(config.classicId, config.cookieDomain);
+    this.trackers = [];
+    if (typeof config.universalId != 'undefined') {
+      this.trackers.push(new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain));
+    }
+    if (typeof config.classicId != 'undefined') {
+      this.trackers.push(new GOVUK.GoogleAnalyticsClassicTracker(config.classicId, config.cookieDomain));
+    }
   };
 
   Tracker.load = function() {
@@ -16,8 +21,9 @@
   };
 
   Tracker.prototype.trackPageview = function(path, title) {
-    this.classic.trackPageview(path);
-    this.universal.trackPageview(path, title);
+    for (var i=0; i < this.trackers.length; i++) {
+      this.trackers[i].trackPageview(path, title);
+    }
   };
 
   /*
@@ -27,14 +33,16 @@
     options.nonInteraction – Prevent event from impacting bounce rate
   */
   Tracker.prototype.trackEvent = function(category, action, options) {
-    this.classic.trackEvent(category, action, options);
-    this.universal.trackEvent(category, action, options);
+    for (var i=0; i < this.trackers.length; i++) {
+      this.trackers[i].trackEvent(category, action, options);
+    }
   };
 
   Tracker.prototype.trackShare = function(network) {
     var target = location.pathname;
-    this.classic.trackSocial(network, 'share', target);
-    this.universal.trackSocial(network, 'share', target);
+    for (var i=0; i < this.trackers.length; i++) {
+      this.trackers[i].trackSocial(network, 'share', target);
+    }
   };
 
   /*
@@ -42,15 +50,18 @@
     Check this for your app before using this
    */
   Tracker.prototype.setDimension = function(index, value, name, scope) {
-    this.universal.setDimension(index, value);
-    this.classic.setCustomVariable(index, value, name, scope);
+    for (var i=0; i < this.trackers.length; i++) {
+      this.trackers[i].setDimension(index, value, name, scope);
+    }
   };
 
   /*
    Add a beacon to track a page in another GA account on another domain.
    */
   Tracker.prototype.addLinkedTrackerDomain = function(trackerId, name, domain) {
-    this.universal.addLinkedTrackerDomain(trackerId, name, domain);
+    for (var i=0; i < this.trackers.length; i++) {
+      this.trackers[i].addLinkedTrackerDomain(trackerId, name, domain);
+    }
   };
 
   GOVUK.Tracker = Tracker;

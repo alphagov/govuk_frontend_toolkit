@@ -25,6 +25,26 @@ describe("GOVUK.Tracker", function() {
       expect(window._gaq[1]).toEqual(['_setDomainName', '.www.gov.uk']);
       expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
     });
+
+  });
+
+  describe('when created with only universal analytics', function() {
+    var universalSetupArguments;
+
+    beforeEach(function () {
+    });
+
+    it ('doesn\'t require both trackers to be present', function() {
+      universalOnlyConfig = { universalId: 'universal-id',
+                              cookieDomain: '.www.gov.uk'
+                            };
+
+      var tracker = new GOVUK.Tracker(universalOnlyConfig);
+
+      universalSetupArguments = window.ga.calls.allArgs();
+      expect(typeof(window._gaq[0])).toEqual('undefined');
+      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
+    });
   });
 
   describe('when tracking pageviews, events and custom dimensions', function() {
