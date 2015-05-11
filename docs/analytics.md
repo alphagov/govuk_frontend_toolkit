@@ -18,6 +18,7 @@ The minimum you need to use the analytics function is:
   * google-analytics-universal-tracker.js
   * tracker.js
 2. Copy the following `init` script into your own project and replace the dummy IDs with your own (they begin with `UA-`).
+  * Tracker.js accepts one or both analytics tracking code, so if you are only using one type of analytics (Classic or Universal) omit the one you don't need from the instantiation of GOVUK.Tracker. (NB you will still need to include both google-analytics-classic-tracker.js and google-analytics-universal-tracker.js in your project as they are currently loaded ahead of instantiation.)
   * This initialisation can occur immediately as this API has no dependencies.
   * Load and create the analytics tracker at the earliest opportunity so that:
     * the time until the first pageview is tracked is kept small and pageviews aren’t missed
