@@ -1,7 +1,13 @@
+#3.5.1
+- Changes Analytics API library to accept one, both or neither of the
+analytics tracking codes. This means we can start removing classic
+tracking codes from apps.
+
+
 #3.5.0
 
 - Adds cross domain tracking to Analytics API library: https://github.com/alphagov/govuk_frontend_toolkit/pull/185
-- Adds sass variables for discovery and live phases 
+- Adds sass variables for discovery and live phases
 
 #3.4.2
 
