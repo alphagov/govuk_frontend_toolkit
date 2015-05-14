@@ -30,7 +30,6 @@ module.exports = function(grunt) {
       javascripts: {
         src: [
           'node_modules/jquery-browser/lib/jquery.js',
-          'javascripts/govuk/analytics/google-analytics-classic-tracker.js',
           'javascripts/govuk/analytics/google-analytics-universal-tracker.js',
           'javascripts/govuk/analytics/tracker.js',
           'javascripts/**/*.js'

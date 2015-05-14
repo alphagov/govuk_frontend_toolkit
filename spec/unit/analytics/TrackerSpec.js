@@ -2,12 +2,10 @@ describe("GOVUK.Tracker", function() {
   var tracker;
 
   beforeEach(function() {
-    window._gaq = [];
     window.ga = function() {};
     spyOn(window, 'ga');
     this.config = {
       universalId: 'universal-id',
-      classicId: 'classic-id',
       cookieDomain: '.www.gov.uk'
     };
   });
@@ -20,31 +18,10 @@ describe("GOVUK.Tracker", function() {
       universalSetupArguments = window.ga.calls.allArgs();
     });
 
-    it('configures classic and universal trackers', function () {
-      expect(window._gaq[0]).toEqual(['_setAccount', 'classic-id']);
-      expect(window._gaq[1]).toEqual(['_setDomainName', '.www.gov.uk']);
+    it('configures a universal tracker', function () {
       expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
     });
 
-  });
-
-  describe('when created with only universal analytics', function() {
-    var universalSetupArguments;
-
-    beforeEach(function () {
-    });
-
-    it ('doesn\'t require both trackers to be present', function() {
-      universalOnlyConfig = { universalId: 'universal-id',
-                              cookieDomain: '.www.gov.uk'
-                            };
-
-      var tracker = new GOVUK.Tracker(universalOnlyConfig);
-
-      universalSetupArguments = window.ga.calls.allArgs();
-      expect(typeof(window._gaq[0])).toEqual('undefined');
-      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
-    });
   });
 
   describe('when tracking pageviews, events and custom dimensions', function() {
@@ -53,20 +30,14 @@ describe("GOVUK.Tracker", function() {
       tracker = new GOVUK.Tracker(this.config);
     });
 
-    it('tracks in both classic and universal', function() {
-      window._gaq = [];
+    it('tracks them in universal analytics', function() {
       tracker.trackPageview('/path', 'Title');
-      expect(window._gaq[0]).toEqual(['_trackPageview', '/path']);
       expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {page: '/path', title: 'Title'}]);
 
-      window._gaq = [];
       tracker.trackEvent('category', 'action');
-      expect(window._gaq[0]).toEqual(['_trackEvent', 'category', 'action']);
       expect(window.ga.calls.mostRecent().args).toEqual(['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action'}]);
 
-      window._gaq = [];
       tracker.setDimension(1, 'value', 'name');
-      expect(window._gaq[0]).toEqual(['_setCustomVar', 1, 'name', 'value', 3]);
       expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', 'value']);
     });
   });
@@ -78,10 +49,8 @@ describe("GOVUK.Tracker", function() {
     });
 
     it('tracks in both classic and universal', function() {
-      window._gaq = [];
       tracker.trackShare('network');
 
-      expect(window._gaq[0]).toEqual(['_trackSocial', 'network', 'share', jasmine.any(String)]);
       expect(window.ga.calls.mostRecent().args).toEqual(['send', {
         hitType: 'social',
         socialNetwork: 'network',
@@ -96,11 +65,9 @@ describe("GOVUK.Tracker", function() {
       tracker = new GOVUK.Tracker(this.config);
     });
 
-    it('adds a linked domain to universal only', function() {
-      window._gaq = [];
+    it('adds a linked domain to universal analytics', function() {
       tracker.addLinkedTrackerDomain('1234', 'test', 'www.example.com');
 
-      expect(window._gaq).toEqual([]);
       var allArgs = window.ga.calls.allArgs()
       expect(allArgs).toContain(['create', '1234', 'auto', {'name': 'test'}]);
       expect(allArgs).toContain(['require', 'linker']);

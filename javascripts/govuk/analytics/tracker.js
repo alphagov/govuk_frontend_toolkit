@@ -10,13 +10,9 @@
     if (typeof config.universalId != 'undefined') {
       this.trackers.push(new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain));
     }
-    if (typeof config.classicId != 'undefined') {
-      this.trackers.push(new GOVUK.GoogleAnalyticsClassicTracker(config.classicId, config.cookieDomain));
-    }
   };
 
   Tracker.load = function() {
-    GOVUK.GoogleAnalyticsClassicTracker.load();
     GOVUK.GoogleAnalyticsUniversalTracker.load();
   };
 
@@ -49,9 +45,9 @@
     Assumes that the index of the dimension is the same for both classic and universal.
     Check this for your app before using this
    */
-  Tracker.prototype.setDimension = function(index, value, name, scope) {
+  Tracker.prototype.setDimension = function(index, value) {
     for (var i=0; i < this.trackers.length; i++) {
-      this.trackers[i].setDimension(index, value, name, scope);
+      this.trackers[i].setDimension(index, value);
     }
   };
 
