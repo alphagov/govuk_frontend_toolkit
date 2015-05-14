@@ -5,14 +5,14 @@
   // For usage and initialisation see:
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
 
-  var Tracker = function(config) {
+  var Analytics = function(config) {
     this.trackers = [];
     if (typeof config.universalId != 'undefined') {
       this.trackers.push(new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain));
     }
   };
 
-  Tracker.prototype.sendToTrackers = function(method, args) {
+  Analytics.prototype.sendToTrackers = function(method, args) {
     for (var i = 0, l = this.trackers.length; i < l; i++) {
       var tracker = this.trackers[i],
           fn = tracker[method];
@@ -23,11 +23,11 @@
     }
   };
 
-  Tracker.load = function() {
+  Analytics.load = function() {
     GOVUK.GoogleAnalyticsUniversalTracker.load();
   };
 
-  Tracker.prototype.trackPageview = function(path, title) {
+  Analytics.prototype.trackPageview = function(path, title) {
     this.sendToTrackers('trackPageview', arguments);
   };
 
@@ -37,11 +37,11 @@
     options.value – Values must be non-negative. Useful to pass counts
     options.nonInteraction – Prevent event from impacting bounce rate
   */
-  Tracker.prototype.trackEvent = function(category, action, options) {
+  Analytics.prototype.trackEvent = function(category, action, options) {
     this.sendToTrackers('trackEvent', arguments);
   };
 
-  Tracker.prototype.trackShare = function(network) {
+  Analytics.prototype.trackShare = function(network) {
     this.sendToTrackers('trackSocial', [network, 'share', location.pathname]);
   };
 
@@ -49,16 +49,16 @@
     Assumes that the index of the dimension is the same for both classic and universal.
     Check this for your app before using this
    */
-  Tracker.prototype.setDimension = function(index, value) {
+  Analytics.prototype.setDimension = function(index, value) {
     this.sendToTrackers('setDimension', arguments);
   };
 
   /*
    Add a beacon to track a page in another GA account on another domain.
    */
-  Tracker.prototype.addLinkedTrackerDomain = function(trackerId, name, domain) {
+  Analytics.prototype.addLinkedTrackerDomain = function(trackerId, name, domain) {
     this.sendToTrackers('addLinkedTrackerDomain', arguments);
   };
 
-  GOVUK.Tracker = Tracker;
+  GOVUK.Analytics = Analytics;
 })();

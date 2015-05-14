@@ -1,5 +1,5 @@
-describe("GOVUK.Tracker", function() {
-  var tracker;
+describe("GOVUK.Analytics", function() {
+  var analytics;
 
   beforeEach(function() {
     window.ga = function() {};
@@ -14,7 +14,7 @@ describe("GOVUK.Tracker", function() {
     var universalSetupArguments;
 
     beforeEach(function () {
-      tracker = new GOVUK.Tracker(this.config);
+      analytics = new GOVUK.Analytics(this.config);
       universalSetupArguments = window.ga.calls.allArgs();
     });
 
@@ -27,17 +27,17 @@ describe("GOVUK.Tracker", function() {
   describe('when tracking pageviews, events and custom dimensions', function() {
 
     beforeEach(function() {
-      tracker = new GOVUK.Tracker(this.config);
+      analytics = new GOVUK.Analytics(this.config);
     });
 
     it('tracks them in universal analytics', function() {
-      tracker.trackPageview('/path', 'Title');
+      analytics.trackPageview('/path', 'Title');
       expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {page: '/path', title: 'Title'}]);
 
-      tracker.trackEvent('category', 'action');
+      analytics.trackEvent('category', 'action');
       expect(window.ga.calls.mostRecent().args).toEqual(['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action'}]);
 
-      tracker.setDimension(1, 'value', 'name');
+      analytics.setDimension(1, 'value', 'name');
       expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', 'value']);
     });
   });
@@ -45,11 +45,11 @@ describe("GOVUK.Tracker", function() {
   describe('when tracking social media shares', function() {
 
     beforeEach(function() {
-      tracker = new GOVUK.Tracker(this.config);
+      analytics = new GOVUK.Analytics(this.config);
     });
 
     it('tracks in both classic and universal', function() {
-      tracker.trackShare('network');
+      analytics.trackShare('network');
 
       expect(window.ga.calls.mostRecent().args).toEqual(['send', {
         hitType: 'social',
@@ -62,11 +62,11 @@ describe("GOVUK.Tracker", function() {
 
   describe('when adding a linked domain', function() {
     beforeEach(function() {
-      tracker = new GOVUK.Tracker(this.config);
+      analytics = new GOVUK.Analytics(this.config);
     });
 
     it('adds a linked domain to universal analytics', function() {
-      tracker.addLinkedTrackerDomain('1234', 'test', 'www.example.com');
+      analytics.addLinkedTrackerDomain('1234', 'test', 'www.example.com');
 
       var allArgs = window.ga.calls.allArgs()
       expect(allArgs).toContain(['create', '1234', 'auto', {'name': 'test'}]);
