@@ -48,7 +48,7 @@ describe("GOVUK.Analytics", function() {
       analytics = new GOVUK.Analytics(this.config);
     });
 
-    it('tracks in both classic and universal', function() {
+    it('tracks in universal', function() {
       analytics.trackShare('network');
 
       expect(window.ga.calls.mostRecent().args).toEqual(['send', {

@@ -46,8 +46,8 @@
   };
 
   /*
-    Assumes that the index of the dimension is the same for both classic and universal.
-    Check this for your app before using this
+    The custom dimension index must be configured within the
+    Universal Analytics profile
    */
   Analytics.prototype.setDimension = function(index, value) {
     this.sendToTrackers('setDimension', arguments);
