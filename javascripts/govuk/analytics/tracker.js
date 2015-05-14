@@ -12,14 +12,23 @@
     }
   };
 
+  Tracker.prototype.sendToTrackers = function(method, args) {
+    for (var i = 0, l = this.trackers.length; i < l; i++) {
+      var tracker = this.trackers[i],
+          fn = tracker[method];
+
+      if (typeof fn === "function") {
+        fn.apply(tracker, args);
+      }
+    }
+  };
+
   Tracker.load = function() {
     GOVUK.GoogleAnalyticsUniversalTracker.load();
   };
 
   Tracker.prototype.trackPageview = function(path, title) {
-    for (var i=0; i < this.trackers.length; i++) {
-      this.trackers[i].trackPageview(path, title);
-    }
+    this.sendToTrackers('trackPageview', arguments);
   };
 
   /*
@@ -29,16 +38,11 @@
     options.nonInteraction – Prevent event from impacting bounce rate
   */
   Tracker.prototype.trackEvent = function(category, action, options) {
-    for (var i=0; i < this.trackers.length; i++) {
-      this.trackers[i].trackEvent(category, action, options);
-    }
+    this.sendToTrackers('trackEvent', arguments);
   };
 
   Tracker.prototype.trackShare = function(network) {
-    var target = location.pathname;
-    for (var i=0; i < this.trackers.length; i++) {
-      this.trackers[i].trackSocial(network, 'share', target);
-    }
+    this.sendToTrackers('trackSocial', [network, 'share', location.pathname]);
   };
 
   /*
@@ -46,18 +50,14 @@
     Check this for your app before using this
    */
   Tracker.prototype.setDimension = function(index, value) {
-    for (var i=0; i < this.trackers.length; i++) {
-      this.trackers[i].setDimension(index, value);
-    }
+    this.sendToTrackers('setDimension', arguments);
   };
 
   /*
    Add a beacon to track a page in another GA account on another domain.
    */
   Tracker.prototype.addLinkedTrackerDomain = function(trackerId, name, domain) {
-    for (var i=0; i < this.trackers.length; i++) {
-      this.trackers[i].addLinkedTrackerDomain(trackerId, name, domain);
-    }
+    this.sendToTrackers('addLinkedTrackerDomain', arguments);
   };
 
   GOVUK.Tracker = Tracker;
