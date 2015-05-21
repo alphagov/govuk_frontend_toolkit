@@ -8,28 +8,18 @@ describe("GOVUK.Analytics", function() {
       universalId: 'universal-id',
       cookieDomain: '.www.gov.uk'
     };
+
+    analytics = new GOVUK.Analytics(this.config);
   });
 
   describe('when created', function() {
-    var universalSetupArguments;
-
-    beforeEach(function () {
-      analytics = new GOVUK.Analytics(this.config);
-      universalSetupArguments = window.ga.calls.allArgs();
-    });
-
     it('configures a universal tracker', function () {
+      var universalSetupArguments = window.ga.calls.allArgs();
       expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
     });
-
   });
 
   describe('when tracking pageviews, events and custom dimensions', function() {
-
-    beforeEach(function() {
-      analytics = new GOVUK.Analytics(this.config);
-    });
-
     it('tracks them in universal analytics', function() {
       analytics.trackPageview('/path', 'Title');
       expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {page: '/path', title: 'Title'}]);
@@ -43,11 +33,6 @@ describe("GOVUK.Analytics", function() {
   });
 
   describe('when tracking social media shares', function() {
-
-    beforeEach(function() {
-      analytics = new GOVUK.Analytics(this.config);
-    });
-
     it('tracks in universal', function() {
       analytics.trackShare('network');
 
@@ -61,10 +46,6 @@ describe("GOVUK.Analytics", function() {
   });
 
   describe('when adding a linked domain', function() {
-    beforeEach(function() {
-      analytics = new GOVUK.Analytics(this.config);
-    });
-
     it('adds a linked domain to universal analytics', function() {
       analytics.addLinkedTrackerDomain('1234', 'test', 'www.example.com');
 
