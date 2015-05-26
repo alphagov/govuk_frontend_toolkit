@@ -1,8 +1,15 @@
-#3.5.1
+# 4.0.0
+
+- Remove Google Analytics classic https://github.com/alphagov/govuk_frontend_toolkit/pull/194
+  - References to google-analytics-classic-tracker.js should be removed
+- Rename GOVUK.Tracker to GOVUK.Analytics
+  - References to GOVUK.Tracker should be updated
+
+# 3.5.1
+
 - Changes Analytics API library to accept one, both or neither of the
 analytics tracking codes. This means we can start removing classic
 tracking codes from apps.
-
 
 #3.5.0
 
