@@ -19,7 +19,7 @@
       $elms = $(elmsOrSelector);
       this.selector = elmsOrSelector;
       this.setInitialState($(this.selector));
-    } else if ($elms !== undefined) {
+    } else if (elmsOrSelector !== undefined) {
       this.$elms = elmsOrSelector;
       this.setInitialState(this.$elms);
     }
