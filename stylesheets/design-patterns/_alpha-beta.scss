@@ -27,12 +27,9 @@
   }
 
   span {
-    @include inline-block;
-    width: 75%;
     vertical-align: top;
 
     @include media(tablet) {
-      width: auto;
       vertical-align: baseline;
     }
   }
