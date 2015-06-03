@@ -1,3 +1,7 @@
+# 4.0.1
+
+- Fix: stop multiline text from dropping below phase tag.
+
 # 4.0.0
 
 - Remove Google Analytics classic https://github.com/alphagov/govuk_frontend_toolkit/pull/194
