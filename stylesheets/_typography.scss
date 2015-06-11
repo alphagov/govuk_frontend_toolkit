@@ -130,6 +130,8 @@ $is-print: false !default;
 
 @mixin heading-80($tabular-numbers: false) {
   @include core-80($tabular-numbers: $tabular-numbers);
+  
+  display: block;
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -142,6 +144,8 @@ $is-print: false !default;
 
 @mixin heading-48($tabular-numbers: false) {
   @include core-48($tabular-numbers: $tabular-numbers);
+  
+  display: block;
 
   padding-top: 10px;
   padding-bottom: 10px;
@@ -154,6 +158,8 @@ $is-print: false !default;
 
 @mixin heading-36($tabular-numbers: false) {
   @include core-36($tabular-numbers: $tabular-numbers);
+    
+  display: block;
 
   padding-top: 8px;
   padding-bottom: 7px;
@@ -167,6 +173,8 @@ $is-print: false !default;
 @mixin heading-27($tabular-numbers: false) {
   @include core-27($tabular-numbers: $tabular-numbers);
 
+  display: block;
+  
   padding-top: 8px;
   padding-bottom: 7px;
 
@@ -179,6 +187,8 @@ $is-print: false !default;
 @mixin heading-24($tabular-numbers: false) {
   @include core-24($tabular-numbers: $tabular-numbers);
 
+  display: block;
+  
   padding-top: 9px;
   padding-bottom: 6px;
 
