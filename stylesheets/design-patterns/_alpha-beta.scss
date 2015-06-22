@@ -10,11 +10,12 @@
 // }
 
 @mixin phase-banner($state: alpha) {
+
+  @extend %contain-floats;
+  @extend %grid-row;
+
   padding: 10px 0 8px 0;
-  @include media(tablet) {
-    padding-bottom: 10px;
-  }
-  border-bottom: 1px solid $border-colour;
+  position: relative;
 
   p {
     margin: 0;
@@ -22,8 +23,19 @@
     @include core-16;
     line-height: (22/16);
 
+    @include grid-column(1);
     @include media(tablet) {
-      max-width: $two-thirds;
+      @include grid-column(2/3);
+    }
+
+    &:after {
+      content: "";
+      border-bottom: 1px solid $border-colour;
+
+      position: absolute;
+      bottom: 0;
+      left: 15px;
+      right: 15px;
     }
   }
 
@@ -32,11 +44,7 @@
   }
 
   span {
-    vertical-align: top;
-
-    @include media(tablet) {
-      vertical-align: baseline;
-    }
+    vertical-align: bottom;
   }
 }
 
