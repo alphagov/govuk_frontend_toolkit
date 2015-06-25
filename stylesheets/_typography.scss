@@ -61,14 +61,14 @@ $is-print: false !default;
   @include _core-font-generator($font-size, $font-size-640, $font-size-print, $line-height, $line-height-640, $tabular-numbers, $font-weight);
 }
 
-@mixin core-27($line-height: (30 / 27), $line-height-640: (20 / 18), $tabular-numbers: false, $font-weight: 400) {
+@mixin core-27($line-height: (30 / 27), $line-height-640: (25 / 20), $tabular-numbers: false, $font-weight: 400) {
   $font-size: 27px;
   $font-size-640: 20px;
   $font-size-print: 16pt;
   @include _core-font-generator($font-size, $font-size-640, $font-size-print, $line-height, $line-height-640, $tabular-numbers, $font-weight);
 }
 
-@mixin core-24($line-height: (30 / 24), $line-height-640: (24 / 20), $tabular-numbers: false, $font-weight: 400) {
+@mixin core-24($line-height: (30 / 24), $line-height-640: (20 / 18), $tabular-numbers: false, $font-weight: 400) {
   $font-size: 24px;
   $font-size-640: 18px;
   $font-size-print: 16pt;
@@ -82,7 +82,7 @@ $is-print: false !default;
   @include _core-font-generator($font-size, $font-size-640, $font-size-print, $line-height, $line-height-640, $tabular-numbers, $font-weight);
 }
 
-@mixin core-16($line-height: (20 / 16), $line-height-640: (16 / 14), $tabular-numbers: false, $font-weight: 400) {
+@mixin core-16($line-height: (20 / 16), $line-height-640: (20 / 14), $tabular-numbers: false, $font-weight: 400) {
   $font-size: 16px;
   $font-size-640: 14px;
   $font-size-print: 12pt;
