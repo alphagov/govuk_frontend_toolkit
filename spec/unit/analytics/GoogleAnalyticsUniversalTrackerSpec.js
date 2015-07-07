@@ -94,6 +94,13 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
         }]
       );
     });
+
+    it('sends the page if supplied', function() {
+      universal.trackEvent('category', 'action', {page: '/path/to/page'});
+      expect(window.ga.calls.mostRecent().args).toEqual(
+        ['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action', page: '/path/to/page'}]
+      );
+    });
   });
 
   describe('when social events are tracked', function() {

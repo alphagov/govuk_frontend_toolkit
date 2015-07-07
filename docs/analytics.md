@@ -90,6 +90,7 @@ Argument | Description
 
 Option | Description
 -------|------------
+`page`  | Useful for sending the URL when `window.location` has been updated using JavaScript since the Analytics tracking object was created
 `label` | Useful for categorising events, eg Javascript error source
 `value` | Values must be non-negative. Useful to pass counts, eg error happened 5 times
 `nonInteraction` | Defaults to false. When set the event will not affect bounce rate
@@ -98,8 +99,9 @@ Option | Description
 // Track a custom event with required category and action fields
 GOVUK.analytics.trackEvent('category', 'action');
 
-// Track a custom event with optional label, value and nonInteraction options
+// Track a custom event with optional page, label, value and nonInteraction options
 GOVUK.analytics.trackEvent('category', 'action', {
+  page: '/path/to/page',
   label: 'label',
   value: 1,
   nonInteraction: true // event will not affect bounce rate
