@@ -1,3 +1,7 @@
+# 4.1.0
+
+- Add support for sending the `page` option to `GOVUK.analytics.trackEvent` (PR #203)
+
 # 4.0.1
 
 - Fix: stop multiline text from dropping below phase tag.
