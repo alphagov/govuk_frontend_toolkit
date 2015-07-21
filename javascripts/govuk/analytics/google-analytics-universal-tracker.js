@@ -54,6 +54,11 @@
       evt.eventLabel = options.label;
     }
 
+    // Page is optional
+    if (typeof options.page === "string") {
+      evt.page = options.page;
+    }
+
     // Value is optional, but when used must be an
     // integer, otherwise the event will be invalid
     // and not logged
