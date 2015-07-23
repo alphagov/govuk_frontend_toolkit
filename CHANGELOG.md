@@ -1,3 +1,7 @@
+# 4.1.1
+
+- Update Accessible Media Player to remove dependency on $.browser (PR #206) 
+
 # 4.1.0
 
 - Add support for sending the `page` option to `GOVUK.analytics.trackEvent` (PR #203)
