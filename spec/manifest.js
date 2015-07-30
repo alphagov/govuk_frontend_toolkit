@@ -8,8 +8,8 @@ var manifest = {
     '../../javascripts/govuk/stop-scrolling-at-footer.js',
     '../../javascripts/govuk/selection-buttons.js',
     '../../javascripts/govuk/analytics/google-analytics-universal-tracker.js',
-    '../../javascripts/govuk/analytics/analytics.js'
-
+    '../../javascripts/govuk/analytics/analytics.js',
+    '../../javascripts/govuk/analytics/external-link-tracking.js'
   ],
   test : [
     '../unit/MultivariateTestSpec.js',
@@ -17,6 +17,7 @@ var manifest = {
     '../unit/StickAtTopWhenScrollingSpec.js',
     '../unit/SelectionButtonSpec.js',
     '../unit/analytics/GoogleAnalyticsUniversalTrackerSpec.js',
-    '../unit/analytics/AnalyticsSpec.js'
+    '../unit/analytics/AnalyticsSpec.js',
+    '../unit/analytics/ExternalLinkTrackingSpec.js'
   ]
 };

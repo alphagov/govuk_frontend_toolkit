@@ -75,6 +75,13 @@
       evt.nonInteraction = 1;
     }
 
+    // Set the transport method for the event
+    // Typically used for enabling `navigator.sendBeacon` when the page might be unloading
+    // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
+    if (options.transport) {
+      evt.transport = options.transport;
+    }
+
     sendToGa('send', evt);
   };
 
