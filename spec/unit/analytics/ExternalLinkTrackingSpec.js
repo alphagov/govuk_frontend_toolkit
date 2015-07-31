@@ -14,6 +14,7 @@ describe("GOVUK.analyticsPlugins.externalLinkTracker", function() {
       </div>');
 
     $('body').append($links);
+    GOVUK.analytics = {trackEvent:function(){}};
 
     spyOn(GOVUK.analyticsPlugins.externalLinkTracker, 'getHostname').and.returnValue('fake-hostname.com');
     GOVUK.analyticsPlugins.externalLinkTracker();
@@ -22,6 +23,7 @@ describe("GOVUK.analyticsPlugins.externalLinkTracker", function() {
   afterEach(function() {
     $('body').off();
     $links.remove();
+    delete GOVUK.analytics;
   });
 
   it('listens to click events on only external links', function() {
