@@ -49,6 +49,11 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
       universal.trackPageview('/nicholas-page', 'Nicholas Page');
       expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {page: '/nicholas-page', title: 'Nicholas Page'}]);
     });
+
+    it('can set the transport method on a pageview', function() {
+      universal.trackPageview('/t', 'T', {transport: 'beacon'});
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {page: '/t', title: 'T', transport: 'beacon'}]);
+    });
   });
 
   describe('when events are tracked', function() {
@@ -99,6 +104,13 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
       universal.trackEvent('category', 'action', {page: '/path/to/page'});
       expect(window.ga.calls.mostRecent().args).toEqual(
         ['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action', page: '/path/to/page'}]
+      );
+    });
+
+    it('can set the transport method on an event', function() {
+      universal.trackEvent('category', 'action', {transport: 'beacon'});
+      expect(window.ga.calls.mostRecent().args).toEqual(
+        ['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action', transport: 'beacon'}]
       );
     });
   });
