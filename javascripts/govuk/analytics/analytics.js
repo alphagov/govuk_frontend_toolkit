@@ -27,7 +27,7 @@
     GOVUK.GoogleAnalyticsUniversalTracker.load();
   };
 
-  Analytics.prototype.trackPageview = function(path, title) {
+  Analytics.prototype.trackPageview = function(path, title, options) {
     this.sendToTrackers('trackPageview', arguments);
   };
 

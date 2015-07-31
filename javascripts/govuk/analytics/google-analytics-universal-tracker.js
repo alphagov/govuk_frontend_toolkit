@@ -24,7 +24,9 @@
   };
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
-  GoogleAnalyticsUniversalTracker.prototype.trackPageview = function(path, title) {
+  GoogleAnalyticsUniversalTracker.prototype.trackPageview = function(path, title, options) {
+    var options = options || {};
+
     if (typeof path === "string") {
       var pageviewObject = {
             page: path
@@ -33,6 +35,14 @@
       if (typeof title === "string") {
         pageviewObject.title = title;
       }
+
+      // Set the transport method for the pageview
+      // Typically used for enabling `navigator.sendBeacon` when the page might be unloading
+      // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
+      if (options.transport) {
+        pageviewObject.transport = options.transport;
+      }
+
       sendToGa('send', 'pageview', pageviewObject);
     } else {
       sendToGa('send', 'pageview');

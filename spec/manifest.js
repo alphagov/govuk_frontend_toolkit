@@ -9,7 +9,8 @@ var manifest = {
     '../../javascripts/govuk/selection-buttons.js',
     '../../javascripts/govuk/analytics/google-analytics-universal-tracker.js',
     '../../javascripts/govuk/analytics/analytics.js',
-    '../../javascripts/govuk/analytics/external-link-tracking.js'
+    '../../javascripts/govuk/analytics/external-link-tracking.js',
+    '../../javascripts/govuk/analytics/download-link-tracking.js'
   ],
   test : [
     '../unit/MultivariateTestSpec.js',
@@ -18,6 +19,7 @@ var manifest = {
     '../unit/SelectionButtonSpec.js',
     '../unit/analytics/GoogleAnalyticsUniversalTrackerSpec.js',
     '../unit/analytics/AnalyticsSpec.js',
-    '../unit/analytics/ExternalLinkTrackingSpec.js'
+    '../unit/analytics/ExternalLinkTrackingSpec.js',
+    '../unit/analytics/DownloadLinkTrackingSpec.js'
   ]
 };
