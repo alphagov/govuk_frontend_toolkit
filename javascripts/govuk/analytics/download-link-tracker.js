@@ -9,8 +9,15 @@
 
     function trackDownload(evt) {
       var $target = $(evt.target),
-          href = $target.attr('href'),
-          linkText = $.trim($target.text());
+          href,
+          linkText;
+
+      if (!$target.is('a')) {
+        $target = $target.parents('a');
+      }
+
+      href = $target.attr('href'),
+      linkText = $.trim($target.text());
 
       if (downloadLinkRegexp.test(href)) {
         GOVUK.analytics.trackPageview(href, linkText, {transport: 'beacon'});

@@ -7,6 +7,7 @@ describe("GOVUK.analyticsPlugins.downloadLinkTracker", function() {
         <a href="/one.pdf">PDF</a>\
         <a href="/two.xslt">Spreadsheet</a>\
         <a href="/something/uploads/system/three.doc">Document</a>\
+        <a href="/an/image/link.png"><img src="/img" /></a>\
       </div>\
       <div class="normal-links">\
         <a href="/normal-link">Normal link</a>\
@@ -15,12 +16,14 @@ describe("GOVUK.analyticsPlugins.downloadLinkTracker", function() {
         <a href="https://www.external-link.com/download.zip">External download link</a>\
       </div>');
 
+    $('html').on('click', function(evt) { evt.preventDefault(); });
     $('body').append($links);
     GOVUK.analytics = {trackPageview:function(){}};
     GOVUK.analyticsPlugins.downloadLinkTracker();
   });
 
   afterEach(function() {
+    $('html').off();
     $('body').off();
     $links.remove();
     delete GOVUK.analytics;
@@ -40,6 +43,13 @@ describe("GOVUK.analyticsPlugins.downloadLinkTracker", function() {
       expect(GOVUK.analytics.trackPageview).not.toHaveBeenCalled();
       GOVUK.analytics.trackPageview.calls.reset();
     });
+  });
+
+  it('listens to click events on elements within download links', function() {
+    spyOn(GOVUK.analytics, 'trackPageview');
+
+    $('.download-links a img').trigger('click');
+    expect(GOVUK.analytics.trackPageview).toHaveBeenCalledWith('/an/image/link.png', '', {transport: 'beacon'});
   });
 
   it('tracks a download link as a pageview with a custom title', function() {

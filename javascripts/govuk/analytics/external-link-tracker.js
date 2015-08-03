@@ -10,9 +10,16 @@
 
     function trackClickEvent(evt) {
       var $target = $(evt.target),
-          href = $target.attr('href'),
-          linkText = $.trim($target.text()),
-          options = {transport: 'beacon'};
+          options = {transport: 'beacon'},
+          href,
+          linkText;
+
+      if (!$target.is('a')) {
+        $target = $target.parents('a');
+      }
+
+      href = $target.attr('href');
+      linkText = $.trim($target.text());
 
       if (linkText) {
         options.label = linkText;
