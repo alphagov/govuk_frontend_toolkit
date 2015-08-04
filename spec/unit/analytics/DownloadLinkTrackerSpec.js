@@ -11,15 +11,13 @@ describe("GOVUK.analyticsPlugins.downloadLinkTracker", function() {
       </div>\
       <div class="normal-links">\
         <a href="/normal-link">Normal link</a>\
-        <a href="/normal-link/sub.directory/?page=thing">Weird normal link</a>\
-        <a href="http://www.external-link.com/">External link</a>\
-        <a href="https://www.external-link.com/download.zip">External download link</a>\
+        <a href="/another-link">Another link</a>\
       </div>');
 
     $('html').on('click', function(evt) { evt.preventDefault(); });
     $('body').append($links);
     GOVUK.analytics = {trackPageview:function(){}};
-    GOVUK.analyticsPlugins.downloadLinkTracker();
+    GOVUK.analyticsPlugins.downloadLinkTracker({selector: 'a[href$=".pdf"], a[href$=".xslt"], a[href$=".doc"], a[href$=".png"]'});
   });
 
   afterEach(function() {
@@ -29,7 +27,7 @@ describe("GOVUK.analyticsPlugins.downloadLinkTracker", function() {
     delete GOVUK.analytics;
   });
 
-  it('listens to click events on only download links', function() {
+  it('listens to clicks on links that match the selector', function() {
     spyOn(GOVUK.analytics, 'trackPageview');
 
     $('.download-links a').each(function() {

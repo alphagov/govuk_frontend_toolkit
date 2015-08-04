@@ -189,7 +189,11 @@ External Link Clicked | http://www.some-external-website.com | Link text
 
 ### Download link tracking (`download-link-tracker.js`)
 
-The tracker will send a pageview for clicks on any link that begin with `/` and end with a file extension (3 or 4 characters only). By default the plugin uses Google Analytics’ `transport: beacon` method so that pageviews are tracked even if the page unloads.
+The tracker will send a pageview for clicks on any link that matches the selector passed in. A selector must be provided. By default the plugin uses Google Analytics’ `transport: beacon` method so that pageviews are tracked even if the page unloads.
+
+```js
+GOVUK.analyticsPlugins.downloadTracker({selector: 'a[rel=download]'});
+```
 
 Page | Page title
 -----|-----------

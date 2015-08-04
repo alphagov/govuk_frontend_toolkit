@@ -1,27 +1,30 @@
 (function() {
   "use strict";
   GOVUK.analyticsPlugins = GOVUK.analyticsPlugins || {};
-  GOVUK.analyticsPlugins.downloadLinkTracker = function () {
-    var downloadLinkSelector = 'a[href^="/"][href*="."]',
-        downloadLinkRegexp = /\.[a-zA-Z0-9]{3,4}$/; //.pdf, .xslt, etc
+  GOVUK.analyticsPlugins.downloadLinkTracker = function (options) {
+    var options = options || {},
+        downloadLinkSelector = options.selector;
 
-    $('body').on('click', downloadLinkSelector, trackDownload);
+    if (downloadLinkSelector) {
+      $('body').on('click', downloadLinkSelector, trackDownload);
+    }
 
     function trackDownload(evt) {
-      var $target = $(evt.target),
-          href,
-          linkText;
+      var $link = getLinkFromEvent(evt),
+          href = $link.attr('href'),
+          linkText = $.trim($link.text());
+
+      GOVUK.analytics.trackPageview(href, linkText, {transport: 'beacon'});
+    }
+
+    function getLinkFromEvent(evt) {
+      var $target = $(evt.target);
 
       if (!$target.is('a')) {
         $target = $target.parents('a');
       }
 
-      href = $target.attr('href'),
-      linkText = $.trim($target.text());
-
-      if (downloadLinkRegexp.test(href)) {
-        GOVUK.analytics.trackPageview(href, linkText, {transport: 'beacon'});
-      }
+      return $target;
     }
   }
 }());
