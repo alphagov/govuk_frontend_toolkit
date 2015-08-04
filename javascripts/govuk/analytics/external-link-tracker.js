@@ -9,17 +9,10 @@
     $('body').on('click', externalLinkSelector, trackClickEvent);
 
     function trackClickEvent(evt) {
-      var $target = $(evt.target),
+      var $link = getLinkFromEvent(evt),
           options = {transport: 'beacon'},
-          href,
-          linkText;
-
-      if (!$target.is('a')) {
-        $target = $target.parents('a');
-      }
-
-      href = $target.attr('href');
-      linkText = $.trim($target.text());
+          href = $link.attr('href'),
+          linkText = $.trim($link.text());
 
       if (linkText) {
         options.label = linkText;
@@ -27,6 +20,16 @@
 
       GOVUK.analytics.trackEvent('External Link Clicked', href, options);
     }
+  }
+
+  function getLinkFromEvent(evt) {
+    var $target = $(evt.target);
+
+    if (!$target.is('a')) {
+      $target = $target.parents('a');
+    }
+
+    return $target;
   }
 
   GOVUK.analyticsPlugins.externalLinkTracker.getHostname = function() {
