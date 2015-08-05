@@ -20,16 +20,16 @@
 
       GOVUK.analytics.trackEvent('External Link Clicked', href, options);
     }
-  }
 
-  function getLinkFromEvent(evt) {
-    var $target = $(evt.target);
+    function getLinkFromEvent(evt) {
+      var $target = $(evt.target);
 
-    if (!$target.is('a')) {
-      $target = $target.parents('a');
+      if (!$target.is('a')) {
+        $target = $target.parents('a');
+      }
+
+      return $target;
     }
-
-    return $target;
   }
 
   GOVUK.analyticsPlugins.externalLinkTracker.getHostname = function() {
