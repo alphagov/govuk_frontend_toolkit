@@ -1,6 +1,11 @@
+# 4.2.0
+
+- Add two analytics plugins for download and external link tracking
+- Update typography mixins to be mobile first (PR #157)
+
 # 4.1.1
 
-- Update Accessible Media Player to remove dependency on $.browser (PR #206) 
+- Update Accessible Media Player to remove dependency on $.browser (PR #206)
 
 # 4.1.0
 
