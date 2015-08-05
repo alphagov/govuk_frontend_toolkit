@@ -140,14 +140,6 @@ function setPixelDensityDimension(pixelDensity) {
 }
 ```
 
-## Print tracking
-
-Pull `print-intent.js` into your project, and initialise it after analytics (see [Create an analytics tracker, above](#create-an-analytics-tracker)), to track when users are attempting to print content.
-
-## Error tracking
-
-Pull `error-tracking.js` into your project, and initialise it after analytics (see [Create an analytics tracker, above](#create-an-analytics-tracker)), to track JavaScript errors.
-
 ## Tracking across domains
 
 Once an Analytics instance has been created, tracking across domains can be set up
@@ -159,3 +151,50 @@ GOVUK.analytics.addLinkedTrackerDomain(trackerIdHere, nameForTracker, domainToLi
 
 Once this is done hits to that page will be tracked in both your local and the
 named tracker, and sessions will persist to the other domain.
+
+## Plugins
+
+Plugins are namespaced to `GOVUK.analyticsPlugins`. They should be pulled in by your project and initialised after `GOVUK.analytics` (see [Create an analytics tracker, above](#create-an-analytics-tracker)).
+
+### Print tracking (`print-intent.js`)
+
+Track when users are attempting to print content. The plugin sends a `Print intent` event and a `/print` prefixed pageview:
+
+Example event:
+
+Category | Action
+---------|-------
+Print Intent | `/current/page`
+
+Example pageview:
+
+`/print/current/page`
+
+### Error tracking (`error-tracking.js`)
+
+Track JavaScript errors, capturing the error message, file and line number. These events don’t affect bounce rate.
+
+Category | Action | Label | Value
+---------|--------|-------|-------
+JavaScript Error | The error message | file.js: line number | 1
+
+### External link tracking (`external-link-tracker.js`)
+
+The tracker will send an analytics event for clicks on links beginning, `http` and linking outside of the current host. By default the plugin uses Google Analytics’ `transport: beacon` method so that events are tracked even if the page unloads.
+
+Category | Action | Label
+---------|--------|-------
+External Link Clicked | http://www.some-external-website.com | Link text
+
+
+### Download link tracking (`download-link-tracker.js`)
+
+The tracker will send a pageview for clicks on any link that matches the selector passed in. A selector must be provided. By default the plugin uses Google Analytics’ `transport: beacon` method so that pageviews are tracked even if the page unloads.
+
+```js
+GOVUK.analyticsPlugins.downloadTracker({selector: 'a[rel=download]'});
+```
+
+Page | Page title
+-----|-----------
+`/some/upload/attachment/file.pdf` | Link text

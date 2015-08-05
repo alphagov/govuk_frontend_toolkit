@@ -6,6 +6,10 @@ describe("MultivariateTest", function() {
     spyOn(GOVUK.analytics, "trackEvent");
   });
 
+  afterEach(function() {
+    delete GOVUK.analytics;
+  });
+
   describe("#run", function() {
     it("should pick a random cohort on first run", function() {
       GOVUK.cookie.and.returnValue(null);
