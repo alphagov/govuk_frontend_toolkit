@@ -350,6 +350,8 @@ Tabular numbers have numerals of a standard fixed width. As all numbers have the
       @include core-24($tabular-numbers: true);
     }
 
+[See an example of tabular numbers in a table](http://govuk-elements.herokuapp.com/#data-in-a-table)
+
 #### external links
 
 `external-link-default` sets up the background image for all external links.
