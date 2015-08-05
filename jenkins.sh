@@ -13,7 +13,7 @@ MASTER_SHA=`git rev-parse origin/master`
 HEAD_SHA=`git rev-parse HEAD`
 if [ "$MASTER_SHA" == "$HEAD_SHA" ]; then
   # get the version from the version file
-  VERSION_TAG="v`cat VERSION.TXT`"
+  VERSION_TAG="v`cat VERSION.txt`"
 
   # check to make sure the tag doesn't already exist
   if ! git rev-parse $VERSION_TAG >/dev/null 2>&1; then
