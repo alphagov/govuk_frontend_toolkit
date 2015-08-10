@@ -12,9 +12,14 @@
     function trackDownload(evt) {
       var $link = getLinkFromEvent(evt),
           href = $link.attr('href'),
+          evtOptions = {transport: 'beacon'},
           linkText = $.trim($link.text());
 
-      GOVUK.analytics.trackPageview(href, linkText, {transport: 'beacon'});
+      if (linkText) {
+        evtOptions.label = linkText;
+      }
+
+      GOVUK.analytics.trackEvent('Download Link Clicked', href, evtOptions);
     }
 
     function getLinkFromEvent(evt) {
