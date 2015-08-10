@@ -180,7 +180,7 @@ JavaScript Error | The error message | file.js: line number | 1
 
 ### External link tracking (`external-link-tracker.js`)
 
-The tracker will send an analytics event for clicks on links beginning, `http` and linking outside of the current host. By default the plugin uses Google Analytics’ `transport: beacon` method so that events are tracked even if the page unloads.
+The tracker will send an event for clicks on links beginning, `http` and linking outside of the current host. By default the plugin uses Google Analytics’ `transport: beacon` method so that events are tracked even if the page unloads.
 
 Category | Action | Label
 ---------|--------|-------
@@ -189,12 +189,12 @@ External Link Clicked | http://www.some-external-website.com | Link text
 
 ### Download link tracking (`download-link-tracker.js`)
 
-The tracker will send a pageview for clicks on any link that matches the selector passed in. A selector must be provided. By default the plugin uses Google Analytics’ `transport: beacon` method so that pageviews are tracked even if the page unloads.
+The tracker will send an event for clicks on any link that matches the selector passed in. A selector must be provided. By default the plugin uses Google Analytics’ `transport: beacon` method so that events are tracked even if the page unloads.
 
 ```js
-GOVUK.analyticsPlugins.downloadTracker({selector: 'a[rel=download]'});
+GOVUK.analyticsPlugins.downloadTracker({selector: 'a[rel="download"]'});
 ```
 
-Page | Page title
------|-----------
-`/some/upload/attachment/file.pdf` | Link text
+Category | Action | Label
+---------|--------|-------
+Download Link Clicked | `/some/upload/attachment/file.pdf` | Link text
