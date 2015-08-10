@@ -1,3 +1,7 @@
+# 4.2.1
+
+- Track download links using events not pageviews
+
 # 4.2.0
 
 - Add two analytics plugins for download and external link tracking
