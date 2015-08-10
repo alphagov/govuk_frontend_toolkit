@@ -1,7 +1,7 @@
 #!/bin/bash
 set -e
 
-bundle install
+bundle install --path "${HOME}/bundles/${JOB_NAME}"
 npm install
 npm test
 
