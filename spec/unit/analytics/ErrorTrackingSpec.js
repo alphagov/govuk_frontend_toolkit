@@ -50,7 +50,8 @@ describe("GOVUK.analyticsPlugins.error", function() {
   });
 
   function triggerError(filename, lineno, message) {
-    var event = new Event('error');
+    var event = document.createEvent('Event');
+    event.initEvent('error', true, true);
     event.filename = filename;
     event.lineno = lineno;
     event.message = message;
