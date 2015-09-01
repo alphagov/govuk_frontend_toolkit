@@ -1,3 +1,7 @@
+# 4.3.0
+
+- Allow javascript error tracking to be filtered to avoid noise from plugins
+
 # 4.2.1
 
 - Track download links using events not pageviews
