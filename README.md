@@ -125,8 +125,10 @@ In production:
   * [Virtual pageviews](/docs/analytics.md#virtual-pageviews)
   * [Custom events](/docs/analytics.md#custom-events)
   * [Custom dimensions and custom variables](/docs/analytics.md#custom-dimensions-and-custom-variables)
-  * [Print tracking](/docs/analytics.md#print-tracking)
-  * [Error tracking](/docs/analytics.md#error-tracking)
+  * [Print tracking](/docs/analytics.md#print-tracking-print-intentjs)
+  * [Error tracking](/docs/analytics.md#error-tracking-error-trackingjs)
+  * [External link tracking](/docs/analytics.md#external-link-tracking-external-link-trackerjs)
+  * [Download link tracking](/docs/analytics.md#download-link-tracking-download-link-trackerjs)
 
 ## Licence
 
