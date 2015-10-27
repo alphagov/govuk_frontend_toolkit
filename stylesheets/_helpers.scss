@@ -1,0 +1,16 @@
+// Base font size in pixels
+$base-font-size: 16;
+
+// Convert pixels to em
+@function pem($px, $base: $base-font-size) {
+
+  @if (unitless($px)) {
+    $px: $px * 1px;
+  }
+
+  @if (unitless($base)) {
+    $base: $base * 1px;
+  }
+
+  @return $px / $base * 1em;
+}
