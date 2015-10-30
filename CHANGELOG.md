@@ -1,3 +1,8 @@
+# 4.4.0
+
+- Add helpers partial for functions
+- Add px to em function and documentation
+
 # 4.3.0
 
 - Allow javascript error tracking to be filtered to avoid noise from plugins
