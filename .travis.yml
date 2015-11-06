@@ -1,7 +1,5 @@
 language: node_js
 node_js:
   - "0.10"
-rvm:
-  - 2.1.0
 before_install:
   - bundle install
