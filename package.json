@@ -9,7 +9,7 @@
     "grunt-contrib-jasmine": "~0.8.2",
     "grunt-contrib-sass": "0.7.4",
     "grunt-scss-lint": "0.3.4",
-    "jquery-browser": "~1.7.2-3"
+    "jquery": "~1.11.3"
   },
   "scripts": {
     "test": "node_modules/.bin/grunt test"
