@@ -61,13 +61,13 @@ describe("selection-buttons", function () {
         });
 
         it("Should mark checked radios with the selected class", function () {
-          $radioButtons.eq(0).attr('checked', true);
+          $radioButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
           expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should mark checked radios with the custom selected class if given", function () {
-          $radioButtons.eq(0).attr('checked', true);
+          $radioButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons($radioButtons, { 'selectedClass' : 'selectable-selected' });
           expect($radioLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
@@ -108,18 +108,14 @@ describe("selection-buttons", function () {
       describe("If one of those radios is clicked", function () {
         it("Should mark that radio with the selected class", function () {
           buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should remove the selected class from all other radios", function () {
           buttonsInstance = new GOVUK.SelectionButtons($radioButtons);
           $radioLabels.eq(1).addClass('selected');
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
         });
       });
@@ -135,21 +131,21 @@ describe("selection-buttons", function () {
         });
 
         it("Should mark checked checkboxes with the selected class", function () {
-          $checkboxButtons.eq(0).attr('checked', true);
+          $checkboxButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should mark all checked checkboxes with the selected class if there are more than one", function () {
-          $checkboxButtons.eq(0).attr('checked', true);
-          $checkboxButtons.eq(1).attr('checked', true);
+          $checkboxButtons.eq(0).prop('checked', true);
+          $checkboxButtons.eq(1).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
           expect($checkboxLabels.eq(1).hasClass('selected')).toBe(true);
         });
 
         it("Should mark checked checkboxes with the custom selected class if given", function () {
-          $checkboxButtons.eq(0).attr('checked', true);
+          $checkboxButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons, { 'selectedClass' : 'selectable-selected' });
           expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
@@ -190,17 +186,13 @@ describe("selection-buttons", function () {
       describe("If one of those checkboxes is clicked", function () {
         it("Should add the selected class to that checkbox", function () {
           buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons);
-          $checkboxButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $checkboxButtons.eq(0).trigger('click');
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should add the selected class to that checkbox", function () {
           buttonsInstance = new GOVUK.SelectionButtons($checkboxButtons, { 'selectedClass' : 'selectable-selected' });
-          $checkboxButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $checkboxButtons.eq(0).trigger('click');
           expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
       });
@@ -225,8 +217,8 @@ describe("selection-buttons", function () {
         });
 
         it("Should mark checked checkboxes or radios with the selected class", function () {
-          $mixedButtons.eq(0).attr('checked', true);
-          $mixedButtons.eq(3).attr('checked', true);
+          $mixedButtons.eq(0).prop('checked', true);
+          $mixedButtons.eq(3).prop('checked', true);
 
           buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
@@ -234,8 +226,8 @@ describe("selection-buttons", function () {
         });
 
         it("Should mark checked checkboxes or radios with the custom selected class if given", function () {
-          $mixedButtons.eq(0).attr('checked', true);
-          $mixedButtons.eq(3).attr('checked', true);
+          $mixedButtons.eq(0).prop('checked', true);
+          $mixedButtons.eq(3).prop('checked', true);
 
           buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'selectedClass' : 'selectable-selected' });
           expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
@@ -278,17 +270,13 @@ describe("selection-buttons", function () {
       describe("If one of those checkboxes is clicked", function () {
         it("Should add the selected class to that checkbox", function () {
           buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
-          $checkboxButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $checkboxButtons.eq(0).trigger('click');
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should add the selected class to that checkbox", function () {
           buttonsInstance = new GOVUK.SelectionButtons($mixedButtons, { 'selectedClass' : 'selectable-selected' });
-          $checkboxButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $checkboxButtons.eq(0).trigger('click');
           expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
       });
@@ -328,18 +316,14 @@ describe("selection-buttons", function () {
       describe("If a radio in the set is clicked", function () {
         it("Should mark that radio with the selected class", function () {
           buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should remove the selected class from all other radios", function () {
           buttonsInstance = new GOVUK.SelectionButtons($mixedButtons);
           $radioLabels.eq(1).addClass('selected');
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
         });
       });
@@ -361,13 +345,13 @@ describe("selection-buttons", function () {
         });
 
         it("Should mark checked radios with the selected class", function () {
-          $radioButtons.eq(0).attr('checked', true);
+          $radioButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
           expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should mark checked radios with the custom selected class if given", function () {
-          $radioButtons.eq(0).attr('checked', true);
+          $radioButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']", { 'selectedClass' : 'selectable-selected' });
           expect($radioLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
@@ -408,18 +392,14 @@ describe("selection-buttons", function () {
       describe("If one of those radios is clicked", function () {
         it("Should mark that radio with the selected class", function () {
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should remove the selected class from all other radios", function () {
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
           $radioLabels.eq(1).addClass('selected');
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
         });
       });
@@ -439,21 +419,21 @@ describe("selection-buttons", function () {
         });
 
         it("Should mark checked checkboxes with the selected class", function () {
-          $checkboxButtons.eq(0).attr('checked', true);
+          $checkboxButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
         });
 
         it("Should mark all checked checkboxes with the selected class if there are more than one", function () {
-          $checkboxButtons.eq(0).attr('checked', true);
-          $checkboxButtons.eq(1).attr('checked', true);
+          $checkboxButtons.eq(0).prop('checked', true);
+          $checkboxButtons.eq(1).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
           expect($checkboxLabels.eq(1).hasClass('selected')).toBe(true);
         });
 
         it("Should mark checked checkboxes with the custom selected class if given", function () {
-          $checkboxButtons.eq(0).attr('checked', true);
+          $checkboxButtons.eq(0).prop('checked', true);
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']", { 'selectedClass' : 'selectable-selected' });
           expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
         });
@@ -514,8 +494,8 @@ describe("selection-buttons", function () {
       });
 
       it("Should mark checked checkboxes or radios with the selected class", function () {
-        $mixedButtons.eq(0).attr('checked', true);
-        $mixedButtons.eq(3).attr('checked', true);
+        $mixedButtons.eq(0).prop('checked', true);
+        $mixedButtons.eq(3).prop('checked', true);
 
         buttonsInstance = new GOVUK.SelectionButtons("label.selectable input");
         expect($checkboxLabels.eq(0).hasClass('selected')).toBe(true);
@@ -523,8 +503,8 @@ describe("selection-buttons", function () {
       });
 
       it("Should mark checked checkboxes or radios with the custom selected class if given", function () {
-        $mixedButtons.eq(0).attr('checked', true);
-        $mixedButtons.eq(3).attr('checked', true);
+        $mixedButtons.eq(0).prop('checked', true);
+        $mixedButtons.eq(3).prop('checked', true);
 
         buttonsInstance = new GOVUK.SelectionButtons("label.selectable input", { 'selectedClass' : 'selectable-selected' });
         expect($checkboxLabels.eq(0).hasClass('selectable-selected')).toBe(true);
@@ -547,9 +527,7 @@ describe("selection-buttons", function () {
           contentCache = $('#content').html();
           $('#content').html('');
           $('#content').html(contentCache);
-          $("label.selectable input[type='radio']").eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $("label.selectable input[type='radio']").eq(0).trigger('click');
           expect($("label.selectable input[type='radio']").eq(0).parent('label').hasClass('selected')).toBe(true);
         });
 
@@ -563,9 +541,7 @@ describe("selection-buttons", function () {
           $radioButtons = $("label.selectable input[type='radio']");
           $radioLabels = $radioButtons.parent('label');
           $radioLabels.eq(1).addClass('selected');
-          $radioButtons.eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $radioButtons.eq(0).trigger('click');
           expect($radioLabels.eq(2).hasClass('selected')).toBe(false);
         });
       });
@@ -631,9 +607,7 @@ describe("selection-buttons", function () {
           contentCache = $('#content').html();
           $('#content').html('');
           $('#content').html(contentCache);
-          $("label.selectable input[type='checkbox']").eq(0)
-            .attr('checked', true)
-            .trigger('click');
+          $("label.selectable input[type='checkbox']").eq(0).trigger('click');
           expect($("label.selectable input[type='checkbox']").eq(0).parent('label').hasClass('selected')).toBe(true);
         });
       });
