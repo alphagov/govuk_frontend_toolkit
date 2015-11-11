@@ -1,8 +1,9 @@
-// files are loaded from the /spec/support folder so paths are relative to that
+// Paths are relative to the /spec/support folder
 var manifest = {
   support : [
     '../../node_modules/jquery/dist/jquery.js',
     '../../javascripts/govuk/govuk-modules.js',
+    '../../javascripts/govuk/modules/auto-track-event.js',
     '../../javascripts/govuk/multivariate-test.js',
     '../../javascripts/govuk/primary-links.js',
     '../../javascripts/govuk/stick-at-top-when-scrolling.js',
@@ -16,6 +17,7 @@ var manifest = {
   ],
   test : [
     '../unit/GOVUKModulesSpec.js',
+    '../unit/Modules/AutoTrackEventSpec.js',
     '../unit/MultivariateTestSpec.js',
     '../unit/PrimaryLinksSpec.js',
     '../unit/StickAtTopWhenScrollingSpec.js',
