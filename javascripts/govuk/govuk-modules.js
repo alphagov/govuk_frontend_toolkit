@@ -13,7 +13,7 @@
 
       // Container could be a module too
       if (container.is(moduleSelector)) {
-        modules.push(container);
+        modules = modules.add(container);
       }
 
       return modules;

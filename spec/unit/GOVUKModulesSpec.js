@@ -7,8 +7,7 @@ describe('GOVUK Modules', function() {
     $('body').append(module);
 
     expect(GOVUK.modules.find().length).toBe(1);
-    expect(GOVUK.modules.find()[0]).toMatch(module);
-
+    expect(GOVUK.modules.find().eq(0).is('[data-module="a-module"]')).toBe(true);
     module.remove();
   });
 
@@ -17,7 +16,7 @@ describe('GOVUK Modules', function() {
         container = $('<div></div>').append(module);
 
     expect(GOVUK.modules.find(container).length).toBe(1);
-    expect(GOVUK.modules.find(container)[0]).toMatch(module);
+    expect(GOVUK.modules.find(container).eq(0).data('module')).toBe('a-module');
   });
 
   it('finds modules that are a container', function() {
@@ -25,7 +24,8 @@ describe('GOVUK Modules', function() {
         container = $('<div data-module="container-module"></div>').append(module);
 
     expect(GOVUK.modules.find(container).length).toBe(2);
-    expect(GOVUK.modules.find(container)[1]).toMatch(container);
+    expect(GOVUK.modules.find(container).eq(0).data('module')).toBe('container-module');
+    expect(GOVUK.modules.find(container).eq(1).data('module')).toBe('a-module');
   });
 
   describe('when a module exists', function() {
@@ -55,12 +55,12 @@ describe('GOVUK Modules', function() {
 
     it('passes the HTML element to the module\'s start method', function() {
       var module = $('<div data-module="test-alert-module"></div>'),
-          container = $('<div></div>').append(module);
+          container = $('<h1></h1>').append(module);
 
       GOVUK.modules.start(container);
 
       var args = callback.calls.argsFor(0);
-      expect(args[0]).toMatch(module);
+      expect(args[0].is('div[data-module="test-alert-module"]')).toBe(true);
     });
 
     it('starts all modules that are on the page', function() {
