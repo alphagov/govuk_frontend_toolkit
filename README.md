@@ -115,6 +115,7 @@ In production:
   * [Phase banner](/docs/mixins.md#-phase-banner)
   * [Phase tags](/docs/mixins.md#-phase-tags)
 * [JavaScript](/docs/javascript.md)
+  * [Modules](/docs/javascript.md#modules)
   * [Media player](/docs/javascript.md#media-player)
   * [Multivariate test framework](/docs/javascript.md#multivariate-test-framework)
   * [Primary links](/docs/javascript.md#primary-links)

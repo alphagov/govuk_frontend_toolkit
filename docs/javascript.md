@@ -5,6 +5,100 @@ page. It can be included with the asset_pipeline by adding the line:
 
     //=require govuk_toolkit
 
+## Modules
+
+The toolkit comes with a lightweight javascript framework that makes it easy to write re-usable modular components, without having to worry about messy instantiation.
+
+### Usage
+
+Javascript modules are specified in markup using `data-` attributes:
+
+```html
+<div data-module="some-module">
+  <strong>Some other markup inside the module</strong>
+</div>
+```
+
+When javascript runs on the page the framework will look for a module at `GOVUK.Modules.SomeModule`. Note the value of the data attribute has been converted to _PascalCase_.
+
+The module will first be instantiated and then will automatically call the module’s `start` method, passing it the element the `data` attribute is on:
+
+```javascript
+module = new GOVUK.Modules[type]();
+module.start(element);
+```
+
+This automatically limits modules to their containing elements and removes the need for messy inline script tags.
+
+The simplest of modules looks like this:
+
+```javascript
+(function(Modules) {
+  "use strict";
+  Modules.SomeModule = function() {
+    var that = this;
+    that.start = function(element) {
+      // module code
+    }
+  };
+})(window.GOVUK.Modules);
+```
+
+### Writing modules
+
+Whilst this isn’t prescriptive, it helps if modules look and behave in a similar manner.
+
+#### Use `js-` prefixed classes for interaction hooks
+
+Make it clear where a javascript module will be applying behaviour:
+
+```html
+<div data-module="toggle-thing">
+  <a href="/" class="js-toggle">Toggle</a>
+  <div class="js-toggle-target">Target</div>
+</div>
+```
+
+#### Declare event listeners at the start
+
+Beginning with a set of event listeners clearly indicates the module’s intentions.
+
+```js
+that.start = function(element) {
+  element.on('click', '.js-toggle', toggle);
+  element.on('click', '.js-cancel', cancel);
+}
+```
+
+Where possible, assign listeners to the module element to minimise the number of listeners and to allow for flexible markup:
+
+```html
+<div data-module="toggle-thing">
+  <a href="/" class="js-toggle">This toggles</a>
+  <div class="js-toggle-target">
+    <p>Some content</p>
+    <a href="/" class="js-toggle">This also toggles</a>
+  </div>
+</div>
+```
+
+#### Use data-attributes for configuration
+
+Keep modules flexible by moving configuration to data attributes on the module’s element:
+
+```html
+<div
+  data-module="html-stream"
+  data-url="/some/endpoint"
+  data-refresh-ms="5000">
+  <!-- updates with content from end point -->
+</div>
+```
+
+#### Include Jasmine specs
+
+Modules should have their own tests, whether they’re being included with the gem or are app specific.
+
 ## Media player
 
 There is a forked version of the Nomensa video player included and custom
@@ -106,7 +200,7 @@ This code requires analytics to be loaded in order to run; static is the app tha
 6. Check that it works: launch the app, open the page of your app, and check that there is a cookie with the name you had picked in your experiment. You can delete the cookie and refresh the page to check whether you can be assigned to another cohort. Then in your browser console, go to the Networks tab and search for xid and xvar. The values should correspond to your contentExperimentId and the cohort your cookie indicates you were assigned to.
 
 7. If it works, in Google Universal Analytics, click on "Next Step" and then "Start Experiment". You can ignore the error messages relative to Experiment Code Validation as they don't concern us in our setup.
- 
+
 ```js
 var test = new GOVUK.MultivariateTest({
   name: 'car_tax_button_text',
