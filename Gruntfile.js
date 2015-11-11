@@ -29,7 +29,7 @@ module.exports = function(grunt) {
     jasmine: {
       javascripts: {
         src: [
-          'node_modules/jquery-browser/lib/jquery.js',
+          'node_modules/jquery/dist/jquery.js',
           'javascripts/govuk/analytics/google-analytics-universal-tracker.js',
           'javascripts/govuk/analytics/analytics.js',
           'javascripts/**/*.js'
