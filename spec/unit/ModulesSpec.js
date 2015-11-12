@@ -71,7 +71,7 @@ describe('GOVUK Modules', function() {
           );
 
       $('body').append(modules);
-      GOVUK.modules.startAll();
+      GOVUK.modules.start();
       expect(callback.calls.count()).toBe(3);
 
       modules.remove();
