@@ -7,11 +7,11 @@ page. It can be included with the asset_pipeline by adding the line:
 
 ## Modules
 
-The toolkit comes with a lightweight javascript framework that makes it easy to write re-usable modular components, without having to worry about messy instantiation.
+The toolkit comes with a module pattern that makes it easy to write re-usable modular components, without having to worry about where and when the module should be instantiated.
 
 ### Usage
 
-Javascript modules are specified in markup using `data-` attributes:
+Javascript modules can be specified in markup using `data-` attributes:
 
 ```html
 <div data-module="some-module">
@@ -19,16 +19,22 @@ Javascript modules are specified in markup using `data-` attributes:
 </div>
 ```
 
-When javascript runs on the page the framework will look for a module at `GOVUK.Modules.SomeModule`. Note the value of the data attribute has been converted to _PascalCase_.
+Modules can be found and started by including `govuk/modules.js` and running:
 
-The module will first be instantiated and then will automatically call the module’s `start` method, passing it the element the `data` attribute is on:
+```javascript
+$(document).ready(function(){
+  GOVUK.modules.start();
+});
+```
+
+This will attempt to find and start all modules in the page. For the example above it will look for a module at `GOVUK.Modules.SomeModule`. Note the value of the data attribute has been converted to _PascalCase_.
+
+The module will be instantiated and then its `start` method called. The HTML element with the `data-module` attribute is passed as the first argument to the module. This limits modules to acting only within their containing elements.
 
 ```javascript
 module = new GOVUK.Modules[type]();
 module.start(element);
 ```
-
-This automatically limits modules to their containing elements and removes the need for messy inline script tags.
 
 The simplest of modules looks like this:
 
@@ -36,8 +42,7 @@ The simplest of modules looks like this:
 (function(Modules) {
   "use strict";
   Modules.SomeModule = function() {
-    var that = this;
-    that.start = function(element) {
+    this.start = function(element) {
       // module code
     }
   };
@@ -64,7 +69,7 @@ Make it clear where a javascript module will be applying behaviour:
 Beginning with a set of event listeners clearly indicates the module’s intentions.
 
 ```js
-that.start = function(element) {
+this.start = function(element) {
   element.on('click', '.js-toggle', toggle);
   element.on('click', '.js-cancel', cancel);
 }
