@@ -2,7 +2,7 @@
 var manifest = {
   support : [
     '../../node_modules/jquery/dist/jquery.js',
-    '../../javascripts/govuk/govuk-modules.js',
+    '../../javascripts/govuk/modules.js',
     '../../javascripts/govuk/modules/auto-track-event.js',
     '../../javascripts/govuk/multivariate-test.js',
     '../../javascripts/govuk/primary-links.js',
@@ -16,7 +16,7 @@ var manifest = {
     '../../javascripts/govuk/analytics/download-link-tracker.js'
   ],
   test : [
-    '../unit/GOVUKModulesSpec.js',
+    '../unit/ModulesSpec.js',
     '../unit/Modules/AutoTrackEventSpec.js',
     '../unit/MultivariateTestSpec.js',
     '../unit/PrimaryLinksSpec.js',
