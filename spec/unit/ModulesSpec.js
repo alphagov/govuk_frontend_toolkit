@@ -53,6 +53,15 @@ describe('GOVUK Modules', function() {
       expect(callback).toHaveBeenCalled();
     });
 
+    it('does not start modules that are already started', function() {
+      var module = $('<div data-module="test-alert-module"></div>'),
+          container = $('<div></div>').append(module);
+
+      GOVUK.modules.start(module);
+      GOVUK.modules.start(module);
+      expect(callback.calls.count()).toBe(1);
+    });
+
     it('passes the HTML element to the module\'s start method', function() {
       var module = $('<div data-module="test-alert-module"></div>'),
           container = $('<h1></h1>').append(module);

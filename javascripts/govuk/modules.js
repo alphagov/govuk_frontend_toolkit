@@ -25,11 +25,13 @@
       for (var i = 0, l = modules.length; i < l; i++) {
         var module,
             element = $(modules[i]),
-            type = camelCaseAndCapitalise(element.data('module'));
+            type = camelCaseAndCapitalise(element.data('module')),
+            started = element.data('module-started');
 
-        if (typeof GOVUK.Modules[type] === "function") {
+        if (typeof GOVUK.Modules[type] === "function" && !started) {
           module = new GOVUK.Modules[type]();
           module.start(element);
+          element.data('module-started', true);
         }
       }
 
