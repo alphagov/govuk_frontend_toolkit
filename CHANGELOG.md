@@ -1,3 +1,7 @@
+# 4.5.0
+
+- Find and auto-start JavaScript modules from markup: `data-module="module-name"`(PR #227)
+
 # 4.4.0
 
 - Add helpers partial for functions
