@@ -36,7 +36,17 @@ module = new GOVUK.Modules[type]();
 module.start(element);
 ```
 
-The simplest of modules looks like this:
+Running `GOVUK.modules.start()` multiple times will have no additional affect. When a module is started a flag is set on the element using the data attribute `module-started`. `data-module-started` is a reserved attribute. It can however be called with an element as the first argument, to allow modules to be started in dynamically loaded content:
+
+```javascript
+var container = $('.dynamic-content');
+GOVUK.modules.start(container);
+```
+
+### Module structure
+
+A module must add its constructor to `GOVUK.Modules` and it must have a `start` method.
+The simplest module looks like:
 
 ```javascript
 (function(Modules) {
@@ -102,7 +112,7 @@ Keep modules flexible by moving configuration to data attributes on the module�
 
 #### Include Jasmine specs
 
-Modules should have their own tests, whether they’re being included with the gem or are app specific.
+Modules should have their own tests, whether they’re being included with the toolkit or are app specific.
 
 ## Media player
 
