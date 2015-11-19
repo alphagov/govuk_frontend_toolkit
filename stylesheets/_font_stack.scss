@@ -1,6 +1,5 @@
 //  GOV.UK font stacks, referred to in typography.scss
 
-
 //  Font stack weirdness
 //
 //  To ensure embedded fonts fall back to appropriate
@@ -14,22 +13,15 @@
 // scss-lint:disable NameFormat
 
 // New Transport Light
+$NTA-Light: "nta", Arial, sans-serif;
+$NTA-Light-Tabular: "ntatabularnumbers", $NTA-Light;
 
-$NTA-Light:
-  "nta",
-  Arial,
-  sans-serif;
-
-// New Transport Light with Tabular
-
-$NTA-Light-Tabular:
-  "ntatabularnumbers",
-  "nta",
-  Arial,
-  sans-serif;
+// Allow font stack to be overridden
+// Not all apps using toolkit use New Transport
+$toolkit-font-stack: $NTA-Light !default;
+$toolkit-font-stack-tabular: $NTA-Light-Tabular !default;
 
 // Helvetica Regular
-
 @font-face {
   font-family: GDS-Logo;
   src: local("HelveticaNeue"),
@@ -38,10 +30,7 @@ $NTA-Light-Tabular:
        local("Helvetica");
 }
 
-$Helvetica-Regular:
-  "GDS-Logo",
-  sans-serif;
+$Helvetica-Regular: "GDS-Logo", sans-serif;
 
 // Font reset for print
-
 $Print-reset: sans-serif;

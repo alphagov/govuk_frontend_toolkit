@@ -286,6 +286,15 @@ A collection of font-mixins. There are two different types of font mixins.
    consistent baseline vertical grid.
 2. Core styles which are base font styles with no extra padding.
 
+#### Changing font
+
+Typography mixins use a “New Transport” font stack by default.
+
+If you are using the toolkit on projects that aren’t GOVUK branded you can
+override the font using two variables: `$toolkit-font-stack` and
+`$toolkit-font-stack-tabular`. These must be declared before they are used, eg by
+the core typography mixins.
+
 #### Heading and Copy styles
 
 The following heading and copy styles exist:
