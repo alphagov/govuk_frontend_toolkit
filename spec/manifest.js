@@ -16,16 +16,16 @@ var manifest = {
     '../../javascripts/govuk/analytics/download-link-tracker.js'
   ],
   test : [
-    '../unit/ModulesSpec.js',
-    '../unit/Modules/AutoTrackEventSpec.js',
-    '../unit/MultivariateTestSpec.js',
-    '../unit/PrimaryLinksSpec.js',
-    '../unit/StickAtTopWhenScrollingSpec.js',
-    '../unit/SelectionButtonSpec.js',
-    '../unit/analytics/GoogleAnalyticsUniversalTrackerSpec.js',
-    '../unit/analytics/AnalyticsSpec.js',
-    '../unit/analytics/ErrorTrackingSpec.js',
-    '../unit/analytics/ExternalLinkTrackerSpec.js',
-    '../unit/analytics/DownloadLinkTrackerSpec.js'
+    '../unit/modules.spec.js',
+    '../unit/Modules/auto-track-event.spec.js',
+    '../unit/multivariate-test.spec.js',
+    '../unit/primary-links.spec.js',
+    '../unit/stick-at-top-when-scrolling.spec.js',
+    '../unit/selection-button.spec.js',
+    '../unit/analytics/google-analytics-universal-tracker.spec.js',
+    '../unit/analytics/analytics.spec.js',
+    '../unit/analytics/error-tracking.spec.js',
+    '../unit/analytics/external-link-tracker.spec.js',
+    '../unit/analytics/download-link-tracker.spec.js'
   ]
 };

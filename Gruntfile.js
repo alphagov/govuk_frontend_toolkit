@@ -35,8 +35,8 @@ module.exports = function(grunt) {
           'javascripts/**/*.js'
         ],
         options: {
-          specs: 'spec/unit/**/*Spec.js',
-          helpers: 'spec/unit/*Helper.js'
+          specs: 'spec/unit/**/*.spec.js',
+          helpers: 'spec/unit/*.helper.js'
         }
       }
     },
