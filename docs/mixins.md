@@ -7,6 +7,7 @@
 * [`_typography.scss`](#typography)
 * [`design-patterns/_buttons.scss`](#buttons)
 * [`design-patterns/_alpha-beta.scss`](#alpha-beta)
+* [`design-patterns/_breadcrumbs.scss`](#breadcrumbs)
 
 ### <a id="grid-layout"></a>Grid layout
 
@@ -624,3 +625,31 @@ A mixin to create an alpha/beta tag.
     <h2>
       Apply using the new service <span class="beta-tag">BETA</span>
     </h2>
+
+### <a id="breadcrumbs"></a> Breadcrumbs
+
+A mixin for creating breadcrumb navigation, showing page hierarchy in the GOV.UK style.
+
+#### Description
+
+`@mixin breadcrumbs`
+
+#### Usage
+
+    .breadcrumbs {
+      @include breadcrumbs;
+    }
+
+    <div class="breadcrumbs">
+      <ol role="breadcrumbs">
+        <li>
+          <a href="/">Home</a>
+        </li>
+        <li>
+          <a href="/section-name">Section name</a>
+        </li>
+        <li>
+          Page name
+        </li>
+      </ol>
+    </div>
