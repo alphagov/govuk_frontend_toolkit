@@ -1,3 +1,8 @@
+# 4.6.0
+
+- Add breadcrumb styles, separator images and documentation (PR #236)
+- Add fallback image for the back link (PR #235)
+
 # 4.5.0
 
 - Find and auto-start JavaScript modules from markup: `data-module="module-name"`(PR #227)
