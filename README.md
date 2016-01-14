@@ -43,7 +43,21 @@ compatible versions include `node-sass` 1.0.0, `grunt-sass` 0.16.0,
 
 ### Other projects
 
-You can include the toolkit as a [git submodule][].
+#### Using the tagged versions
+
+Each version of the toolkit is tagged with the version number in this format:
+
+`v*version number*`, for example `v4.1.1` for version 4.1.1.
+
+If your dependency management tool allows the use of Git repositories as dependencies, you can point to a version by using its tag.
+
+For example, if you are using [bower](http://bower.io), you can add the toolkit to your `bower.json` like so:
+
+`"govuk_frontend_toolkit": "git://github.com/alphagov/govuk_frontend_toolkit#v4.1.1"` (assuming you want version 4.1.1)
+
+#### Using git submodules
+
+You can include the toolkit as a [git submodule][https://git-scm.com/book/en/v2/Git-Tools-Submodules].
 
 [git submodule]: https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html
 
