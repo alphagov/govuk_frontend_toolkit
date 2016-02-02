@@ -144,6 +144,7 @@ In production:
   * [Error tracking](/docs/analytics.md#error-tracking-error-trackingjs)
   * [External link tracking](/docs/analytics.md#external-link-tracking-external-link-trackerjs)
   * [Download link tracking](/docs/analytics.md#download-link-tracking-download-link-trackerjs)
+  * [Mailto link tracking](/docs/analytics.md#mailto-link-tracking-mailto-link-trackerjs)
 
 ## Licence
 

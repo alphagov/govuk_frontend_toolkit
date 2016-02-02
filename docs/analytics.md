@@ -202,3 +202,12 @@ GOVUK.analyticsPlugins.downloadTracker({selector: 'a[rel="download"]'});
 Category | Action | Label
 ---------|--------|-------
 Download Link Clicked | `/some/upload/attachment/file.pdf` | Link text
+
+### Mailto link tracking (`mailto-link-tracker.js`)
+
+The tracker will send events for clicks on links beginning with `mailto`. By default the
+plugin uses Google Analytics’ `transport: beacon` method so that events are tracked even if the page unloads.
+
+Category | Action | Label
+---------|--------|-------
+Mailto Link Clicked | mailto:name@email.com | Link text
