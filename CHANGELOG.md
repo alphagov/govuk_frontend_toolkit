@@ -1,3 +1,7 @@
+#4.6.2
+
+- Add 'mailto' tracking to GOV.UK Analytics (PR #244)
+
 # 4.6.1
 
 - Use the Sass variable $light-blue for link active and hover colours (PR #242)
