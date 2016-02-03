@@ -13,7 +13,8 @@ var manifest = {
     '../../javascripts/govuk/analytics/analytics.js',
     '../../javascripts/govuk/analytics/error-tracking.js',
     '../../javascripts/govuk/analytics/external-link-tracker.js',
-    '../../javascripts/govuk/analytics/download-link-tracker.js'
+    '../../javascripts/govuk/analytics/download-link-tracker.js',
+    '../../javascripts/govuk/analytics/mailto-link-tracker.js'
   ],
   test : [
     '../unit/modules.spec.js',
@@ -26,6 +27,7 @@ var manifest = {
     '../unit/analytics/analytics.spec.js',
     '../unit/analytics/error-tracking.spec.js',
     '../unit/analytics/external-link-tracker.spec.js',
-    '../unit/analytics/download-link-tracker.spec.js'
+    '../unit/analytics/download-link-tracker.spec.js',
+    '../unit/analytics/mailto-link-tracker.spec.js'
   ]
 };
