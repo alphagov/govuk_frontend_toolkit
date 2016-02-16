@@ -248,7 +248,7 @@ var test = new GOVUK.MultivariateTest({
 });
 ```
 
-`customDimensionIndex` is the index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Ashraf Chohan <ashraf.chohan@digital.cabinet-office.gov.uk>
+`customDimensionIndex` is the index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Tim Leighton-Boyce <tim.leighton-boyce@digital.cabinet-office.gov.uk>
 
 ## Primary Links
 
