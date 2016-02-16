@@ -47,7 +47,7 @@ describe("MultivariateTest", function() {
       expect(fooSpy).toHaveBeenCalled();
     });
 
-    it("should set a custom var if one is defined", function() {
+    it("should set a custom var with the name and cohort if one is defined", function() {
       GOVUK.cookie.and.returnValue('foo');
       var test = new GOVUK.MultivariateTest({
         name: 'stuff',
@@ -59,10 +59,19 @@ describe("MultivariateTest", function() {
       });
       expect(GOVUK.analytics.setDimension).toHaveBeenCalledWith(
         2,
-        'multivariatetest_cohort_stuff',
-        'foo',
-        2
+        'multivariatetest_cohort_stuff__foo'
       );
+    });
+
+    it("should trigger an event to track that the test has been run", function() {
+      GOVUK.cookie.and.returnValue('foo');
+      var test = new GOVUK.MultivariateTest({
+        name: 'stuff',
+        cohorts: {
+          foo: {},
+          bar: {}
+        },
+      });
       expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
         'multivariatetest_cohort_stuff',
         'run',
