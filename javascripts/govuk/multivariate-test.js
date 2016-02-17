@@ -77,9 +77,7 @@
     if (this.customDimensionIndex) {
       GOVUK.analytics.setDimension(
         this.customDimensionIndex,
-        this.cookieName(),
-        cohort,
-        2 // session level
+        this.cookieName() + "__" + cohort
       );
     }
   };
