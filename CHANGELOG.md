@@ -1,3 +1,7 @@
+# 4.8.0
+
+- Pass cohort name to analytics when using multivariate test (PR #251)
+
 # 4.7.0
 
 - Add 'mailto' tracking to GOV.UK Analytics (PR #244)
