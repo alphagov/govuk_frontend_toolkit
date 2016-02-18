@@ -1,3 +1,7 @@
+# 4.8.1
+
+- Update DEFRA brand colour to new green (PR #249)
+
 # 4.8.0
 
 - Pass cohort name to analytics when using multivariate test (PR #251)
