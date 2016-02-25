@@ -1,3 +1,9 @@
+# 4.8.2
+
+- Add GOV.UK lint to lint scss files (PR #260)
+- Remove reference to old colour palette (PR #256)
+- Fix link to GOV.UK elements - tabular data
+
 # 4.8.1
 
 - Update DEFRA brand colour to new green (PR #249)
