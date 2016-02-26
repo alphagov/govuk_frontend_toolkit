@@ -76,6 +76,7 @@ $mobile-ie6: true !default;
     }
   }
 }
+
 @mixin ie($version) {
   @if $is-ie {
     @if $ie-version == $version {

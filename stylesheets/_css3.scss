@@ -8,6 +8,8 @@
 // You can use the @warn directive to deprecate a mixin where the property
 // no longer needs prefixes.
 
+// scss-lint:disable Indentation SpaceAfterPropertyColon
+
 @mixin border-radius($radius) {
   -webkit-border-radius: $radius; // Chrome 4.0, Safari 3.1 to 4.0, Mobile Safari 3.2, Android Browser 2.1
      -moz-border-radius: $radius; // Firefox 2.0 to 3.6

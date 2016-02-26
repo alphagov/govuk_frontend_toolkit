@@ -1,7 +1,7 @@
-@import "../_colours";
-@import "../_typography";
-@import "../_shims";
-@import "../_url-helpers";
+@import "../colours";
+@import "../typography";
+@import "../shims";
+@import "../url-helpers";
 
 // Breadcrumbs usage:
 //
@@ -23,6 +23,7 @@
     float: left;
 
     background-image: file-url("separator.png");
+
     @include device-pixel-ratio() {
       background-image: file-url("separator-2x.png");
       background-size: 6px 11px;

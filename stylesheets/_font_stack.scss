@@ -10,10 +10,12 @@
 //  the font-stack in a font-face declaration rather
 //  than with the usual font-family.
 
+// scss-lint:disable NameFormat
+
 // New Transport Light
 
 $NTA-Light:
-  "nta", 
+  "nta",
   Arial,
   sans-serif;
 
@@ -21,7 +23,7 @@ $NTA-Light:
 
 $NTA-Light-Tabular:
   "ntatabularnumbers",
-  "nta", 
+  "nta",
   Arial,
   sans-serif;
 
