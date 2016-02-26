@@ -1,32 +1,193 @@
+# https://github.com/alphagov/govuk-lint/blob/master/configs/scss_lint/gds-sass-styleguide.yml
+
+# Default severity of all linters.
+severity: warning
+
 linters:
   BangFormat:
     enabled: true
+    space_before_bang: true
+    space_after_bang: false
+
+  BemDepth:
+    enabled: false
+
+  BorderZero:
+    enabled: false
+
+  ChainedClasses:
+    enabled: false
+
+  ColorKeyword:
+    enabled: true
+
+  ColorVariable:
+    enabled: true
+
+  Comment:
+    enabled: true
+    style: silent
+
+  DebugStatement:
+    enabled: true
+
+  DeclarationOrder:
+    enabled: false
+
+  DisableLinterReason:
+    enabled: false
 
   DuplicateProperty:
     enabled: true
 
+  ElsePlacement:
+    enabled: true
+    style: same_line
+
+  EmptyLineBetweenBlocks:
+    enabled: true
+    ignore_single_line_blocks: true
+
   EmptyRule:
     enabled: true
 
+  ExtendDirective:
+    enabled: false
+
   FinalNewline:
     enabled: true
+    present: true
+
+  HexLength:
+    enabled: false
+
+  HexNotation:
+    enabled: false # colours should be variables
+    style: lowercase
+
+  HexValidation:
+    enabled: true
+
+  IdSelector:
+    enabled: true
+
+  ImportantRule:
+    enabled: false
+
+  ImportPath:
+    enabled: true
+    leading_underscore: false
+    filename_extension: false
 
   Indentation:
-    character: space
     enabled: true
-    exclude:
-      - 'stylesheets/_css3.scss'
+    allow_non_nested_indentation: false
+    character: space
+    width: 2
+
+  LeadingZero:
+    enabled: false
 
   MergeableSelector:
+    enabled: false
+
+  NameFormat:
+    enabled: true
+    allow_leading_underscore: true
+    convention: hyphenated_lowercase
+
+  NestingDepth:
+    enabled: true
+    max_depth: 3
+    ignore_parent_selectors: true
+
+  PlaceholderInExtend:
     enabled: true
 
+  PropertyCount:
+    enabled: false
+
+  PropertySortOrder:
+    enabled: false
+
   PropertySpelling:
+    enabled: false # avoid false positives on new CSS features
+
+  PropertyUnits:
+    enabled: false
+
+  PseudoElement:
+    enabled: false # using `:after` is acceptable for older browsers
+
+  QualifyingElement:
     enabled: true
+    allow_element_with_attribute: true # eg elements based on aria attributes
+    allow_element_with_class: false
+    allow_element_with_id: false
+
+  SelectorDepth:
+    enabled: false
+
+  SelectorFormat:
+    enabled: true
+    convention: hyphenated_lowercase
+
+  Shorthand:
+    enabled: true
+    allowed_shorthands: [1, 2, 3]
 
   SingleLinePerProperty:
     enabled: true
+    allow_single_line_rule_sets: true
+
+  SingleLinePerSelector:
+    enabled: true
+
+  SpaceAfterComma:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyColon:
+    enabled: true
+    style: one_space
+
+  SpaceAfterPropertyName:
+    enabled: true
+
+  SpaceAfterVariableName:
+    enabled: true
+
+  SpaceAroundOperator:
+    enabled: true
+    style: one_space
+
+  SpaceBeforeBrace:
+    enabled: true
+    style: space
+    allow_single_line_padding: true
+
+  SpaceBetweenParens:
+    enabled: false
+
+  StringQuotes:
+    enabled: false
 
   TrailingSemicolon:
+    enabled: true
+
+  TrailingWhitespace:
+    enabled: true
+
+  TrailingZero:
+    enabled: true
+
+  TransitionAll:
+    enabled: true
+
+  UnnecessaryMantissa:
+    enabled: true
+
+  UnnecessaryParentReference:
     enabled: true
 
   UrlFormat:
@@ -35,73 +196,18 @@ linters:
   UrlQuotes:
     enabled: true
 
-  # Disabled rules
+  VariableForProperty:
+    enabled: false
+    properties: []
 
-  BorderZero:
+  VendorPrefix:
     enabled: false
-  ColorKeyword:
-    enabled: false
-  Comment:
-    enabled: false
-  Compass Linters:
-    enabled: false
-  DebugStatement:
-    enabled: false
-  DeclarationOrder:
-    enabled: false
-  ElsePlacement:
-    enabled: false
-  EmptyLineBetweenBlocks:
-    enabled: false
-  HexLength:
-    enabled: false
-  HexNotation:
-    enabled: false
-  HexValidation:
-    enabled: false
-  IdWithExtraneousSelector:
-    enabled: false
-  ImportPath:
-    enabled: false
-  LeadingZero:
-    enabled: false
-  NameFormat:
-    enabled: false
-  NestingDepth:
-    enabled: false
-  PlaceholderInExtend:
-    enabled: false
-  PropertySortOrder:
-    enabled: false
-  QualifyingElement:
-    enabled: false
-  SelectorDepth:
-    enabled: false
-  SelectorFormat:
-    enabled: false
-  Shorthand:
-    enabled: false
-  SingleLinePerSelector:
-    enabled: false
-  SpaceAfterComma:
-    enabled: false
-  SpaceAfterPropertyColon:
-    enabled: false
-  SpaceAfterPropertyName:
-    enabled: false
-  SpaceBeforeBrace:
-    enabled: false
-  SpaceBetweenParens:
-    enabled: false
-  StringQuotes:
-    enabled: false
-  TrailingZero:
-    enabled: false
-  UnnecessaryMantissa:
-    enabled: false
-  UnnecessaryParentReference:
-    enabled: false
-  VendorPrefixes:
-    enabled: false
+
   ZeroUnit:
+    enabled: true
+
+  Compass::*:
     enabled: false
+
+  exclude:
+      - 'stylesheets/_css3.scss'
