@@ -1,7 +1,7 @@
-@import '_conditionals.scss';
-@import '_css3.scss';
-@import '_measurements.scss';
-@import '_shims.scss';
+@import 'conditionals';
+@import 'css3';
+@import 'measurements';
+@import 'shims';
 
 $site-width: 960px;
 
@@ -17,15 +17,18 @@ $site-width: 960px;
 
 %site-width-container {
   max-width: $site-width;
-  @include ie-lte(8){
+
+  @include ie-lte(8) {
     width: $site-width;
   }
 
   margin: 0 $gutter-half;
-  @include media(tablet){
+
+  @include media(tablet) {
     margin: 0 $gutter;
   }
-  @include media($min-width: ($site-width + $gutter * 2)){
+
+  @include media($min-width: ($site-width + $gutter * 2)) {
     margin: 0 auto;
   }
 }
@@ -43,7 +46,8 @@ $site-width: 960px;
 %outdent-to-full-width {
   margin-left: -$gutter-half;
   margin-right: -$gutter-half;
-  @include media(tablet){
+
+  @include media(tablet) {
     margin-left: -$gutter;
     margin-right: -$gutter;
   }
@@ -87,11 +91,13 @@ $site-width: 960px;
 //   }
 
 @mixin grid-column($width, $full-width: tablet, $float: left) {
-  @include media($full-width){
+
+  @include media($full-width) {
     float: $float;
     width: percentage($width);
   }
-  @include ie-lte(7){
+
+  @include ie-lte(7) {
     width: (($site-width + $gutter) * $width) - $gutter;
   }
 
@@ -108,8 +114,9 @@ $site-width: 960px;
   @warn "The @mixin outer-block is deprecated and should be updated to use new grid helpers";
   margin: 0 auto;
   width: auto;
-  max-width: 960 + $gutter*2;
+  max-width: 960 + $gutter * 2;
   @extend %contain-floats;
+
   @include ie-lte(8) {
     width: 1020px;
   }
@@ -121,6 +128,7 @@ $site-width: 960px;
   @warn "The @mixin inner-block is deprecated and should be updated to use new grid helpers";
   #{$margin-or-padding}-left: $gutter-half;
   #{$margin-or-padding}-right: $gutter-half;
+
   @include media(tablet) {
     #{$margin-or-padding}-left: $gutter;
     #{$margin-or-padding}-right: $gutter;

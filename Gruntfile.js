@@ -53,14 +53,12 @@ module.exports = function(grunt) {
         }
       },
     },
-    scsslint: {
-      allFiles: [
-        'stylesheets/*.scss',
-        'stylesheets/**/*.scss'
-      ],
-      options: {
-        bundleExec: true,
-        config: '.scss-lint.yaml'
+    shell: {
+      multiple: {
+        command: [
+          'bundle',
+          'bundle exec govuk-lint-sass stylesheets'
+        ].join('&&')
       }
     }
   });
@@ -68,8 +66,8 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-scss-lint');
+  grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('test', ['sass', 'clean', 'jasmine', 'scsslint']);
+  grunt.registerTask('test', ['sass', 'clean', 'jasmine', 'shell']);
   grunt.registerTask('default', ['test']);
 };

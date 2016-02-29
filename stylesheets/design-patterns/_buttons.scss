@@ -1,7 +1,7 @@
-@import '../_shims.scss';
-@import '../_css3.scss';
-@import '../_conditionals.scss';
-@import '../_colours.scss';
+@import '../shims';
+@import '../css3';
+@import '../conditionals';
+@import '../colours';
 
 // Mixin and defaults for making buttons on GOV.UK services.
 
@@ -20,14 +20,14 @@
 // }
 
 
-@mixin button($colour: $button-colour){
+@mixin button($colour: $button-colour) {
   // Colour
   background-color: $colour;
 
   // Size and shape
   position: relative;
   @include inline-block;
-  padding: 0.3em 0.6em 0.2em 0.6em;
+  padding: 0.3em 0.6em 0.2em;
   border: none;
   @include border-radius(0);
   -webkit-appearance: none;
@@ -46,13 +46,16 @@
 
   // Interaction
   cursor: pointer;
-  &:visited{
+
+  &:visited {
     background-color: $colour;
   }
+
   &:hover,
   &:focus {
     background-color: darken($colour, 5%);
   }
+
   &:active {
     top: 2px;
     @include box-shadow(0 0 0 $colour);
@@ -63,10 +66,11 @@
   &[disabled="disabled"],
   &[disabled] {
     @include opacity(0.5);
-    &:hover{
+    &:hover {
       cursor: default;
       background-color: $colour;
     }
+
     &:active {
       top: 0;
       @include box-shadow(0 2px 0 darken($colour, 15%));
@@ -79,18 +83,20 @@
   // Set text colour depending on background colour
   @if lightness($colour) < 50% {
     color: $white;
+
     &:link,
     &:hover,
     &:focus,
-    &:visited{
+    &:visited {
       color: $white;
     }
   } @else {
     color: $text-colour;
+
     &:link,
     &:hover,
     &:focus,
-    &:visited{
+    &:visited {
       color: $text-colour;
     }
   }
@@ -107,6 +113,7 @@
     top: 0;
     left: 0;
   }
+
   &:active:before {
     top: -10%;
     height: 120%;
@@ -132,7 +139,7 @@
     &[type="submit"],
     &[type="reset"],
     &[type="button"] {
-      filter:chroma(color=#000000);
+      filter: chroma(color = $black);
     }
 
     &[type=submit].button {

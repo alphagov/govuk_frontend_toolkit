@@ -8,7 +8,7 @@ $path: false !default;
 @function file-url($file) {
   $url: '';
   @if $path {
-    $url: url($path+$file);
+    $url: url($path + $file);
   } @else {
     $url: image-url($file);
   }

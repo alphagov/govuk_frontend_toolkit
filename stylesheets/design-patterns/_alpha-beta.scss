@@ -1,7 +1,7 @@
-@import "../_colours";
-@import "../_typography";
-@import "../_shims";
-@import "../_grid_layout";
+@import "../colours";
+@import "../typography";
+@import "../shims";
+@import "../grid_layout";
 
 // Phase banner usage:
 //
@@ -10,10 +10,12 @@
 // }
 
 @mixin phase-banner($state: alpha) {
-  padding: 10px 0 8px 0;
+  padding: 10px 0 8px;
+
   @include media(tablet) {
     padding-bottom: 10px;
   }
+
   border-bottom: 1px solid $border-colour;
 
   p {
@@ -51,19 +53,19 @@
   @include inline-block;
   vertical-align: top;
 
-  @include media(tablet){
+  @include media(tablet) {
     vertical-align: baseline;
   }
 
   margin: 0 8px 0 0;
   padding: 2px 5px 0;
 
-  @include bold-16($line-height: 20/16);
+  @include bold-16($line-height: 20 / 16);
   text-transform: uppercase;
   letter-spacing: 1px;
   text-decoration: none;
 
-  color: #fff;
+  color: $white;
   @if $state == alpha {
     background-color: $alpha-colour;
   } @else if $state == beta {
