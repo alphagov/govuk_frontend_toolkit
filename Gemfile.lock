@@ -32,4 +32,3 @@ PLATFORMS
 DEPENDENCIES
   govuk-lint (= 0.7.0)
   sass (= 3.4.15)
-  scss_lint (= 0.44.0)
