@@ -227,9 +227,9 @@
         height: 100%;
         padding-bottom: 1px;
         width: 20px;
+        // Allow RGBA here, it is the only colour value with alpha transparency
         // scss-lint:disable ColorVariable
         color: rgba(0, 0, 0, 0.5);
-        // scss-lint:enable ColorVariable
         z-index: 10;
       }
     }
