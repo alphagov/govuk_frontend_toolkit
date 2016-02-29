@@ -47,10 +47,7 @@
     a,
     button {
       &:focus {
-        // GL: should this be $focus-colour = $yellow ?
-        // scss-lint:disable ColorVariable
-        background-color: orange;
-        // scss-lint:enable ColorVariable
+        background-color: $focus-colour;
         outline: none;
       }
     }
