@@ -1,36 +1,5 @@
 // Colours for the site
-
-// Departmental colours
-$attorney-generals-office: #9f1888;
-$cabinet-office: #005abb;
-$civil-service: #af292e;
-$department-for-business-innovation-skills: #003479;
-$department-for-communities-and-local-government: #00857e;
-$department-for-culture-media-sport: #d40072;
-$department-for-education: #003a69;
-$department-for-environment-food-rural-affairs: #00a33b;
-$department-for-international-development: #002878;
-$department-for-transport: #006c56;
-$department-for-work-pensions: #00beb7;
-$department-of-energy-climate-change: #009ddb;
-$department-of-health: #00ad93;
-$foreign-commonwealth-office: #003e74;
-$government-equalities-office: #9325b2;
-$hm-government: #0076c0;
-$hm-revenue-customs: #009390;
-$hm-treasury: #af292e;
-$home-office: #9325b2;
-$ministry-of-defence: #4d2942;
-$ministry-of-justice: #231f20;
-$northern-ireland-office: #002663;
-$office-of-the-advocate-general-for-scotland: #002663;
-$office-of-the-leader-of-the-house-of-lords: #9c132e;
-$scotland-office: #002663;
-// Note: the 'the' part here will get dropped
-$the-office-of-the-leader-of-the-house-of-commons: #317023;
-$uk-export-finance: #005747;
-$uk-trade-investment: #C80651;
-$wales-office: #a33038;
+@import "organisation-colours";
 
 // Brand colours
 $govuk-blue: #005ea5;
