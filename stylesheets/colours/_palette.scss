@@ -1,0 +1,77 @@
+// Brand colours
+$govuk-blue: #005ea5;
+$mainstream-brand: $govuk-blue;
+
+// Standard palette, colours
+$purple: #2e358b;
+$purple-50: #9799c4;
+$purple-25: #d5d6e7;
+$mauve: #6f72af;
+$mauve-50: #b7b9d7;
+$mauve-25: #e2e2ef;
+$fuschia: #912b88;
+$fuschia-50: #c994c3;
+$fuschia-25: #e9d4e6;
+$pink: #d53880;
+$pink-50: #eb9bbe;
+$pink-25: #f6d7e5;
+$baby-pink: #f499be;
+$baby-pink-50: #faccdf;
+$baby-pink-25: #fdebf2;
+$red: #b10e1e;
+$red-50: #d9888c;
+$red-25: #efcfd1;
+$mellow-red: #df3034;
+$mellow-red-50: #ef9998;
+$mellow-red-25: #f9d6d6;
+$orange: #f47738;
+$orange-50: #fabb96;
+$orange-25: #fde4d4;
+$brown: #b58840;
+$brown-50: #dac39c;
+$brown-25: #f0e7d7;
+$yellow: #ffbf47;
+$yellow-50: #ffdf94;
+$yellow-25: #fff2d3;
+$grass-green: #85994b;
+$grass-green-50: #c2cca3;
+$grass-green-25: #e7ebda;
+$green: #006435;
+$green-50: #7fb299;
+$green-25: #cce0d6;
+$turquoise: #28a197;
+$turquoise-50: #95d0cb;
+$turquoise-25: #d5ecea;
+$light-blue: #2b8cc4;
+$light-blue-50: #96c6e2;
+$light-blue-25: #d5e8f3;
+
+// Standard palette, greys
+$black: #0b0c0c;
+$grey-1: #6f777b;
+$grey-2: #bfc1c3;
+$grey-3: #dee0e2;
+$grey-4: #f8f8f8;
+$white: #fff;
+
+// Semantic colour names
+$link-colour: $govuk-blue;
+$link-active-colour: $light-blue;
+$link-hover-colour: $light-blue;
+$link-visited-colour: #4c2c92;
+$button-colour: #00823b;
+$focus-colour: $yellow;
+$text-colour: $black;             // Standard text colour
+$secondary-text-colour: $grey-1;  // Section headers, help text etc.
+$border-colour: $grey-2;          // Borders, seperators, rules, keylines etc.
+$panel-colour: $grey-3;           // Related links panel, page footer etc.
+$canvas-colour: $grey-4;          // Page background
+$highlight-colour: $grey-4;       // Table stripes etc.
+$page-colour: $white;             // The page
+$discovery-colour: $fuschia;      // Discovery badges and banners
+$alpha-colour: $pink;             // Alpha badges and banners
+$beta-colour: $orange;            // Beta badges and banners
+$live-colour: $grass-green;       // Live badges and banners
+$banner-text-colour: #000;        // Text colour for Alpha & Beta banners
+$error-colour: $red;              // Error text and border colour
+$error-background: #fef7f7;       // Error background colour
