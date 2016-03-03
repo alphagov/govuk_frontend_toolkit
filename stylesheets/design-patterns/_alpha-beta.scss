@@ -22,6 +22,7 @@
     margin: 0;
     color: $banner-text-colour;
     @include core-16;
+    @extend %contain-floats;
   }
 
   .phase-tag {
@@ -29,6 +30,7 @@
   }
 
   span {
+    display: block;
     vertical-align: top;
 
     @include media(tablet) {
@@ -50,7 +52,8 @@
 // }
 
 @mixin phase-tag($state: alpha) {
-  @include inline-block;
+  display: block;
+  float: left;
   vertical-align: top;
 
   @include media(tablet) {
