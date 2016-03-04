@@ -1,3 +1,8 @@
+# 4.9.0
+
+- Add websafe organisation colours
+- Split colours into two files with backwards-compatible colours.scss replacement
+
 # 4.8.2
 
 - Add GOV.UK lint to lint scss files (PR #260)
