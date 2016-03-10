@@ -29,11 +29,7 @@
   }
 
   span {
-    vertical-align: top;
-
-    @include media(tablet) {
-      vertical-align: baseline;
-    }
+    vertical-align: baseline;
   }
 }
 
@@ -51,12 +47,6 @@
 
 @mixin phase-tag($state: alpha) {
   @include inline-block;
-  vertical-align: top;
-
-  @include media(tablet) {
-    vertical-align: baseline;
-  }
-
   margin: 0 8px 0 0;
   padding: 2px 5px 0;
 
