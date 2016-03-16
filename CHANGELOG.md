@@ -1,3 +1,7 @@
+# 4.9.1
+
+- Fix phase banner alignment (PR #266)
+
 # 4.9.0
 
 - Add websafe organisation colours
