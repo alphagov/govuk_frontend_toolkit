@@ -1,3 +1,8 @@
+# 4.10.0
+
+- Allow New Transport font stack to be overridden by apps using `$toolkit-font-stack`
+and `$toolkit-font-stack-tabular` (PR #230)
+
 # 4.9.1
 
 - Fix phase banner alignment (PR #266)
