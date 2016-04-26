@@ -33,6 +33,14 @@ $is-print: false !default;
   font-weight: $font-weight;
   text-transform: none;
 
+  @if $toolkit-font-stack == $NTA-Light {
+    @if $font-weight > 400 {
+      font-size-adjust: 0.525;
+    } @else {
+      font-size-adjust: 0.5;
+    }
+  }
+
   @include media(tablet) {
     font-size: $font-size;
     line-height: $line-height;
