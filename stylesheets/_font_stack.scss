@@ -16,21 +16,13 @@
 $NTA-Light: "nta", Arial, sans-serif;
 $NTA-Light-Tabular: "ntatabularnumbers", $NTA-Light;
 
+// Helvetica Regular
+$Helvetica-Regular: "HelveticaNeue", "Helvetica Neue", "Arial", "Helvetica", sans-serif;
+
 // Allow font stack to be overridden
 // Not all apps using toolkit use New Transport
 $toolkit-font-stack: $NTA-Light !default;
 $toolkit-font-stack-tabular: $NTA-Light-Tabular !default;
-
-// Helvetica Regular
-@font-face {
-  font-family: GDS-Logo;
-  src: local("HelveticaNeue"),
-       local("Helvetica Neue"),
-       local("Arial"),
-       local("Helvetica");
-}
-
-$Helvetica-Regular: "GDS-Logo", sans-serif;
 
 // Font reset for print
 $Print-reset: sans-serif;
