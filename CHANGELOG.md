@@ -1,3 +1,7 @@
+# 4.11.1
+
+- Increase button padding to match padding from GOV.UK elements (PR #275)
+
 # 4.11.0
 
 - Remove the GDS-Logo font-face definition (PR #272)
