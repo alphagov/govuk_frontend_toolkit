@@ -20,5 +20,8 @@ if [ "$MASTER_SHA" == "$HEAD_SHA" ]; then
     echo "Creating new tag: $VERSION_TAG"
     git tag $VERSION_TAG
     git push origin $VERSION_TAG
+
+    # Alias branch for the most recently released tag, for easier diffing
+    git push origin master:latest-release
   fi
 fi
