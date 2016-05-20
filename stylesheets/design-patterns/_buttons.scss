@@ -27,7 +27,7 @@
   // Size and shape
   position: relative;
   @include inline-block;
-  padding: 0.3em 0.6em 0.2em;
+  padding: .526315em .789473em .263157em; // 10px 15px 5px
   border: none;
   @include border-radius(0);
   -webkit-appearance: none;
