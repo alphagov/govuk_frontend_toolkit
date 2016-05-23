@@ -1,3 +1,8 @@
+# 4.12.0
+
+- Increase button padding to match padding from GOV.UK elements (PR #275).
+If you have UI which depends on the padding set by the button mixin in the frontend toolkit and this is not overridden by button padding set by GOV.UK elements, this change will affect it.
+
 # 4.11.0
 
 - Remove the GDS-Logo font-face definition (PR #272)
