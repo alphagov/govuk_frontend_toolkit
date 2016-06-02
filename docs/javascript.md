@@ -39,8 +39,8 @@ module.start(element);
 Running `GOVUK.modules.start()` multiple times will have no additional affect. When a module is started a flag is set on the element using the data attribute `module-started`. `data-module-started` is a reserved attribute. It can however be called with an element as the first argument, to allow modules to be started in dynamically loaded content:
 
 ```javascript
-var container = $('.dynamic-content');
-GOVUK.modules.start(container);
+var $container = $('.dynamic-content');
+GOVUK.modules.start($container);
 ```
 
 ### Module structure
@@ -52,7 +52,7 @@ The simplest module looks like:
 (function(Modules) {
   "use strict";
   Modules.SomeModule = function() {
-    this.start = function(element) {
+    this.start = function($element) {
       // module code
     }
   };
@@ -79,7 +79,7 @@ Make it clear where a javascript module will be applying behaviour:
 Beginning with a set of event listeners clearly indicates the module’s intentions.
 
 ```js
-this.start = function(element) {
+this.start = function($element) {
   element.on('click', '.js-toggle', toggle);
   element.on('click', '.js-cancel', cancel);
 }
