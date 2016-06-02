@@ -1,14 +1,5 @@
 //  GOV.UK font stacks, referred to in typography.scss
 
-//  Font stack weirdness
-//
-//  To ensure embedded fonts fall back to appropriate
-//  system fonts (eg, bold embedded font falls back to
-//  bold system font, without anyone getting horrible
-//  artificially emboldened weights) we're setting
-//  the font-stack in a font-face declaration rather
-//  than with the usual font-family.
-
 // Allow uppercase letters in font stack variable names
 // scss-lint:disable NameFormat
 
