@@ -80,8 +80,8 @@ Beginning with a set of event listeners clearly indicates the module’s intenti
 
 ```js
 this.start = function($element) {
-  element.on('click', '.js-toggle', toggle);
-  element.on('click', '.js-cancel', cancel);
+  $element.on('click', '.js-toggle', toggle);
+  $element.on('click', '.js-cancel', cancel);
 }
 ```
 
