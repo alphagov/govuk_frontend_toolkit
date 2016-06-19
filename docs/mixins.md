@@ -75,6 +75,14 @@ there's an example of how to do this in the [GOV.UK template](https://github.com
     <!--[if IE 7]><link href="<%= asset_path "govuk-template-ie7.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
     <!--[if IE 8]><link href="<%= asset_path "govuk-template-ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
 
+The conditional logic ensures that only one stylesheet is downloaded.
+
+    <!--[if gt IE 8]><!--> // [1]
+        <link href="<%= asset_path "govuk-template.css" %>" media="screen" rel="stylesheet" type="text/css" />
+    <!--<![endif]--> // [1]
+
+    [1] Note the comment syntax to hide this stylesheet from IE 6-8.
+
 At the top of each stylesheet, you will need:
 
     $is-ie: true;
