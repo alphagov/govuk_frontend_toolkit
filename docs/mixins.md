@@ -67,16 +67,32 @@ edge of smaller screens.
 Media query and IE helpers. These make producing responsive layouts and
 attaching IE specific styles to elements really easy.
 
-To use the IE conditionals you will need to add extra stylesheets for each IE which look like:
+To use the IE conditionals you will need to add extra stylesheets for each IE,
+there's an example of how to do this in the [GOV.UK template](https://github.com/alphagov/govuk_template/blob/master/source/views/layouts/govuk_template.html.erb#L9-L12).
 
-    // BASE STYLESHEET FOR IE 6 COMPILER
+    <!--[if gt IE 8]><!--><link href="<%= asset_path "govuk-template.css" %>" media="screen" rel="stylesheet" type="text/css" /><!--<![endif]-->
+    <!--[if IE 6]><link href="<%= asset_path "govuk-template-ie6.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 7]><link href="<%= asset_path "govuk-template-ie7.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+    <!--[if IE 8]><link href="<%= asset_path "govuk-template-ie8.css" %>" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+
+The conditional logic ensures that only one stylesheet is downloaded.
+
+    <!--[if gt IE 8]><!--> // [1]
+        <link href="<%= asset_path "govuk-template.css" %>" media="screen" rel="stylesheet" type="text/css" />
+    <!--<![endif]--> // [1]
+
+    [1] Note the comment syntax to hide this stylesheet from IE 6-8.
+
+At the top of each stylesheet, you will need:
 
     $is-ie: true;
-    $ie-version: 6;
+    $ie-version: 6; // [1]
+    @import "application.scss"; // [2]
 
-    @import "application.scss";
+  [1] This example is for ie6.css, use 6, 7 or 8 as required here
+  [2] Here `application.scss` is the name of your main stylesheet
 
-Where `application.scss` is the name of your base stylesheet.
+There are examples for [an IE 6 stylesheet](https://github.com/alphagov/govuk_elements/blob/master/public/sass/main-ie6.scss), [an IE 7 stylesheet](https://github.com/alphagov/govuk_elements/blob/master/public/sass/main-ie7.scss) and [an IE 8 stylesheet](https://github.com/alphagov/govuk_elements/blob/master/public/sass/main-ie8.scss).
 
 #### media
 
