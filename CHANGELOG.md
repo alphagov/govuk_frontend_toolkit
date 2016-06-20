@@ -1,3 +1,7 @@
+# 4.13.0
+
+- Make headings block-level by default (PR #200). If you are styling elements you want to be inline with heading includes, you’ll need to explicitly make them inline in your CSS.
+
 # 4.12.0
 
 - Increase button padding to match padding from GOV.UK elements (PR #275).
