@@ -22,6 +22,6 @@ if [ "$MASTER_SHA" == "$HEAD_SHA" ]; then
     git push origin $VERSION_TAG
 
     # Alias branch for the most recently released tag, for easier diffing
-    git push origin master:latest-release
+    git push -f origin master:latest-release
   fi
 fi
