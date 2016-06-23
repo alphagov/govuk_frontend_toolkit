@@ -1,5 +1,11 @@
 # GOV.UK frontend toolkit
 
+---
+
+#### You can help us improve the GOV.UK frontend toolkit by completing our [5 minute survey](https://www.surveymonkey.co.uk/r/2MZRS9H).
+
+---
+
 A collection of Sass and JavaScript files for using as part of your
 application's frontend.
 
