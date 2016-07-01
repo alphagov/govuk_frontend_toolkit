@@ -1,8 +1,8 @@
-(function () {
+(function (global) {
   "use strict";
-  var root = this,
-      $ = root.jQuery;
-  if(typeof root.GOVUK === 'undefined') { root.GOVUK = {}; }
+
+  var $ = global.jQuery;
+  var GOVUK = global.GOVUK || {};
 
   // Stick elements to top of screen when you scroll past, documentation is in the README.md
   var sticky = {
@@ -16,22 +16,22 @@
         sticky.$els = $els;
 
         if(sticky._scrollTimeout === false) {
-          $(root).scroll(sticky.onScroll);
-          sticky._scrollTimeout = root.setInterval(sticky.checkScroll, 50);
+          $(global).scroll(sticky.onScroll);
+          sticky._scrollTimeout = global.setInterval(sticky.checkScroll, 50);
         }
-        $(root).resize(sticky.onResize);
+        $(global).resize(sticky.onResize);
       }
-      if(root.GOVUK.stopScrollingAtFooter){
+      if(GOVUK.stopScrollingAtFooter){
         $els.each(function(i,el){
           var $img = $(el).find('img');
           if($img.length > 0){
             var image = new Image();
             image.onload = function(){
-              root.GOVUK.stopScrollingAtFooter.addEl($(el), $(el).outerHeight());
+              GOVUK.stopScrollingAtFooter.addEl($(el), $(el).outerHeight());
             };
             image.src = $img.attr('src');
           } else {
-            root.GOVUK.stopScrollingAtFooter.addEl($(el), $(el).outerHeight());
+            GOVUK.stopScrollingAtFooter.addEl($(el), $(el).outerHeight());
           }
         });
       }
@@ -43,14 +43,14 @@
       if(sticky._hasScrolled === true){
         sticky._hasScrolled = false;
 
-        var windowVerticalPosition = $(root).scrollTop();
+        var windowVerticalPosition = $(global).scrollTop();
         sticky.$els.each(function(i, el){
           var $el = $(el),
               scrolledFrom = $el.data('scrolled-from');
 
           if (scrolledFrom && windowVerticalPosition < scrolledFrom){
             sticky.release($el);
-          } else if($(root).width() > 768 && windowVerticalPosition >= $el.offset().top) {
+          } else if($(global).width() > 768 && windowVerticalPosition >= $el.offset().top) {
             sticky.stick($el);
           }
         });
@@ -72,5 +72,6 @@
       }
     }
   };
-  root.GOVUK.stickAtTopWhenScrolling = sticky;
-}).call(this);
+  GOVUK.stickAtTopWhenScrolling = sticky;
+  global.GOVUK = GOVUK;
+})(window);

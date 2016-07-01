@@ -1,5 +1,8 @@
-(function() {
+(function(global) {
   "use strict";
+
+  var GOVUK = global.GOVUK || {};
+
   GOVUK.analyticsPlugins = GOVUK.analyticsPlugins || {};
   GOVUK.analyticsPlugins.mailtoLinkTracker = function () {
 
@@ -30,4 +33,6 @@
       return $target;
     }
   }
-}());
+
+  global.GOVUK = GOVUK;
+})(window);

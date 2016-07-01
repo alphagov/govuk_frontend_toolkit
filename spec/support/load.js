@@ -1,4 +1,4 @@
-(function (root) {
+(function (global) {
   "use strict"
   var loadedScripts = 0,
       totalScripts,
@@ -44,4 +44,4 @@
     totalScripts = merge([manifest.support, manifest.test]);
     loadScript(totalScripts[idx], idx + 1);
   };
-}).call(this);
+})(window);
