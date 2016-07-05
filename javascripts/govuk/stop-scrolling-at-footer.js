@@ -11,11 +11,11 @@
 // itself.
 
 
-(function () {
+(function (global) {
   "use strict";
-  var root = this,
-      $ = root.jQuery;
-  if(typeof root.GOVUK === 'undefined') { root.GOVUK = {}; }
+
+  var $ = global.jQuery;
+  var GOVUK = global.GOVUK || {};
 
   var stopScrollingAtFooter = {
     _pollingId: null,
@@ -32,7 +32,7 @@
       fixedOffset = isNaN(fixedOffset) ? 0 : fixedOffset;
 
       stopScrollingAtFooter.updateFooterTop();
-      $(root).on('govuk.pageSizeChanged', stopScrollingAtFooter.updateFooterTop);
+      $(global).on('govuk.pageSizeChanged', stopScrollingAtFooter.updateFooterTop);
 
       var $siblingEl = $('<div></div>');
       $siblingEl.insertBefore($fixedEl);
@@ -63,7 +63,7 @@
       }
     },
     onScroll: function(){
-      if (stopScrollingAtFooter._isPolling === false) { 
+      if (stopScrollingAtFooter._isPolling === false) {
         stopScrollingAtFooter.startPolling();
       }
     },
@@ -132,7 +132,9 @@
     }
   };
 
-  root.GOVUK.stopScrollingAtFooter = stopScrollingAtFooter;
+  GOVUK.stopScrollingAtFooter = stopScrollingAtFooter;
 
-  $(root).load(function(){ $(root).trigger('govuk.pageSizeChanged'); });
-}).call(this);
+  $(global).load(function(){ $(global).trigger('govuk.pageSizeChanged'); });
+
+  global.GOVUK = GOVUK;
+})(window);

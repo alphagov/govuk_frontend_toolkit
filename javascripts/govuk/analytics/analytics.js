@@ -1,6 +1,7 @@
-(function() {
+(function(global) {
   "use strict";
-  window.GOVUK = window.GOVUK || {};
+
+  var GOVUK = global.GOVUK || {};
 
   // For usage and initialisation see:
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
@@ -61,4 +62,6 @@
   };
 
   GOVUK.Analytics = Analytics;
-})();
+
+  global.GOVUK = GOVUK;
+})(window);

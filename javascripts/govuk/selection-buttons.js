@@ -1,9 +1,8 @@
-(function () {
+(function (global) {
   "use strict";
-  var root = this,
-      $ = root.jQuery;
 
-  if (typeof GOVUK === 'undefined') { root.GOVUK = {}; }
+  var $ = global.jQuery;
+  var GOVUK = global.GOVUK || {};
 
   var SelectionButtons = function (elmsOrSelector, opts) {
     var $elms;
@@ -107,5 +106,6 @@
     }
   };
 
-  root.GOVUK.SelectionButtons = SelectionButtons;
-}).call(this);
+  GOVUK.SelectionButtons = SelectionButtons;
+  global.GOVUK = GOVUK;
+})(window);
