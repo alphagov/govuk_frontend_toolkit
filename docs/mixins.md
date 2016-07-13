@@ -378,61 +378,6 @@ Tabular numbers have numerals of a standard fixed width. As all numbers have the
 
 [See an example of tabular numbers in a table](http://govuk-elements.herokuapp.com/data/#data-table-numeric)
 
-#### external links
-
-`external-link-default` sets up the background image for all external links.
-This should be included on the default link style for a project.
-
-After setting the default, apply includes from the following for different font sizes:
-
-* `external-link-12`
-* `external-link-12-no-hover`
-* `external-link-13`
-* `external-link-13-no-hover`
-* `external-link-14`
-* `external-link-14-bold-no-hover`
-* `external-link-16`
-* `external-link-16-bold-no-hover`
-* `external-link-19`
-* `external-link-19-no-hover`
-
-`external-link-heading` is a unique style a background image for headings to groups of external links.
-
-This uses the `file-url` helper which will by default output an `image-url` to
-be used with Compass or Rails Asset Pipeline, if you want to use a static path
-then set the `$path` variable to point to the public location of the toolkit
-image assets.
-
-#### Description
-
-For a set style:
-
-`@include external-link-[style]`
-
-For a specific font size:
-
-`@include external-link-[size]-[weight]-[no-hover]`
-
-#### Usage
-
-    /* Default link style */
-    a[rel="external"] {
-      @include external-link-default;
-      @include external-link-19;
-    }
-
-    th.external-link {
-      @include external-link-heading;
-    }
-
-    .inner a[rel="external"] {
-      @include external-link-16;
-    }
-
-    .departments a[rel="external"] {
-     @include external-link-16-bold-no-hover;
-    }
-
 ### <a id="css3"></a>css3
 
 CSS3 helpers to abstract vendor prefixes.
