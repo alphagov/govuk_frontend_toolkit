@@ -76,12 +76,21 @@
   };
 
   MultivariateTest.prototype.setCustomVar = function(cohort) {
-    if (this.customDimensionIndex) {
-      GOVUK.analytics.setDimension(
-        this.customDimensionIndex,
-        this.cookieName() + "__" + cohort
-      );
+    if (this.customDimensionIndex &&
+      this.customDimensionIndex.constructor === Array) {
+      for (var index = 0; index < this.customDimensionIndex.length; index++) {
+        this.setDimension(cohort, this.customDimensionIndex[index])
+      }
+    } else if (this.customDimensionIndex) {
+      this.setDimension(cohort, this.customDimensionIndex)
     }
+  };
+
+  MultivariateTest.prototype.setDimension = function(cohort, dimension) {
+    GOVUK.analytics.setDimension(
+      dimension,
+      this.cookieName() + "__" + cohort
+    );
   };
 
   MultivariateTest.prototype.setUpContentExperiment = function(cohort) {

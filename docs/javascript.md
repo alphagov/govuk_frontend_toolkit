@@ -264,6 +264,24 @@ var test = new GOVUK.MultivariateTest({
 
 `customDimensionIndex` is the index of the custom variable in Google Analytics. GA only gives 50 integer slots to each account, and it is important that a unique integer is assigned to each test. Current contact for assigning a custom var slot for GOV.UK is: Tim Leighton-Boyce <tim.leighton-boyce@digital.cabinet-office.gov.uk>
 
+For certain types of tests where the custom dimensions in Google Analytics can only have one of three scopes (hit, session, or user). Measuring performance of A/B tests, and want to compare test results for session-scoped custom dimensions (eg: index 222) against hit-scoped ones (eg: index 223) may become important.
+
+Instead of supplying an integer (like the above example), `customDimensionIndex` can also accept an array of dimension indexes ([222, 223]), see below for more.
+
+Make sure to check GA debugger that these values are being sent before deploying.
+
+```js
+var test = new GOVUK.MultivariateTest({
+  name: 'car_tax_button_text',
+  customDimensionIndex: [222, 223],
+  cohorts: {
+    pay_your_car_tax: {weight: 25},
+    give_us_money: {weight: 50}
+  }
+});
+```
+
+
 ## Primary Links
 
 `GOVUK.PrimaryList` hides elements in a list which don't have a supplied
