@@ -18,6 +18,7 @@
     this._loadOption(options, 'runImmediately', true);
     this._loadOption(options, 'defaultWeight', 1);
     this._loadOption(options, 'contentExperimentId', null);
+    this._loadOption(options, 'cookieDuration', 30);
 
     if (this.runImmediately) {
       this.run();
@@ -69,7 +70,7 @@
     var cohort = GOVUK.cookie(this.cookieName());
     if (!cohort || !this.cohorts[cohort]) {
       cohort = this.chooseRandomCohort();
-      GOVUK.cookie(this.cookieName(), cohort, {days: 30});
+      GOVUK.cookie(this.cookieName(), cohort, {days: this.cookieDuration});
     }
     return cohort;
   };

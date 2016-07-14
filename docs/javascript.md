@@ -178,6 +178,20 @@ var test = new GOVUK.MultivariateTest({
 });
 ```
 
+If you want to set the cookie expiration then you can optionally set cookieDuration as follows:
+
+```javascript
+var test = new GOVUK.MultivariateTest({
+  name: 'car_tax_button_text',
+  cookieDuration: 14,
+  cohorts: {
+    pay_your_car_tax: {weight: 25, callback: function() { ... }}, // 25%
+    give_us_money:    {weight: 75, callback: function() { ... }}  // 75%
+  }
+});
+```
+Here, it is set to expire in 14 days time. if this option is not set the default cookie expiration (30 days) take effect.
+
 If you have a complex test, it may be worth extending MultivariateTest with
 your own. Callbacks can be strings which will call a method of that name
 on the current object.

@@ -124,6 +124,29 @@ describe("MultivariateTest", function() {
       expect(test.fooCallback).toHaveBeenCalled();
     });
 
+    it("should assign 30 if cookieDuration isn't defined", function() {
+      GOVUK.cookie.and.returnValue('foo');
+      var test = new GOVUK.MultivariateTest({
+        name: 'cookie_duration_test',
+        cohorts: {
+          foo: {callback: function(){}}
+        }
+      });
+      expect(test.cookieDuration).toEqual(30);
+    });
+
+    it("should assign the user's cookie duration, when cookieDuration is defined", function() {
+      GOVUK.cookie.and.returnValue('foo');
+      var test = new GOVUK.MultivariateTest({
+        name: 'cookie_duration_test',
+        cookieDuration: 14,
+        cohorts: {
+          foo: {callback: function(){}}
+        }
+      });
+      expect(test.cookieDuration).toEqual(14);
+    });
+
     it("should assign a new random cohort if the assigned cohort does not exist", function() {
       var fooSpy = jasmine.createSpy('fooSpy');
       var barSpy = jasmine.createSpy('barSpy');
