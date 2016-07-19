@@ -63,6 +63,26 @@ describe("MultivariateTest", function() {
       );
     });
 
+    it("should be able to set multiple custom vars with the name and cohort if one is defined as an array", function() {
+      GOVUK.cookie.and.returnValue('foo');
+      var test = new GOVUK.MultivariateTest({
+        name: 'stuff',
+        cohorts: {
+          foo: {},
+          bar: {}
+        },
+        customDimensionIndex: [2,3]
+      });
+      expect(GOVUK.analytics.setDimension).toHaveBeenCalledWith(
+        2,
+        'multivariatetest_cohort_stuff__foo'
+      );
+      expect(GOVUK.analytics.setDimension).toHaveBeenCalledWith(
+        3,
+        'multivariatetest_cohort_stuff__foo'
+      );
+    });
+
     it("should trigger an event to track that the test has been run", function() {
       GOVUK.cookie.and.returnValue('foo');
       var test = new GOVUK.MultivariateTest({
