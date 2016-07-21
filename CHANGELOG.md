@@ -1,3 +1,9 @@
+# 4.14.0
+
+- Allow use of multiple GA customDimensionIndex. See [this section](https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/javascript.md#using-google-custom-dimensions-with-your-own-statistical-model) of the documentation for more information.
+- Configurable duration (in days) for AB Test cookie. See [this section](https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/javascript.md#multivariate-test-framework) of the documentation for more information.
+- Allow base scripts to run within a module loader. See [this PR](https://github.com/alphagov/govuk_frontend_toolkit/pull/290) for more information.
+
 # 4.13.0
 
 - Make headings block-level by default (PR #200). If you are styling elements you want to be inline with heading includes, you’ll need to explicitly make them inline in your CSS.
