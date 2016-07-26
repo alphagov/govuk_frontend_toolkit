@@ -1,4 +1,4 @@
-(function(global, customConfig) {
+(function(global, settings) {
   "use strict"; 
        
   var $ = global.jQuery;
@@ -16,7 +16,7 @@
       keycodes: [
         32 // spacekey
       ],
-    }, customConfig),
+    }, settings),
     
     // event behaviour (not a typical anonymous function for resuse if needed)
     triggerClickOnTarget: function triggerClickOnTarget(event) {
@@ -32,7 +32,7 @@
     // init function (so it can be executed again if needed)
     init: function init() { 
       var $elms = $(this.config.selector);
-      // if found elements that match the selector in config (or customConfig) then
+      // if found elements that match the selector in config (or settings) then
       if($elms.length > 0) {
         // iterate them giving access to current scope
         $elms.each(function(index, elm){
