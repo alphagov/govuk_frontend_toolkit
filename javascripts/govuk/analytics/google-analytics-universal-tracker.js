@@ -3,18 +3,24 @@
 
   var GOVUK = global.GOVUK || {};
 
-  var GoogleAnalyticsUniversalTracker = function(id, cookieDomain) {
-    configureProfile(id, cookieDomain);
-    anonymizeIp();
+  var GoogleAnalyticsUniversalTracker = function(trackingId, cookieDomain, fieldsObject) {
 
-    function configureProfile(id, cookieDomain) {
-      sendToGa('create', id, {'cookieDomain': cookieDomain});
+    function configureProfile(trackingId, fieldsObject) {
+      https://developers.google.com/analytics/devguides/collection/analyticsjs/command-queue-reference#create
+      sendToGa('create', trackingId, fieldsObject);
     }
 
     function anonymizeIp() {
       // https://developers.google.com/analytics/devguides/collection/analyticsjs/advanced#anonymizeip
       sendToGa('set', 'anonymizeIp', true);
     }
+
+    // Append cookieDomain to fieldsObject
+    fieldsObject = fieldsObject || {}
+    fieldsObject.cookieDomain = cookieDomain;
+
+    configureProfile(trackingId, fieldsObject);
+    anonymizeIp();
   };
 
   GoogleAnalyticsUniversalTracker.load = function() {

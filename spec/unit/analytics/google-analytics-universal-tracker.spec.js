@@ -4,7 +4,7 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
   beforeEach(function() {
     window.ga = function() {};
     spyOn(window, 'ga');
-    universal = new GOVUK.GoogleAnalyticsUniversalTracker('id', 'cookie-domain.com');
+    universal = new GOVUK.GoogleAnalyticsUniversalTracker('id', 'cookie-domain.com', { siteSpeedSampleRate: 100 });
   });
 
   it('can load the libraries needed to run universal Google Analytics', function() {
@@ -26,7 +26,7 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
     });
 
     it('configures a Google tracker using the provided profile ID and cookie domain', function() {
-      expect(setupArguments[0]).toEqual(['create', 'id', {'cookieDomain': 'cookie-domain.com'}]);
+      expect(setupArguments[0]).toEqual(['create', 'id', {cookieDomain: 'cookie-domain.com', siteSpeedSampleRate: 100}]);
     });
 
     it('anonymises the IP', function() {

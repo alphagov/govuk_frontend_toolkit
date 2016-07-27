@@ -8,14 +8,17 @@ describe("GOVUK.Analytics", function() {
       universalId: 'universal-id',
       cookieDomain: '.www.gov.uk'
     };
+    this.fieldsObject = {
+      siteSpeedSampleRate: 100
+    }
 
-    analytics = new GOVUK.Analytics(this.config);
+    analytics = new GOVUK.Analytics(this.config, this.fieldsObject);
   });
 
   describe('when created', function() {
     it('configures a universal tracker', function () {
       var universalSetupArguments = window.ga.calls.allArgs();
-      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
+      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {cookieDomain: '.www.gov.uk', siteSpeedSampleRate: 100}]);
     });
   });
 
