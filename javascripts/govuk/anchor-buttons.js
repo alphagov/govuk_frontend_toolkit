@@ -1,4 +1,14 @@
-(function(global, settings) {
+// javascript 'shim' to trigger the click event of element(s) 
+// when the space key is pressed.
+// 
+// usage instructions:
+// GOVUK.anchorButtons.init();
+// 
+// If you want to customise the shim you can pass in a custom configuration
+// object with your own selector for the target elements and addional keyup 
+// codes if there becomes a need to do so. For example:
+// GOVUK.anchorButtons.init({ selector: '[role="button"]' }); 
+(function(global) {
   "use strict"; 
        
   var $ = global.jQuery;
@@ -7,16 +17,14 @@
   GOVUK.anchorButtons = {
     
     // default configuration that can be overridden by passing object as second parameter to module
-    config: $.extend({
-      // setting to true will disable the init function upon execution
-      disableInit: false,
+    config: {
       // the target element(s) to attach the shim event to
       selector: 'a[role="button"]',
       // array of keys to match against upon the keyup event
       keycodes: [
         32 // spacekey
       ],
-    }, settings),
+    },
     
     // event behaviour (not a typical anonymous function for resuse if needed)
     triggerClickOnTarget: function triggerClickOnTarget(event) {
@@ -28,26 +36,24 @@
         $(event.target).trigger("click");
       }
     },
-    
-    // init function (so it can be executed again if needed)
-    init: function init() { 
-      var $elms = $(this.config.selector);
-      // if found elements that match the selector in config (or settings) then
-      if($elms.length > 0) {
-        // iterate them giving access to current scope
-        $elms.each(function(index, elm){
-          // attach triggerClickOnTarget with current scope to the keyup event
-          $(elm).on('keyup', this.triggerClickOnTarget.bind(this));
-        }.bind(this));
-      }
+
+    // By default this will find all anchors with role attribute set to 
+    // 'button' and will trigger their click event when the spaceky (32) is pressed.
+    // @method init
+    // @param  {Object}   customConfig                object to override default configuration
+    //         {String}   customConfig.selector       a selector for the elements to be 'clicked'
+    //         {Array}    customConfig.keycodes       an array of javascript keycode values to match against that when pressed will trigger the click
+    init: function init(customConfig) { 
+      // extend the default config with any custom attributes passed in
+      this.config = $.extend(this.config, customConfig);
+      // if we have found elements then:
+      if($(this.config.selector).length > 0) {
+        // listen to 'document' for keyup event on the elements and fire the triggerClickOnTarget
+        $(document).on('keyup', this.config.selector, this.triggerClickOnTarget.bind(this));
+      }    
     }
 
   };
-
-  // if disbaleInit is not true then run the init method
-  if(!GOVUK.anchorButtons.config.disableInit) {
-    GOVUK.anchorButtons.init(); 
-  }
   
   // hand back to global
   global.GOVUK = GOVUK;
