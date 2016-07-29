@@ -6,10 +6,24 @@
   // For usage and initialisation see:
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
 
-  var Analytics = function(config) {
+  var Analytics = function(trackingId, fieldsObject) {
     this.trackers = [];
-    if (typeof config.universalId != 'undefined') {
-      this.trackers.push(new GOVUK.GoogleAnalyticsUniversalTracker(config.universalId, config.cookieDomain, config.fieldsObject));
+    fieldsObject = fieldsObject || {};
+
+    // Support legacy config syntax
+    if (typeof trackingId === 'object') {
+
+      if (trackingId.cookieDomain) {
+        fieldsObject.cookieDomain = trackingId.cookieDomain;
+      }
+
+      if (trackingId.universalId) {
+        trackingId = trackingId.universalId;
+      }
+    }
+
+    if (trackingId) {
+      this.trackers.push(new GOVUK.GoogleAnalyticsUniversalTracker(trackingId, fieldsObject));
     }
   };
 

@@ -1,24 +1,47 @@
 describe("GOVUK.Analytics", function() {
-  var analytics;
-
-  beforeEach(function() {
+  function addGoogleAnalyticsSpy() {
     window.ga = function() {};
     spyOn(window, 'ga');
-    this.config = {
-      universalId: 'universal-id',
-      cookieDomain: '.www.gov.uk',
-      fieldsObject = {
-        siteSpeedSampleRate: 100
-      }
-    };
+  }
 
-    analytics = new GOVUK.Analytics(this.config);
+  var analytics;
+  var universalSetupArguments;
+
+  beforeEach(function() {
+    addGoogleAnalyticsSpy();
+
+    // New syntax keeps trackingId separate from fieldsObject
+    analytics = new GOVUK.Analytics('universal-id', {
+      cookieDomain: '.www.gov.uk',
+      siteSpeedSampleRate: 100
+    });
   });
 
   describe('when created', function() {
+    beforeEach(function() {
+      universalSetupArguments = window.ga.calls.allArgs();
+    });
+
     it('configures a universal tracker', function () {
-      var universalSetupArguments = window.ga.calls.allArgs();
       expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {cookieDomain: '.www.gov.uk', siteSpeedSampleRate: 100}]);
+    });
+  });
+
+  describe('when created (with legacy mixed-object syntax)', function() {
+    beforeEach(function() {
+      addGoogleAnalyticsSpy();
+
+      // Legacy syntax mixes a non-standard `universalId` into the fieldsObject
+      analytics = new GOVUK.Analytics({
+        universalId: 'universal-id',
+        cookieDomain: '.www.gov.uk',
+      });
+
+      universalSetupArguments = window.ga.calls.allArgs();
+    });
+
+    it('configures a Google tracker using the provided profile ID and cookie domain', function() {
+      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {cookieDomain: '.www.gov.uk'}]);
     });
   });
 

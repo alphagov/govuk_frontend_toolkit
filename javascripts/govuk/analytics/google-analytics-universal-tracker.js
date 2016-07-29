@@ -3,9 +3,9 @@
 
   var GOVUK = global.GOVUK || {};
 
-  var GoogleAnalyticsUniversalTracker = function(trackingId, cookieDomain, fieldsObject) {
+  var GoogleAnalyticsUniversalTracker = function(trackingId, fieldsObject) {
 
-    function configureProfile(trackingId, fieldsObject) {
+    function configureProfile() {
       // https://developers.google.com/analytics/devguides/collection/analyticsjs/command-queue-reference#create
       sendToGa('create', trackingId, fieldsObject);
     }
@@ -15,11 +15,12 @@
       sendToGa('set', 'anonymizeIp', true);
     }
 
-    // Append cookieDomain to fieldsObject
-    fieldsObject = fieldsObject || {}
-    fieldsObject.cookieDomain = cookieDomain;
+    // Support legacy cookieDomain param
+    if (typeof fieldsObject === 'string') {
+      fieldsObject = { cookieDomain: fieldsObject };
+    }
 
-    configureProfile(trackingId, fieldsObject);
+    configureProfile();
     anonymizeIp();
   };
 

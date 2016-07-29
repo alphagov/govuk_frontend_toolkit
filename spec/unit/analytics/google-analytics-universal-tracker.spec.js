@@ -1,10 +1,19 @@
 describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
-  var universal;
-
-  beforeEach(function() {
+  function addGoogleAnalyticsSpy() {
     window.ga = function() {};
     spyOn(window, 'ga');
-    universal = new GOVUK.GoogleAnalyticsUniversalTracker('id', 'cookie-domain.com', { siteSpeedSampleRate: 100 });
+  }
+
+  var universal;
+  var setupArguments;
+
+  beforeEach(function() {
+    addGoogleAnalyticsSpy();
+
+    universal = new GOVUK.GoogleAnalyticsUniversalTracker('id', {
+      cookieDomain: 'cookie-domain.com',
+      siteSpeedSampleRate: 100
+    });
   });
 
   it('can load the libraries needed to run universal Google Analytics', function() {
@@ -19,18 +28,29 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
   });
 
   describe('when created', function() {
-    var setupArguments;
-
     beforeEach(function() {
       setupArguments = window.ga.calls.allArgs();
     });
 
-    it('configures a Google tracker using the provided profile ID and cookie domain', function() {
+    it('configures a Google tracker using the provided profile ID and config', function() {
       expect(setupArguments[0]).toEqual(['create', 'id', {cookieDomain: 'cookie-domain.com', siteSpeedSampleRate: 100}]);
     });
 
     it('anonymises the IP', function() {
       expect(setupArguments[1]).toEqual(['set', 'anonymizeIp', true]);
+    });
+  });
+
+  describe('when created (with legacy non-object syntax)', function() {
+    beforeEach(function() {
+      addGoogleAnalyticsSpy();
+
+      universal = new GOVUK.GoogleAnalyticsUniversalTracker('id', 'cookie-domain.com');
+      setupArguments = window.ga.calls.allArgs();
+    });
+
+    it('configures a Google tracker using the provided profile ID and cookie domain', function() {
+      expect(setupArguments[0]).toEqual(['create', 'id', {cookieDomain: 'cookie-domain.com'}]);
     });
   });
 

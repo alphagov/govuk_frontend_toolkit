@@ -34,8 +34,7 @@ The minimum you need to use the analytics function is:
 
   // Configure profiles and make interface public
   // for custom dimensions, virtual pageviews and events
-  GOVUK.analytics = new GOVUK.Analytics({
-    universalId: 'UA-XXXXXXXX-X',
+  GOVUK.analytics = new GOVUK.Analytics('UA-XXXXXXXX-X', {
     cookieDomain: cookieDomain
   });
 
