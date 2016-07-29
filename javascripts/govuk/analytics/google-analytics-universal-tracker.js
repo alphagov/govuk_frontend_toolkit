@@ -6,7 +6,7 @@
   var GoogleAnalyticsUniversalTracker = function(trackingId, cookieDomain, fieldsObject) {
 
     function configureProfile(trackingId, fieldsObject) {
-      https://developers.google.com/analytics/devguides/collection/analyticsjs/command-queue-reference#create
+      // https://developers.google.com/analytics/devguides/collection/analyticsjs/command-queue-reference#create
       sendToGa('create', trackingId, fieldsObject);
     }
 
