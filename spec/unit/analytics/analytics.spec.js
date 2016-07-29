@@ -6,13 +6,13 @@ describe("GOVUK.Analytics", function() {
     spyOn(window, 'ga');
     this.config = {
       universalId: 'universal-id',
-      cookieDomain: '.www.gov.uk'
+      cookieDomain: '.www.gov.uk',
+      fieldsObject = {
+        siteSpeedSampleRate: 100
+      }
     };
-    this.fieldsObject = {
-      siteSpeedSampleRate: 100
-    }
 
-    analytics = new GOVUK.Analytics(this.config, this.fieldsObject);
+    analytics = new GOVUK.Analytics(this.config);
   });
 
   describe('when created', function() {
