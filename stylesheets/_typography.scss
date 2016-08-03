@@ -27,7 +27,7 @@ $is-print: false !default;
     font-family: $Print-reset;
   } @else {
     font-family: $toolkit-font-stack;
-    @if $toolkit-font-stack == $NTA-Light {
+    @if $toolkit-font-stack == "$NTA-Light" {
       @if $font-weight > 400 {
         font-size-adjust: 0.525;
       } @else {
