@@ -1,3 +1,7 @@
+# 4.14.1
+
+- Fix tabular number sizing in Firefox ([PR #301](https://github.com/alphagov/govuk_frontend_toolkit/pull/301))
+
 # 4.14.0
 
 - Allow use of multiple GA customDimensionIndex. See [this section](https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/javascript.md#using-google-custom-dimensions-with-your-own-statistical-model) of the documentation for more information.
