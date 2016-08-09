@@ -1,21 +1,29 @@
 describe("GOVUK.Analytics", function() {
-  var analytics;
-
-  beforeEach(function() {
+  function addGoogleAnalyticsSpy() {
     window.ga = function() {};
     spyOn(window, 'ga');
-    this.config = {
-      universalId: 'universal-id',
-      cookieDomain: '.www.gov.uk'
-    };
+  }
 
-    analytics = new GOVUK.Analytics(this.config);
+  var analytics;
+  var universalSetupArguments;
+
+  beforeEach(function() {
+    addGoogleAnalyticsSpy();
+
+    analytics = new GOVUK.Analytics({
+      universalId: 'universal-id',
+      cookieDomain: '.www.gov.uk',
+      siteSpeedSampleRate: 100
+    });
   });
 
   describe('when created', function() {
+    beforeEach(function() {
+      universalSetupArguments = window.ga.calls.allArgs();
+    });
+
     it('configures a universal tracker', function () {
-      var universalSetupArguments = window.ga.calls.allArgs();
-      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {'cookieDomain': '.www.gov.uk'}]);
+      expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {cookieDomain: '.www.gov.uk', siteSpeedSampleRate: 100}]);
     });
   });
 
