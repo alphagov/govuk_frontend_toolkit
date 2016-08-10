@@ -142,6 +142,7 @@ In production:
   * [Stick at top when scrolling](/docs/javascript.md#stick-at-top-when-scrolling)
   * [Selection buttons](/docs/javascript.md#selection-buttons)
   * [Shim links with button role](/docs/javascript.md#shim-links-with-button-role)
+  * [Show/Hide content](/docs/javascript.md#show-hide-content)
 * [Analytics](/docs/analytics.md)
   * [Create an analytics tracker](/docs/analytics.md#create-an-analytics-tracker)
   * [Virtual pageviews](/docs/analytics.md#virtual-pageviews)
