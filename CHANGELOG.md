@@ -1,3 +1,8 @@
+# 4.15.0
+
+- Add support for Google Analytics fieldsObject ([PR #298](https://github.com/alphagov/govuk_frontend_toolkit/pull/298))
+- anchor-buttons.js: normalise keyboard behaviour between buttons and links with a button role ([PR #297](https://github.com/alphagov/govuk_frontend_toolkit/pull/297))
+
 # 4.14.1
 
 - Fix tabular number sizing in Firefox ([PR #301](https://github.com/alphagov/govuk_frontend_toolkit/pull/301))
