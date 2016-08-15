@@ -1,3 +1,7 @@
+# 4.16.0
+
+- Add Department for International Trade organisation ([PR #308](https://github.com/alphagov/govuk_frontend_toolkit/pull/308))
+
 # 4.15.0
 
 - Add support for Google Analytics fieldsObject ([PR #298](https://github.com/alphagov/govuk_frontend_toolkit/pull/298))
