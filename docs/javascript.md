@@ -398,3 +398,41 @@ GOVUK.selectionButtons = function (elms, opts) {
 ```
 
 This method will mean the `destroy` method is not available to call.
+
+## Show/Hide content
+
+Script to support show/hide content, toggled by radio buttons and checkboxes. This allows for progressive disclosure of question and answer forms based on selected values:
+
+    <label class="block-label" data-target="show-me">
+      <input type="radio" name="enabled" value="yes" /> Yes
+    </label>
+
+    <label class="block-label">
+      <input type="radio" name="enabled" value="no" /> No
+    </label>
+
+    <div id="show-me" class="panel js-hidden">
+      <p>Show/Hide content to be toggled</p>
+    </div>
+
+When the input's `checked` attribute is set, the show/hide content's `.js-hidden` class is removed and ARIA attributes are added to enable it.
+
+### Usage
+
+#### GOVUK.ShowHideContent
+
+To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.ShowHideContent` constructor with their inputs:
+
+```
+var showHideContent = new GOVUK.ShowHideContent();
+showHideContent.init();
+```
+
+This will bind all events to the document, meaning any changes to content (for example, by AJAX) will not effect behaviour.
+
+You can also call `GOVUK.ShowHideContent` with a selector (defaults to `$(document.body)`):
+
+```
+var showHideContent = new GOVUK.ShowHideContent();
+showHideContent.init($('form'));
+```
