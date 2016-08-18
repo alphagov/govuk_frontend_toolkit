@@ -28,9 +28,8 @@
 
     // event behaviour (not a typical anonymous function for resuse if needed)
     triggerClickOnTarget: function triggerClickOnTarget(event) {
-      var code = event.charCode || event.keyCode;
-      // if the keyCode/charCode from this event is in the keycodes array then
-      if ($.inArray(code, this.config.keycodes) !== -1) {
+      // if the code from this event is in the keycodes array then
+      if ($.inArray(event.which, this.config.keycodes) !== -1) {
         event.preventDefault();
         // trigger the target's click event
         event.target.click();
