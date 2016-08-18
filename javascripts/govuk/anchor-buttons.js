@@ -33,7 +33,7 @@
       if ($.inArray(code, this.config.keycodes) !== -1) {
         event.preventDefault();
         // trigger the target's click event
-        $(event.target).trigger("click");
+        event.target.click();
       }
     },
 
