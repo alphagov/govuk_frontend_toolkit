@@ -35,8 +35,15 @@
 
     // Return toggled content for control
     function getToggledContent($control) {
-      var $label = $control.parent('label');
-      return $('#' + $label.data('target'));
+      var id = $control.attr('aria-controls');
+
+      // ARIA attributes aren't set before init
+      if (!id) {
+        id = $control.parent('label').data('target');
+      }
+
+      // Find show/hide content by id
+      return $('#' + id);
     }
 
     // Show toggled content for control
