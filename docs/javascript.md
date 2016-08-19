@@ -398,3 +398,36 @@ GOVUK.selectionButtons = function (elms, opts) {
 ```
 
 This method will mean the `destroy` method is not available to call.
+
+## Anchor buttons
+
+Links styled to look like buttons lack button behaviour. This script will allow them to be triggered with a space key after they’ve been focused, to match standard buttons.
+
+### Usage
+
+By default, this behaviour will only be applied to links with a role of button.
+
+```html
+<a class="button" role="button">A button</a>
+```
+
+```javascript
+GOVUK.anchorButtons.init();
+```
+
+If you need to override the elements this is applied to then you can do that by passing in a custom selector to the initialiser:
+
+```javascript
+GOVUK.anchorButtons.init({
+  selector: '.my-class'
+});
+```
+
+It’s also possible to define more or different keycodes to activate against:
+
+```javascript
+// activate when the user presses space or ‘r’
+GOVUK.anchorButtons.init({
+  keycodes: [32, 114]
+});
+```
