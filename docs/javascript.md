@@ -447,24 +447,24 @@ Script to support show/hide content, toggled by radio buttons and checkboxes. Th
       <p>Show/Hide content to be toggled</p>
     </div>
 
-When the input's `checked` attribute is set, the show/hide content's `.js-hidden` class is removed and ARIA attributes are added to enable it.
+When the input's `checked` attribute is set, the show/hide content's `.js-hidden` class is removed and ARIA attributes are added to enable it. Note the sample `show-me` id attribute used to link the label to show/hide content.
 
 ### Usage
 
 #### GOVUK.ShowHideContent
 
-To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.ShowHideContent` constructor with their inputs:
+To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.ShowHideContent` constructor:
 
 ```
 var showHideContent = new GOVUK.ShowHideContent();
 showHideContent.init();
 ```
 
-This will bind all events to the document, meaning any changes to content (for example, by AJAX) will not effect behaviour.
+This will bind two event handlers to $(document.body), one for radio inputs and one for checkboxes. By listening for events bubbling up to the `body` tag, additional show/hide content added to the page will still be picked up after `.init()` is called.
 
-You can also call `GOVUK.ShowHideContent` with a selector (defaults to `$(document.body)`):
+Alternatively, pass in your own selector. In the example below, event handlers are bound to the form instead.
 
 ```
 var showHideContent = new GOVUK.ShowHideContent();
-showHideContent.init($('form'));
+showHideContent.init($('form.example'));
 ```
