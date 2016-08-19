@@ -1,21 +1,21 @@
-describe("anchor-buttons", function () {
+describe("shim-links-with-button-role", function () {
   var $body;
-  var $anchorButton;
+  var $buttonLink;
   var keyupEvent;
 
   beforeEach(function () {
-    $anchorButton = $('<a role="button">Button</a>');
-    $anchorButton.on('click',function(){
-      $anchorButton.addClass('clicked');
+    $buttonLink = $('<a role="button">Button</a>');
+    $buttonLink.on('click',function(){
+      $buttonLink.addClass('clicked');
     });
-    $(document.body).append($anchorButton);
+    $(document.body).append($buttonLink);
     keyupEvent = $.Event('keyup');
-    keyupEvent.target = $anchorButton.get(0);
-    GOVUK.anchorButtons.init();
+    keyupEvent.target = $buttonLink.get(0);
+    GOVUK.shimLinksWithButtonRole.init();
   });
 
   afterEach(function () {
-    $anchorButton.remove();
+    $buttonLink.remove();
     $(document).off('keyup');
   });
 
@@ -24,13 +24,13 @@ describe("anchor-buttons", function () {
     // do within a Jasmine context. Settle for checking a bound event trigger.
     keyupEvent.which = 32; // Space character
     $(document).trigger(keyupEvent);
-    expect($anchorButton.hasClass('clicked')).toBe(true);
+    expect($buttonLink.hasClass('clicked')).toBe(true);
   });
 
   it('should not trigger event on tab', function(){
     keyupEvent.which = 9; // Tab character
     $(document).trigger(keyupEvent);
-    expect($anchorButton.hasClass('clicked')).toBe(false);
+    expect($buttonLink.hasClass('clicked')).toBe(false);
   });
 
 });
