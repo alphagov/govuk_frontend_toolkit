@@ -2,19 +2,19 @@
 // when the space key is pressed.
 //
 // usage instructions:
-// GOVUK.anchorButtons.init();
+// GOVUK.shimLinksWithButtonRole.init();
 //
 // If you want to customise the shim you can pass in a custom configuration
 // object with your own selector for the target elements and addional keyup
 // codes if there becomes a need to do so. For example:
-// GOVUK.anchorButtons.init({ selector: '[role="button"]' });
+// GOVUK.shimLinksWithButtonRole.init({ selector: '[role="button"]' });
 (function(global) {
   "use strict";
 
   var $ = global.jQuery;
   var GOVUK = global.GOVUK || {};
 
-  GOVUK.anchorButtons = {
+  GOVUK.shimLinksWithButtonRole = {
 
     // default configuration that can be overridden by passing object as second parameter to module
     config: {
@@ -28,16 +28,15 @@
 
     // event behaviour (not a typical anonymous function for resuse if needed)
     triggerClickOnTarget: function triggerClickOnTarget(event) {
-      var code = event.charCode || event.keyCode;
-      // if the keyCode/charCode from this event is in the keycodes array then
-      if ($.inArray(code, this.config.keycodes) !== -1) {
+      // if the code from this event is in the keycodes array then
+      if ($.inArray(event.which, this.config.keycodes) !== -1) {
         event.preventDefault();
         // trigger the target's click event
-        $(event.target).trigger("click");
+        event.target.click();
       }
     },
 
-    // By default this will find all anchors with role attribute set to
+    // By default this will find all links with role attribute set to
     // 'button' and will trigger their click event when the space key (32) is pressed.
     // @method init
     // @param  {Object}   customConfig                object to override default configuration
