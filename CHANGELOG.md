@@ -1,3 +1,8 @@
+# 4.16.1
+
+- Fix anchor-buttons.js to trigger a native click event, also rename to shimLinksWithButtonRole.js to explain what it does
+- Add tests for shimLinksWithButtonRole ([PR #310](https://github.com/alphagov/govuk_frontend_toolkit/pull/310))
+
 # 4.16.0
 
 - Add Department for International Trade organisation ([PR #308](https://github.com/alphagov/govuk_frontend_toolkit/pull/308))
