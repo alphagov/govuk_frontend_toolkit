@@ -4,6 +4,7 @@ var manifest = {
     '../../node_modules/jquery/dist/jquery.js',
     '../../javascripts/govuk/modules.js',
     '../../javascripts/govuk/modules/auto-track-event.js',
+    '../../javascripts/govuk/anchor-buttons.js',
     '../../javascripts/govuk/multivariate-test.js',
     '../../javascripts/govuk/primary-links.js',
     '../../javascripts/govuk/stick-at-top-when-scrolling.js',
@@ -19,6 +20,7 @@ var manifest = {
   test : [
     '../unit/modules.spec.js',
     '../unit/Modules/auto-track-event.spec.js',
+    '../unit/anchor-button.spec.js',
     '../unit/multivariate-test.spec.js',
     '../unit/primary-links.spec.js',
     '../unit/stick-at-top-when-scrolling.spec.js',
