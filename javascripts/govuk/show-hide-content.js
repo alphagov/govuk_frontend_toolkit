@@ -39,7 +39,7 @@
 
       // ARIA attributes aren't set before init
       if (!id) {
-        id = $control.parent('label').data('target')
+        id = $control.closest('label').data('target')
       }
 
       // Find show/hide content by id
