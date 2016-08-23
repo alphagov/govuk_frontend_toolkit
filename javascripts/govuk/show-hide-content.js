@@ -48,7 +48,6 @@
 
     // Show toggled content for control
     function showToggledContent ($control, $content) {
-
       // Show content
       if ($content.hasClass('js-hidden')) {
         $content.removeClass('js-hidden')
@@ -80,22 +79,23 @@
     // Handle radio show/hide
     function handleRadioContent ($control, $content) {
 
-      // All radios in this group
-      var selector = selectors.radio + '[name=' + escapeElementName($control.attr('name')) + ']'
+      // All radios in this group which control content
+      var selector = selectors.radio + '[name=' + escapeElementName($control.attr('name')) + '][aria-controls]'
       var $radios = $control.closest('form').find(selector)
 
-      // Hide radios in group
+      // Hide content for radios in group
       $radios.each(function () {
         hideToggledContent($(this))
       })
 
-      // Select radio button content
-      showToggledContent($control, $content)
+      // Select content for this control
+      if ($control.is('[aria-controls]')) {
+        showToggledContent($control, $content)
+      }
     }
 
     // Handle checkbox show/hide
     function handleCheckboxContent ($control, $content) {
-
       // Show checkbox content
       if ($control.is(':checked')) {
         showToggledContent($control, $content)
