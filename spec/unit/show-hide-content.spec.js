@@ -7,7 +7,7 @@ describe('show-hide-content', function () {
     this.$content = $(
 
       // Radio buttons (yes/no)
-      '<form class="js-toggle-showhide">' +
+      '<form>' +
       '<label class="block-label" data-target="show-hide-radios">' +
       '<input type="radio" name="single" value="no">' +
       'Yes' +
@@ -20,7 +20,7 @@ describe('show-hide-content', function () {
       '</form>' +
 
       // Checkboxes (multiple values)
-      '<form class="js-toggle-showhide">' +
+      '<form>' +
       '<label class="block-label" data-target="show-hide-checkboxes">' +
       '<input type="checkbox" name="multiple[option1]">' +
       'Option 1' +
