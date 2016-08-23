@@ -78,7 +78,6 @@
 
     // Handle radio show/hide
     function handleRadioContent ($control, $content) {
-
       // All radios in this group which control content
       var selector = selectors.radio + '[name=' + escapeElementName($control.attr('name')) + '][aria-controls]'
       var $radios = $control.closest('form').find(selector)
@@ -99,10 +98,7 @@
       // Show checkbox content
       if ($control.is(':checked')) {
         showToggledContent($control, $content)
-      }
-
-      // Hide checkbox content
-      else {
+      } else { // Hide checkbox content
         hideToggledContent($control, $content)
       }
     }
