@@ -17,7 +17,7 @@
     // Escape name attribute for use in DOM selector
     function escapeElementName (str) {
       var result = str.replace('[', '\\[').replace(']', '\\]')
-      return (result)
+      return result
     }
 
     // Adds ARIA attributes to control + associated content
