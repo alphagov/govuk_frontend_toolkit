@@ -216,11 +216,11 @@ describe('show-hide-content', function () {
       var events = $._data(document.body, 'events')
       expect(events && events.click).toContain(jasmine.objectContaining({
         namespace: 'ShowHideContent',
-        selector: '.block-label input[type="radio"]'
+        selector: 'input[type="radio"][name="single"]'
       }))
       expect(events && events.click).toContain(jasmine.objectContaining({
         namespace: 'ShowHideContent',
-        selector: '.block-label input[type="checkbox"]'
+        selector: '.block-label[data-target] input[type="checkbox"]'
       }))
     })
   })
@@ -234,11 +234,11 @@ describe('show-hide-content', function () {
       var events = $._data(document.body, 'events')
       expect(events && events.click).not.toContain(jasmine.objectContaining({
         namespace: 'ShowHideContent',
-        selector: '.block-label input[type="radio"]'
+        selector: 'input[type="radio"][name="single"]'
       }))
       expect(events && events.click).not.toContain(jasmine.objectContaining({
         namespace: 'ShowHideContent',
-        selector: '.block-label input[type="checkbox"]'
+        selector: '.block-label[data-target] input[type="checkbox"]'
       }))
     })
   })

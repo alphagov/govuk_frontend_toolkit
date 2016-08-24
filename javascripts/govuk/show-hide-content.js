@@ -10,8 +10,8 @@
     // Radio and Checkbox selectors
     var selectors = {
       namespace: 'ShowHideContent',
-      radio: '.block-label input[type="radio"]',
-      checkbox: '.block-label input[type="checkbox"]'
+      radio: '.block-label[data-target] input[type="radio"]',
+      checkbox: '.block-label[data-target] input[type="checkbox"]'
     }
 
     // Escape name attribute for use in DOM selector
@@ -104,7 +104,7 @@
     }
 
     // Set up event handlers etc
-    function init ($container, selector, handler) {
+    function init ($container, elementSelector, eventSelectors, handler) {
       $container = $container || $(document.body)
 
       // Handle control clicks
@@ -114,11 +114,13 @@
       }
 
       // Prepare ARIA attributes
-      var $controls = $(selector)
+      var $controls = $(elementSelector)
       $controls.each(initToggledContent)
 
       // Handle events
-      $container.on('click.' + selectors.namespace, selector, deferred)
+      $.each(eventSelectors, function (idx, eventSelector) {
+        $container.on('click.' + selectors.namespace, eventSelector, deferred)
+      })
 
       // Any already :checked on init?
       if ($controls.is(':checked')) {
@@ -126,14 +128,30 @@
       }
     }
 
+    // Get event selectors for all radio groups
+    function getEventSelectorsForRadioGroups () {
+      var radioGroups = []
+
+      // Build an array of radio group selectors
+      return $(selectors.radio).map(function () {
+        var groupName = $(this).attr('name')
+
+        if ($.inArray(groupName, radioGroups) === -1) {
+          radioGroups.push(groupName)
+          return 'input[type="radio"][name="' + $(this).attr('name') + '"]'
+        }
+        return null
+      })
+    }
+
     // Set up radio show/hide content for container
     self.showHideRadioToggledContent = function ($container) {
-      init($container, selectors.radio, handleRadioContent)
+      init($container, selectors.radio, getEventSelectorsForRadioGroups(), handleRadioContent)
     }
 
     // Set up checkbox show/hide content for container
     self.showHideCheckboxToggledContent = function ($container) {
-      init($container, selectors.checkbox, handleCheckboxContent)
+      init($container, selectors.checkbox, [selectors.checkbox], handleCheckboxContent)
     }
 
     // Remove event handlers
