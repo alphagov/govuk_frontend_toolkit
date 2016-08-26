@@ -337,7 +337,14 @@ describe("selection-buttons", function () {
       });
 
       describe("At the point it is called", function () {
-        it("Should do nothing if no radios are checked", function () {
+        it("Should mark radios with the selection-button-radio class", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
+          expect($radioLabels.eq(0).hasClass('selection-button-radio')).toBe(true);
+          expect($radioLabels.eq(1).hasClass('selection-button-radio')).toBe(true);
+          expect($radioLabels.eq(2).hasClass('selection-button-radio')).toBe(true);
+        });
+
+        it("Should not add a selected class if no radios are checked", function () {
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='radio']");
           expect($radioLabels.eq(0).hasClass('selected')).toBe(false);
           expect($radioLabels.eq(1).hasClass('selected')).toBe(false);
@@ -411,7 +418,14 @@ describe("selection-buttons", function () {
       });
 
       describe("At the point it is called", function () {
-        it("Should do nothing if no checkboxes are checked", function () {
+        it("Should mark checkboxes with the selection-button-checkbox class", function () {
+          buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
+          expect($checkboxLabels.eq(0).hasClass('selection-button-checkbox')).toBe(true);
+          expect($checkboxLabels.eq(1).hasClass('selection-button-checkbox')).toBe(true);
+          expect($checkboxLabels.eq(2).hasClass('selection-button-checkbox')).toBe(true);
+        });
+
+        it("Should not add a selected class if no checkboxes are checked", function () {
           buttonsInstance = new GOVUK.SelectionButtons("label.selectable input[type='checkbox']");
           expect($checkboxLabels.eq(0).hasClass('selected')).toBe(false);
           expect($checkboxLabels.eq(1).hasClass('selected')).toBe(false);
