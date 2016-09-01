@@ -1,3 +1,7 @@
+# 4.17.0
+
+- SelectionButtons will add a class to the label with the type of the child input ([PR #317](https://github.com/alphagov/govuk_frontend_toolkit/pull/317))
+
 # 4.16.1
 
 - Fix anchor-buttons.js to trigger a native click event, also rename to shimLinksWithButtonRole.js to explain what it does
