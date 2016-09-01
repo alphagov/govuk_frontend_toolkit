@@ -8,6 +8,8 @@
 
     this.selectedClass = 'selected';
     this.focusedClass = 'focused';
+    this.radioClass = 'selection-button-radio';
+    this.checkboxClass = 'selection-button-checkbox';
     if (opts !== undefined) {
       $.each(opts, function (optionName, optionObj) {
         this[optionName] = optionObj;
@@ -33,6 +35,8 @@
     $elms.each(function (idx, elm) {
       var $elm = $(elm);
 
+      var labelClass = $elm.attr('type') === 'radio' ? this.radioClass : this.checkboxClass;
+      $elm.parent('label').addClass(labelClass);
       if ($elm.is(':checked')) {
         this.markSelected($elm);
       }
