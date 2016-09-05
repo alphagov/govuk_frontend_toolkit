@@ -430,6 +430,7 @@ It’s also possible to define more or different keycodes to activate against:
 GOVUK.shimLinksWithButtonRole.init({
   keycodes: [32, 114]
 });
+```
 
 ## Show/Hide content
 
