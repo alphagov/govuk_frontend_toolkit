@@ -1,3 +1,7 @@
+# 4.18.0
+
+- Add GOVUK.ShowHideContent JavaScript to support showing and hiding content, toggled by radio buttons and checkboxes ([PR #315](https://github.com/alphagov/govuk_frontend_toolkit/pull/315)).
+
 # 4.17.0
 
 - SelectionButtons will add a class to the label with the type of the child input ([PR #317](https://github.com/alphagov/govuk_frontend_toolkit/pull/317))
