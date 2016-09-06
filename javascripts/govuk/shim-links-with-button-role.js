@@ -23,7 +23,7 @@
       // array of keys to match against upon the keyup event
       keycodes: [
         32 // spacekey
-      ],
+      ]
     },
 
     // event behaviour (not a typical anonymous function for resuse if needed)
