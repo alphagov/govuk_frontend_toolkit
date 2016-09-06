@@ -1,3 +1,7 @@
+# 4.18.1
+
+- Fix error in IE - remove trailing comma from shimLinksWithButtonRole JavaScript ([PR #323](https://github.com/alphagov/govuk_frontend_toolkit/pull/323)).
+
 # 4.18.0
 
 - Add GOVUK.ShowHideContent JavaScript to support showing and hiding content, toggled by radio buttons and checkboxes ([PR #315](https://github.com/alphagov/govuk_frontend_toolkit/pull/315)).
