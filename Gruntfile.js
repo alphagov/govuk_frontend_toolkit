@@ -49,16 +49,8 @@ module.exports = function(grunt) {
           loadPath: [
             './stylesheets'
           ],
-          style: 'nested',
+          style: 'nested'
         }
-      },
-    },
-    shell: {
-      multiple: {
-        command: [
-          'bundle',
-          'bundle exec govuk-lint-sass stylesheets'
-        ].join('&&')
       }
     }
   });
@@ -66,8 +58,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-clean');
   grunt.loadNpmTasks('grunt-contrib-jasmine');
   grunt.loadNpmTasks('grunt-contrib-sass');
-  grunt.loadNpmTasks('grunt-shell');
 
-  grunt.registerTask('test', ['sass', 'clean', 'jasmine', 'shell']);
+  grunt.registerTask('test', ['sass', 'clean', 'jasmine']);
   grunt.registerTask('default', ['test']);
 };
