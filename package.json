@@ -8,10 +8,10 @@
     "grunt-contrib-clean":"~0.6.0",
     "grunt-contrib-jasmine": "^1.0.0",
     "grunt-contrib-sass": "0.7.4",
-    "grunt-shell": "^1.1.2",
     "jquery": "~1.11.3"
   },
   "scripts": {
-    "test": "node_modules/.bin/grunt test"
+    "test": "grunt test && npm run lint --silent",
+    "lint": "bundle && bundle exec govuk-lint-sass stylesheets"
   }
 }
