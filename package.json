@@ -11,7 +11,7 @@
     "jquery": "~1.11.3"
   },
   "scripts": {
-    "test": "grunt test && npm run lint",
+    "test": "grunt test && npm run lint --silent",
     "lint": "bundle && bundle exec govuk-lint-sass stylesheets"
   }
 }
