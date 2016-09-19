@@ -35,18 +35,21 @@ $is-print: false !default;
       }
     }
   }
-  font-size: $font-size-640;
-  line-height: $line-height-640;
   font-weight: $font-weight;
   text-transform: none;
 
-  @include media(tablet) {
-    font-size: $font-size;
-    line-height: $line-height;
-  }
-
   @if $is-print {
     font-size: $font-size-print;
+    line-height: $line-height;
+
+  } @else {
+    font-size: $font-size-640;
+    line-height: $line-height-640;
+
+    @include media(tablet) {
+      font-size: $font-size;
+      line-height: $line-height;
+    }
   }
 }
 // scss-lint:enable NameFormat
