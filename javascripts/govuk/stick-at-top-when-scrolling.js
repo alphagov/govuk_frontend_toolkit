@@ -9,6 +9,20 @@
     _hasScrolled: false,
     _scrollTimeout: false,
 
+    getWindowDimensions: function() {
+      return {
+        height: $(global).height(),
+        width: $(global).width()
+      };
+    },
+    getWindowPositions: function() {
+      return {
+        scrollTop: $(global).scrollTop()
+      };
+    },
+    getElementOffset: function($el) {
+      return $el.offset()
+    },
     init: function(){
       var $els = $('.js-stick-at-top-when-scrolling');
 
@@ -43,14 +57,17 @@
       if(sticky._hasScrolled === true){
         sticky._hasScrolled = false;
 
-        var windowVerticalPosition = $(global).scrollTop();
+        var windowVerticalPosition = sticky.getWindowPositions().scrollTop;
+
+        var windowDimensions = sticky.getWindowDimensions();
+
         sticky.$els.each(function(i, el){
           var $el = $(el),
               scrolledFrom = $el.data('scrolled-from');
 
           if (scrolledFrom && windowVerticalPosition < scrolledFrom){
             sticky.release($el);
-          } else if($(global).width() > 768 && windowVerticalPosition >= $el.offset().top) {
+          } else if(windowDimensions.width > 768 && windowVerticalPosition >= sticky.getElementOffset($el).top) {
             sticky.stick($el);
           }
         });
@@ -58,7 +75,7 @@
     },
     stick: function($el){
       if (!$el.hasClass('content-fixed')) {
-        $el.data('scrolled-from', $el.offset().top);
+        $el.data('scrolled-from', sticky.getElementOffset($el).top);
         var height = Math.max($el.height(), 1);
         $el.before('<div class="shim" style="width: '+ $el.width() + 'px; height: ' + height + 'px">&nbsp;</div>');
         $el.css('width', $el.width() + "px").addClass('content-fixed');
