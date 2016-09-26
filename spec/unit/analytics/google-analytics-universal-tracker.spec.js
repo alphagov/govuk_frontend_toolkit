@@ -60,6 +60,11 @@ describe("GOVUK.GoogleAnalyticsUniversalTracker", function() {
       expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview']);
     });
 
+    it('sends them to Google Analytics, forcing a new session', function() {
+      universal.trackPageview(undefined, undefined, { sessionControl: 'start' });
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {sessionControl: 'start'}]);
+    });
+
     it('can track a virtual pageview', function() {
       universal.trackPageview('/nicholas-page');
       expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', {page: '/nicholas-page'}]);
