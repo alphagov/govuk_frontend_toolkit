@@ -34,7 +34,6 @@
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
   GoogleAnalyticsUniversalTracker.prototype.trackPageview = function(path, title, options) {
-    var options;
     var pageviewObject;
 
     if (typeof path === "string") {
@@ -62,12 +61,13 @@
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
   GoogleAnalyticsUniversalTracker.prototype.trackEvent = function(category, action, options) {
     var value,
-        options = options || {},
         evt = {
           hitType: 'event',
           eventCategory: category,
           eventAction: action
         };
+
+    options = options || {};
 
     // Label is optional
     if (typeof options.label === "string") {
