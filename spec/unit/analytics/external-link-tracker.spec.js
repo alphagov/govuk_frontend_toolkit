@@ -1,7 +1,7 @@
-describe("GOVUK.analyticsPlugins.externalLinkTracker", function() {
-  var $links;
+describe('GOVUK.analyticsPlugins.externalLinkTracker', function () {
+  var $links
 
-  beforeEach(function() {
+  beforeEach(function () {
     $links = $('\
       <div class="external-links">\
         <a href="http://www.nationalarchives.gov.uk"> National Archives </a>\
@@ -12,58 +12,58 @@ describe("GOVUK.analyticsPlugins.externalLinkTracker", function() {
       <div class="internal-links">\
         <a href="/some-path">Local link</a>\
         <a href="http://fake-hostname.com/some-path">Another local link</a>\
-      </div>');
+      </div>')
 
-    $('html').on('click', function(evt) { evt.preventDefault(); });
-    $('body').append($links);
-    GOVUK.analytics = {trackEvent:function(){}};
+    $('html').on('click', function (evt) { evt.preventDefault() })
+    $('body').append($links)
+    GOVUK.analytics = {trackEvent: function () {}}
 
-    spyOn(GOVUK.analyticsPlugins.externalLinkTracker, 'getHostname').and.returnValue('fake-hostname.com');
-    GOVUK.analyticsPlugins.externalLinkTracker();
-  });
+    spyOn(GOVUK.analyticsPlugins.externalLinkTracker, 'getHostname').and.returnValue('fake-hostname.com')
+    GOVUK.analyticsPlugins.externalLinkTracker()
+  })
 
-  afterEach(function() {
-    $('html').off();
-    $('body').off();
-    $links.remove();
-    delete GOVUK.analytics;
-  });
+  afterEach(function () {
+    $('html').off()
+    $('body').off()
+    $links.remove()
+    delete GOVUK.analytics
+  })
 
-  it('listens to click events on only external links', function() {
-    spyOn(GOVUK.analytics, 'trackEvent');
+  it('listens to click events on only external links', function () {
+    spyOn(GOVUK.analytics, 'trackEvent')
 
-    $('.external-links a').each(function() {
-      $(this).trigger('click');
-      expect(GOVUK.analytics.trackEvent).toHaveBeenCalled();
-      GOVUK.analytics.trackEvent.calls.reset();
-    });
+    $('.external-links a').each(function () {
+      $(this).trigger('click')
+      expect(GOVUK.analytics.trackEvent).toHaveBeenCalled()
+      GOVUK.analytics.trackEvent.calls.reset()
+    })
 
-    $('.internal-links a').each(function() {
-      $(this).trigger('click');
-      expect(GOVUK.analytics.trackEvent).not.toHaveBeenCalled();
-      GOVUK.analytics.trackEvent.calls.reset();
-    });
-  });
+    $('.internal-links a').each(function () {
+      $(this).trigger('click')
+      expect(GOVUK.analytics.trackEvent).not.toHaveBeenCalled()
+      GOVUK.analytics.trackEvent.calls.reset()
+    })
+  })
 
-  it('listens to click events on elements within external links', function() {
-    spyOn(GOVUK.analytics, 'trackEvent');
+  it('listens to click events on elements within external links', function () {
+    spyOn(GOVUK.analytics, 'trackEvent')
 
-    $('.external-links a img').trigger('click');
+    $('.external-links a img').trigger('click')
     expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
-      'External Link Clicked', 'https://www.nationalarchives.gov.uk/an/image/link.png', {transport: 'beacon'});
-  });
+      'External Link Clicked', 'https://www.nationalarchives.gov.uk/an/image/link.png', {transport: 'beacon'})
+  })
 
-  it('tracks an external link\'s href and link text', function() {
-    spyOn(GOVUK.analytics, 'trackEvent');
-    $('.external-links a').trigger('click');
-
-    expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
-      'External Link Clicked', 'http://www.nationalarchives.gov.uk', {transport: 'beacon', label: 'National Archives'});
+  it('tracks an external link\'s href and link text', function () {
+    spyOn(GOVUK.analytics, 'trackEvent')
+    $('.external-links a').trigger('click')
 
     expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
-      'External Link Clicked', 'https://www.nationalarchives.gov.uk', {transport: 'beacon'});
+      'External Link Clicked', 'http://www.nationalarchives.gov.uk', {transport: 'beacon', label: 'National Archives'})
 
     expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
-      'External Link Clicked', 'https://www.nationalarchives.gov.uk/one.pdf', {transport: 'beacon', label: 'National Archives PDF'});
-  });
-});
+      'External Link Clicked', 'https://www.nationalarchives.gov.uk', {transport: 'beacon'})
+
+    expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
+      'External Link Clicked', 'https://www.nationalarchives.gov.uk/one.pdf', {transport: 'beacon', label: 'National Archives PDF'})
+  })
+})

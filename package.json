@@ -14,5 +14,11 @@
   "scripts": {
     "test": "grunt test && npm run lint --silent",
     "lint": "standard && bundle && bundle exec govuk-lint-sass stylesheets"
+  },
+  "standard": {
+    "ignore": [
+      "/javascripts/vendor/",
+      "/spec/support/"
+    ]
   }
 }

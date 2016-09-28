@@ -2,7 +2,6 @@ describe('show-hide-content', function () {
   'use strict'
 
   beforeEach(function () {
-
     // Sample markup
     this.$content = $(
 
