@@ -45,7 +45,7 @@
         $els.each(function (i, el) {
           var $img = $(el).find('img')
           if ($img.length > 0) {
-            var image = new Image()
+            var image = new global.Image()
             image.onload = function () {
               GOVUK.stopScrollingAtFooter.addEl($(el), $(el).outerHeight())
             }
@@ -71,8 +71,8 @@
         var windowDimensions = sticky.getWindowDimensions()
 
         sticky.$els.each(function (i, el) {
-          var $el = $(el),
-            scrolledFrom = $el.data('scrolled-from')
+          var $el = $(el)
+          var scrolledFrom = $el.data('scrolled-from')
 
           if (scrolledFrom && windowVerticalPosition < scrolledFrom) {
             sticky.release($el)

@@ -6,11 +6,11 @@
 
   GOVUK.Modules.AutoTrackEvent = function () {
     this.start = function (element) {
-      var options = {nonInteraction: 1}, // automatic events shouldn't affect bounce rate
-        category = element.data('track-category'),
-        action = element.data('track-action'),
-        label = element.data('track-label'),
-        value = element.data('track-value')
+      var options = { nonInteraction: 1 } // automatic events shouldn't affect bounce rate
+      var category = element.data('track-category')
+      var action = element.data('track-action')
+      var label = element.data('track-label')
+      var value = element.data('track-value')
 
       if (typeof label === 'string') {
         options.label = label

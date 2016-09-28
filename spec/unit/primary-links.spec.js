@@ -1,14 +1,20 @@
+/* global describe it expect beforeEach spyOn */
+
+var $ = window.jQuery
+
 describe('primary-links', function () {
-  var shortList, mediumList, longList
+  'use strict'
+  var GOVUK = window.GOVUK
+
+  var shortList, mediumList
 
   beforeEach(function () {
     shortList = $('<ul><li class="primary">one</li><li>two</li></ul>')
     mediumList = $('<ul><li class="primary">one</li><li>two</li><li>three</li></ul>')
-    longList = $('<ul><li class="primary">one</li><li class="primary">two</li><li>three</li><li>four</li></ul>')
   })
 
   it('visually hides extra links', function () {
-    var list = new GOVUK.PrimaryList(mediumList, '.primary')
+    new GOVUK.PrimaryList(mediumList, '.primary')
 
     expect(mediumList.find('.visuallyhidden').length).toBe(2)
   })
@@ -23,7 +29,7 @@ describe('primary-links', function () {
 
   it('add a toggle link', function () {
     var container = $('<div>').append(mediumList)
-    var list = new GOVUK.PrimaryList(mediumList, '.primary')
+    new GOVUK.PrimaryList(mediumList, '.primary')
 
     expect(container.find('a').length).toBe(1)
   })
@@ -40,8 +46,8 @@ describe('primary-links', function () {
   })
 
   it('only adds toggle if more than one extra link', function () {
-    var short = new GOVUK.PrimaryList(shortList, '.primary')
-    var medium = new GOVUK.PrimaryList(mediumList, '.primary')
+    new GOVUK.PrimaryList(shortList, '.primary')
+    new GOVUK.PrimaryList(mediumList, '.primary')
 
     expect(shortList.find('.visuallyhidden').length).toBe(0)
     expect(mediumList.find('.visuallyhidden').length).toBe(2)

@@ -1,15 +1,14 @@
 module.exports = function (grunt) {
   var allSassFiles = []
 
-  var path = require('path')
-
   grunt.file.recurse(
     './stylesheets/',
     function (abspath, rootdir, subdir, filename) {
+      var relpath
       if (typeof subdir !== 'undefined') {
-        var relpath = subdir + '/' + filename
+        relpath = subdir + '/' + filename
       } else {
-        var relpath = filename
+        relpath = filename
       }
       if (filename.match(/\.scss/)) {
         allSassFiles.push("@import '" + relpath + "';")

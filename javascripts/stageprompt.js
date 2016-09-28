@@ -39,8 +39,8 @@
     }
 
     setup = function (analyticsCallback) {
-      var journeyStage = $('[data-journey]').attr('data-journey'),
-        journeyHelpers = $('[data-journey-click]')
+      var journeyStage = $('[data-journey]').attr('data-journey')
+      var journeyHelpers = $('[data-journey-click]')
 
       if (journeyStage) {
         analyticsCallback.apply(null, splitAction(journeyStage))
@@ -62,7 +62,7 @@
   }())
 
   GOVUK.performance.sendGoogleAnalyticsEvent = function (category, event, label) {
-    _gaq.push(['_trackEvent', category, event, label, undefined, true])
+    global._gaq.push(['_trackEvent', category, event, label, undefined, true])
   }
 
   global.GOVUK = GOVUK

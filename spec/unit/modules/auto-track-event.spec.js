@@ -1,5 +1,10 @@
+/* global describe it expect beforeEach afterEach spyOn */
+
+var $ = window.jQuery
+
 describe('An auto event tracker', function () {
   'use strict'
+  var GOVUK = window.GOVUK
 
   var tracker,
     element
@@ -16,13 +21,13 @@ describe('An auto event tracker', function () {
   it('tracks non-interactive events on start', function () {
     spyOn(GOVUK.analytics, 'trackEvent')
 
-    element = $('\
-      <div \
-        data-track-category="category"\
-        data-track-action="action">\
-        Some content\
-      </div>\
-    ')
+    element = $(
+      '<div ' +
+        'data-track-category="category"' +
+        'data-track-action="action">' +
+        'Some content' +
+      '</div>'
+    )
 
     tracker.start(element)
     expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
@@ -32,15 +37,15 @@ describe('An auto event tracker', function () {
   it('can track non-interactive events with optional label and value', function () {
     spyOn(GOVUK.analytics, 'trackEvent')
 
-    element = $('\
-      <div \
-        data-track-category="category"\
-        data-track-action="action"\
-        data-track-label="label"\
-        data-track-value="10">\
-        Some content\
-      </div>\
-    ')
+    element = $(
+      '<div ' +
+        'data-track-category="category"' +
+        'data-track-action="action"' +
+        'data-track-label="label"' +
+        'data-track-value="10">' +
+        'Some content' +
+      '</div>'
+    )
 
     tracker.start(element)
     expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(

@@ -1,4 +1,11 @@
+/* global describe it expect beforeEach spyOn jasmine */
+
+var $ = window.jQuery
+
 describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   function addGoogleAnalyticsSpy () {
     window.ga = function () {}
     spyOn(window, 'ga')

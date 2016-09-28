@@ -6,16 +6,16 @@
 
   GOVUK.analyticsPlugins = GOVUK.analyticsPlugins || {}
   GOVUK.analyticsPlugins.externalLinkTracker = function () {
-    var currentHost = GOVUK.analyticsPlugins.externalLinkTracker.getHostname(),
-      externalLinkSelector = 'a[href^="http"]:not(a[href*="' + currentHost + '"])'
+    var currentHost = GOVUK.analyticsPlugins.externalLinkTracker.getHostname()
+    var externalLinkSelector = 'a[href^="http"]:not(a[href*="' + currentHost + '"])'
 
     $('body').on('click', externalLinkSelector, trackClickEvent)
 
     function trackClickEvent (evt) {
-      var $link = getLinkFromEvent(evt),
-        options = {transport: 'beacon'},
-        href = $link.attr('href'),
-        linkText = $.trim($link.text())
+      var $link = getLinkFromEvent(evt)
+      var options = {transport: 'beacon'}
+      var href = $link.attr('href')
+      var linkText = $.trim($link.text())
 
       if (linkText) {
         options.label = linkText

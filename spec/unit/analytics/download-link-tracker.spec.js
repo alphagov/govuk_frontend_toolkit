@@ -1,18 +1,26 @@
+/* global describe it expect beforeEach afterEach spyOn */
+
+var $ = window.jQuery
+
 describe('GOVUK.analyticsPlugins.downloadLinkTracker', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   var $links
 
   beforeEach(function () {
-    $links = $('\
-      <div class="download-links">\
-        <a href="/one.pdf">PDF</a>\
-        <a href="/two.xslt">Spreadsheet</a>\
-        <a href="/something/uploads/system/three.doc">Document</a>\
-        <a href="/an/image/link.png"><img src="/img" /></a>\
-      </div>\
-      <div class="normal-links">\
-        <a href="/normal-link">Normal link</a>\
-        <a href="/another-link">Another link</a>\
-      </div>')
+    $links = $(
+      '<div class="download-links">' +
+        '<a href="/one.pdf">PDF</a>' +
+        '<a href="/two.xslt">Spreadsheet</a>' +
+        '<a href="/something/uploads/system/three.doc">Document</a>' +
+        '<a href="/an/image/link.png"><img src="/img" /></a>' +
+      '</div>' +
+      '<div class="normal-links">' +
+        '<a href="/normal-link">Normal link</a>' +
+        '<a href="/another-link">Another link</a>' +
+      '</div>'
+    )
 
     $('html').on('click', function (evt) { evt.preventDefault() })
     $('body').append($links)

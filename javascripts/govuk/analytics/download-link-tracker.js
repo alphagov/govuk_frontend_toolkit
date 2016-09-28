@@ -6,18 +6,18 @@
 
   GOVUK.analyticsPlugins = GOVUK.analyticsPlugins || {}
   GOVUK.analyticsPlugins.downloadLinkTracker = function (options) {
-    var options = options || {},
-      downloadLinkSelector = options.selector
+    options = options || {}
+    var downloadLinkSelector = options.selector
 
     if (downloadLinkSelector) {
       $('body').on('click', downloadLinkSelector, trackDownload)
     }
 
     function trackDownload (evt) {
-      var $link = getLinkFromEvent(evt),
-        href = $link.attr('href'),
-        evtOptions = {transport: 'beacon'},
-        linkText = $.trim($link.text())
+      var $link = getLinkFromEvent(evt)
+      var href = $link.attr('href')
+      var evtOptions = {transport: 'beacon'}
+      var linkText = $.trim($link.text())
 
       if (linkText) {
         evtOptions.label = linkText

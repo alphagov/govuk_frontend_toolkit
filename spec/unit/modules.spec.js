@@ -1,3 +1,7 @@
+/* global describe it expect beforeEach afterEach jasmine */
+
+var $ = window.jQuery
+
 describe('GOVUK Modules', function () {
   'use strict'
   var GOVUK = window.GOVUK
@@ -12,16 +16,16 @@ describe('GOVUK Modules', function () {
   })
 
   it('finds modules in a container', function () {
-    var module = $('<div data-module="a-module"></div>'),
-      container = $('<div></div>').append(module)
+    var module = $('<div data-module="a-module"></div>')
+    var container = $('<div></div>').append(module)
 
     expect(GOVUK.modules.find(container).length).toBe(1)
     expect(GOVUK.modules.find(container).eq(0).data('module')).toBe('a-module')
   })
 
   it('finds modules that are a container', function () {
-    var module = $('<div data-module="a-module"></div>'),
-      container = $('<div data-module="container-module"></div>').append(module)
+    var module = $('<div data-module="a-module"></div>')
+    var container = $('<div data-module="container-module"></div>').append(module)
 
     expect(GOVUK.modules.find(container).length).toBe(2)
     expect(GOVUK.modules.find(container).eq(0).data('module')).toBe('container-module')
@@ -46,16 +50,16 @@ describe('GOVUK Modules', function () {
     })
 
     it('starts modules within a container', function () {
-      var module = $('<div data-module="test-alert-module"></div>'),
-        container = $('<div></div>').append(module)
+      var module = $('<div data-module="test-alert-module"></div>')
+      var container = $('<div></div>').append(module)
 
       GOVUK.modules.start(container)
       expect(callback).toHaveBeenCalled()
     })
 
     it('does not start modules that are already started', function () {
-      var module = $('<div data-module="test-alert-module"></div>'),
-        container = $('<div></div>').append(module)
+      var module = $('<div data-module="test-alert-module"></div>')
+      $('<div></div>').append(module)
 
       GOVUK.modules.start(module)
       GOVUK.modules.start(module)
@@ -63,8 +67,8 @@ describe('GOVUK Modules', function () {
     })
 
     it('passes the HTML element to the module\'s start method', function () {
-      var module = $('<div data-module="test-alert-module"></div>'),
-        container = $('<h1></h1>').append(module)
+      var module = $('<div data-module="test-alert-module"></div>')
+      var container = $('<h1></h1>').append(module)
 
       GOVUK.modules.start(container)
 
@@ -74,10 +78,10 @@ describe('GOVUK Modules', function () {
 
     it('starts all modules that are on the page', function () {
       var modules = $(
-            '<div data-module="test-alert-module"></div>\
-             <strong data-module="test-alert-module"></strong>\
-             <span data-module="test-alert-module"></span>'
-          )
+        '<div data-module="test-alert-module"></div>' +
+        '<strong data-module="test-alert-module"></strong>' +
+        '<span data-module="test-alert-module"></span>'
+      )
 
       $('body').append(modules)
       GOVUK.modules.start()

@@ -7,12 +7,12 @@
   GOVUK.analyticsPlugins = GOVUK.analyticsPlugins || {}
 
   GOVUK.analyticsPlugins.error = function (options) {
-    var options = options || {},
-      filenameMustMatch = options.filenameMustMatch
+    options = options || {}
+    var filenameMustMatch = options.filenameMustMatch
 
     var trackJavaScriptError = function (e) {
-      var errorFilename = e.filename,
-        errorSource = errorFilename + ': ' + e.lineno
+      var errorFilename = e.filename
+      var errorSource = errorFilename + ': ' + e.lineno
 
       if (shouldTrackThisError(errorFilename)) {
         GOVUK.analytics.trackEvent('JavaScript Error', e.message, {

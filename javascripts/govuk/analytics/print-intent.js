@@ -14,8 +14,8 @@
 
     // Most browsers
     if (global.matchMedia) {
-      var mediaQueryList = global.matchMedia('print'),
-        mqlListenerCount = 0
+      var mediaQueryList = global.matchMedia('print')
+      var mqlListenerCount = 0
       mediaQueryList.addListener(function (mql) {
         if (!mql.matches && mqlListenerCount === 0) {
           printAttempt()

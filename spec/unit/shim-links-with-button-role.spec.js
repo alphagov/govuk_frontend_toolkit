@@ -1,5 +1,11 @@
+/* global describe it expect beforeEach afterEach */
+
+var $ = window.jQuery
+
 describe('shim-links-with-button-role', function () {
-  var $body
+  'use strict'
+  var GOVUK = window.GOVUK
+
   var $buttonLink
   var keyupEvent
 

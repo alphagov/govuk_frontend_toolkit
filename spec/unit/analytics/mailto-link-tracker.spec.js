@@ -1,13 +1,21 @@
+/* global describe it expect afterEach beforeEach spyOn */
+
+var $ = window.jQuery
+
 describe('GOVUK.analyticsPlugins.mailtoLinkTracker', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   var $links
 
   beforeEach(function () {
-    $links = $('\
-      <div class="mailto-links">\
-        <a href="mailto:name1@email.com"></a>\
-        <a href="mailto:name2@email.com">The link for a mailto</a>\
-        <a href="mailto:name3@email.com"><img src="/img" /></a>\
-      </div>')
+    $links = $(
+      '<div class="mailto-links">' +
+        '<a href="mailto:name1@email.com"></a>' +
+        '<a href="mailto:name2@email.com">The link for a mailto</a>' +
+        '<a href="mailto:name3@email.com"><img src="/img" /></a>' +
+      '</div>'
+    )
 
     $('html').on('click', function (evt) { evt.preventDefault() })
     $('body').append($links)

@@ -1,4 +1,11 @@
+/* global describe it expect beforeEach afterEach */
+
+var $ = window.jQuery
+
 describe('stick-at-top-when-scrolling', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   var $stickyElement
   var $stickyWrapper
 

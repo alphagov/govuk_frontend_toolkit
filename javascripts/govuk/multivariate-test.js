@@ -32,8 +32,7 @@
     if (this[key] === undefined) {
       if (defaultValue === undefined) {
         throw new Error(key + ' option is required for a multivariate test')
-      }
-      else {
+      } else {
         this[key] = defaultValue
       }
     }
@@ -54,8 +53,7 @@
     if (cohortObj.callback) {
       if (typeof cohortObj.callback === 'string') {
         this[cohortObj.callback]()
-      }
-      else {
+      } else {
         cohortObj.callback()
       }
     }
@@ -112,8 +110,8 @@
   }
 
   MultivariateTest.prototype.weightedCohortNames = function () {
-    var names = [],
-      defaultWeight = this.defaultWeight
+    var names = []
+    var defaultWeight = this.defaultWeight
 
     $.each(this.cohorts, function (key, cohortSettings) {
       var numberForCohort, i

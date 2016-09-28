@@ -1,5 +1,10 @@
+/* global describe it expect beforeEach afterEach jasmine */
+
+var $ = window.jQuery
+
 describe('show-hide-content', function () {
   'use strict'
+  var GOVUK = window.GOVUK
 
   beforeEach(function () {
     // Sample markup

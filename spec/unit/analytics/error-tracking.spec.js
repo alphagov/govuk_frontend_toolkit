@@ -1,4 +1,9 @@
+/* global describe it expect beforeEach afterEach spyOn */
+
 describe('GOVUK.analyticsPlugins.error', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   GOVUK.analyticsPlugins.error({filenameMustMatch: /gov\.uk/})
 
   beforeEach(function () {

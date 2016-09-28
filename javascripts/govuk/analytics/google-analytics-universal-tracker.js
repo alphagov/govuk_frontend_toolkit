@@ -24,15 +24,17 @@
   }
 
   GoogleAnalyticsUniversalTracker.load = function () {
+    /* eslint-disable */
     (function (i, s, o, g, r, a, m) { i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
       (i[r].q = i[r].q || []).push(arguments) }, i[r].l = 1 * new Date(); a = s.createElement(o),
                              m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
     })(global, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga')
+    /* eslint-enable */
   }
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/pages
   GoogleAnalyticsUniversalTracker.prototype.trackPageview = function (path, title, options) {
-    var options = options || {}
+    options = options || {}
 
     if (typeof path === 'string') {
       var pageviewObject = {
@@ -58,13 +60,13 @@
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/events
   GoogleAnalyticsUniversalTracker.prototype.trackEvent = function (category, action, options) {
-    var value,
-      options = options || {},
-      evt = {
-        hitType: 'event',
-        eventCategory: category,
-        eventAction: action
-      }
+    options = options || {}
+    var value
+    var evt = {
+      hitType: 'event',
+      eventCategory: category,
+      eventAction: action
+    }
 
     // Label is optional
     if (typeof options.label === 'string') {
@@ -148,7 +150,7 @@
 
   function sendToGa () {
     if (typeof global.ga === 'function') {
-      ga.apply(global, arguments)
+      global.ga.apply(global, arguments)
     }
   }
 

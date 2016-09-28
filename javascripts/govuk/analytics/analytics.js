@@ -17,8 +17,8 @@
 
   Analytics.prototype.sendToTrackers = function (method, args) {
     for (var i = 0, l = this.trackers.length; i < l; i++) {
-      var tracker = this.trackers[i],
-        fn = tracker[method]
+      var tracker = this.trackers[i]
+      var fn = tracker[method]
 
       if (typeof fn === 'function') {
         fn.apply(tracker, args)
@@ -45,7 +45,7 @@
   }
 
   Analytics.prototype.trackShare = function (network) {
-    this.sendToTrackers('trackSocial', [network, 'share', location.pathname])
+    this.sendToTrackers('trackSocial', [network, 'share', global.location.pathname])
   }
 
   /*

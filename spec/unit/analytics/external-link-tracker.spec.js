@@ -1,18 +1,26 @@
+/* global describe it expect beforeEach afterEach spyOn */
+
+var $ = window.jQuery
+
 describe('GOVUK.analyticsPlugins.externalLinkTracker', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   var $links
 
   beforeEach(function () {
-    $links = $('\
-      <div class="external-links">\
-        <a href="http://www.nationalarchives.gov.uk"> National Archives </a>\
-        <a href="https://www.nationalarchives.gov.uk"></a>\
-        <a href="https://www.nationalarchives.gov.uk/one.pdf">National Archives PDF</a>\
-        <a href="https://www.nationalarchives.gov.uk/an/image/link.png"><img src="/img" /></a>\
-      </div>\
-      <div class="internal-links">\
-        <a href="/some-path">Local link</a>\
-        <a href="http://fake-hostname.com/some-path">Another local link</a>\
-      </div>')
+    $links = $(
+      '<div class="external-links">' +
+        '<a href="http://www.nationalarchives.gov.uk"> National Archives </a>' +
+        '<a href="https://www.nationalarchives.gov.uk"></a>' +
+        '<a href="https://www.nationalarchives.gov.uk/one.pdf">National Archives PDF</a>' +
+        '<a href="https://www.nationalarchives.gov.uk/an/image/link.png"><img src="/img" /></a>' +
+      '</div>' +
+      '<div class="internal-links">' +
+        '<a href="/some-path">Local link</a>' +
+        '<a href="http://fake-hostname.com/some-path">Another local link</a>' +
+      '</div>'
+    )
 
     $('html').on('click', function (evt) { evt.preventDefault() })
     $('body').append($links)

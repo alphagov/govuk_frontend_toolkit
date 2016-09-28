@@ -1,4 +1,9 @@
+/* global describe it expect beforeEach jasmine spyOn */
+
 describe('GOVUK.Analytics', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
   function addGoogleAnalyticsSpy () {
     window.ga = function () {}
     spyOn(window, 'ga')
