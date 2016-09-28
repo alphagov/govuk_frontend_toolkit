@@ -5,13 +5,14 @@
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-cli": "0.1.11",
-    "grunt-contrib-clean":"~0.6.0",
+    "grunt-contrib-clean": "~0.6.0",
     "grunt-contrib-jasmine": "^1.0.0",
     "grunt-contrib-sass": "0.7.4",
-    "jquery": "~1.11.3"
+    "jquery": "~1.11.3",
+    "standard": "^8.2.0"
   },
   "scripts": {
     "test": "grunt test && npm run lint --silent",
-    "lint": "bundle && bundle exec govuk-lint-sass stylesheets"
+    "lint": "standard && bundle && bundle exec govuk-lint-sass stylesheets"
   }
 }
