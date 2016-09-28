@@ -14,6 +14,7 @@
       this.hideExtraLinks()
     }
   }
+
   PrimaryList.prototype = {
     toggleText: function () {
       if (this.$extraLinks.length > 1) {

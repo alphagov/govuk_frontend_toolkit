@@ -32,7 +32,7 @@ describe('MultivariateTest', function () {
 
       expect(GOVUK.cookie.calls.count()).toEqual(2)
       expect(GOVUK.cookie.calls.argsFor(1)[0]).toEqual('multivariatetest_cohort_stuff')
-      if (GOVUK.cookie.calls.argsFor(1)[1] == 'foo') {
+      if (GOVUK.cookie.calls.argsFor(1)[1] === 'foo') {
         expect(fooSpy).toHaveBeenCalled()
       } else {
         expect(barSpy).toHaveBeenCalled()
@@ -184,7 +184,7 @@ describe('MultivariateTest', function () {
           bar: {callback: barSpy}
         }
       })
-      if (GOVUK.cookie.calls.argsFor(1)[1] == 'foo') {
+      if (GOVUK.cookie.calls.argsFor(1)[1] === 'foo') {
         expect(fooSpy).toHaveBeenCalled()
       } else {
         expect(barSpy).toHaveBeenCalled()
