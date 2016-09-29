@@ -48,7 +48,7 @@
   GOVUK.primaryLinks = {
     init: function (selector) {
       $(selector).parent().each(function (i, el) {
-        new GOVUK.PrimaryList(el, selector)
+        new GOVUK.PrimaryList(el, selector) // eslint-disable-line no-new
       })
     }
   }

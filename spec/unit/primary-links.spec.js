@@ -14,7 +14,7 @@ describe('primary-links', function () {
   })
 
   it('visually hides extra links', function () {
-    new GOVUK.PrimaryList(mediumList, '.primary')
+    new GOVUK.PrimaryList(mediumList, '.primary') // eslint-disable-line no-new
 
     expect(mediumList.find('.visuallyhidden').length).toBe(2)
   })
@@ -29,7 +29,7 @@ describe('primary-links', function () {
 
   it('add a toggle link', function () {
     var container = $('<div>').append(mediumList)
-    new GOVUK.PrimaryList(mediumList, '.primary')
+    new GOVUK.PrimaryList(mediumList, '.primary') // eslint-disable-line no-new
 
     expect(container.find('a').length).toBe(1)
   })
@@ -46,8 +46,8 @@ describe('primary-links', function () {
   })
 
   it('only adds toggle if more than one extra link', function () {
-    new GOVUK.PrimaryList(shortList, '.primary')
-    new GOVUK.PrimaryList(mediumList, '.primary')
+    new GOVUK.PrimaryList(shortList, '.primary') // eslint-disable-line no-new
+    new GOVUK.PrimaryList(mediumList, '.primary') // eslint-disable-line no-new
 
     expect(shortList.find('.visuallyhidden').length).toBe(0)
     expect(mediumList.find('.visuallyhidden').length).toBe(2)

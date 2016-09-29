@@ -22,7 +22,7 @@ describe('MultivariateTest', function () {
       GOVUK.cookie.and.returnValue(null)
       var fooSpy = jasmine.createSpy('fooSpy')
       var barSpy = jasmine.createSpy('barSpy')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         cohorts: {
           foo: {callback: fooSpy},
@@ -43,7 +43,7 @@ describe('MultivariateTest', function () {
       GOVUK.cookie.and.returnValue('foo')
       var fooSpy = jasmine.createSpy('fooSpy')
       var barSpy = jasmine.createSpy('barSpy')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         cohorts: {
           foo: {callback: fooSpy},
@@ -55,7 +55,7 @@ describe('MultivariateTest', function () {
 
     it('should set a custom var with the name and cohort if one is defined', function () {
       GOVUK.cookie.and.returnValue('foo')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         cohorts: {
           foo: {},
@@ -71,7 +71,7 @@ describe('MultivariateTest', function () {
 
     it('should be able to set multiple custom vars with the name and cohort if one is defined as an array', function () {
       GOVUK.cookie.and.returnValue('foo')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         cohorts: {
           foo: {},
@@ -91,7 +91,7 @@ describe('MultivariateTest', function () {
 
     it('should trigger an event to track that the test has been run', function () {
       GOVUK.cookie.and.returnValue('foo')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         cohorts: {
           foo: {},
@@ -108,7 +108,7 @@ describe('MultivariateTest', function () {
     it('should set html for a cohort', function () {
       GOVUK.cookie.and.returnValue('foo')
       var $el = $('<div>')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         el: $el,
         cohorts: {
@@ -124,7 +124,7 @@ describe('MultivariateTest', function () {
       var barSpy = jasmine.createSpy('barSpy')
       GOVUK.cookie.and.returnValue('bar')
       var $el = $('<div>')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         el: $el,
         cohorts: {
@@ -177,7 +177,7 @@ describe('MultivariateTest', function () {
       var fooSpy = jasmine.createSpy('fooSpy')
       var barSpy = jasmine.createSpy('barSpy')
       GOVUK.cookie.and.returnValue('baz')
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         cohorts: {
           foo: {callback: fooSpy},
@@ -245,7 +245,7 @@ describe('MultivariateTest', function () {
     })
 
     it('should report the experiment data to Google', function () {
-      new GOVUK.MultivariateTest({
+      new GOVUK.MultivariateTest({ // eslint-disable-line no-new
         name: 'stuff',
         contentExperimentId: 'asdfsadasdfa',
         cohorts: {foo: {variantId: 0, weight: 1}, bar: {variantId: 1, weight: 0}}
