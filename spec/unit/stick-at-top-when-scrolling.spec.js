@@ -80,6 +80,25 @@ describe('stick-at-top-when-scrolling', function () {
       expect($stickyElement.hasClass('content-fixed')).toBe(true)
     })
 
+    it('should check the width of the parent, and make the width of the element and the shim the same on resize', function () {
+      var $stickyResizeElement = $('<div class="stick-at-top-when-scrolling js-sticky-resize"></div>')
+      var $stickyResizeWrapper = $('<div class="column-third" style="width:300px;">').append($stickyResizeElement)
+      $('body').append($stickyResizeWrapper)
+
+      GOVUK.stickAtTopWhenScrolling.$els = $stickyResizeElement
+      GOVUK.stickAtTopWhenScrolling._hasResized = true
+      GOVUK.stickAtTopWhenScrolling.checkResize()
+
+      var stickyElementParentWidth = $stickyResizeElement.parent('div').width()
+      expect(stickyElementParentWidth).toBe(300)
+
+      var stickyElementWidth = $stickyResizeElement.width()
+      expect(stickyElementWidth).toBe(300)
+
+      var stickElementShimWidth = $('.shim').width()
+      expect(stickElementShimWidth).toBe(300)
+    })
+
     it('should unstick, if the scroll position is less than the point at which scrolling started', function () {
       GOVUK.stickAtTopWhenScrolling.getWindowPositions = function () {
         return {
