@@ -94,6 +94,10 @@ npm install
 npm test
 ```
 
+### Standard JavaScript
+`govuk_frontend_toolkit` uses [standardjs](http://standardjs.com/), an opinionated JavaScript linter.
+All JavaScript files follow its conventions. [Read more](https://github.com/alphagov/govuk_prototype_kit/blob/master/docs/linting.md)
+
 ### Using the local test runner
 
 The test suite can be run by opening the `./spec/support/LocalTestRunner.html` file in a browser for a more detailed trace of errors.

@@ -100,4 +100,3 @@
 
   jasmine.ConsoleReporter = ConsoleReporter;
 })(jasmine, console);
-
