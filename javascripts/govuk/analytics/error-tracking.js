@@ -1,5 +1,5 @@
 // Extension to track errors using google analytics as a data store.
-(function (global) {
+;(function (global) {
   'use strict'
 
   var GOVUK = global.GOVUK || {}

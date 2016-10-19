@@ -10,7 +10,7 @@
 // Height is passed in separatly incase the scrolling element has no height
 // itself.
 
-(function (global) {
+;(function (global) {
   'use strict'
 
   var $ = global.jQuery

@@ -21,7 +21,7 @@
 //
 //     <a class="help-button" href="#" data-journey-click="stage:help:info">See more info...</a>
 
-(function (global) {
+;(function (global) {
   'use strict'
 
   var $ = global.jQuery
