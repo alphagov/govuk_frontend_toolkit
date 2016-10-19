@@ -8,7 +8,7 @@
 // object with your own selector for the target elements and addional keyup
 // codes if there becomes a need to do so. For example:
 // GOVUK.shimLinksWithButtonRole.init({ selector: '[role="button"]' });
-(function (global) {
+;(function (global) {
   'use strict'
 
   var $ = global.jQuery
