@@ -49,13 +49,14 @@ A module must add its constructor to `GOVUK.Modules` and it must have a `start` 
 The simplest module looks like:
 
 ```javascript
-(function(Modules) {
-  "use strict";
+;(function(Modules) {
+  'use strict'
+  
   Modules.SomeModule = function() {
     this.start = function($element) {
       // module code
     }
-  };
+  }
 })(window.GOVUK.Modules)
 ```
 
