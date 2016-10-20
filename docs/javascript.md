@@ -23,7 +23,7 @@ Modules can be found and started by including `govuk/modules.js` and running:
 
 ```javascript
 $(document).ready(function(){
-  GOVUK.modules.start();
+  GOVUK.modules.start()
 });
 ```
 
@@ -32,15 +32,15 @@ This will attempt to find and start all modules in the page. For the example abo
 The module will be instantiated and then its `start` method called. The HTML element with the `data-module` attribute is passed as the first argument to the module. This limits modules to acting only within their containing elements.
 
 ```javascript
-module = new GOVUK.Modules[type]();
-module.start(element);
+module = new GOVUK.Modules[type]()
+module.start(element)
 ```
 
 Running `GOVUK.modules.start()` multiple times will have no additional affect. When a module is started a flag is set on the element using the data attribute `module-started`. `data-module-started` is a reserved attribute. It can however be called with an element as the first argument, to allow modules to be started in dynamically loaded content:
 
 ```javascript
-var $container = $('.dynamic-content');
-GOVUK.modules.start($container);
+var $container = $('.dynamic-content')
+GOVUK.modules.start($container)
 ```
 
 ### Module structure
@@ -56,7 +56,7 @@ The simplest module looks like:
       // module code
     }
   };
-})(window.GOVUK.Modules);
+})(window.GOVUK.Modules)
 ```
 
 ### Writing modules
@@ -80,8 +80,8 @@ Beginning with a set of event listeners clearly indicates the module’s intenti
 
 ```js
 this.start = function($element) {
-  $element.on('click', '.js-toggle', toggle);
-  $element.on('click', '.js-cancel', cancel);
+  $element.on('click', '.js-toggle', toggle)
+  $element.on('click', '.js-cancel', cancel)
 }
 ```
 
@@ -302,13 +302,13 @@ To add it to all lists which have items with the class `primary-item` use
 something like:
 
 ```javascript
-GOVUK.primaryLinks.init('.primary-item');
+GOVUK.primaryLinks.init('.primary-item')
 ```
 
 Or to add it just to that list you could use:
 
 ```javascript
-new GOVUK.PrimaryList($('#primary-list'), '.primary-item');
+new GOVUK.PrimaryList($('#primary-list'), '.primary-item')
 ```
 
 ## Stick at top when scrolling
@@ -333,7 +333,7 @@ The following would cause the element to stay when you scroll:
 ```
 
 ```javascript
-GOVUK.stickAtTopWhenScrolling.init();
+GOVUK.stickAtTopWhenScrolling.init()
 ```
 
 If you also include the `stopScrollingAtFooter` JavaScript this will also try
@@ -356,14 +356,14 @@ When the input is focused or its `checked` attribute is set, classes are added t
 To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.SelectionButtons` constructor with their inputs:
 
 ```
-var $buttons = $("label input[type='radio'], label input[type='checkbox']");
-var selectionButtons = new GOVUK.SelectionButtons($buttons);
+var $buttons = $("label input[type='radio'], label input[type='checkbox']")
+var selectionButtons = new GOVUK.SelectionButtons($buttons)
 ```
 
 You can also call `GOVUK.SelectionButtons` with a selector:
 
 ```
-var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']");
+var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']")
 ```
 
 This will bind all events to the document, meaning any changes to content (for example, by AJAX) will not effect the button's behaviour.
@@ -371,10 +371,10 @@ This will bind all events to the document, meaning any changes to content (for e
 The classes that get added to the `<label>` tags can be passed in as options:
 
 ```
-var $buttons = $("label input[type='radio'], label input[type='checkbox']");
-var selectionButtons = new GOVUK.SelectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
+var $buttons = $("label input[type='radio'], label input[type='checkbox']")
+var selectionButtons = new GOVUK.SelectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' })
 
-var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']", { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' });
+var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']", { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' })
 ```
 
 #### destroy method
@@ -393,8 +393,8 @@ The previous method of calling selection buttons is now deprecated. If you need 
 
 ```
 GOVUK.selectionButtons = function (elms, opts) {
-  new GOVUK.SelectionButtons(elms, opts);
-};
+  new GOVUK.SelectionButtons(elms, opts)
+}
 ```
 
 This method will mean the `destroy` method is not available to call.
@@ -412,7 +412,7 @@ By default, this behaviour will only be applied to links with a role of button.
 ```
 
 ```javascript
-GOVUK.shimLinksWithButtonRole.init();
+GOVUK.shimLinksWithButtonRole.init()
 ```
 
 If you need to override the elements this is applied to then you can do that by passing in a custom selector to the initialiser:
@@ -420,7 +420,7 @@ If you need to override the elements this is applied to then you can do that by 
 ```javascript
 GOVUK.shimLinksWithButtonRole.init({
   selector: '.my-class'
-});
+})
 ```
 
 It’s also possible to define more or different keycodes to activate against:
@@ -457,8 +457,8 @@ When the input's `checked` attribute is set, the show/hide content's `.js-hidden
 To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.ShowHideContent` constructor:
 
 ```
-var showHideContent = new GOVUK.ShowHideContent();
-showHideContent.init();
+var showHideContent = new GOVUK.ShowHideContent()
+showHideContent.init()
 ```
 
 This will bind two event handlers to $(document.body), one for radio inputs and one for checkboxes. By listening for events bubbling up to the `body` tag, additional show/hide content added to the page will still be picked up after `.init()` is called.
@@ -466,6 +466,6 @@ This will bind two event handlers to $(document.body), one for radio inputs and 
 Alternatively, pass in your own selector. In the example below, event handlers are bound to the form instead.
 
 ```
-var showHideContent = new GOVUK.ShowHideContent();
-showHideContent.init($('form.example'));
+var showHideContent = new GOVUK.ShowHideContent()
+showHideContent.init($('form.example'))
 ```
