@@ -8,11 +8,11 @@
 // object with your own selector for the target elements and addional keyup
 // codes if there becomes a need to do so. For example:
 // GOVUK.shimLinksWithButtonRole.init({ selector: '[role="button"]' });
-(function(global) {
-  "use strict";
+;(function (global) {
+  'use strict'
 
-  var $ = global.jQuery;
-  var GOVUK = global.GOVUK || {};
+  var $ = global.jQuery
+  var GOVUK = global.GOVUK || {}
 
   GOVUK.shimLinksWithButtonRole = {
 
@@ -27,12 +27,12 @@
     },
 
     // event behaviour (not a typical anonymous function for resuse if needed)
-    triggerClickOnTarget: function triggerClickOnTarget(event) {
+    triggerClickOnTarget: function triggerClickOnTarget (event) {
       // if the code from this event is in the keycodes array then
       if ($.inArray(event.which, this.config.keycodes) !== -1) {
-        event.preventDefault();
+        event.preventDefault()
         // trigger the target's click event
-        event.target.click();
+        event.target.click()
       }
     },
 
@@ -42,19 +42,18 @@
     // @param  {Object}   customConfig                object to override default configuration
     //         {String}   customConfig.selector       a selector for the elements to be 'clicked'
     //         {Array}    customConfig.keycodes       an array of javascript keycode values to match against that when pressed will trigger the click
-    init: function init(customConfig) {
+    init: function init (customConfig) {
       // extend the default config with any custom attributes passed in
-      this.config = $.extend(this.config, customConfig);
+      this.config = $.extend(this.config, customConfig)
       // if we have found elements then:
-      if($(this.config.selector).length > 0) {
+      if ($(this.config.selector).length > 0) {
         // listen to 'document' for keyup event on the elements and fire the triggerClickOnTarget
-        $(document).on('keyup', this.config.selector, this.triggerClickOnTarget.bind(this));
+        $(document).on('keyup', this.config.selector, this.triggerClickOnTarget.bind(this))
       }
     }
 
-  };
+  }
 
   // hand back to global
-  global.GOVUK = GOVUK;
-
-})(window);
+  global.GOVUK = GOVUK
+})(window)

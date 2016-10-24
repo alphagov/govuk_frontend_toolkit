@@ -1,3 +1,17 @@
+# 4.18.4
+
+- Lint codebase using standard ([PR #334](https://github.com/alphagov/govuk_frontend_toolkit/pull/334))
+- Add semicolons at the start of IIFE's ([PR #339](https://github.com/alphagov/govuk_frontend_toolkit/pull/339))
+
+# 4.18.3
+
+- For smaller screens (<768px) ensure that the GOVUK.StickAtTopWhenScrolling JS "unsticks" the element which was previously "stuck" (by removing both the class which sets fixed positioning and the shim). ([PR #329](https://github.com/alphagov/govuk_frontend_toolkit/pull/329))
+
+# 4.18.2
+
+- Remove unnecessary print font fallback that causes regression downstream ([PR #328](https://github.com/alphagov/govuk_frontend_toolkit/pull/328))
+- Update tooling to use npm script rather than grunt-shell ([PR #327](https://github.com/alphagov/govuk_frontend_toolkit/pull/327))
+
 # 4.18.1
 
 - Fix error in IE - remove trailing comma from shimLinksWithButtonRole JavaScript ([PR #323](https://github.com/alphagov/govuk_frontend_toolkit/pull/323)).

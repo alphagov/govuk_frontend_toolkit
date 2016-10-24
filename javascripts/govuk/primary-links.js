@@ -1,56 +1,57 @@
-(function(global) {
-  "use strict";
+;(function (global) {
+  'use strict'
 
-  var $ = global.jQuery;
-  var GOVUK = global.GOVUK || {};
+  var $ = global.jQuery
+  var GOVUK = global.GOVUK || {}
 
   // Only show the first {n} items in a list, documentation is in the README.md
-  var PrimaryList = function(el, selector){
-    this.$el = $(el);
-    this.$extraLinks = this.$el.find('li:not('+selector+')');
+  var PrimaryList = function (el, selector) {
+    this.$el = $(el)
+    this.$extraLinks = this.$el.find('li:not(' + selector + ')')
     // only hide more than one extra link
-    if(this.$extraLinks.length > 1){
-      this.addToggleLink();
-      this.hideExtraLinks();
+    if (this.$extraLinks.length > 1) {
+      this.addToggleLink()
+      this.hideExtraLinks()
     }
-  };
+  }
+
   PrimaryList.prototype = {
-    toggleText: function(){
-      if(this.$extraLinks.length > 1){
-        return '+'+ this.$extraLinks.length +' others';
+    toggleText: function () {
+      if (this.$extraLinks.length > 1) {
+        return '+' + this.$extraLinks.length + ' others'
       } else {
-        return '+'+ this.$extraLinks.length +' other';
+        return '+' + this.$extraLinks.length + ' other'
       }
     },
-    addToggleLink: function(){
-      this.$toggleLink = $('<a href="#">'+ this.toggleText() + '</a>');
-      this.$toggleLink.click($.proxy(this.toggleLinks, this));
-      this.$toggleLink.insertAfter(this.$el);
+    addToggleLink: function () {
+      this.$toggleLink = $('<a href="#">' + this.toggleText() + '</a>')
+      this.$toggleLink.click($.proxy(this.toggleLinks, this))
+      this.$toggleLink.insertAfter(this.$el)
     },
-    toggleLinks: function(e){
-      e.preventDefault();
-      this.$toggleLink.remove();
-      this.showExtraLinks();
+    toggleLinks: function (e) {
+      e.preventDefault()
+      this.$toggleLink.remove()
+      this.showExtraLinks()
     },
-    hideExtraLinks: function(){
-      this.$extraLinks.addClass('visuallyhidden');
-      $(window).trigger('govuk.pageSizeChanged');
+    hideExtraLinks: function () {
+      this.$extraLinks.addClass('visuallyhidden')
+      $(window).trigger('govuk.pageSizeChanged')
     },
-    showExtraLinks: function(){
-      this.$extraLinks.removeClass('visuallyhidden');
-      $(window).trigger('govuk.pageSizeChanged');
+    showExtraLinks: function () {
+      this.$extraLinks.removeClass('visuallyhidden')
+      $(window).trigger('govuk.pageSizeChanged')
     }
-  };
+  }
 
-  GOVUK.PrimaryList = PrimaryList;
+  GOVUK.PrimaryList = PrimaryList
 
   GOVUK.primaryLinks = {
-    init: function(selector){
-      $(selector).parent().each(function(i, el){
-        new GOVUK.PrimaryList(el, selector);
-      });
+    init: function (selector) {
+      $(selector).parent().each(function (i, el) {
+        new GOVUK.PrimaryList(el, selector) // eslint-disable-line no-new
+      })
     }
-  };
+  }
 
-  global.GOVUK = GOVUK;
-})(window);
+  global.GOVUK = GOVUK
+})(window)

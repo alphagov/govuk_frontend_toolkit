@@ -2,3 +2,4 @@ node_modules/
 .sass-cache
 npm-debug.log
 spec/stylesheets
+_SpecRunner.html

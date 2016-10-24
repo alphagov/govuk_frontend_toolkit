@@ -21,50 +21,49 @@
 //
 //     <a class="help-button" href="#" data-journey-click="stage:help:info">See more info...</a>
 
-(function(global) {
-  "use strict";
+;(function (global) {
+  'use strict'
 
-  var $ = global.jQuery;
-  var GOVUK = global.GOVUK || {};
+  var $ = global.jQuery
+  var GOVUK = global.GOVUK || {}
 
-  GOVUK.performance = GOVUK.performance || {};
+  GOVUK.performance = GOVUK.performance || {}
 
   GOVUK.performance.stageprompt = (function () {
-
-    var setup, setupForGoogleAnalytics, splitAction;
+    var setup, setupForGoogleAnalytics, splitAction
 
     splitAction = function (action) {
-      var parts = action.split(':');
-      if (parts.length <= 3) return parts;
-      return [parts.shift(), parts.shift(), parts.join(':')];
-    };
+      var parts = action.split(':')
+      if (parts.length <= 3) return parts
+      return [parts.shift(), parts.shift(), parts.join(':')]
+    }
 
     setup = function (analyticsCallback) {
-      var journeyStage = $('[data-journey]').attr('data-journey'),
-          journeyHelpers = $('[data-journey-click]');
+      var journeyStage = $('[data-journey]').attr('data-journey')
+      var journeyHelpers = $('[data-journey-click]')
 
       if (journeyStage) {
-        analyticsCallback.apply(null, splitAction(journeyStage));
+        analyticsCallback.apply(null, splitAction(journeyStage))
       }
 
       journeyHelpers.on('click', function (event) {
-        analyticsCallback.apply(null, splitAction($(this).data('journey-click')));
-      });
-    };
+        analyticsCallback.apply(null, splitAction($(this).data('journey-click')))
+      })
+    }
 
     setupForGoogleAnalytics = function () {
-      setup(GOVUK.performance.sendGoogleAnalyticsEvent);
-    };
+      setup(GOVUK.performance.sendGoogleAnalyticsEvent)
+    }
 
     return {
       setup: setup,
       setupForGoogleAnalytics: setupForGoogleAnalytics
-    };
-  }());
+    }
+  }())
 
   GOVUK.performance.sendGoogleAnalyticsEvent = function (category, event, label) {
-    _gaq.push(['_trackEvent', category, event, label, undefined, true]);
-  };
+    global._gaq.push(['_trackEvent', category, event, label, undefined, true])
+  }
 
-  global.GOVUK = GOVUK;
-})(window);
+  global.GOVUK = GOVUK
+})(window)

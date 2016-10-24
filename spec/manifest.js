@@ -35,3 +35,5 @@ var manifest = {
     '../unit/analytics/mailto-link-tracker.spec.js'
   ]
 }
+
+window.manifest = manifest

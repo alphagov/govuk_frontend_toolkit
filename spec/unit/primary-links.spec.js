@@ -1,49 +1,55 @@
-describe('primary-links', function(){
-  var shortList, mediumList, longList;
+/* global describe it expect beforeEach spyOn */
+
+var $ = window.jQuery
+
+describe('primary-links', function () {
+  'use strict'
+  var GOVUK = window.GOVUK
+
+  var shortList, mediumList
 
   beforeEach(function () {
-    shortList = $('<ul><li class="primary">one</li><li>two</li></ul>');
-    mediumList = $('<ul><li class="primary">one</li><li>two</li><li>three</li></ul>');
-    longList = $('<ul><li class="primary">one</li><li class="primary">two</li><li>three</li><li>four</li></ul>');
-  });
+    shortList = $('<ul><li class="primary">one</li><li>two</li></ul>')
+    mediumList = $('<ul><li class="primary">one</li><li>two</li><li>three</li></ul>')
+  })
 
-  it('visually hides extra links', function(){
-    var list = new GOVUK.PrimaryList(mediumList, '.primary');
-    
-    expect(mediumList.find('.visuallyhidden').length).toBe(2);
-  });
+  it('visually hides extra links', function () {
+    new GOVUK.PrimaryList(mediumList, '.primary') // eslint-disable-line no-new
 
-  it('creates appropriate toggle text', function(){
-    var short = new GOVUK.PrimaryList(shortList, '.primary');
-    var medium = new GOVUK.PrimaryList(mediumList, '.primary');
-    
-    expect(short.toggleText()).toEqual('+1 other');
-    expect(medium.toggleText()).toEqual('+2 others');
-  });
+    expect(mediumList.find('.visuallyhidden').length).toBe(2)
+  })
 
-  it('add a toggle link', function(){
-    var container = $('<div>').append(mediumList);
-    var list = new GOVUK.PrimaryList(mediumList, '.primary');
+  it('creates appropriate toggle text', function () {
+    var short = new GOVUK.PrimaryList(shortList, '.primary')
+    var medium = new GOVUK.PrimaryList(mediumList, '.primary')
 
-    expect(container.find('a').length).toBe(1);
-  });
+    expect(short.toggleText()).toEqual('+1 other')
+    expect(medium.toggleText()).toEqual('+2 others')
+  })
 
-  it('show extra links when toggled', function(){
-    var list = new GOVUK.PrimaryList(mediumList, '.primary');
-    var event = { preventDefault: function(){} };
-    spyOn(event, 'preventDefault');
-    spyOn(list, 'showExtraLinks');
+  it('add a toggle link', function () {
+    var container = $('<div>').append(mediumList)
+    new GOVUK.PrimaryList(mediumList, '.primary') // eslint-disable-line no-new
 
-    list.toggleLinks(event);
-    expect(event.preventDefault).toHaveBeenCalled();
-    expect(list.showExtraLinks).toHaveBeenCalled();
-  });
+    expect(container.find('a').length).toBe(1)
+  })
 
-  it('only adds toggle if more than one extra link', function(){
-    var short = new GOVUK.PrimaryList(shortList, '.primary');
-    var medium = new GOVUK.PrimaryList(mediumList, '.primary');
-    
-    expect(shortList.find('.visuallyhidden').length).toBe(0);
-    expect(mediumList.find('.visuallyhidden').length).toBe(2);
-  });
-});
+  it('show extra links when toggled', function () {
+    var list = new GOVUK.PrimaryList(mediumList, '.primary')
+    var event = { preventDefault: function () {} }
+    spyOn(event, 'preventDefault')
+    spyOn(list, 'showExtraLinks')
+
+    list.toggleLinks(event)
+    expect(event.preventDefault).toHaveBeenCalled()
+    expect(list.showExtraLinks).toHaveBeenCalled()
+  })
+
+  it('only adds toggle if more than one extra link', function () {
+    new GOVUK.PrimaryList(shortList, '.primary') // eslint-disable-line no-new
+    new GOVUK.PrimaryList(mediumList, '.primary') // eslint-disable-line no-new
+
+    expect(shortList.find('.visuallyhidden').length).toBe(0)
+    expect(mediumList.find('.visuallyhidden').length).toBe(2)
+  })
+})
