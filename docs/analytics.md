@@ -74,6 +74,11 @@ GOVUK.analytics.trackPageview('/path');
 
 // Track a custom path and custom page title
 GOVUK.analytics.trackPageview('/path', 'Title');
+
+// As above, plus additional options passed into the `pageview` call
+GOVUK.analytics.trackPageview('/path', 'Title', {
+  sessionControl: 'start'
+});
 ```
 
 ## Custom events
