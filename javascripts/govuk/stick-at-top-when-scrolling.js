@@ -91,6 +91,15 @@
         sticky.$els.each(function (i, el) {
           var $el = $(el)
 
+          var elResize = $el.hasClass('js-sticky-resize')
+          if (elResize) {
+            var $shim = $('.shim')
+            var $elParent = $el.parent('div')
+            var elParentWidth = $elParent.width()
+            $shim.css('width', elParentWidth)
+            $el.css('width', elParentWidth)
+          }
+
           if (windowDimensions.width <= 768) {
             sticky.release($el)
           }
