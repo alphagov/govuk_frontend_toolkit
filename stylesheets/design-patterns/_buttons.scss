@@ -126,14 +126,6 @@
     }
   }
 
-  // Reset styles applied to external links
-  &[rel="external"]:after {
-    display: none;
-    content: none;
-    margin-left: 0;
-    margin-right: 0;
-  }
-
   // Fixes a bug where IE puts a black border around certain elements
   @include ie-lte(8) {
     &[type="submit"],
