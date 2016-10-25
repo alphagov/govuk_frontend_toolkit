@@ -1,3 +1,12 @@
+# 5.0.0
+
+This release includes two breaking changes:
+- Removal of external link styles and icons, if you are using the external-link-* mixins you will need to remove them from your codebase ([PR #293](https://github.com/alphagov/govuk_frontend_toolkit/pull/293))
+- Correct spelling of the 'accordion' icon, you will need to check for the incorrect spelling 'accordian' and update if you are using this icon ([PR #345](https://github.com/alphagov/govuk_frontend_toolkit/pull/345))
+And two minor changes:
+- Amend GOVUK.StickAtTopWhenScrolling to resize the sticky element and shim when the .js-sticky-resize class is set ([PR #343](https://github.com/alphagov/govuk_frontend_toolkit/pull/343))
+- Allow custom options in GOVUK.analytics.trackPageview ([#332](https://github.com/alphagov/govuk_frontend_toolkit/pull/332))
+
 # 4.18.4
 
 - Lint codebase using standard ([PR #334](https://github.com/alphagov/govuk_frontend_toolkit/pull/334))
