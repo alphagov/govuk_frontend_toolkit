@@ -48,7 +48,7 @@
       // if we have found elements then:
       if ($(this.config.selector).length > 0) {
         // listen to 'document' for keyup event on the elements and fire the triggerClickOnTarget
-        $(document).on('keyup', this.config.selector, this.triggerClickOnTarget.bind(this))
+        $(document).on('keydown', this.config.selector, this.triggerClickOnTarget.bind(this))
       }
     }
 
