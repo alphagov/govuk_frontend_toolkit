@@ -3,6 +3,7 @@
 //
 // Created since some Assistive Technologies (for example some Screenreaders)
 // Will tell a user to press space on a 'button', so this functionality needs to be shimmed
+// See https://github.com/alphagov/govuk_elements/pull/272#issuecomment-233028270
 //
 // Usage instructions:
 // GOVUK.shimLinksWithButtonRole.init();
