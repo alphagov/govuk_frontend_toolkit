@@ -51,7 +51,7 @@ The simplest module looks like:
 ```javascript
 ;(function(Modules) {
   'use strict'
-  
+
   Modules.SomeModule = function() {
     this.start = function($element) {
       // module code
@@ -342,40 +342,67 @@ and stop the elements before they get to the bottom.
 
 ## Selection buttons
 
-Script to support a design of radio buttons and checkboxes requiring them to be wrapped in `<label>` tags:
+`GOVUK.SelectionButtons` adds classes to a parent `<label>` of a radio button or checkbox, allowing you to style it based on the input’s state. Given this example HTML structure:
 
-    <label>
-      <input type="radio" name="size" value="medium" />
-    </label>
+```html
+<label>
+  <input type="radio" name="size" value="medium" />
+  Medium size
+</label>
+```
 
-When the input is focused or its `checked` attribute is set, classes are added to their parent labels so their styling can show this.
+When the input is focused or its `checked` attribute is set, representative classes are added to the label.
 
 ### Usage
 
 #### GOVUK.SelectionButtons
 
-To apply this behaviour to elements with the above HTML pattern, call the `GOVUK.SelectionButtons` constructor with their inputs:
+To apply this behaviour to elements that follow the above HTML, call the `GOVUK.SelectionButtons` constructor with a jQuery collection of the inputs:
 
-```
-var $buttons = $("label input[type='radio'], label input[type='checkbox']")
+```javascript
+var $buttons = $('label input[type=radio], label input[type=checkbox]')
 var selectionButtons = new GOVUK.SelectionButtons($buttons)
 ```
 
-You can also call `GOVUK.SelectionButtons` with a selector:
+If you want to bind your events to the document instead of the elements directly (delegated events) you can call `GOVUK.SelectionButtons` with a selector string:
 
-```
-var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']")
+```javascript
+var selectionButtons = new GOVUK.SelectionButtons('label input[type=radio], label input[type=checkbox]')
 ```
 
-This will bind all events to the document, meaning any changes to content (for example, by AJAX) will not effect the button's behaviour.
+This will bind all events to the document meaning any new elements (for example, by AJAX) that match this selector will automatically gain this functionality.
+
+If you do add elements that need this functionality dynamically to the page, you will need to initialise their state. You can do this by calling `SelectionButtons.setInitialState` with the same selector string:
+
+```javascript
+var buttonSelector = 'label input[type=radio], label input[type=checkbox]'
+var selectionButtons = new GOVUK.SelectionButtons(buttonSelector)
+```
+
+then later, after adding more elements:
+
+```javascript
+selectionButtons.setInitialState(buttonSelector)
+```
 
 The classes that get added to the `<label>` tags can be passed in as options:
 
+```javascript
+var $buttons = $('label input[type=radio], label input[type=checkbox]')
+var selectionButtons = new GOVUK.SelectionButtons($buttons, {
+  focusedClass: 'selectable-focused',
+  selectedClass: 'selectable-selected'
+})
 ```
-var $buttons = $("label input[type='radio'], label input[type='checkbox']")
-var selectionButtons = new GOVUK.SelectionButtons($buttons, { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' })
 
-var selectionButtons = new GOVUK.SelectionButtons("label input[type='radio'], label input[type='checkbox']", { focusedClass : 'selectable-focused', selectedClass : 'selectable-selected' })
+or, using delegated events:
+
+```javascript
+var buttonSelector = 'label input[type=radio], label input[type=checkbox]'
+var selectionButtons = new GOVUK.SelectionButtons($buttonSelector, {
+  focusedClass: 'selectable-focused',
+  selectedClass: 'selectable-selected'
+})
 ```
 
 #### destroy method
@@ -384,7 +411,7 @@ The returned instance object includes a `destroy` method to remove all events bo
 
 Using any of the `selectionButtons` objects created above, it can be called like so:
 
-```
+```javascript
 selectionButtons.destroy();
 ```
 
@@ -392,7 +419,7 @@ selectionButtons.destroy();
 
 The previous method of calling selection buttons is now deprecated. If you need to call them using this method, you will need to define this function:
 
-```
+```javascript
 GOVUK.selectionButtons = function (elms, opts) {
   new GOVUK.SelectionButtons(elms, opts)
 }
