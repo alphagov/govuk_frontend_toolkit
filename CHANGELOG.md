@@ -1,3 +1,9 @@
+# 5.0.1
+
+- Fix role="button" click shim ([PR #347](https://github.com/alphagov/govuk_frontend_toolkit/pull/347))
+- Make font variables lowercase ([PR #348](https://github.com/alphagov/govuk_frontend_toolkit/pull/348))
+- Update selection button documentation ([PR #350](https://github.com/alphagov/govuk_frontend_toolkit/pull/350))
+
 # 5.0.0
 
 This release includes two breaking changes:
