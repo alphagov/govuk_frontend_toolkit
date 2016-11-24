@@ -534,16 +534,12 @@ A mixin to create a GOV.UK Phase banner, with alpha/beta tag inside.
 
 #### Description
 
-`@mixin phase-banner($state)`
-
-`$state` is either `alpha` or `beta`.
-
-`$state` sets the background colour of the phase tag to the appropriate alpha or beta colour.
+`@mixin phase-banner()`
 
 ##### Phase banner - Alpha
 
     .phase-banner  {
-      @include phase-banner(alpha);
+      @include phase-banner();
     }
 
     <div class="phase-banner">
@@ -556,7 +552,7 @@ A mixin to create a GOV.UK Phase banner, with alpha/beta tag inside.
 ##### Phase banner - Beta
 
     .phase-banner  {
-      @include phase-banner(beta);
+      @include phase-banner();
     }
 
     <div class="phase-banner">
@@ -572,16 +568,12 @@ A mixin to create an alpha/beta tag.
 
 #### Description
 
-`@mixin phase-tag($state)`
-
-`$state` is either `alpha` or `beta`.
-
-`$state` sets the background colour of the phase tag to the appropriate alpha or beta colour.
+`@mixin phase-tag()`
 
 ##### Phase tag - Alpha
 
     .alpha-tag{
-      @include phase-tag(alpha);
+      @include phase-tag();
     }
     <h2>
       Apply using the new service <span class="alpha-tag">ALPHA</span>
@@ -590,7 +582,7 @@ A mixin to create an alpha/beta tag.
 ##### Phase tag - Beta
 
     .beta-tag{
-      @include phase-tag(beta);
+      @include phase-tag();
     }
     <h2>
       Apply using the new service <span class="beta-tag">BETA</span>
