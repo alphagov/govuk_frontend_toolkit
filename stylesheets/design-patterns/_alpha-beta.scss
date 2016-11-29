@@ -6,10 +6,15 @@
 // Phase banner usage:
 //
 // .phase-banner {
-//    @include phase-banner($state: beta);
+//    @include phase-banner();
 // }
 
-@mixin phase-banner($state: alpha) {
+@mixin phase-banner($state: '') {
+
+  @if $state != '' {
+    @warn 'Passing a phase to the alpha/beta banners is deprecated';
+  }
+
   padding: 10px 0 8px;
 
   @include media(tablet) {
@@ -26,7 +31,7 @@
   }
 
   .phase-tag {
-    @include phase-tag($state);
+    @include phase-tag();
   }
 
   span {
@@ -37,17 +42,17 @@
 
 // Phase tag usage:
 //
-// Alpha
+// Alpha or beta
 // .phase-tag {
 //    @include phase-tag;
 // }
-//
-// Beta
-// .phase-tag {
-//    @include phase-tag(beta);
-// }
 
-@mixin phase-tag($state: alpha) {
+@mixin phase-tag($state: '') {
+
+  @if $state != '' {
+    @warn 'Passing a phase to the phase-tag mixin is deprecated';
+  }
+
   @include inline-block;
   margin: 0 8px 0 0;
   padding: 2px 5px 0;
@@ -58,9 +63,5 @@
   text-decoration: none;
 
   color: $white;
-  @if $state == alpha {
-    background-color: $alpha-colour;
-  } @else if $state == beta {
-    background-color: $beta-colour;
-  }
+  background-color: $govuk-blue;
 }
