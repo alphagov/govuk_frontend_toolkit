@@ -1,3 +1,7 @@
+# Development
+
+- Change HMRC and DEFRA text colours for improved contrast
+
 # 5.0.2
 
 - Change colour used in phase tags to govuk-blue ([PR #353](https://github.com/alphagov/govuk_frontend_toolkit/pull/353))
