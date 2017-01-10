@@ -102,7 +102,26 @@
       evt.transport = options.transport
     }
 
+    var customDimensions = getCustomDimensions(options)
+    if (customDimensions) {
+      $.extend(evt, customDimensions)
+    }
+
     sendToGa('send', evt)
+
+    function getCustomDimensions(options) {
+      var customDimensionMatcher = /^dimension[0-9]+$/;
+      var customDimensions = null
+
+      $.each(options, function(key, value) {
+        if (customDimensionMatcher.test(key)) {
+          customDimensions = customDimensions || {}
+          customDimensions[key] = value
+        }
+      })
+
+      return customDimensions
+    }
   }
 
   /*
