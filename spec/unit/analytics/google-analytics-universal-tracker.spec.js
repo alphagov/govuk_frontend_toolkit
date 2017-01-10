@@ -145,6 +145,13 @@ describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
         ['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action', transport: 'beacon'}]
       )
     })
+
+    it('tracks custom dimensions', function() {
+      universal.trackEvent('category', 'action', {dimension29: 'Home'})
+      expect(window.ga.calls.mostRecent().args).toEqual(
+        ['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action', dimension29: 'Home'}]
+      )
+    })
   })
 
   describe('when social events are tracked', function () {
