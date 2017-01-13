@@ -1,6 +1,6 @@
-# Development
+# 5.0.3
 
-- Change HMRC and DEFRA text colours for improved contrast
+- Change HMRC and DEFRA text colours for improved contrast ([PR #368](https://github.com/alphagov/govuk_frontend_toolkit/pull/368))
 
 # 5.0.2
 
