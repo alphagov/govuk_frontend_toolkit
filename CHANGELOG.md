@@ -1,3 +1,7 @@
+# 5.1.0
+
+- Allow custom options when tracking events ([PR #365](https://github.com/alphagov/govuk_frontend_toolkit/pull/365))
+
 # 5.0.3
 
 - Change HMRC and DEFRA text colours for improved contrast ([PR #368](https://github.com/alphagov/govuk_frontend_toolkit/pull/368))
