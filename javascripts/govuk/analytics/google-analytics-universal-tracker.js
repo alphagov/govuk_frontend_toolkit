@@ -72,11 +72,7 @@
     // Label is optional
     if (typeof options.label === 'string') {
       evt.eventLabel = options.label
-    }
-
-    // Page is optional
-    if (typeof options.page === 'string') {
-      evt.page = options.page
+      delete options.label
     }
 
     // Value is optional, but when used must be an
@@ -85,21 +81,19 @@
     if (options.value || options.value === 0) {
       value = parseInt(options.value, 10)
       if (typeof value === 'number' && !isNaN(value)) {
-        evt.eventValue = value
+        options.eventValue = value
       }
+      delete options.value
     }
 
     // Prevents an event from affecting bounce rate
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/events#implementation
     if (options.nonInteraction) {
-      evt.nonInteraction = 1
+      options.nonInteraction = 1
     }
 
-    // Set the transport method for the event
-    // Typically used for enabling `navigator.sendBeacon` when the page might be unloading
-    // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#transport
-    if (options.transport) {
-      evt.transport = options.transport
+    if (typeof options === 'object') {
+      $.extend(evt, options)
     }
 
     sendToGa('send', evt)
