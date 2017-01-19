@@ -16,6 +16,8 @@ module.exports = function (grunt) {
     }
   )
 
+  allSassFiles.push("@import '_colour_contrast_spec.scss';")
+
   grunt.file.write(
     './spec/stylesheets/test.scss',
     allSassFiles.join('\n')
@@ -46,7 +48,9 @@ module.exports = function (grunt) {
         },
         options: {
           loadPath: [
-            './stylesheets'
+            './node_modules',
+            './stylesheets',
+            './spec/stylesheets'
           ],
           style: 'nested'
         }

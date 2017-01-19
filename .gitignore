@@ -1,5 +1,5 @@
 node_modules/
 .sass-cache
 npm-debug.log
-spec/stylesheets
+spec/stylesheets/test*
 _SpecRunner.html

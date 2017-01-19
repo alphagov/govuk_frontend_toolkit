@@ -1,0 +1,12 @@
+@import "colours/organisation";
+@import "sass-color-helpers/stylesheets/color-helpers/math";
+@import "sass-color-helpers/stylesheets/color-helpers/contrast";
+
+@each $organisation in $all-organisation-brand-colours {
+  $minimum-contrast: 4.5;
+  $contrast: ch-color-contrast($white, nth($organisation, 3));
+
+  @if ($contrast < $minimum-contrast) {
+    @error "Contrast ratio for #{nth($organisation, 1)} too low. #{nth($organisation, 3)} on #{$white} has a contrast of: #{$contrast}. Must be higher than #{$minimum-contrast} for WCAG AA support";
+  }
+}
