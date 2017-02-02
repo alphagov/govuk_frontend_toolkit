@@ -1,3 +1,10 @@
+# 5.1.1
+
+- Update the alpha, beta and discovery colours to $govuk-blue to match the updated phase banner ([PR #370](https://github.com/alphagov/govuk_frontend_toolkit/pull/370))
+- Fix radio button show/hide behaviour when used outside a form ([PR #375](https://github.com/alphagov/govuk_frontend_toolkit/pull/375))
+- Fix a "Stick at top when scrolling" component bug related to scroll anchoring in Chrome 56+ ([PR #376](https://github.com/alphagov/govuk_frontend_toolkit/pull/376))
+- Minor travis fixes ([PR #373](https://github.com/alphagov/govuk_frontend_toolkit/pull/373))
+
 # 5.1.0
 
 - Allow custom options when tracking events ([PR #365](https://github.com/alphagov/govuk_frontend_toolkit/pull/365))
