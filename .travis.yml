@@ -1,7 +1,7 @@
 sudo: false
 language: node_js
 node_js:
-  - "0.10"
+  - "6.9.5"
 before_install:
   - openssl aes-256-cbc -K $encrypted_909ac1036a94_key -iv $encrypted_909ac1036a94_iv -in .travis/govuk_frontend_toolkit_push.enc -out ~/.ssh/id_rsa -d
   - chmod 600 ~/.ssh/id_rsa
