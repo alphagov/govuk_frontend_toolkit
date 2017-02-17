@@ -100,7 +100,7 @@ describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
       )
     })
 
-    it('tracks custom dimensions', function() {
+    it('tracks custom dimensions', function () {
       universal.trackEvent('category', 'action', {dimension29: 'Home'})
       expect(window.ga.calls.mostRecent().args).toEqual(
         ['send', {hitType: 'event', eventCategory: 'category', eventAction: 'action', dimension29: 'Home'}]
