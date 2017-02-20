@@ -14,7 +14,7 @@ describe('show-hide-content', function () {
     this.$content.remove()
   })
 
-  describe('when the radios are inside a form', function () {
+  describe('when the controls are inside a form', function () {
     beforeEach(function () {
       // Sample markup
       this.$content = $(
@@ -249,7 +249,7 @@ describe('show-hide-content', function () {
     })
   })
 
-  describe('when the radios are outside of a form', function () {
+  describe('when the controls are outside of a form', function () {
     beforeEach(function () {
       // Sample markup
       this.$content = $(
