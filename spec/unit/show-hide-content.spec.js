@@ -250,6 +250,193 @@ describe('show-hide-content', function () {
     })
   })
 
+  describe('when the controls are inside a form and have multiple targets', function () {
+    beforeEach(function () {
+      // Sample markup
+      this.$content = $(
+
+        // Radio buttons (yes/no)
+        '<form>' +
+        '<label class="block-label" data-target="show-hide-radios-1 show-hide-radios-2">' +
+        '<input type="radio" name="single" value="yes">' +
+        'Yes' +
+        '</label>' +
+        '<label class="block-label">' +
+        '<input type="radio" name="single" value="no">' +
+        'No' +
+        '</label>' +
+        '<div id="show-hide-radios-1" class="panel js-hidden" />' +
+        '<div id="show-hide-radios-2" class="panel js-hidden" />' +
+        '</form>' +
+
+        // Checkboxes (multiple values)
+        '<form>' +
+        '<label class="block-label" data-target="show-hide-checkboxes-1 show-hide-checkboxes-2">' +
+        '<input type="checkbox" name="multiple[option1]">' +
+        'Option 1' +
+        '</label>' +
+        '<label class="block-label">' +
+        '<input type="checkbox" name="multiple[option2]">' +
+        'Option 2' +
+        '</label>' +
+        '<label class="block-label">' +
+        '<input type="checkbox" name="multiple[option3]">' +
+        'Option 3' +
+        '</label>' +
+        '<div id="show-hide-checkboxes-1" class="panel js-hidden" />' +
+        '<div id="show-hide-checkboxes-2" class="panel js-hidden" />' +
+        '</form>'
+      )
+
+      // Find radios/checkboxes
+      var $radios = this.$content.find('input[type=radio]')
+      var $checkboxes = this.$content.find('input[type=checkbox]')
+
+      // Two radios
+      this.$radio1 = $radios.eq(0)
+      this.$radio2 = $radios.eq(1)
+
+      // Three checkboxes
+      this.$checkbox1 = $checkboxes.eq(0)
+      this.$checkbox2 = $checkboxes.eq(1)
+      this.$checkbox3 = $checkboxes.eq(2)
+
+      // Add to page
+      $(document.body).append(this.$content)
+
+      // Show/Hide content
+      this.radiosShowHide = [$('#show-hide-radios-1'), $('#show-hide-radios-2')]
+      this.checkboxesShowHide = [$('#show-hide-checkboxes-1'), $('#show-hide-checkboxes-2')]
+
+      // Add show/hide content support
+      this.showHideContent = new GOVUK.ShowHideContent()
+      this.showHideContent.init()
+    })
+
+    describe('and when this.showHideContent = new GOVUK.ShowHideContent() is called', function () {
+      it('should add the aria attributes to inputs with show/hide content', function () {
+        expect(this.$radio1.attr('aria-expanded')).toBe('false')
+        expect(this.$radio1.attr('aria-controls')).toBe('show-hide-radios-1 show-hide-radios-2')
+      })
+
+      it('should add the aria attributes to show/hide content', function () {
+        this.radiosShowHide.forEach(function ($showHide) {
+          expect($showHide.attr('aria-hidden')).toBe('true')
+        })
+      })
+
+      it('should hide the show/hide content visually', function () {
+        this.radiosShowHide.forEach(function ($showHide) {
+          expect($showHide.hasClass('js-hidden')).toEqual(true)
+        })
+      })
+
+      describe('with non-default markup', function () {
+        beforeEach(function () {
+          this.showHideContent.destroy()
+        })
+
+        it('should make the show/hide content visible if its radio is checked', function () {
+          this.$radio1.prop('checked', true)
+
+          // Defaults changed, initialise again
+          this.showHideContent = new GOVUK.ShowHideContent().init()
+          expect(this.$radio1.attr('aria-expanded')).toBe('true')
+          this.radiosShowHide.forEach(function ($showHide) {
+            expect($showHide.attr('aria-hidden')).toBe('false')
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+
+        it('should make the show/hide content visible if its checkbox is checked', function () {
+          this.$checkbox1.prop('checked', true)
+
+          // Defaults changed, initialise again
+          this.showHideContent = new GOVUK.ShowHideContent().init()
+          expect(this.$checkbox1.attr('aria-expanded')).toBe('true')
+          this.checkboxesShowHide.forEach(function ($showHide) {
+            expect($showHide.attr('aria-hidden')).toBe('false')
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+      })
+
+      describe('and a show/hide radio receives a click', function () {
+        it('should make the show/hide content visible', function () {
+          this.$radio1.click()
+          this.radiosShowHide.forEach(function ($showHide) {
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+
+        it('should add the aria attributes to show/hide content', function () {
+          this.$radio1.click()
+          expect(this.$radio1.attr('aria-expanded')).toBe('true')
+          this.radiosShowHide.forEach(function ($showHide) {
+            expect($showHide.attr('aria-hidden')).toBe('false')
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+      })
+
+      describe('and a show/hide checkbox receives a click', function () {
+        it('should make the show/hide content visible', function () {
+          this.$checkbox1.click()
+          this.checkboxesShowHide.forEach(function ($showHide) {
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+
+        it('should add the aria attributes to show/hide content', function () {
+          this.$checkbox1.click()
+          expect(this.$checkbox1.attr('aria-expanded')).toBe('true')
+          this.checkboxesShowHide.forEach(function ($showHide) {
+            expect($showHide.attr('aria-hidden')).toBe('false')
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+      })
+
+      describe('and a show/hide radio receives a click, but another group radio is clicked afterwards', function () {
+        it('should make the show/hide content hidden', function () {
+          this.$radio1.click()
+          this.$radio2.click()
+          this.radiosShowHide.forEach(function ($showHide) {
+            expect($showHide.hasClass('js-hidden')).toEqual(true)
+          })
+        })
+
+        it('should add the aria attributes to show/hide content', function () {
+          this.$radio1.click()
+          this.$radio2.click()
+          expect(this.$radio1.attr('aria-expanded')).toBe('false')
+          this.radiosShowHide.forEach(function ($showHide) {
+            expect($showHide.attr('aria-hidden')).toBe('true')
+          })
+        })
+      })
+
+      describe('and a show/hide checkbox receives a click, but another checkbox is clicked afterwards', function () {
+        it('should keep the show/hide content visible', function () {
+          this.$checkbox1.click()
+          this.$checkbox2.click()
+          this.checkboxesShowHide.forEach(function ($showHide) {
+            expect($showHide.hasClass('js-hidden')).toEqual(false)
+          })
+        })
+
+        it('should keep the aria attributes to show/hide content', function () {
+          this.$checkbox1.click()
+          this.$checkbox2.click()
+          expect(this.$checkbox1.attr('aria-expanded')).toBe('true')
+          this.checkboxesShowHide.forEach(function ($showHide) {
+            expect($showHide.attr('aria-hidden')).toBe('false')
+          })
+        })
+      })
+    })
+  })
+
   describe('when the controls are outside of a form', function () {
     beforeEach(function () {
       // Sample markup
@@ -302,6 +489,66 @@ describe('show-hide-content', function () {
       expect(this.$radio1.attr('aria-expanded')).toBe('false')
       expect(this.$radioShowHide.attr('aria-hidden')).toBe('true')
       expect(this.$radioShowHide.hasClass('js-hidden')).toEqual(true)
+    })
+  })
+
+  describe('when the controls are outside of a form and have multiple targets', function () {
+    beforeEach(function () {
+      // Sample markup
+      this.$content = $(
+        // Radio buttons (yes/no)
+        '<label class="block-label" data-target="show-hide-radios-1 show-hide-radios-2">' +
+        '<input type="radio" name="single" value="yes">' +
+        'Yes' +
+        '</label>' +
+        '<label class="block-label">' +
+        '<input type="radio" name="single" value="no">' +
+        'No' +
+        '</label>' +
+        '<div id="show-hide-radios-1" class="panel js-hidden" />' +
+        '<div id="show-hide-radios-2" class="panel js-hidden" />'
+      )
+
+      // Find radios/checkboxes
+      var $radios = this.$content.find('input[type=radio]')
+
+      // Two radios
+      this.$radio1 = $radios.eq(0)
+      this.$radio2 = $radios.eq(1)
+
+      // Add to page
+      $(document.body).append(this.$content)
+
+      // Show/Hide content
+      this.radiosShowHide = [$('#show-hide-radios-1'), $('#show-hide-radios-2')]
+
+      // Add show/hide content support
+      this.showHideContent = new GOVUK.ShowHideContent()
+      this.showHideContent.init()
+    })
+
+    it('should make the show/hide content visible if its radio is checked', function () {
+      this.$radio1.click()
+
+      // Defaults changed, initialise again
+      this.showHideContent = new GOVUK.ShowHideContent().init()
+      expect(this.$radio1.attr('aria-expanded')).toBe('true')
+      this.radiosShowHide.forEach(function ($showHide) {
+        expect($showHide.attr('aria-hidden')).toBe('false')
+        expect($showHide.hasClass('js-hidden')).toEqual(false)
+      })
+    })
+
+    it('should do nothing if a radio without show/hide content is checked', function () {
+      this.$radio2.click()
+
+      // Defaults changed, initialise again
+      this.showHideContent = new GOVUK.ShowHideContent().init()
+      expect(this.$radio1.attr('aria-expanded')).toBe('false')
+      this.radiosShowHide.forEach(function ($showHide) {
+        expect($showHide.attr('aria-hidden')).toBe('true')
+        expect($showHide.hasClass('js-hidden')).toEqual(true)
+      })
     })
   })
 })
