@@ -96,8 +96,9 @@ describe('show-hide-content', function () {
       })
 
       it('should do nothing if no checkboxes are checked', function () {
-        expect(this.$radio1.attr('aria-expanded')).toBe('false')
-        expect(this.$radio2.attr('aria-expanded')).toBe(undefined)
+        expect(this.$checkbox1.attr('aria-expanded')).toBe('false')
+        expect(this.$checkbox2.attr('aria-expanded')).toBe(undefined)
+        expect(this.$checkbox3.attr('aria-expanded')).toBe(undefined)
       })
 
       describe('with non-default markup', function () {
