@@ -24,30 +24,48 @@
     function initToggledContent () {
       var $control = $(this)
       var $content = getToggledContent($control)
+      var contentIds = ''
 
       // Set aria-controls and defaults
       if ($content.length) {
-        $control.attr('aria-controls', $content.attr('id'))
+        $content.each(function () {
+          $(this).attr('aria-hidden', 'true')
+          contentIds += ' ' + $(this).attr('id')
+        })
+
+        $control.attr('aria-controls', contentIds.trim())
         $control.attr('aria-expanded', 'false')
-        $content.attr('aria-hidden', 'true')
       }
     }
 
     // Return toggled content for control
     function getToggledContent ($control) {
-      var id = $control.attr('aria-controls')
+      var targetIds = $control.attr('aria-controls')
 
       // ARIA attributes aren't set before init
-      if (!id) {
-        id = $control.closest('label').data('target')
+      if (!targetIds) {
+        targetIds = $control.closest('label').data('target')
+      }
+
+      // turn a space-separated list of ids into a comma-separated css id selector
+      // ie, 'id-1 id-2 id-3' becomes '#id-1, #id-2, #id-3'
+      if (targetIds) {
+        targetIds = targetIds
+                      .split(' ')
+                      .map(function (targetId) { return '#' + targetId })
+                      .join(', ')
       }
 
       // Find show/hide content by id
-      return $('#' + id)
+      return $(targetIds)
     }
 
     // Show toggled content for control
     function showToggledContent ($control, $content) {
+      if (!$content.length) {
+        return
+      }
+
       // Show content
       if ($content.hasClass('js-hidden')) {
         $content.removeClass('js-hidden')
@@ -63,6 +81,10 @@
     // Hide toggled content for control
     function hideToggledContent ($control, $content) {
       $content = $content || getToggledContent($control)
+
+      if (!$content.length) {
+        return
+      }
 
       // Hide content
       if (!$content.hasClass('js-hidden')) {
