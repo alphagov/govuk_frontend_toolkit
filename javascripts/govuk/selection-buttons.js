@@ -1,3 +1,6 @@
+// DEPRECATED
+// This isn’t needed if you’re using GOV.UK Elements 3.0.0 or above
+
 ;(function (global) {
   'use strict'
 

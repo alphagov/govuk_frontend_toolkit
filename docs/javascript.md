@@ -342,6 +342,8 @@ and stop the elements before they get to the bottom.
 
 ## Selection buttons
 
+>If you are using GOV.UK Elements version 3.0.0 or above you *do not need* to include and initialise `GOVUK.SelectionButtons` to apply the correct radio button and checkbox styling. This module is deprecated and will be removed in the future.
+
 `GOVUK.SelectionButtons` adds classes to a parent `<label>` of a radio button or checkbox, allowing you to style it based on the input’s state. Given this example HTML structure:
 
 ```html
