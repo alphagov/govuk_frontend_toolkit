@@ -21,31 +21,31 @@ describe('show-hide-content', function () {
 
         // Radio buttons (yes/no)
         '<form>' +
-        '<label class="block-label" data-target="show-hide-radios">' +
+        '<div class="multiple-choice" data-target="show-hide-radios">' +
         '<input type="radio" name="single" value="yes">' +
-        'Yes' +
-        '</label>' +
-        '<label class="block-label">' +
+        '<label>Yes</label>' +
+        '</div>' +
+        '<div class="multiple-choice">' +
         '<input type="radio" name="single" value="no">' +
-        'No' +
-        '</label>' +
+        '<label>No</label>' +
+        '</div>' +
         '<div id="show-hide-radios" class="panel js-hidden" />' +
         '</form>' +
 
         // Checkboxes (multiple values)
         '<form>' +
-        '<label class="block-label" data-target="show-hide-checkboxes">' +
+        '<div class="multiple-choice" data-target="show-hide-checkboxes">' +
         '<input type="checkbox" name="multiple[option1]">' +
-        'Option 1' +
-        '</label>' +
-        '<label class="block-label">' +
+        '<label>Option 1</label>' +
+        '</div>' +
+        '<div class="multiple-choice">' +
         '<input type="checkbox" name="multiple[option2]">' +
-        'Option 2' +
-        '</label>' +
-        '<label class="block-label">' +
+        '<label>Option 2</label>' +
+        '</div>' +
+        '<div class="multiple-choice">' +
         '<input type="checkbox" name="multiple[option3]">' +
-        'Option 3' +
-        '</label>' +
+        '<label>Option 3</label>' +
+        '</div>' +
         '<div id="show-hide-checkboxes" class="panel js-hidden" />' +
         '</form>'
       )
@@ -225,7 +225,7 @@ describe('show-hide-content', function () {
         }))
         expect(events && events.click).toContain(jasmine.objectContaining({
           namespace: 'ShowHideContent',
-          selector: '.block-label[data-target] input[type="checkbox"]'
+          selector: '[data-target] > input[type="checkbox"]'
         }))
       })
     })
@@ -243,7 +243,7 @@ describe('show-hide-content', function () {
         }))
         expect(events && events.click).not.toContain(jasmine.objectContaining({
           namespace: 'ShowHideContent',
-          selector: '.block-label[data-target] input[type="checkbox"]'
+          selector: '[data-target] > input[type="checkbox"]'
         }))
       })
     })
@@ -254,14 +254,14 @@ describe('show-hide-content', function () {
       // Sample markup
       this.$content = $(
         // Radio buttons (yes/no)
-        '<label class="block-label" data-target="show-hide-radios">' +
+        '<div class="multiple-choice" data-target="show-hide-radios">' +
         '<input type="radio" name="single" value="yes">' +
-        'Yes' +
-        '</label>' +
-        '<label class="block-label">' +
+        '<label>Yes</label>' +
+        '</div>' +
+        '<div class="multiple-choice">' +
         '<input type="radio" name="single" value="no">' +
-        'No' +
-        '</label>' +
+        '<label>No</label>' +
+        '</div>' +
         '<div id="show-hide-radios" class="panel js-hidden" />'
       )
 

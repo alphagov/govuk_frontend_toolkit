@@ -464,13 +464,15 @@ GOVUK.shimLinksWithButtonRole.init({
 
 Script to support show/hide content, toggled by radio buttons and checkboxes. This allows for progressive disclosure of question and answer forms based on selected values:
 
-    <label class="block-label" data-target="show-me">
-      <input type="radio" name="enabled" value="yes" /> Yes
-    </label>
+    <div class="multiple-choice" data-target="show-me">
+      <input type="radio" name="enabled" value="yes" />
+      <label>Yes</label>
+    </div>
 
-    <label class="block-label">
-      <input type="radio" name="enabled" value="no" /> No
-    </label>
+    <div class="multiple-choice">
+      <input type="radio" name="enabled" value="no" />
+      <label>No</label>
+    </div>
 
     <div id="show-me" class="panel js-hidden">
       <p>Show/Hide content to be toggled</p>
