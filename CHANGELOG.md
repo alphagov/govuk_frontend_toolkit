@@ -1,3 +1,8 @@
+# 5.1.2
+
+- Update show-hide-content.js to work with new `.multiple-choice` custom radio buttons and checkboxes, released in GOV.UK elements 3.0.0 ([PR #390](https://github.com/alphagov/govuk_frontend_toolkit/pull/390))
+- Fix buttons not having an outer edge when colours are changed via browser settings - add an outline so they look like buttons. ([PR #377](https://github.com/alphagov/govuk_frontend_toolkit/pull/377))
+
 # 5.1.1
 
 - Update the alpha, beta and discovery colours to $govuk-blue to match the updated phase banner ([PR #370](https://github.com/alphagov/govuk_frontend_toolkit/pull/370))
