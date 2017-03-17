@@ -10,8 +10,8 @@
     // Radio and Checkbox selectors
     var selectors = {
       namespace: 'ShowHideContent',
-      radio: '.block-label[data-target] input[type="radio"]',
-      checkbox: '.block-label[data-target] input[type="checkbox"]'
+      radio: '[data-target] > input[type="radio"]',
+      checkbox: '[data-target] > input[type="checkbox"]'
     }
 
     // Escape name attribute for use in DOM selector
@@ -39,7 +39,7 @@
 
       // ARIA attributes aren't set before init
       if (!id) {
-        id = $control.closest('label').data('target')
+        id = $control.closest('[data-target]').data('target')
       }
 
       // Find show/hide content by id
