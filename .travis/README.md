@@ -6,7 +6,9 @@ The public key is a deploy key which has been added to the GitHub repo for push 
 
 The private key is encrypted using `travis encrypt-file` and then committed to this repo.
 
-The decrypt commands are in `.travis.yml`.
+The decrypt commands are in `.travis.yml`. We only decrypt these files on the master
+branch because people who have forked the repo don't have access to the
+`$encrypted` environment variables.
 
 ## Trigger script
 
