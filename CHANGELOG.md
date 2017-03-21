@@ -1,3 +1,7 @@
+# 5.1.3
+
+- Add an experimental GOV.UK analytics tracker. Given the URL to a single pixel GIF, it will encode analytics data as query string parameters on the call to the GIF ([PR #387](https://github.com/alphagov/govuk_frontend_toolkit/pull/387))
+
 # 5.1.2
 
 - Update show-hide-content.js to work with new `.multiple-choice` custom radio buttons and checkboxes, released in GOV.UK elements 3.0.0 ([PR #390](https://github.com/alphagov/govuk_frontend_toolkit/pull/390))
