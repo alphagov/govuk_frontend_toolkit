@@ -1,5 +1,12 @@
+// DEPRECATED
+// This isn’t needed if you’re using GOV.UK Elements 3.0.0 or above
+
 ;(function (global) {
   'use strict'
+
+  if (window.console && window.console.warn) {
+    window.console.warn('Deprecation warning: Custom radio buttons and checkboxes (released in GOV.UK Elements 3.0.0) no longer require this JavaScript.')
+  }
 
   var $ = global.jQuery
   var GOVUK = global.GOVUK || {}
