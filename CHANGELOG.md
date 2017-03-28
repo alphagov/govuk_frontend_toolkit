@@ -1,3 +1,7 @@
+# 5.2.0
+
+- Deprecate selection-buttons.js. Add a deprecation warning: Custom radio buttons and checkboxes (released in GOV.UK Elements 3.0.0) no longer require this JavaScript.
+
 # 5.1.3
 
 - Add an experimental GOV.UK analytics tracker. Given the URL to a single pixel GIF, it will encode analytics data as query string parameters on the call to the GIF ([PR #387](https://github.com/alphagov/govuk_frontend_toolkit/pull/387))
