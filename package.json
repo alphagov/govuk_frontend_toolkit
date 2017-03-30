@@ -1,6 +1,6 @@
 {
-  "name": "govuk_frontend_toolkit_test_runner",
-  "repository": "https://github.com/alphagov/govuk_frontend_toolkit",
+  "name": "lgss_frontend_toolkit_test_runner",
+  "repository": "https://github.com/lgss/lgss_frontend_toolkit",
   "version": "0.1.0",
   "devDependencies": {
     "grunt": "~0.4.2",
