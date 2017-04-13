@@ -147,6 +147,7 @@
     sendToGa(name + '.linker:autoLink', [domain])
 
     sendToGa(name + '.set', 'anonymizeIp', true)
+    sendToGa(name + '.set', 'displayFeaturesTask', null)
     sendToGa(name + '.send', 'pageview')
   }
 
