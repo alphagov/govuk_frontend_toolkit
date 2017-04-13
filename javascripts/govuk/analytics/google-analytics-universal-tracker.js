@@ -15,6 +15,11 @@
       sendToGa('set', 'anonymizeIp', true)
     }
 
+    function disableAdTracking () {
+      // https://support.google.com/analytics/answer/2444872?hl=en
+      sendToGa('set', 'displayFeaturesTask', null)
+    }
+
     // Support legacy cookieDomain param
     if (typeof fieldsObject === 'string') {
       fieldsObject = { cookieDomain: fieldsObject }
@@ -22,6 +27,7 @@
 
     configureProfile()
     anonymizeIp()
+    disableAdTracking()
   }
 
   GoogleAnalyticsUniversalTracker.load = function () {
