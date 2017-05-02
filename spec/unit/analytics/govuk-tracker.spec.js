@@ -8,6 +8,14 @@ describe('GOVUK.GOVUKTracker', function () {
 
   var tracker
 
+  function setupFakeGa (clientId) {
+    window.ga = function (cb) {
+      cb({
+        get: function () { return clientId }
+      })
+    }
+  }
+
   beforeEach(function () {
     tracker = new GOVUK.GOVUKTracker('http://www.example.com/a.gif')
   })
@@ -74,10 +82,21 @@ describe('GOVUK.GOVUKTracker', function () {
 
   describe('sendToTracker', function () {
     it('sends when the DOM is complete', function () {
+      setupFakeGa('123456.789012')
+
       spyOn(tracker, 'sendData')
       tracker.sendToTracker('foo')
 
       expect(tracker.sendData).toHaveBeenCalledWith(jasmine.any(Object))
+    })
+
+    it('sets the ga Client ID', function () {
+      setupFakeGa('123456.789012')
+
+      spyOn(tracker, 'sendData')
+      tracker.sendToTracker('foo')
+
+      expect(tracker.gaClientId).toEqual('123456.789012')
     })
   })
 
