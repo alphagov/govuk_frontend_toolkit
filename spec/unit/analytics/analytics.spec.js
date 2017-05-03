@@ -29,6 +29,8 @@ describe('GOVUK.Analytics', function () {
 
     it('configures a universal tracker', function () {
       expect(universalSetupArguments[0]).toEqual(['create', 'universal-id', {cookieDomain: '.www.gov.uk', siteSpeedSampleRate: 100}])
+      expect(universalSetupArguments[1]).toEqual(['set', 'anonymizeIp', true])
+      expect(universalSetupArguments[2]).toEqual(['set', 'displayFeaturesTask', null])
     })
   })
 
@@ -69,6 +71,7 @@ describe('GOVUK.Analytics', function () {
       expect(allArgs).toContain(['linker:autoLink', ['www.example.com']])
       expect(allArgs).toContain(['test.linker:autoLink', ['www.example.com']])
       expect(allArgs).toContain(['test.set', 'anonymizeIp', true])
+      expect(allArgs).toContain(['test.set', 'displayFeaturesTask', null])
       expect(allArgs).toContain(['test.send', 'pageview'])
     })
   })
