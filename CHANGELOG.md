@@ -1,3 +1,7 @@
+# 6.0.1
+
+- Fix a Javascript error in IE7 caused by trying to access a character within a string using array notation ([PR #407](https://github.com/alphagov/govuk_frontend_toolkit/pull/407))
+
 # 6.0.0
 
 - Breaking change: configure the GOV.UK Analytics tracker with `govukTrackerUrl` instead of `govukTrackerGifUrl` ([PR #405](https://github.com/alphagov/govuk_frontend_toolkit/pull/405))
