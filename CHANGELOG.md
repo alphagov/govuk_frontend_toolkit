@@ -1,3 +1,9 @@
+# 6.0.0
+
+- Breaking change: configure the GOV.UK Analytics tracker with `govukTrackerUrl` instead of `govukTrackerGifUrl` ([PR #405](https://github.com/alphagov/govuk_frontend_toolkit/pull/405))
+- Fix the sending of the GA Client ID with calls to the GOV.UK Tracker ([PR #404](https://github.com/alphagov/govuk_frontend_toolkit/pull/404))
+- Disable GA ad tracking ([PR #401](https://github.com/alphagov/govuk_frontend_toolkit/pull/401))
+
 # 5.2.0
 
 - Deprecate selection-buttons.js. Add a deprecation warning: Custom radio buttons and checkboxes (released in GOV.UK Elements 3.0.0) no longer require this JavaScript.
