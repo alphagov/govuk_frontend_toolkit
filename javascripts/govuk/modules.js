@@ -46,7 +46,7 @@
       // http://stackoverflow.com/questions/6660977/convert-hyphens-to-camel-case-camelcase
       function camelCase (string) {
         return string.replace(/-([a-z])/g, function (g) {
-          return g[1].toUpperCase()
+          return g.charAt(1).toUpperCase()
         })
       }
 
