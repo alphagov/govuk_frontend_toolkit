@@ -7,11 +7,6 @@
   var GOVUKTracker = function (gifUrl) {
     this.gifUrl = gifUrl
     this.dimensions = []
-    if (global.ga) {
-      global.ga(function (tracker) {
-        this.gaClientId = tracker.get('clientId')
-      }.bind(this))
-    }
   }
 
   GOVUKTracker.load = function () {}
@@ -118,7 +113,14 @@
 
   GOVUKTracker.prototype.sendToTracker = function (type, payload) {
     $(global.document).ready(function () {
-      this.sendData(this.payloadParams(type, payload))
+      if (global.ga) {
+        global.ga(function (tracker) {
+          this.gaClientId = tracker.get('clientId')
+          this.sendData(this.payloadParams(type, payload))
+        }.bind(this))
+      } else {
+        this.sendData(this.payloadParams(type, payload))
+      }
     }.bind(this))
   }
 
