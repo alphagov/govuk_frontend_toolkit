@@ -1,3 +1,7 @@
+# 6.0.2
+
+- Increase button focus specificity to avoid being overridden by govuk_template ([PR #409](https://github.com/alphagov/govuk_frontend_toolkit/pull/409))
+
 # 6.0.1
 
 - Fix a Javascript error in IE7 caused by trying to access a character within a string using array notation ([PR #407](https://github.com/alphagov/govuk_frontend_toolkit/pull/407))
