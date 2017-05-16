@@ -1,5 +1,5 @@
 {
-  "name": "govuk_frontend_toolkit_test_runner",
+  "name": "govuk_frontend_toolkit",
   "repository": "https://github.com/alphagov/govuk_frontend_toolkit",
   "version": "0.1.0",
   "devDependencies": {
