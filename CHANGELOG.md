@@ -1,3 +1,10 @@
+# 6.0.3
+
+- Allow the passing of a [fields object](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference)
+  to the `trackShare` method in analytics, in line with the Google Analytics
+  [social interactions API](https://developers.google.com/analytics/devguides/collection/analyticsjs/social-interactions)
+- Add documentation for new version releases
+
 # 6.0.2
 
 - Increase button focus specificity to avoid being overridden by govuk_template ([PR #409](https://github.com/alphagov/govuk_frontend_toolkit/pull/409))
