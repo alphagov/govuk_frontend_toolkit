@@ -50,8 +50,8 @@
     this.sendToTrackers('trackEvent', arguments)
   }
 
-  Analytics.prototype.trackShare = function (network) {
-    this.sendToTrackers('trackSocial', [network, 'share', global.location.pathname])
+  Analytics.prototype.trackShare = function (network, options) {
+    this.sendToTrackers('trackSocial', [network, 'share', global.location.pathname, options])
   }
 
   /*
