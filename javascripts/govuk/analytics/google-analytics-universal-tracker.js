@@ -112,13 +112,17 @@
     target – Specifies the target of a social interaction.
              This value is typically a URL but can be any text.
   */
-  GoogleAnalyticsUniversalTracker.prototype.trackSocial = function (network, action, target) {
-    sendToGa('send', {
+  GoogleAnalyticsUniversalTracker.prototype.trackSocial = function (network, action, target, options) {
+    var trackingOptions = {
       'hitType': 'social',
       'socialNetwork': network,
       'socialAction': action,
       'socialTarget': target
-    })
+    }
+
+    $.extend(trackingOptions, options)
+
+    sendToGa('send', trackingOptions)
   }
 
   /*

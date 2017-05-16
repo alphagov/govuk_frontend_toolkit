@@ -61,12 +61,16 @@
     this.sendToTracker('event', evt)
   }
 
-  GOVUKTracker.prototype.trackSocial = function (network, action, target) {
-    this.sendToTracker('social', {
+  GOVUKTracker.prototype.trackSocial = function (network, action, target, options) {
+    var trackingOptions = {
       'socialNetwork': network,
       'socialAction': action,
       'socialTarget': target
-    })
+    }
+
+    $.extend(trackingOptions, options)
+
+    this.sendToTracker('social', trackingOptions)
   }
 
   GOVUKTracker.prototype.addLinkedTrackerDomain = function () { /* noop */ }
