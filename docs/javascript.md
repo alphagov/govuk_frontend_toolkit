@@ -337,8 +337,8 @@ The following would cause the element to stay when you scroll:
 GOVUK.stickAtTopWhenScrolling.init()
 ```
 
-If you also include the `stopScrollingAtFooter` JavaScript this will also try
-and stop the elements before they get to the bottom.
+If you also include `stop-scrolling-at-footer.js` this will stop
+the elements overlapping the footer.
 
 ## Selection buttons
 
