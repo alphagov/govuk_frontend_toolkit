@@ -28,6 +28,11 @@
     margin: 0;
     color: $banner-text-colour;
     @include core-16;
+    line-height: (22/16);
+
+    @include media(tablet) {
+      max-width: $two-thirds;
+    }
   }
 
   .phase-tag {
