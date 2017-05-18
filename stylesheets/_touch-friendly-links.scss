@@ -1,0 +1,10 @@
+// This mixin will expand the clickable area for a link to make it easier to click on a touch-enabled
+// device.
+
+@mixin touch-friendly-links($padding: 3px) {
+  a {
+    padding: $padding;
+    margin: -1 * $padding;
+    outline-color: transparent;
+  }
+}

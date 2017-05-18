@@ -2,6 +2,7 @@
 @import "../typography";
 @import "../shims";
 @import "../url-helpers";
+@import "../touch-friendly-links";
 
 // Breadcrumbs usage:
 //
@@ -45,6 +46,8 @@
     }
 
   }
+
+  @include touch-friendly-links();
 
   a {
     color: $text-colour;

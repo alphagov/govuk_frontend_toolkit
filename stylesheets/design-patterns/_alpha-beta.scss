@@ -2,6 +2,7 @@
 @import "../typography";
 @import "../shims";
 @import "../grid_layout";
+@import "../touch-friendly-links";
 
 // Phase banner usage:
 //
@@ -38,6 +39,8 @@
     display: table-cell;
     vertical-align: baseline;
   }
+
+  @include touch-friendly-links();
 }
 
 // Phase tag usage:
