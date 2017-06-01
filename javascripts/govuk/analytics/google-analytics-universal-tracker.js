@@ -102,7 +102,26 @@
       $.extend(evt, options)
     }
 
+    // Find any custom dimensions being set in the options, and pass them to GA
+    // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets
+    var customDimensions = getCustomDimensions(options)
+    if (customDimensions && Object.keys(customDimensions).length) {
+      Object.assign(evt, customDimensions)
+    }
+
     sendToGa('send', evt)
+
+    function getCustomDimensions(options) {
+      var dimensionMatcher = /^dimension[0-9]+$/
+      return Object.keys(options)
+        .filter(function (key) {
+          return dimensionMatcher.test(key)
+        })
+        .reduce(function (dimensions, customDimensionKey) {
+          dimensions[customDimensionKey] = options[customDimensionKey]
+          return dimensions
+        }, {})
+    }
   }
 
   /*
