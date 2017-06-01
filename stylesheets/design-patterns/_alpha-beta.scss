@@ -38,6 +38,10 @@
     display: table-cell;
     vertical-align: baseline;
   }
+
+  @if $is-print == true {
+    display: none;
+  }
 }
 
 // Phase tag usage:
