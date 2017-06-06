@@ -23,7 +23,7 @@
     }
     if (typeof elmsOrSelector === 'string') {
       this.selector = elmsOrSelector
-      this.setInitialState($(this.selector))
+      this.setInitialState(this.selector)
     } else if (elmsOrSelector !== undefined) {
       this.$elms = elmsOrSelector
       this.setInitialState(this.$elms)
@@ -37,7 +37,9 @@
       this.addDocumentLevelEvents()
     }
   }
-  SelectionButtons.prototype.setInitialState = function ($elms) {
+  SelectionButtons.prototype.setInitialState = function (elmsOrSelector) {
+    var $elms = elmsOrSelector instanceof $ ? elmsOrSelector : $(elmsOrSelector)
+
     $elms.each(function (idx, elm) {
       var $elm = $(elm)
 
