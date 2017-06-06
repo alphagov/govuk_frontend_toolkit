@@ -90,7 +90,9 @@
   }
   SelectionButtons.prototype.getClickHandler = function () {
     return function (e) {
-      this.markSelected($(e.target))
+      var target = $(e.target)
+      this.markSelected(target)
+      target.trigger('focus')
     }.bind(this)
   }
   SelectionButtons.prototype.getFocusHandler = function (opts) {
