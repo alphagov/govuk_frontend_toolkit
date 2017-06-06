@@ -48,6 +48,11 @@
 
   a {
     color: $text-colour;
+
+    &[href^="#"] {
+      color: $secondary-text-colour;
+      text-decoration: none;
+    }
   }
 
 }
