@@ -1,3 +1,7 @@
+# 6.0.4
+
+- Version bumping related to [govuk_frontend_toolkit_gem PR #15](https://github.com/alphagov/govuk_frontend_toolkit_gem/pull/15)
+
 # 6.0.3
 
 - Allow the passing of a [fields object](https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference)
