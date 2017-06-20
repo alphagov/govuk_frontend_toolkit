@@ -141,7 +141,6 @@ In production:
 * [JavaScript](/docs/javascript.md)
   * [Modules](/docs/javascript.md#modules)
   * [Media player](/docs/javascript.md#media-player)
-  * [Multivariate test framework](/docs/javascript.md#multivariate-test-framework)
   * [Primary links](/docs/javascript.md#primary-links)
   * [Stick at top when scrolling](/docs/javascript.md#stick-at-top-when-scrolling)
   * [Selection buttons](/docs/javascript.md#selection-buttons)

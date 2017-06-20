@@ -4,7 +4,6 @@ var manifest = {
     '../../node_modules/jquery/dist/jquery.js',
     '../../javascripts/govuk/modules.js',
     '../../javascripts/govuk/modules/auto-track-event.js',
-    '../../javascripts/govuk/multivariate-test.js',
     '../../javascripts/govuk/primary-links.js',
     '../../javascripts/govuk/shim-links-with-button-role.js',
     '../../javascripts/govuk/show-hide-content.js',
@@ -22,7 +21,6 @@ var manifest = {
   test: [
     '../unit/modules.spec.js',
     '../unit/Modules/auto-track-event.spec.js',
-    '../unit/multivariate-test.spec.js',
     '../unit/primary-links.spec.js',
     '../unit/shim-links-with-button-role.spec.js',
     '../unit/show-hide-content.spec.js',
