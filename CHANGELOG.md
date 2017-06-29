@@ -1,6 +1,6 @@
-# Unreleased
+# 7.0.0
 
-- Breaking change: Remove multivariate test library ([PR #420](https://github.com/alphagov/govuk_frontend_toolkit/pull/420))
+- Remove multivariate test library ([PR #420](https://github.com/alphagov/govuk_frontend_toolkit/pull/420)). If you need to continue using this library please copy the JavaScript and documentation from version 6.0.4 into your repository.
 
 # 6.0.4
 
