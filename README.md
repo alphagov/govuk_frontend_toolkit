@@ -63,9 +63,9 @@ For example, if you are using [bower](http://bower.io), you can add the toolkit 
 
 #### Using git submodules
 
-You can include the toolkit as a [git submodule][https://git-scm.com/book/en/v2/Git-Tools-Submodules].
+You can include the toolkit as a [git submodule][git submodule].
 
-[git submodule]: https://www.kernel.org/pub/software/scm/git/docs/git-submodule.html
+[git submodule]: https://git-scm.com/book/en/v2/Git-Tools-Submodules
 
 To add the submodule to your project run the following command substituting the path to a subdirectory in your project's assets directory:
 
