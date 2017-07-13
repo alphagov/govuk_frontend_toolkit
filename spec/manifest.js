@@ -2,6 +2,7 @@
 var manifest = {
   support: [
     '../../node_modules/jquery/dist/jquery.js',
+    '../../javascripts/govuk/details.polyfill.js',
     '../../javascripts/govuk/modules.js',
     '../../javascripts/govuk/modules/auto-track-event.js',
     '../../javascripts/govuk/primary-links.js',
