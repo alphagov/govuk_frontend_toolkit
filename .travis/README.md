@@ -20,7 +20,4 @@ and RubyGems.
 
 The [Travis settings](https://travis-ci.org/alphagov/govuk_frontend_toolkit/settings)
 contains a Travis token that belongs to
-[@alexmuller](https://github.com/alexmuller) - as far as we
-can tell there's no way to generate one of these that isn't related to
-a specific user. This token could be replaced with a generic bot account
-if we created one.
+[@govuk-patterns-and-tools-ci](https://github.com/govuk-patterns-and-tools-ci).
