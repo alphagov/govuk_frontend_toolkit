@@ -1,3 +1,7 @@
+# 7.0.1
+
+- Volume up and down buttons in the media player were overlapping the current volume percentage on focus. This fix keeps the large button touch area, but adjusts the focus state to be smaller. ([PR #429](https://github.com/alphagov/govuk_frontend_toolkit/pull/429)).
+
 # 7.0.0
 
 - Remove multivariate test library ([PR #420](https://github.com/alphagov/govuk_frontend_toolkit/pull/420)). If you need to continue using this library please copy the JavaScript and documentation from version 6.0.4 into your repository.
