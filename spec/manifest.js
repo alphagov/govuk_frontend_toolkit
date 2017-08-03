@@ -20,6 +20,7 @@ var manifest = {
     '../../javascripts/govuk/analytics/mailto-link-tracker.js'
   ],
   test: [
+    '../unit/details.polyfill.spec.js',
     '../unit/modules.spec.js',
     '../unit/Modules/auto-track-event.spec.js',
     '../unit/primary-links.spec.js',
