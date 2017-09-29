@@ -45,6 +45,17 @@ describe('GOVUK.Analytics', function () {
       analytics.setDimension(1, 'value', 'name')
       expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', 'value'])
     })
+
+    it('strips email addresses embedded in arguments', function () {
+      analytics.trackPageview('/path/to/an/embedded.email@example.com/address/?with=an&email=in.it@example.com', 'an.email@example.com', { label: 'another.email@example.com', value: ['data', 'data', 'someone has added their personal.email@example.com address'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', { page: '/path/to/an/[email]/address/?with=an&email=[email]', title: '[email]', label: '[email]', value: ['data', 'data', 'someone has added their [email] address'] }])
+
+      analytics.trackEvent('an_email@example.com_address-category', 'an.email@example.com-action', { label: 'another.email@example.com', value: ['data', 'data', 'someone has added their personal.email@example.com address'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', { hitType: 'event', eventCategory: '[email]', eventAction: '[email]', eventLabel: '[email]' }]) // trackEvent ignores options other than label or integer values for value
+
+      analytics.setDimension(1, 'an_email@example.com_address-value', { label: 'another.email@example.com', value: ['data', 'data', 'someone has added their personal.email@example.com address'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', '[email]']) // set dimension ignores extra options
+    })
   })
 
   describe('when tracking social media shares', function () {
@@ -56,6 +67,24 @@ describe('GOVUK.Analytics', function () {
         socialNetwork: 'network',
         socialAction: 'share',
         socialTarget: jasmine.any(String)
+      }])
+    })
+
+    it('strips email addresses embedded in arguments', function () {
+      analytics.trackShare('email', {
+        to: 'myfriend@example.com',
+        label: 'another.email@example.com',
+        value: ['data', 'data', 'someone has added their personal.email@example.com address']
+      })
+
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', {
+        hitType: 'social',
+        socialNetwork: 'email',
+        socialAction: 'share',
+        socialTarget: jasmine.any(String),
+        to: '[email]',
+        label: '[email]',
+        value: ['data', 'data', 'someone has added their [email] address']
       }])
     })
   })

@@ -20,6 +20,40 @@
     }
   }
 
+  Analytics.prototype.stripPII = function (value) {
+    if (typeof value === 'string') {
+      return this.stripPIIFromString(value)
+    } else if (Object.prototype.toString.call(value) === '[object Array]') {
+      return this.stripPIIFromArray(value)
+    } else if (typeof value === 'object') {
+      return this.stripPIIFromObject(value)
+    } else {
+      return value
+    }
+  }
+
+  Analytics.prototype.stripPIIFromString = function (string) {
+    return string.replace(/[^\s=/?&]+(?:@|%40)[^\s=/?&]+/g, '[email]')
+  }
+
+  Analytics.prototype.stripPIIFromObject = function (object) {
+    for (var property in object) {
+      var value = object[property]
+
+      object[property] = this.stripPII(value)
+    }
+    return object
+  }
+
+  Analytics.prototype.stripPIIFromArray = function (array) {
+    for (var i = 0, l = array.length; i < l; i++) {
+      var elem = array[i]
+
+      array[i] = this.stripPII(elem)
+    }
+    return array
+  }
+
   Analytics.prototype.sendToTrackers = function (method, args) {
     for (var i = 0, l = this.trackers.length; i < l; i++) {
       var tracker = this.trackers[i]
@@ -37,7 +71,7 @@
   }
 
   Analytics.prototype.trackPageview = function (path, title, options) {
-    this.sendToTrackers('trackPageview', arguments)
+    this.sendToTrackers('trackPageview', this.stripPII(arguments))
   }
 
   /*
@@ -47,11 +81,11 @@
     options.nonInteraction – Prevent event from impacting bounce rate
   */
   Analytics.prototype.trackEvent = function (category, action, options) {
-    this.sendToTrackers('trackEvent', arguments)
+    this.sendToTrackers('trackEvent', this.stripPII(arguments))
   }
 
   Analytics.prototype.trackShare = function (network, options) {
-    this.sendToTrackers('trackSocial', [network, 'share', global.location.pathname, options])
+    this.sendToTrackers('trackSocial', this.stripPII([network, 'share', global.location.pathname, options]))
   }
 
   /*
@@ -59,7 +93,7 @@
     Universal Analytics profile
    */
   Analytics.prototype.setDimension = function (index, value) {
-    this.sendToTrackers('setDimension', arguments)
+    this.sendToTrackers('setDimension', this.stripPII(arguments))
   }
 
   /*
