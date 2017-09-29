@@ -2,6 +2,8 @@
   'use strict'
 
   var GOVUK = global.GOVUK || {}
+  var EMAIL_PATTERN = /[^\s=/?&]+(?:@|%40)[^\s=/?&]+/g
+  var POSTCODE_PATTERN = /[A-PR-UWYZ][A-HJ-Z]?[0-9][0-9A-HJKMNPR-Y]?(?:[\s+]|%20)*[0-9][ABD-HJLNPQ-Z]{2}/gi
 
   // For usage and initialisation see:
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
@@ -33,7 +35,7 @@
   }
 
   Analytics.prototype.stripPIIFromString = function (string) {
-    return string.replace(/[^\s=/?&]+(?:@|%40)[^\s=/?&]+/g, '[email]')
+    return string.replace(EMAIL_PATTERN, '[email]').replace(POSTCODE_PATTERN, '[postcode]')
   }
 
   Analytics.prototype.stripPIIFromObject = function (object) {

@@ -56,6 +56,17 @@ describe('GOVUK.Analytics', function () {
       analytics.setDimension(1, 'an_email@example.com_address-value', { label: 'another.email@example.com', value: ['data', 'data', 'someone has added their personal.email@example.com address'] })
       expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', '[email]']) // set dimension ignores extra options
     })
+
+    it('strips postcodes embedded in arguments', function () {
+      analytics.trackPageview('/path/to/an/embedded/SW1+1AA/postcode/?with=an&postcode=SP4%207DE', 'TD15 2SE', { label: 'RG209NJ', value: ['data', 'data', 'someone has added their personalIV63 6TU postcode'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', { page: '/path/to/an/embedded/[postcode]/postcode/?with=an&postcode=[postcode]', title: '[postcode]', label: '[postcode]', value: ['data', 'data', 'someone has added their personal[postcode] postcode'] }])
+
+      analytics.trackEvent('SW1+1AA-category', 'SP4%207DE-action', { label: 'RG209NJ', value: ['data', 'data', 'someone has added their personalIV63 6TU postcode'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', { hitType: 'event', eventCategory: '[postcode]-category', eventAction: '[postcode]-action', eventLabel: '[postcode]' }]) // trackEvent ignores options other than label or integer values for value
+
+      analytics.setDimension(1, 'SW1+1AA-value', { label: 'RG209NJ', value: ['data', 'data', 'someone has added their personalIV63 6TU postcode'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', '[postcode]-value']) // set dimension ignores extra options
+    })
   })
 
   describe('when tracking social media shares', function () {
@@ -85,6 +96,24 @@ describe('GOVUK.Analytics', function () {
         to: '[email]',
         label: '[email]',
         value: ['data', 'data', 'someone has added their [email] address']
+      }])
+    })
+
+    it('strips postcodes embedded in arguments', function () {
+      analytics.trackShare('email', {
+        to: 'IV63 6TU',
+        label: 'SP4%207DE',
+        value: ['data', 'data', 'someone has added their personalTD15 2SE postcode']
+      })
+
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', {
+        hitType: 'social',
+        socialNetwork: 'email',
+        socialAction: 'share',
+        socialTarget: jasmine.any(String),
+        to: '[postcode]',
+        label: '[postcode]',
+        value: ['data', 'data', 'someone has added their personal[postcode] postcode']
       }])
     })
   })
