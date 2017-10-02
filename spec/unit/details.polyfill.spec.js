@@ -35,43 +35,56 @@ describe('details-polyfill', function () {
     this.$content.remove()
   })
 
-  describe('when details element follows the specified structure', function () {
-    describe('and when details.polyfill is initialised', function () {
-      describe('and when we have native details support', function () {
-        beforeEach(function () {
-          // Add show/hide content support
-          this.detailsPolyfill = GOVUK.details.addDetailsPolyfill()
-          GOVUK.details.started = false
-        })
-        it('should add the aria attributes to summary', function () {
-          expect(this.$summary1.attr('role')).toBe('button')
-          expect(this.$summary1.attr('aria-controls')).toBe('details-content-0')
-          expect(this.$summary1.attr('aria-expanded')).toBe('false')
-        })
+  describe('and when details.polyfill is initialised', function () {
+    beforeEach(function () {
+      // Initialise detailsPolyfill
+      this.detailsPolyfill = GOVUK.details.addDetailsPolyfill()
+      GOVUK.details.started = false
+    })
+    it('should add to summary the button role', function () {
+      expect(this.$summary1.attr('role')).toBe('button')
+    })
 
-        it('should add the aria attributes to hidden content', function () {
-          expect(this.$hiddenContent1).toBeTruthy()
-          expect(this.$hiddenContent1.attr('id')).toBe('details-content-0')
-          expect(this.$hiddenContent1.attr('aria-hidden')).toBe('true')
-        })
+    it('should set the element controlled by the summary using aria-controls', function () {
+      expect(this.$summary1.attr('aria-controls')).toBe('details-content-0')
+    })
 
-        it('should hide the hidden content visually', function () {
-          expect(this.$hiddenContent1.is(':visible')).toBe(false)
-        })
+    it('should set the expanded state of the summary to false using aria-expanded', function () {
+      expect(this.$summary1.attr('aria-expanded')).toBe('false')
+    })
 
-        it('should make the hidden content visible if its summary is clicked', function (done) {
-          // Initialise again
-          this.detailsPolyfill = GOVUK.details.addDetailsPolyfill()
+    it('should add a unique id to the hidden content in order to be controlled by the summary', function () {
+      expect(this.$hiddenContent1.attr('id')).toBe('details-content-0')
+    })
 
-          // Trigger click on summary
-          this.$summary1.click()
-          expect(this.$content.attr('open')).toBe('open')
-          expect(this.$summary1.attr('aria-expanded')).toBe('true')
-          expect(this.$hiddenContent1.attr('aria-hidden')).toBe('false')
-          expect(this.$hiddenContent1.is(':visible')).toBe(true)
+    it('should set aria-hidden true to hidden content', function () {
+      expect(this.$hiddenContent1.attr('aria-hidden')).toBe('true')
+    })
 
-          done()
-        })
+    it('should visually hide the content', function () {
+      expect(this.$hiddenContent1.is(':visible')).toBe(false)
+    })
+
+    describe('and when summary is clicked', function () {
+      beforeEach(function () {
+        // Trigger click on summary
+        this.$summary1.click()
+      })
+
+      it('should indicate the expanded state of the summary using aria-expanded', function () {
+        expect(this.$summary1.attr('aria-expanded')).toBe('true')
+      })
+
+      it('should make the content visible', function () {
+        expect(this.$hiddenContent1.is(':visible')).toBe(true)
+      })
+
+      it('should indicate the visible state of the content using aria-hidden', function () {
+        expect(this.$hiddenContent1.attr('aria-hidden')).toBe('false')
+      })
+
+      it('should indicate the open state of the content', function () {
+        expect(this.$content.attr('open')).toBe('open')
       })
     })
   })
