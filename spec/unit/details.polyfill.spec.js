@@ -35,7 +35,7 @@ describe('details-polyfill', function () {
     this.$content.remove()
   })
 
-  describe('and when details.polyfill is initialised', function () {
+  describe('When the polyfill is initialised', function () {
     beforeEach(function () {
       // Initialise detailsPolyfill
       this.detailsPolyfill = GOVUK.details.addDetailsPolyfill()
@@ -57,7 +57,7 @@ describe('details-polyfill', function () {
       expect(this.$hiddenContent1.attr('id')).toBe('details-content-0')
     })
 
-    it('should set aria-hidden true to hidden content', function () {
+    it('should present the content as hidden using aria-hidden', function () {
       expect(this.$hiddenContent1.attr('aria-hidden')).toBe('true')
     })
 
