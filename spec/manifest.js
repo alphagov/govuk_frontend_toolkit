@@ -2,6 +2,7 @@
 var manifest = {
   support: [
     '../../node_modules/jquery/dist/jquery.js',
+    '../../javascripts/govuk/details.polyfill.js',
     '../../javascripts/govuk/modules.js',
     '../../javascripts/govuk/modules/auto-track-event.js',
     '../../javascripts/govuk/primary-links.js',
@@ -19,6 +20,7 @@ var manifest = {
     '../../javascripts/govuk/analytics/mailto-link-tracker.js'
   ],
   test: [
+    '../unit/details.polyfill.spec.js',
     '../unit/modules.spec.js',
     '../unit/Modules/auto-track-event.spec.js',
     '../unit/primary-links.spec.js',
