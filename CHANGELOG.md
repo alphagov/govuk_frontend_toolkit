@@ -1,3 +1,7 @@
+# 7.1.0
+
+- Promote the details polyfill to Frontend Toolkit from GOV.UK Elements ([PR #426](https://github.com/alphagov/govuk_frontend_toolkit/pull/426)).
+
 # 7.0.1
 
 - Volume up and down buttons in the media player were overlapping the current volume percentage on focus. This fix keeps the large button touch area, but adjusts the focus state to be smaller. ([PR #429](https://github.com/alphagov/govuk_frontend_toolkit/pull/429)).
