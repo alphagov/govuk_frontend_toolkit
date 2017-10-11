@@ -20,4 +20,4 @@ and RubyGems.
 
 The [Travis settings](https://travis-ci.org/alphagov/govuk_frontend_toolkit/settings)
 contains a Travis token that belongs to
-[@govuk-patterns-and-tools-ci](https://github.com/govuk-patterns-and-tools-ci).
+[@govuk-design-system-ci](https://github.com/govuk-design-system-ci).

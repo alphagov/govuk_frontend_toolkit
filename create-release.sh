@@ -5,8 +5,8 @@ REPO_PATH="alphagov/govuk_frontend_toolkit"
 
 echo "Add config for alphagov/$REPO_PATH"
 
-git config --global user.name "GOV.UK Patterns & Tools CI User"
-git config --global user.email "patterns-and-tools-github-user@digital.cabinet-office.gov.uk"
+git config --global user.name "GOV.UK Design System CI"
+git config --global user.email "design-system-pipeline@digital.cabinet-office.gov.uk"
 git remote add origin_ssh git@github.com:$REPO_PATH.git
 
 # This openssl command was generated automatically by `travis encrypt-file`, see `.travis/README.md` for more details
