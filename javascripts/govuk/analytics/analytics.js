@@ -9,6 +9,13 @@
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
 
   var Analytics = function (config) {
+    this.stripPostcodePII = false
+    if (typeof config.stripPostcodePII !== 'undefined') {
+      this.stripPostcodePII = (config.stripPostcodePII === true)
+      // remove the option so we don't pass it to other trackers - it's not
+      // their concern
+      delete config.stripPostcodePII
+    }
     this.trackers = []
     if (typeof config.universalId !== 'undefined') {
       var universalId = config.universalId
@@ -35,7 +42,12 @@
   }
 
   Analytics.prototype.stripPIIFromString = function (string) {
-    return string.replace(EMAIL_PATTERN, '[email]').replace(POSTCODE_PATTERN, '[postcode]')
+    var emailStripped = string.replace(EMAIL_PATTERN, '[email]')
+    if (this.stripPostcodePII === true) {
+      return emailStripped.replace(POSTCODE_PATTERN, '[postcode]')
+    } else {
+      return emailStripped
+    }
   }
 
   Analytics.prototype.stripPIIFromObject = function (object) {
@@ -72,7 +84,18 @@
     GOVUK.GOVUKTracker.load()
   }
 
+  Analytics.prototype.defaultPathForTrackPageview = function () {
+    // Ignore anchor, but keep query string as per default behaviour of
+    // GA (see: https://developers.google.com/analytics/devguides/collection/analyticsjs/pages#overview)
+    // we ignore the possibility of there being campaign variables in the
+    // anchor because we wouldn't know how to detect and parse them if they
+    // were present
+    return this.stripPIIFromString(window.location.href.split('#')[0])
+  }
+
   Analytics.prototype.trackPageview = function (path, title, options) {
+    arguments[0] = arguments[0] || this.defaultPathForTrackPageview()
+    if (arguments.length === 0) { arguments.length = 1 }
     this.sendToTrackers('trackPageview', this.stripPII(arguments))
   }
 
