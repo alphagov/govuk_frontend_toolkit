@@ -24,7 +24,10 @@ describe('GOVUK.analyticsPlugins.externalLinkTracker', function () {
 
     $('html').on('click', function (evt) { evt.preventDefault() })
     $('body').append($links)
-    GOVUK.analytics = {trackEvent: function () {}}
+    GOVUK.analytics = {
+      trackEvent: function () {},
+      setDimension: function () {}
+    }
 
     spyOn(GOVUK.analyticsPlugins.externalLinkTracker, 'getHostname').and.returnValue('fake-hostname.com')
     GOVUK.analyticsPlugins.externalLinkTracker()
@@ -73,5 +76,15 @@ describe('GOVUK.analyticsPlugins.externalLinkTracker', function () {
 
     expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
       'External Link Clicked', 'https://www.nationalarchives.gov.uk/one.pdf', {transport: 'beacon', label: 'National Archives PDF'})
+  })
+
+  it('duplicates the url info in a custom dimension to be used to join with a Google Analytics upload', function () {
+    spyOn(GOVUK.analytics, 'setDimension')
+    spyOn(GOVUK.analytics, 'trackEvent')
+    $('.external-links a').trigger('click')
+
+    expect(GOVUK.analytics.setDimension).toHaveBeenCalledWith(36, 'http://www.nationalarchives.gov.uk')
+    expect(GOVUK.analytics.trackEvent).toHaveBeenCalledWith(
+      'External Link Clicked', 'http://www.nationalarchives.gov.uk', {transport: 'beacon', label: 'National Archives'})
   })
 })
