@@ -21,6 +21,15 @@
         options.label = linkText
       }
 
+      // This custom dimension will be used to duplicate the url information
+      // that we normally send in an "event action". This will be used to join
+      // up with a scheduled custom upload called "External Link Status".
+      // We can only join uploads on custom dimensions, not on `event actions`
+      // where we normally add the url info.
+      var googleAnalyticsExternalLinkUploadDimension = 36
+      var urlDimensionToJoinUploadOn = href
+
+      GOVUK.analytics.setDimension(googleAnalyticsExternalLinkUploadDimension, urlDimensionToJoinUploadOn)
       GOVUK.analytics.trackEvent('External Link Clicked', href, options)
     }
 
