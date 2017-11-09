@@ -1,3 +1,7 @@
+# 7.2.0
+
+- Add custom dimension on TrackEvent to duplicate the url information that we normally send on a the `event action`. This will be used to join up with a scheduled custom upload called "External Link Status". We can only join uploads on custom dimensions, not on `event actions`, where we normally add the url info. ([PR #436](alphagov/govuk_frontend_toolkit#436) and [PR #439](alphagov/govuk_frontend_toolkit#439))
+
 # 7.1.0
 
 - Promote the details polyfill to Frontend Toolkit from GOV.UK Elements ([PR #426](https://github.com/alphagov/govuk_frontend_toolkit/pull/426)).
