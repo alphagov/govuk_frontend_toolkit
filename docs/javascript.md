@@ -286,7 +286,7 @@ Links styled to look like buttons lack button behaviour. This script will allow 
 
 ### Usage
 
-By default, this behaviour will only be applied to links with a role of button.
+This behaviour will be applied to elements with a role of button.
 
 ```html
 <a class="button" role="button">A button</a>
@@ -294,23 +294,6 @@ By default, this behaviour will only be applied to links with a role of button.
 
 ```javascript
 GOVUK.shimLinksWithButtonRole.init()
-```
-
-If you need to override the elements this is applied to then you can do that by passing in a custom selector to the initialiser:
-
-```javascript
-GOVUK.shimLinksWithButtonRole.init({
-  selector: '.my-class'
-})
-```
-
-It’s also possible to define more or different keycodes to activate against:
-
-```javascript
-// activate when the user presses space or ‘r’
-GOVUK.shimLinksWithButtonRole.init({
-  keycodes: [32, 114]
-});
 ```
 
 ## Show/Hide content
