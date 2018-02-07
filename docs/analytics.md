@@ -7,6 +7,7 @@ The toolkit provides an abstraction around analytics to make tracking pageviews,
 * a generic Analytics wrapper that allows multiple trackers to be configured
 * sensible defaults such as anonymising IPs
 * data coercion into the format required by Google Analytics (eg a custom dimension’s value must be a string)
+* stripping of PII from data sent to the tracker (strips email by default, can be configured to also strip UK postcodes)
 
 ## Create an analytics tracker
 
@@ -216,3 +217,35 @@ plugin uses Google Analytics’ `transport: beacon` method so that events are tr
 Category | Action | Label
 ---------|--------|-------
 Mailto Link Clicked | mailto:name@email.com | Link text
+
+### Stripping Personally Identifiable Information (PII)
+
+The tracker will strip any PII it detects from all arguments sent to the
+tracker.  If a PII is detected in the arguments it is replaced with a
+placeholder value of `[<type of PII removed>]`; for example: `[email]` if an
+email address was removed, or `[postcode]` if a postcode was removed.
+
+We have to parse all arguments which means that if you don't pass a path to
+`trackPageView` to track the current page we have to extract the current page
+and parse it, turning all `trackPageView` calls into ones with a path argument.
+We use `window.location.href.split('#')[0]` as the default path when one is
+not provided.  The original behaviour would have been to ignore the anchor
+part of the URL anyway so this doesn't change the behaviour other than to make
+the path explicit.
+
+By default we strip email addresses, but it can also be configured to strip
+postcodes too.  Postcodes are off by default because they're more likely to
+cause false positives.  If you know you are likely to include postcodes in
+the data you send to the tracker you can configure to strip postcodes at
+initialize time as follows:
+
+```js
+  GOVUK.analytics = new GOVUK.Analytics({
+    universalId: 'UA-XXXXXXXX-X',
+    cookieDomain: cookieDomain,
+    stripPostcodePII: true
+  });
+````
+
+Any value other than the JS literal `true` for `stripPostcodePII` will leave
+the analytics module configured not to strip postcodes.
