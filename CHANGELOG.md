@@ -1,6 +1,7 @@
-# Unreleased
+# 7.3.0
 
-- Strip PII from all arguments passed to GA.  Emails are stripped by default, postcodes can also be stripped if configured to do so.
+- Strip PII from all arguments passed to GA.  Emails are stripped by default, postcodes can also be stripped if configured to do so: ([PR #435](https://github.com/alphagov/govuk_frontend_toolkit/pull/435)).
+- Update sass and govuk-lint dependencies: ([PR #444](https://github.com/alphagov/govuk_frontend_toolkit/pull/444)).
 
 # 7.2.0
 
