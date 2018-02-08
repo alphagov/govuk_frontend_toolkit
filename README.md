@@ -39,6 +39,20 @@ may need to upgrade to a more recent version to use the grid helpers. Minimal
 compatible versions include `node-sass` 1.0.0, `grunt-sass` 0.16.0,
 `gulp-sass` 1.2.0 and `libsass` 3.0.0.
 
+### Django
+
+Requirement: [NodeJS](https://nodejs.org/en/) installed. This gives you [Node Package Manager](https://docs.npmjs.com/getting-started/installing-node)(NPM) which is required to install npm packages.
+
+The easiest way to integrate it would be to create a `package.json` file in your application with `npm init` 
+
+You then install the toolkit with `npm install --save govuk_frontend_toolkit`.
+If you need javascript files, they will live in (`node_modules/govuk_frontend_toolkit/javascripts`).
+If you need stylesheets they will live in (`node_modules/govuk_frontend_toolkit/stylesheets`).
+
+With Django you can use https://github.com/jrief/django-sass-processor to compile Sass files.
+
+Note: if you need complete styles you might want to install govuk-elements-sass package that also installs toolkit
+
 ### Composer
 
 [govuk_frontend_toolkit_composer][toolkit_composer_github] is an composer package that can be
