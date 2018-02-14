@@ -29,10 +29,15 @@
     }
   }
 
+  var PIISafe = function (value) {
+    this.value = value
+  }
+  Analytics.PIISafe = PIISafe
+
   Analytics.prototype.stripPII = function (value) {
     if (typeof value === 'string') {
       return this.stripPIIFromString(value)
-    } else if (Object.prototype.toString.call(value) === '[object Array]') {
+    } else if (Object.prototype.toString.call(value) === '[object Array]' || Object.prototype.toString.call(value) === '[object Arguments]') {
       return this.stripPIIFromArray(value)
     } else if (typeof value === 'object') {
       return this.stripPIIFromObject(value)
@@ -51,12 +56,16 @@
   }
 
   Analytics.prototype.stripPIIFromObject = function (object) {
-    for (var property in object) {
-      var value = object[property]
+    if (object instanceof Analytics.PIISafe) {
+      return object.value
+    } else {
+      for (var property in object) {
+        var value = object[property]
 
-      object[property] = this.stripPII(value)
+        object[property] = this.stripPII(value)
+      }
+      return object
     }
-    return object
   }
 
   Analytics.prototype.stripPIIFromArray = function (array) {

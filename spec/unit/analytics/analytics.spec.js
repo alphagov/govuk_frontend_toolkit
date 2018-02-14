@@ -150,6 +150,24 @@ describe('GOVUK.Analytics', function () {
       analytics.setDimension(1, 'SW1+1AA-value', { label: 'RG209NJ', value: ['data', 'data', 'someone has added their personalIV63 6TU postcode'] })
       expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', '[postcode]-value']) // set dimension ignores extra options
     })
+
+    it('ignores any PIISafe arguments even if they look like emails or postcodes', function () {
+      analytics = new GOVUK.Analytics({
+        universalId: 'universal-id',
+        cookieDomain: '.www.gov.uk',
+        siteSpeedSampleRate: 100,
+        stripPostcodePII: true
+      })
+
+      analytics.trackPageview(new GOVUK.Analytics.PIISafe('/path/to/an/embedded/SW1+1AA/postcode/?with=an&postcode=SP4%207DE'), new GOVUK.Analytics.PIISafe('an.email@example.com'), { label: new GOVUK.Analytics.PIISafe('another.email@example.com'), value: ['data', 'data', new GOVUK.Analytics.PIISafe('someone has added their personalIV63 6TU postcode')] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', 'pageview', { page: '/path/to/an/embedded/SW1+1AA/postcode/?with=an&postcode=SP4%207DE', title: 'an.email@example.com', label: 'another.email@example.com', value: ['data', 'data', 'someone has added their personalIV63 6TU postcode'] }])
+
+      analytics.trackEvent(new GOVUK.Analytics.PIISafe('SW1+1AA-category'), new GOVUK.Analytics.PIISafe('an.email@example.com-action'), { label: new GOVUK.Analytics.PIISafe('RG209NJ'), value: ['data', 'data', 'someone has added their personalIV63 6TU postcode'] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', { hitType: 'event', eventCategory: 'SW1+1AA-category', eventAction: 'an.email@example.com-action', eventLabel: 'RG209NJ' }]) // trackEvent ignores options other than label or integer values for value
+
+      analytics.setDimension(1, new GOVUK.Analytics.PIISafe('an.email@SW1+1AA-value.com'), { label: new GOVUK.Analytics.PIISafe('RG209NJ'), value: ['data', 'data', new GOVUK.Analytics.PIISafe('someone has added their personalIV63 6TU postcode')] })
+      expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', 'an.email@SW1+1AA-value.com']) // set dimension ignores extra options
+    })
   })
 
   describe('when tracking social media shares', function () {
@@ -222,6 +240,31 @@ describe('GOVUK.Analytics', function () {
         to: '[postcode]',
         label: '[postcode]',
         value: ['data', 'data', 'someone has added their personal[postcode] postcode']
+      }])
+    })
+
+    it('ignores any PIISafe arguments even if they look like emails or postcodes', function () {
+      analytics = new GOVUK.Analytics({
+        universalId: 'universal-id',
+        cookieDomain: '.www.gov.uk',
+        siteSpeedSampleRate: 100,
+        stripPostcodePII: true
+      })
+
+      analytics.trackShare('email', {
+        to: new GOVUK.Analytics.PIISafe('IV63 6TU'),
+        label: new GOVUK.Analytics.PIISafe('an.email@example.com'),
+        value: new GOVUK.Analytics.PIISafe(['data', 'another.email@example.com', 'someone has added their personalTD15 2SE postcode'])
+      })
+
+      expect(window.ga.calls.mostRecent().args).toEqual(['send', {
+        hitType: 'social',
+        socialNetwork: 'email',
+        socialAction: 'share',
+        socialTarget: jasmine.any(String),
+        to: 'IV63 6TU',
+        label: 'an.email@example.com',
+        value: ['data', 'another.email@example.com', 'someone has added their personalTD15 2SE postcode']
       }])
     })
   })

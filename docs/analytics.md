@@ -249,3 +249,22 @@ initialize time as follows:
 
 Any value other than the JS literal `true` for `stripPostcodePII` will leave
 the analytics module configured not to strip postcodes.
+
+#### Avoding false positives
+
+Sometimes you will have data you want to send to analytics that looks like PII
+and would be stripped out.  For example on GOV.UK the content_ids that belong
+to every document can sometimes contain a string of characters that look like a
+UK postcode: in `eed5b92e-8279-4ca9-a141-5c35ed22fcf1` the substring `c35ed` in
+the final portion looks like a postcode, `C3 5ED`, and will be transformed into
+`eed5b92e-8279-4ca9-a141-5[postcode]22fcf1` which breaks the `content_id`.  To
+send data that you know is not PII, but it looks like an email address or a UK
+postcode you can provide your arguments wrapped in a `GOVUK.Analytics.PIISafe`
+object.  If any argument to an analytics function is an instance of one of these
+objects the value contained within will be extracted and sent directly to the
+analytics tracker without attempting to strip PII from it.  For example:
+
+```js
+  GOVUK.analytics.setDimension(1, new GOVUK.Analytics.PIISafe('this-is-not-an@email-address-but-it-looks-like-one'));
+  GOVUK.analytics.trackEvent('report title clicked', new GOVUK.Analytics.PIISafe('this report title looks like it contains a P0 5TC ode but it does not really'));
+````
