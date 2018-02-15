@@ -1,6 +1,8 @@
-# Unreleased
+# 7.4.0
 
 - Allow wrapping arguments to analytics as PII safe to tell the analytics code not to attempt to strip PII from the values: ([PR #448](https://github.com/alphagov/govuk_frontend_toolkit/pull/448))
+- Documentation improvements: ([PR #446](https://github.com/alphagov/govuk_frontend_toolkit/pull/446), [PR #447](https://github.com/alphagov/govuk_frontend_toolkit/pull/447))
+
 # 7.3.0
 
 - Strip PII from all arguments passed to GA.  Emails are stripped by default, postcodes can also be stripped if configured to do so: ([PR #435](https://github.com/alphagov/govuk_frontend_toolkit/pull/435)).
