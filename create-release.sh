@@ -13,10 +13,6 @@ git remote add origin_ssh git@github.com:$REPO_PATH.git
 openssl aes-256-cbc -K $encrypted_53be47f46000_key -iv $encrypted_53be47f46000_iv -in .travis/govuk_frontend_toolkit_push.enc -out ~/.ssh/id_rsa -d
 chmod 600 ~/.ssh/id_rsa
 
-echo "Check that we can connect to GitHub successfully"
-
-ssh -T git@github.com
-
 echo "Check to see if the version file has been updated"
 
 # get the version from the version file
