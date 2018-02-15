@@ -10,8 +10,12 @@ git config --global user.email "design-system-pipeline@digital.cabinet-office.go
 git remote add origin_ssh git@github.com:$REPO_PATH.git
 
 # This openssl command was generated automatically by `travis encrypt-file`, see `.travis/README.md` for more details
-openssl aes-256-cbc -K $encrypted_909ac1036a94_key -iv $encrypted_909ac1036a94_iv -in .travis/govuk_frontend_toolkit_push.enc -out ~/.ssh/id_rsa -d
+openssl aes-256-cbc -K $encrypted_53be47f46000_key -iv $encrypted_53be47f46000_iv -in .travis/govuk_frontend_toolkit_push.enc -out ~/.ssh/id_rsa -d
 chmod 600 ~/.ssh/id_rsa
+
+echo "Check that we can connect to GitHub successfully"
+
+ssh -T git@github.com
 
 echo "Check to see if the version file has been updated"
 
