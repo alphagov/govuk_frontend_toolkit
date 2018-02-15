@@ -93,17 +93,17 @@
     GOVUK.GOVUKTracker.load()
   }
 
-  Analytics.prototype.defaultPathForTrackPageview = function () {
-    // Ignore anchor, but keep query string as per default behaviour of
-    // GA (see: https://developers.google.com/analytics/devguides/collection/analyticsjs/pages#overview)
+  Analytics.prototype.defaultPathForTrackPageview = function (location) {
+    // Get the page path including querystring, but ignoring the anchor
+    // as per default behaviour of GA (see: https://developers.google.com/analytics/devguides/collection/analyticsjs/pages#overview)
     // we ignore the possibility of there being campaign variables in the
     // anchor because we wouldn't know how to detect and parse them if they
     // were present
-    return this.stripPIIFromString(window.location.href.split('#')[0])
+    return this.stripPIIFromString(location.href.substring(location.origin.length).split('#')[0])
   }
 
   Analytics.prototype.trackPageview = function (path, title, options) {
-    arguments[0] = arguments[0] || this.defaultPathForTrackPageview()
+    arguments[0] = arguments[0] || this.defaultPathForTrackPageview(window.location)
     if (arguments.length === 0) { arguments.length = 1 }
     this.sendToTrackers('trackPageview', this.stripPII(arguments))
   }

@@ -49,25 +49,53 @@ describe('GOVUK.Analytics', function () {
     })
   })
 
+  describe('extracting the default path for a page view', function () {
+    it('returns a path extracted from the location', function () {
+      var location = {
+        href: 'https://govuk-frontend-toolkit.example.com/a/path',
+        origin: 'https://govuk-frontend-toolkit.example.com'
+      }
+      expect(analytics.defaultPathForTrackPageview(location)).toEqual('/a/path')
+    })
+
+    it('includes the querystring in the path extracted from the location', function () {
+      var location = {
+        href: 'https://govuk-frontend-toolkit.example.com/a/path?with=a&query=string',
+        origin: 'https://govuk-frontend-toolkit.example.com'
+      }
+      expect(analytics.defaultPathForTrackPageview(location)).toEqual('/a/path?with=a&query=string')
+    })
+
+    it('removes any anchor from the path extracted from the location', function () {
+      var location = {
+        href: 'https://govuk-frontend-toolkit.example.com/a/path#with-an-anchor',
+        origin: 'https://govuk-frontend-toolkit.example.com'
+      }
+      expect(analytics.defaultPathForTrackPageview(location)).toEqual('/a/path')
+      location.href = 'https://govuk-frontend-toolkit.example.com/a/path?with=a&query=string#with-an-anchor'
+      expect(analytics.defaultPathForTrackPageview(location)).toEqual('/a/path?with=a&query=string')
+    })
+  })
+
   describe('tracking pageviews', function () {
     beforeEach(function () {
-      spyOn(analytics, 'defaultPathForTrackPageview').and.returnValue('https://govuk-frontend-toolkit.example.com/a/page?with=a&query=string')
+      spyOn(analytics, 'defaultPathForTrackPageview').and.returnValue('/a/page?with=a&query=string')
     })
 
     it('injects a default path if no args are supplied', function () {
       analytics.trackPageview()
       console.log(window.ga.calls.mostRecent().args)
-      expect(window.ga.calls.mostRecent().args[2].page).toEqual('https://govuk-frontend-toolkit.example.com/a/page?with=a&query=string')
+      expect(window.ga.calls.mostRecent().args[2].page).toEqual('/a/page?with=a&query=string')
     })
 
     it('injects a default path if args are supplied, but the path arg is blank', function () {
       analytics.trackPageview(null)
       console.log(window.ga.calls.mostRecent().args)
-      expect(window.ga.calls.mostRecent().args[2].page).toEqual('https://govuk-frontend-toolkit.example.com/a/page?with=a&query=string')
+      expect(window.ga.calls.mostRecent().args[2].page).toEqual('/a/page?with=a&query=string')
 
       analytics.trackPageview(undefined)
       console.log(window.ga.calls.mostRecent().args)
-      expect(window.ga.calls.mostRecent().args[2].page).toEqual('https://govuk-frontend-toolkit.example.com/a/page?with=a&query=string')
+      expect(window.ga.calls.mostRecent().args[2].page).toEqual('/a/page?with=a&query=string')
     })
 
     it('uses the supplied path', function () {
