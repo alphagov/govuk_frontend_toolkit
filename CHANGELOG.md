@@ -1,3 +1,6 @@
+# Unreleased
+
+- Remove the deprecation warning in javascripts/govuk/selection-buttons.js as it is coupled to a different project which is not always used with this gem.
 # 7.4.1
 
 - Use a path, not a full url, as the `defaultPathForTrackPageview` because our analytics trackers expect the explicit page param to be a path, not a url ([PR #451](https://github.com/alphagov/govuk_frontend_toolkit/pull/451)).  Analytics sent with 7.3.0 and 7.4.0 are broken without this fix.
