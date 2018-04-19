@@ -4,11 +4,19 @@
   var GOVUK = global.GOVUK || {}
   var EMAIL_PATTERN = /[^\s=/?&]+(?:@|%40)[^\s=/?&]+/g
   var POSTCODE_PATTERN = /[A-PR-UWYZ][A-HJ-Z]?[0-9][0-9A-HJKMNPR-Y]?(?:[\s+]|%20)*[0-9][ABD-HJLNPQ-Z]{2}/gi
+  var DATE_PATTERN = /\d{4}(-?)\d{2}(-?)\d{2}/g
 
   // For usage and initialisation see:
   // https://github.com/alphagov/govuk_frontend_toolkit/blob/master/docs/analytics.md#create-an-analytics-tracker
 
   var Analytics = function (config) {
+    this.stripDatePII = false
+    if (typeof config.stripDatePII !== 'undefined') {
+      this.stripDatePII = (config.stripDatePII === true)
+      // remove the option so we don't pass it to other trackers - it's not
+      // their concern
+      delete config.stripDatePII
+    }
     this.stripPostcodePII = false
     if (typeof config.stripPostcodePII !== 'undefined') {
       this.stripPostcodePII = (config.stripPostcodePII === true)
@@ -47,12 +55,14 @@
   }
 
   Analytics.prototype.stripPIIFromString = function (string) {
-    var emailStripped = string.replace(EMAIL_PATTERN, '[email]')
-    if (this.stripPostcodePII === true) {
-      return emailStripped.replace(POSTCODE_PATTERN, '[postcode]')
-    } else {
-      return emailStripped
+    var stripped = string.replace(EMAIL_PATTERN, '[email]')
+    if (this.stripDatePII === true) {
+      stripped = stripped.replace(DATE_PATTERN, '[date]')
     }
+    if (this.stripPostcodePII === true) {
+      stripped = stripped.replace(POSTCODE_PATTERN, '[postcode]')
+    }
+    return stripped
   }
 
   Analytics.prototype.stripPIIFromObject = function (object) {
