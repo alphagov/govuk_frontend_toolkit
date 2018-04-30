@@ -7,7 +7,7 @@ The toolkit provides an abstraction around analytics to make tracking pageviews,
 * a generic Analytics wrapper that allows multiple trackers to be configured
 * sensible defaults such as anonymising IPs
 * data coercion into the format required by Google Analytics (eg a custom dimension’s value must be a string)
-* stripping of PII from data sent to the tracker (strips email by default, can be configured to also strip UK postcodes)
+* stripping of PII from data sent to the tracker (strips email by default, can be configured to also strip dates and UK postcodes)
 
 ## Create an analytics tracker
 
@@ -223,7 +223,8 @@ Mailto Link Clicked | mailto:name@email.com | Link text
 The tracker will strip any PII it detects from all arguments sent to the
 tracker.  If a PII is detected in the arguments it is replaced with a
 placeholder value of `[<type of PII removed>]`; for example: `[email]` if an
-email address was removed, or `[postcode]` if a postcode was removed.
+email address was removed, `[date]` if a date was removed, or `[postcode]`
+if a postcode was removed.
 
 We have to parse all arguments which means that if you don't pass a path to
 `trackPageView` to track the current page we have to extract the current page
@@ -234,21 +235,22 @@ part of the URL anyway so this doesn't change the behaviour other than to make
 the path explicit.
 
 By default we strip email addresses, but it can also be configured to strip
-postcodes too.  Postcodes are off by default because they're more likely to
-cause false positives.  If you know you are likely to include postcodes in
-the data you send to the tracker you can configure to strip postcodes at
-initialize time as follows:
+dates and postcodes too.  Dates and postcodes are off by default because
+they're more likely to cause false positives.  If you know you are likely to
+include dates or postcodes in the data you send to the tracker you can configure
+to strip postcodes at initialize time as follows:
 
 ```js
   GOVUK.analytics = new GOVUK.Analytics({
     universalId: 'UA-XXXXXXXX-X',
     cookieDomain: cookieDomain,
+    stripDatePII: true,
     stripPostcodePII: true
   });
 ````
 
-Any value other than the JS literal `true` for `stripPostcodePII` will leave
-the analytics module configured not to strip postcodes.
+Any value other than the JS literal `true` will leave the analytics module
+configured not to strip.
 
 #### Avoding false positives
 
@@ -258,8 +260,8 @@ to every document can sometimes contain a string of characters that look like a
 UK postcode: in `eed5b92e-8279-4ca9-a141-5c35ed22fcf1` the substring `c35ed` in
 the final portion looks like a postcode, `C3 5ED`, and will be transformed into
 `eed5b92e-8279-4ca9-a141-5[postcode]22fcf1` which breaks the `content_id`.  To
-send data that you know is not PII, but it looks like an email address or a UK
-postcode you can provide your arguments wrapped in a `GOVUK.Analytics.PIISafe`
+send data that you know is not PII, but it looks like an email address, a date,
+or a UK postcode you can provide your arguments wrapped in a `GOVUK.Analytics.PIISafe`
 object.  If any argument to an analytics function is an instance of one of these
 objects the value contained within will be extracted and sent directly to the
 analytics tracker without attempting to strip PII from it.  For example:

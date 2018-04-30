@@ -1,3 +1,7 @@
+# Unreleased
+
+- Implement optional stripping of dates for arguments passed to GA: ([PR #459](https://github.com/alphagov/govuk_frontend_toolkit/pull/459))
+
 # 7.4.2
 
 - Remove the deprecation warning in javascripts/govuk/selection-buttons.js as it is coupled to a different project which is not always used with this gem.
