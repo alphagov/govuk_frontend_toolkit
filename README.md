@@ -1,3 +1,12 @@
+The GOV.UK Design System is launching 22 June
+===============
+
+When it's launched the Design System will contain the tools and helpers for building frontend apps.
+
+If you’re starting a new project and you’re able to wait until 22 June, we recommend using the Design System when it launches.
+
+GOV.UK Frontend Toolkit will still be available in case you are already using it.
+
 # GOV.UK frontend toolkit
 
 A collection of Sass and JavaScript files for using as part of your
