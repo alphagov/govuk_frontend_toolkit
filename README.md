@@ -1,11 +1,9 @@
-The GOV.UK Design System is launching 22 June
+The GOV.UK Design System launched on 22 June 2018
 ===============
 
-When it's launched the Design System will contain the tools and helpers for building frontend apps.
+The Government Digital Service (GDS) is retiring GOV.UK Frontend Toolkit following the launch of the GOV.UK Design System. GOV.UK Frontend Toolkit will remain available to you if you are currently using it but will no longer be maintained. GDS will only roll out major bug fixes and security patches.
 
-If you’re starting a new project and you’re able to wait until 22 June, we recommend using the Design System when it launches.
-
-GOV.UK Frontend Toolkit will still be available in case you are already using it.
+For new projects, you can get all of the information about GOV.UK styles, components and patterns in the [GOV.UK Design System](https://www.gov.uk/design-system).
 
 # GOV.UK frontend toolkit
 
