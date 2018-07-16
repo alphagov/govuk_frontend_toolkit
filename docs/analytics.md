@@ -227,8 +227,8 @@ email address was removed, `[date]` if a date was removed, or `[postcode]`
 if a postcode was removed.
 
 We have to parse all arguments which means that if you don't pass a path to
-`trackPageView` to track the current page we have to extract the current page
-and parse it, turning all `trackPageView` calls into ones with a path argument.
+`trackPageview` to track the current page we have to extract the current page
+and parse it, turning all `trackPageview` calls into ones with a path argument.
 We use `window.location.href.split('#')[0]` as the default path when one is
 not provided.  The original behaviour would have been to ignore the anchor
 part of the URL anyway so this doesn't change the behaviour other than to make
