@@ -177,4 +177,11 @@ describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
       expect(window.ga.calls.mostRecent().args).toEqual(['set', 'dimension1', '10'])
     })
   })
+
+  describe('when tracking all events', function () {
+    window.history.replaceState(null, null, '?address=an.email@digital.cabinet-office.gov.uk')
+    it('removes any email address from the location', function () {
+      expect(window.ga.calls.mostRecent().args[2]).toContain('address=[email]')
+    })
+  })
 })
