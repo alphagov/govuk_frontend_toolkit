@@ -20,6 +20,10 @@
       sendToGa('set', 'displayFeaturesTask', null)
     }
 
+    function stripLocationPII () {
+      sendToGa('set', 'location', stripEmailAddressesFromString(window.location.href))
+    }
+
     // Support legacy cookieDomain param
     if (typeof fieldsObject === 'string') {
       fieldsObject = { cookieDomain: fieldsObject }
@@ -28,6 +32,7 @@
     configureProfile()
     anonymizeIp()
     disableAdTracking()
+    stripLocationPII()
   }
 
   GoogleAnalyticsUniversalTracker.load = function () {
@@ -158,6 +163,11 @@
     if (typeof global.ga === 'function') {
       global.ga.apply(global, arguments)
     }
+  }
+
+  function stripEmailAddressesFromString (string) {
+    var stripped = string.replace(/[^\s=/?&]+(?:@|%40)[^\s=/?&]+/g, '[email]')
+    return stripped
   }
 
   GOVUK.GoogleAnalyticsUniversalTracker = GoogleAnalyticsUniversalTracker
