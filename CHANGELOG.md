@@ -1,3 +1,7 @@
+# 7.6.0
+
+- Strip emails from urls for all GA requests to catch cases when GA generates a new event (e.g. page timings): ([PR 466](https://github.com/alphagov/govuk_frontend_toolkit/pull/466)).
+
 # 7.5.0
 
 - Implement optional stripping of dates for arguments passed to GA: ([PR #459](https://github.com/alphagov/govuk_frontend_toolkit/pull/459))
