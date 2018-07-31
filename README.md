@@ -54,14 +54,6 @@ With Django you can use https://github.com/jrief/django-sass-processor to compil
 
 Note: if you need complete styles you might want to install govuk-elements-sass package that also installs toolkit
 
-### Composer
-
-[govuk_frontend_toolkit_composer][toolkit_composer_github] is an composer package that can be
-[added to your composer.json][toolkit_composer_github_usage]
-
-[toolkit_composer_github]: https://github.com/PurpleBooth/govuk_frontend_toolkit_composer
-[toolkit_composer_github_usage]: https://github.com/PurpleBooth/govuk_frontend_toolkit_composer#installing
-
 ### Other projects
 
 #### Using the tagged versions
