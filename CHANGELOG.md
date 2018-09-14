@@ -1,3 +1,7 @@
+# Unreleased
+
+- Fix: Add support to show-hide-content.js for form fields with more varied characters: ([PR 403](https://github.com/alphagov/govuk_frontend_toolkit/pull/403))
+
 # 7.6.0
 
 - Strip emails from urls for all GA requests to catch cases when GA generates a new event (e.g. page timings): ([PR 466](https://github.com/alphagov/govuk_frontend_toolkit/pull/466)).
