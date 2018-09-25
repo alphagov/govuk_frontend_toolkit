@@ -155,7 +155,7 @@ describe('stageprompt', function () {
 
       GOVUK.performance.stageprompt.setupForGoogleAnalytics()
 
-      expect(window.ga).toHaveBeenCalledWith('send', 'event', 'thisIsATest', undefined, undefined)
+      expect(window.ga).toHaveBeenCalledWith('send', 'event', 'thisIsATest', undefined, undefined, { nonInteraction: true })
     })
 
     it('should get set up to send events to google analytics using gaq.push() if ga() does not exist', function () {
