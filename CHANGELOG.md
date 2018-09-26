@@ -1,6 +1,15 @@
 # Unreleased
 
-- Fix: Add support to show-hide-content.js for form fields with more varied characters: ([PR 403](https://github.com/alphagov/govuk_frontend_toolkit/pull/403))
+- Breaking change: Add support for Google Analytics Universal in stageprompt.js
+
+  This is a breaking change since while we allow for the old behaviour, Google Analytics Universal is used by the default, which could change behaviour in applications.
+
+  Also ensures that events triggered via GA Universal do not impact bounce-rate calculations,
+  which mirrors the original implementation.
+
+  ([PR 421](https://github.com/alphagov/govuk_frontend_toolkit/pull/421)).
+
+- Fix: Add support to show-hide-content.js for form fields with more varied characters: ([PR 403](https://github.com/alphagov/govuk_frontend_toolkit/pull/403)).
 
 # 7.6.0
 
