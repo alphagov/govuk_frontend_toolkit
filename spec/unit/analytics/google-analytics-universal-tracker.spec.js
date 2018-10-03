@@ -114,6 +114,13 @@ describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
       )
     })
 
+    it('the option trackerName overrides the default tracker', function () {
+      universal.trackEvent('category', 'action', {trackerName: 'testTracker'})
+      expect(window.ga.calls.mostRecent().args).toEqual(
+        ['testTracker.send', {hitType: 'event', eventCategory: 'category', eventAction: 'action'}]
+      )
+    })
+
     it('only sends values if they are parseable as numbers', function () {
       universal.trackEvent('category', 'action', {label: 'label', value: '10'})
       expect(eventObjectFromSpy()['eventValue']).toEqual(10)
@@ -182,6 +189,29 @@ describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
     window.history.replaceState(null, null, '?address=an.email@digital.cabinet-office.gov.uk')
     it('removes any email address from the location', function () {
       expect(window.ga.calls.mostRecent().args[2]).toContain('address=[email]')
+    })
+  })
+
+  describe('adding a linked tracker', function () {
+    var callIndex
+
+    beforeEach(function () {
+      callIndex = window.ga.calls.count()
+      universal.addLinkedTrackerDomain('UA-123456', 'testTracker', 'some.service.gov.uk')
+    })
+    it('creates a tracker for the ID', function () {
+      expect(window.ga.calls.argsFor(callIndex)).toEqual(['create', 'UA-123456', 'auto', Object({ name: 'testTracker' })])
+    })
+    it('requires and configures the linker plugin', function () {
+      expect(window.ga.calls.argsFor(callIndex + 1)).toEqual(['require', 'linker'])
+      expect(window.ga.calls.argsFor(callIndex + 2)).toEqual(['testTracker.require', 'linker'])
+    })
+    it('sends a pageview', function () {
+      expect(window.ga.calls.mostRecent().args).toEqual(['testTracker.send', 'pageview'])
+    })
+    it('can omit sending a pageview', function () {
+      universal.addLinkedTrackerDomain('UA-123456', 'testTracker', 'some.service.gov.uk', false)
+      expect(window.ga.calls.mostRecent().args).not.toEqual(['testTracker.send', 'pageview'])
     })
   })
 })
