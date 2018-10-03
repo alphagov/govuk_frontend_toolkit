@@ -1,5 +1,12 @@
 # Unreleased
 
+# 8.1.0
+
+- Enables cross domain event tracking. Preserves previous cross domain pageview tracking behaviours but adds optional
+  abilities to send events to linked GA trackers.
+
+  ([PR 472](https://github.com/alphagov/govuk_frontend_toolkit/pull/472)).
+
 # 8.0.0
 
 - Breaking change: Add support for Google Analytics Universal in stageprompt.js
