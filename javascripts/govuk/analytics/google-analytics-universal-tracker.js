@@ -74,6 +74,7 @@
   GoogleAnalyticsUniversalTracker.prototype.trackEvent = function (category, action, options) {
     options = options || {}
     var value
+    var trackerName = ''
     var evt = {
       hitType: 'event',
       eventCategory: category,
@@ -97,6 +98,12 @@
       delete options.value
     }
 
+    // trackerName is optional
+    if (typeof options.trackerName === 'string') {
+      trackerName = options.trackerName + '.'
+      delete options.trackerName
+    }
+
     // Prevents an event from affecting bounce rate
     // https://developers.google.com/analytics/devguides/collection/analyticsjs/events#implementation
     if (options.nonInteraction) {
@@ -107,7 +114,7 @@
       $.extend(evt, options)
     }
 
-    sendToGa('send', evt)
+    sendToGa(trackerName + 'send', evt)
   }
 
   /*
@@ -132,11 +139,13 @@
 
   /*
    https://developers.google.com/analytics/devguides/collection/analyticsjs/cross-domain
-   trackerId - the UA account code to track the domain against
-   name      - name for the tracker
-   domain    - the domain to track
+   trackerId    - the UA account code to track the domain against
+   name         - name for the tracker
+   domain       - the domain to track
+   sendPageView - optional argument which controls the legacy behaviour of sending a pageview
+                  on creation of the linked domain.
   */
-  GoogleAnalyticsUniversalTracker.prototype.addLinkedTrackerDomain = function (trackerId, name, domain) {
+  GoogleAnalyticsUniversalTracker.prototype.addLinkedTrackerDomain = function (trackerId, name, domain, sendPageView) {
     sendToGa('create',
              trackerId,
              'auto',
@@ -151,7 +160,10 @@
 
     sendToGa(name + '.set', 'anonymizeIp', true)
     sendToGa(name + '.set', 'displayFeaturesTask', null)
-    sendToGa(name + '.send', 'pageview')
+
+    if (typeof sendPageView === 'undefined' || sendPageView === true) {
+      sendToGa(name + '.send', 'pageview')
+    }
   }
 
   // https://developers.google.com/analytics/devguides/collection/analyticsjs/custom-dims-mets
