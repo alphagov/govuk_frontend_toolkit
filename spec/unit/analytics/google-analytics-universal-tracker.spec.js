@@ -46,6 +46,10 @@ describe('GOVUK.GoogleAnalyticsUniversalTracker', function () {
     it('anonymises the IP', function () {
       expect(setupArguments[1]).toEqual(['set', 'anonymizeIp', true])
     })
+
+    it('disables Ad features', function () {
+      expect(setupArguments[3]).toEqual(['set', 'allowAdFeatures', false])
+    })
   })
 
   describe('when created (with legacy non-object syntax)', function () {
