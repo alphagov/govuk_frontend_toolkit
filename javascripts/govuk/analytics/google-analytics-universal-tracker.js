@@ -20,6 +20,11 @@
       sendToGa('set', 'displayFeaturesTask', null)
     }
 
+    function disableAdFeatures () {
+      // https://developers.google.com/analytics/devguides/collection/analyticsjs/field-reference#allowAdFeatures
+      sendToGa('set', 'allowAdFeatures', false)
+    }
+
     function stripLocationPII () {
       sendToGa('set', 'location', stripEmailAddressesFromString(window.location.href))
     }
@@ -32,6 +37,7 @@
     configureProfile()
     anonymizeIp()
     disableAdTracking()
+    disableAdFeatures()
     stripLocationPII()
   }
 
