@@ -1,5 +1,10 @@
 # Unreleased
 
+# 8.2.0
+
+- Update MHLCG brand colour
+- Disable Google Analytics Ad Features by default
+
 # 8.1.0
 
 - Enables cross domain event tracking. Preserves previous cross domain pageview tracking behaviours but adds optional
