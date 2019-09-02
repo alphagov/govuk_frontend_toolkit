@@ -1,4 +1,4 @@
-# Unreleased
+# 9.0.0
 
 - Breaking change: Remove Google Analytics code (migrated to static)
 
