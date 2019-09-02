@@ -1,5 +1,11 @@
 # Unreleased
 
+- Breaking change: Remove Google Analytics code (migrated to static)
+
+  As this library has been deprecated the code has been [migrated to static](https://github.com/alphagov/static/pull/1795) for use in GOV.UK Publishing.
+
+  Note that any code that explicitly relies upon the analytics code in toolkit will no longer work. If you require this code, do not update from v8.2.0, or make a copy of it in your application.
+
 # 8.2.0
 
 - Update MHLCG brand colour

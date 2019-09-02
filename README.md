@@ -44,7 +44,7 @@ compatible versions include `node-sass` 1.0.0, `grunt-sass` 0.16.0,
 
 Requirement: [NodeJS](https://nodejs.org/en/) installed. This gives you [Node Package Manager](https://docs.npmjs.com/getting-started/installing-node)(NPM) which is required to install npm packages.
 
-The easiest way to integrate it would be to create a `package.json` file in your application with `npm init` 
+The easiest way to integrate it would be to create a `package.json` file in your application with `npm init`
 
 You then install the toolkit with `npm install --save govuk_frontend_toolkit`.
 If you need javascript files, they will live in (`node_modules/govuk_frontend_toolkit/javascripts`).
@@ -153,16 +153,6 @@ In production:
   * [Selection buttons](/docs/javascript.md#selection-buttons)
   * [Shim links with button role](/docs/javascript.md#shim-links-with-button-role)
   * [Show/Hide content](/docs/javascript.md#showhide-content)
-* [Analytics](/docs/analytics.md)
-  * [Create an analytics tracker](/docs/analytics.md#create-an-analytics-tracker)
-  * [Virtual pageviews](/docs/analytics.md#virtual-pageviews)
-  * [Custom events](/docs/analytics.md#custom-events)
-  * [Custom dimensions and custom variables](/docs/analytics.md#custom-dimensions-and-custom-variables)
-  * [Print tracking](/docs/analytics.md#print-tracking-print-intentjs)
-  * [Error tracking](/docs/analytics.md#error-tracking-error-trackingjs)
-  * [External link tracking](/docs/analytics.md#external-link-tracking-external-link-trackerjs)
-  * [Download link tracking](/docs/analytics.md#download-link-tracking-download-link-trackerjs)
-  * [Mailto link tracking](/docs/analytics.md#mailto-link-tracking-mailto-link-trackerjs)
 
 ## Licence
 
