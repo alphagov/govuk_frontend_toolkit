@@ -1,4 +1,4 @@
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var $ = global.jQuery
@@ -26,6 +26,13 @@
       return $el.offset()
     },
     init: function () {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'stick-at-the-top-when-scrolling.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       var $els = $('.js-stick-at-top-when-scrolling')
 
       if ($els.length > 0) {

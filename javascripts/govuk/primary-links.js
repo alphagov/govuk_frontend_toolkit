@@ -1,4 +1,4 @@
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var $ = global.jQuery
@@ -47,6 +47,13 @@
 
   GOVUK.primaryLinks = {
     init: function (selector) {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'primary-links.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       $(selector).parent().each(function (i, el) {
         new GOVUK.PrimaryList(el, selector) // eslint-disable-line no-new
       })

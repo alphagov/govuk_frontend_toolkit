@@ -7,7 +7,7 @@
 //
 // Usage instructions:
 // GOVUK.shimLinksWithButtonRole.init();
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var $ = global.jQuery
@@ -16,6 +16,13 @@
   GOVUK.shimLinksWithButtonRole = {
 
     init: function init () {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'shim-links-with-button-role.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       // listen to 'document' for keydown event on the any elements that should be buttons.
       $(document).on('keydown', '[role="button"]', function (event) {
         // if the keyCode (which) is 32 it's a space, let's simulate a click.

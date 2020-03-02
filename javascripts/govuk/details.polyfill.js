@@ -6,7 +6,7 @@
 
 // http://www.sitepoint.com/fixing-the-details-element/
 
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var GOVUK = global.GOVUK || {}
@@ -234,6 +234,13 @@
     init: function ($container) {
       GOVUK.details.addEvent(document, 'DOMContentLoaded', GOVUK.details.addDetailsPolyfill)
       GOVUK.details.addEvent(window, 'load', GOVUK.details.addDetailsPolyfill)
+
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'details.polyfill.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
     }
   }
   global.GOVUK = GOVUK

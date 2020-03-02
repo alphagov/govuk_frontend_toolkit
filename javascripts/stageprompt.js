@@ -39,6 +39,13 @@
     }
 
     setup = function (analyticsCallback) {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'stageprompt.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       var journeyStage = $('[data-journey]').attr('data-journey')
       var journeyHelpers = $('[data-journey-click]')
 

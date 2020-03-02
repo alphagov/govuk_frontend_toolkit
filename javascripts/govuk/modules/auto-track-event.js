@@ -1,4 +1,4 @@
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var GOVUK = global.GOVUK || {}
@@ -6,6 +6,13 @@
 
   GOVUK.Modules.AutoTrackEvent = function () {
     this.start = function (element) {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'auto-track-event.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       var options = { nonInteraction: 1 } // automatic events shouldn't affect bounce rate
       var category = element.data('track-category')
       var action = element.data('track-action')

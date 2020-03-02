@@ -9,6 +9,13 @@
   var GOVUK = global.GOVUK || {}
 
   var SelectionButtons = function (elmsOrSelector, opts) {
+    if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+      GOVUK.analytics.trackEvent('Toolkit', 'selection-buttons.js', {
+        label: window.location.pathname,
+        nonInteraction: true
+      })
+    }
+
     this.selectedClass = 'selected'
     this.focusedClass = 'focused'
     this.radioClass = 'selection-button-radio'

@@ -10,7 +10,7 @@
 // Height is passed in separatly incase the scrolling element has no height
 // itself.
 
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var $ = global.jQuery
@@ -23,6 +23,13 @@
     _els: [],
 
     addEl: function ($fixedEl, height) {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'stop-scrolling-at-footer.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       var fixedOffset
 
       if (!$fixedEl.length) { return }

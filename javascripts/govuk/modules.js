@@ -1,4 +1,4 @@
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var $ = global.jQuery
@@ -23,6 +23,13 @@
     },
 
     start: function (container) {
+      if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+        GOVUK.analytics.trackEvent('Toolkit', 'modules.js', {
+          label: window.location.pathname,
+          nonInteraction: true
+        })
+      }
+
       var modules = this.find(container)
 
       for (var i = 0, l = modules.length; i < l; i++) {

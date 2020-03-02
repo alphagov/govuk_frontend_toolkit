@@ -17,6 +17,9 @@
     "lint": "standard && bundle && bundle exec govuk-lint-sass stylesheets"
   },
   "standard": {
+    "globals": [
+      "GOVUK"
+    ],
     "ignore": [
       "/javascripts/vendor/",
       "/spec/support/"

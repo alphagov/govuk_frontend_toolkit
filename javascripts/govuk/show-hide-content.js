@@ -1,4 +1,4 @@
-;(function (global) {
+; (function (global) {
   'use strict'
 
   var $ = global.jQuery
@@ -157,6 +157,13 @@
   }
 
   ShowHideContent.prototype.init = function ($container) {
+    if (window.GOVUK.analytics && window.GOVUK.analytics.trackEvent) {
+      GOVUK.analytics.trackEvent('Toolkit', 'show-hide-content.js', {
+        label: window.location.pathname,
+        nonInteraction: true
+      })
+    }
+
     this.showHideRadioToggledContent($container)
     this.showHideCheckboxToggledContent($container)
   }
