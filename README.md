@@ -7,7 +7,7 @@ GOV.UK Frontend Toolkit is:
 - will only be updated for major bug fixes and security patches
 - does not meet the [Web Content Accessibility Guidelines (WCAG 2.1 level AA) accessibility standard](https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps)
 
-This repo will remain available in case you’re currently using it. To help your service meet accessibility requirements, you should use the [GOV.UK Design System](https://design-system.service.gov.uk/). You can [migrate to the Design System from GOV.UK Frontend Toolkit](https://frontend.design-system.service.gov.uk/migrating-from-legacy-products/).
+This framework will remain available in case you’re currently using it. To help your service meet accessibility requirements, you should use the [GOV.UK Design System](https://design-system.service.gov.uk/). You can [migrate to the Design System from GOV.UK Frontend Toolkit](https://frontend.design-system.service.gov.uk/migrating-from-legacy-products/).
 
 # GOV.UK frontend toolkit
 
