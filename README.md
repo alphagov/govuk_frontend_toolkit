@@ -1,9 +1,9 @@
 The GOV.UK Design System launched on 22 June 2018
 ===============
 
-GOV.UK Frontend Toolkit is:
+GOV.UK Frontend Toolkit:
 
-- no longer maintained
+- is no longer maintained
 - will only be updated for major bug fixes and security patches
 - does not meet the [Web Content Accessibility Guidelines (WCAG 2.1 level AA) accessibility standard](https://www.gov.uk/guidance/accessibility-requirements-for-public-sector-websites-and-apps#meeting-accessibility-requirements)
 
