@@ -1,3 +1,7 @@
+# 9.0.1
+
+- Remove explicit dependency on ruby-sass. This dependency isn't required or sufficient to integrate with Ruby-on-Rails, expectation is that all consumers of this gem already use sass-rails or sassc-rails.
+
 # 9.0.0
 
 - Breaking change: Remove Google Analytics code (migrated to static)

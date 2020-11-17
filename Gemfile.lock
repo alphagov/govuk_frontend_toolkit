@@ -42,7 +42,6 @@ PLATFORMS
 
 DEPENDENCIES
   govuk-lint (= 3.6.0)
-  sass (= 3.5.5)
 
 BUNDLED WITH
-   1.14.6
+   1.17.3
